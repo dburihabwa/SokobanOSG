@@ -1,4 +1,9 @@
 #pragma once
+const Direction UP = Direction(0,1);
+const Direction DOWN = Direction(0,-1);
+const Direction RIGHT = Direction(1,0);
+const Direction LEFT = Direction(-1,0);
+
 class Direction
 {
 
@@ -13,12 +18,12 @@ public:
 	const int getY() const {
 		return this->_y;
 	}
+	bool Direction::operator ==(Direction b) {
+		return (this->_x == b._x && this->_y == b._y);
+	}
 
 private:
 	int _x,_y;
 };
-const Direction UP = Direction(0,1);
-const Direction DOWN = Direction(0,-1);
-const Direction RIGHT = Direction(1,0);
-const Direction LEFT = Direction(-1,0);
+
 
