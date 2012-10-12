@@ -3,9 +3,11 @@
 class Box :
     public MovableObject
 {
+
 public:
-    Box(void);
-    bool canMove(Direction d) const;
+	Box(size_t x, size_t y, size_t z) : MovableObject::MovableObject(x,y,z) {}
     ~Box(void);
+private:
+	Box();
 };
 
