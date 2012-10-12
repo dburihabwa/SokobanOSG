@@ -2,3 +2,5 @@
 *.suo
 *.sdf
 *.opensdf
+*.vcxproj*
+ipch/
