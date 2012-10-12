@@ -41,9 +41,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(OSG_INCLUDE_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(OSG_LIB_PATH);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenThreadsd.lib;osgAnimationd.lib;osgd.lib;osgDBd.lib;osgGAd.lib;osgFXd.lib;osgUtild.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgShadowd.lib;osgSimd.lib;osgViewerd.lib;osgTerraind.lib;osgTextd.lib;osgVolumed.lib;osgWidgetd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
