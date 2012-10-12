@@ -1,10 +1,11 @@
 #pragma once
 #include "case.h"
 class Unmovable :
-    public Case
+	public Case
 {
 public:
-    Unmovable(void);
-    ~Unmovable(void);
+	Unmovable(size_t x, size_t y, size_t z) : Case::Case(x,y,z) {}
+private:
+	Unmovable();
 };
 

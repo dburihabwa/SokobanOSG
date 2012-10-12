@@ -5,7 +5,7 @@ using namespace osg;
 class Case
 {
 public:
-
+	Case(size_t x,size_t y, size_t z) : _x(x), _y(y), _z(z) {}
 	size_t Case::getX() const {
 		return this->_x;
 	}
@@ -21,4 +21,6 @@ protected:
 	size_t _x;
 	size_t _y;
 	size_t _z;
+private:
+	Case();
 };
