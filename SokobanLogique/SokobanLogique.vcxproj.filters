@@ -16,6 +16,9 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">
@@ -33,9 +36,6 @@
     <ClInclude Include="Ground.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="MovableObject.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -43,6 +43,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Unmovable.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Movable.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

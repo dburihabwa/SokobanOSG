@@ -68,7 +68,7 @@
     <ClInclude Include="Case.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="Ground.h" />
-    <ClInclude Include="MovableObject.h" />
+    <ClInclude Include="Movable.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Target.h" />
     <ClInclude Include="Unmovable.h" />
@@ -77,6 +77,7 @@
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Target.cpp" />
     <ClCompile Include="Wall.cpp" />
