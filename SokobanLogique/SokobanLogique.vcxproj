@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="Box.h" />
     <ClInclude Include="Case.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Movable.h" />
