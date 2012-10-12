@@ -4,3 +4,5 @@
 *.opensdf
 *.vcxproj*
 ipch/
+SokobanLogique.suo
+SokobanLogique.sdf

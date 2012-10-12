@@ -5,9 +5,20 @@ using namespace osg;
 class Case
 {
 public:
-    size_t getX() const;
-    size_t getY() const;
+
+	size_t Case::getX() const {
+		return this->_x;
+	}
+
+	size_t Case::getY() const {
+		return this->_y;
+	}
+	size_t getZ() const {
+		return this->_z;
+	}
+	virtual Geode createGeode() = 0;
 protected:
-    size_t _x;
-    size_t _y;
+	size_t _x;
+	size_t _y;
+	size_t _z;
 };

@@ -1,12 +1,10 @@
 #pragma once
 #include "case.h"
-class MovableObject :
-    public Case
+#include "Direction.h"
+class MovableObject : public Case
 {
-protected:
-    Direction nextPosition = NULL;
 public:
-    virtual bool canMove(Direction) const;
-    virtual bool move(Direction);
+    virtual bool canMove(Direction) const = 0;
+    virtual bool move(Direction) = 0;
 };
 
