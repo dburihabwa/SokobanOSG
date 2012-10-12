@@ -69,12 +69,14 @@
     <ClInclude Include="Direction.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="MovableObject.h" />
+    <ClInclude Include="Target.h" />
     <ClInclude Include="Unmovable.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="Target.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
