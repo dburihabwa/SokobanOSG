@@ -1,11 +1,11 @@
 #pragma once
-#include "movableobject.h"
+#include "movable.h"
 class Box :
-    public MovableObject
+    public Movable
 {
 
 public:
-	Box(size_t x, size_t y, size_t z) : MovableObject::MovableObject(x,y,z) {}
+	Box(size_t x, size_t y, size_t z) : Movable(x,y,z) {}
     ~Box(void);
 private:
 	Box();

@@ -1,12 +1,6 @@
 #pragma once
-const Direction UP = Direction(0,1);
-const Direction DOWN = Direction(0,-1);
-const Direction RIGHT = Direction(1,0);
-const Direction LEFT = Direction(-1,0);
-
 class Direction
 {
-
 public:
 	Direction(int x,int y)	{
 		this->_x = x;

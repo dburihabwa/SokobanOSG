@@ -1,10 +1,10 @@
 #pragma once
-#include "movableobject.h"
+#include "movable.h"
 class Player :
-	public MovableObject
+	public Movable
 {
 public:
-	Player(size_t x, size_t y, size_t z) : MovableObject::MovableObject(x,y,z) {}
+	Player(size_t x, size_t y, size_t z) : Movable(x,y,z) {}
 public:
 	~Player(void);
 private:
