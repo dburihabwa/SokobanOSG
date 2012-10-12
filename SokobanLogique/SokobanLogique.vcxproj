@@ -70,7 +70,6 @@
     <ClInclude Include="Ground.h" />
     <ClInclude Include="MovableObject.h" />
     <ClInclude Include="Player.h" />
-
     <ClInclude Include="Target.h" />
     <ClInclude Include="Unmovable.h" />
     <ClInclude Include="Wall.h" />
