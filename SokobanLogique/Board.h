@@ -1,17 +1,19 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "Movable.h"
-#include "Unmovable.h"
-class Board
+#include "Case.h"
+
+using namespace osg;
+namespace Sokoban
 {
-	
-public:
-	Board(std::string);
-	~Board(void);
-private:
-	std::vector<std::vector<Movable>> movable;
-	std::vector<std::vector<Unmovable>> unMovable;
-	Board();
+	class Board
+	{
+	public:
+		Board(std::string);
+		~Board(void);
+	private:
+		std::vector<std::vector<ref_ptr<Case>>> movable;
+		std::vector<std::vector<ref_ptr<Case>>> unMovable;
+	};
 };
 

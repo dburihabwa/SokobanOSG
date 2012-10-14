@@ -1,5 +1,12 @@
 #include "Target.h"
+#include <osg/Geode>
+using namespace osg;
 
-Target::~Target(void)
+Sokoban::Target::~Target(void)
 {
+}
+Geode* Sokoban::Target::createGeode()
+{
+	ref_ptr<Geode> geode = new Geode;
+	return geode.get();
 }

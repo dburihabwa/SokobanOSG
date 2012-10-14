@@ -1,13 +1,16 @@
 #pragma once
 #include "movable.h"
-class Player :
-	public Movable
+namespace Sokoban
 {
-public:
-	Player(size_t x, size_t y, size_t z) : Movable(x,y,z) {}
-	Geode* createGeode();
-	bool canMove(Direction) const;
-	bool move(Direction);
-	~Player(void);
+	class Player :
+		public Movable
+	{
+	public:
+		Player(size_t x, size_t y, size_t z) : Movable(x,y,z) {}
+		Geode* createGeode();
+		bool canMove(Direction) const;
+		bool move(Direction);
+		~Player(void);
+	};
 };
 

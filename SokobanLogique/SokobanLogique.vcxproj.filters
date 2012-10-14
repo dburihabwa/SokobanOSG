@@ -7,9 +7,6 @@
     <ClCompile Include="Ground.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="Target.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -20,6 +17,9 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="Board.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>

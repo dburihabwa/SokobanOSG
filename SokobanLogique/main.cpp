@@ -1,4 +1,5 @@
 #include <osgViewer/Viewer>
+
 using namespace osg;
 
 int main(void) {
