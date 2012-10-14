@@ -5,6 +5,7 @@ class Player :
 {
 public:
 	Player(size_t x, size_t y, size_t z) : Movable(x,y,z) {}
+	Geode* createGeode();
 public:
 	~Player(void);
 private:
