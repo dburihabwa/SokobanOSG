@@ -5,11 +5,13 @@
 #include "Player.h"
 #include "Target.h"
 #include <regex>
+#include <osg/Geode>
 using namespace std;
 
 
 Sokoban::Board::Board(string level)
 {
+	_level = new osg::Group;
 	regex pattern("([^\\n]+)\\n?");
 	sregex_iterator end, iter(level.begin(), level.end(), pattern);
 
@@ -29,6 +31,7 @@ Sokoban::Board::Board(string level)
 			if(u > data[v].size())
 			{
 				ref_ptr<Case> ground = new Ground(v,u,0);
+				_level->addChild(ground->createGeode());
 				sTemp.push_back(ground);
 				dTemp.push_back(ground);
 			}
@@ -37,30 +40,38 @@ Sokoban::Board::Board(string level)
 				ref_ptr<Case> s, d;
 				char c = data[v][u];
 
-				if(c == '#')
+				if(c == '#') {
 					s = new Wall(v,u,0);
-				else if(c == '.' || c == '*' || c == '+')
-					s = new Target(v,u,1);
-
-				else if(c == '@' || c == '+')
-				{
-					d = new Player(v,u,1);
+					_level->addChild(s->createGeode());
+					d =  new Ground(v,u,0);
 				}
-				else if(c == '$' || c == '*')
+				else if(c == '.' || c == '*' || c == '+') {
+					s = new Target(v,u,1);
+					_level->addChild(s->createGeode());
+					d =  new Ground(v,u,0);
+				}
+				else if(c == '@' || c == '+') {
+					d = new Player(v,u,1);
+					_level->addChild(d->createGeode());
+					s =  new Ground(v,u,0);
+				}
+				else if(c == '$' || c == '*') {
 					d = new Box(v,u,1);
-				else
-				{
+					_level->addChild(d->createGeode());
+					s =  new Ground(v,u,0);
+				}
+				else {
 					s =  new Ground(v,u,0);
 					d = s.get();
+					_level->addChild(d->createGeode());
 				}
-
 				sTemp.push_back(s);
 				dTemp.push_back(d);
 			}
 		}
 
-		unMovable.push_back(sTemp);
-		movable.push_back(dTemp);
+		_unMovable.push_back(sTemp);
+		_movable.push_back(dTemp);
 	}
 }
 

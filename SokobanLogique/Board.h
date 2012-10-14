@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <osg/Group>
+
 #include "Case.h"
 
 using namespace osg;
@@ -10,10 +12,14 @@ namespace Sokoban
 	{
 	public:
 		Board(std::string);
+		ref_ptr<osg::Group> getLevel() const {
+			return _level;
+		}
 		~Board(void);
 	private:
-		std::vector<std::vector<ref_ptr<Case>>> movable;
-		std::vector<std::vector<ref_ptr<Case>>> unMovable;
+		std::vector<std::vector<ref_ptr<Case>>> _movable;
+		std::vector<std::vector<ref_ptr<Case>>> _unMovable;
+		ref_ptr<Group> _level;
 	};
 };
 
