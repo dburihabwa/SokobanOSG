@@ -40,14 +40,14 @@ Sokoban::Board::Board(string level)
 				if(c == '#')
 					s = new Wall(v,u,0);
 				else if(c == '.' || c == '*' || c == '+')
-					s = new Target(v,u,0);
+					s = new Target(v,u,1);
 
 				else if(c == '@' || c == '+')
 				{
-					d = new Player(v,u,0);
+					d = new Player(v,u,1);
 				}
 				else if(c == '$' || c == '*')
-					d = new Target(v,u,0);
+					d = new Box(v,u,1);
 				else
 				{
 					s =  new Ground(v,u,0);

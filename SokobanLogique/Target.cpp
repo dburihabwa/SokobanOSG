@@ -5,8 +5,8 @@ using namespace osg;
 Sokoban::Target::~Target(void)
 {
 }
-Geode* Sokoban::Target::createGeode()
+ref_ptr<Geode> Sokoban::Target::createGeode()
 {
 	ref_ptr<Geode> geode = new Geode;
-	return geode.get();
+	return geode;
 }

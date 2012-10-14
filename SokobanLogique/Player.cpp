@@ -5,9 +5,9 @@ using namespace osg;
 Sokoban::Player::~Player(void)
 {
 }
-Geode* Sokoban::Player::createGeode() {
+ref_ptr<Geode> Sokoban::Player::createGeode() {
 	ref_ptr<Geode> geode = new Geode;
-	return geode.get();
+	return geode;
 }
 bool Sokoban::Player::canMove(Direction dir) const {
 	return false;

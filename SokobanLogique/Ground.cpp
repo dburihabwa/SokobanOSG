@@ -10,9 +10,9 @@ using namespace osg;
 Sokoban::Ground::~Ground(void)
 {
 }
-Geode* Sokoban::Ground::createGeode()
+ref_ptr<Geode> Sokoban::Ground::createGeode()
 {
-	Geode* noeudGeo = new Geode;
+	ref_ptr<Geode> noeudGeo = new Geode;
 	noeudGeo->addDrawable(new ShapeDrawable(new Box(Vec3(_x, _y, _z), 1,1,0.2)));
 
 	// create a simple material

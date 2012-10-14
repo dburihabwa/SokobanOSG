@@ -5,10 +5,10 @@ using namespace osg;
 Sokoban::Box::~Box(void)
 {
 }
-Geode* Sokoban::Box::createGeode()
+ref_ptr<Geode> Sokoban::Box::createGeode()
 {
 	ref_ptr<Geode> geode = new Geode;
-	return geode.get();
+	return geode;
 }
 bool Sokoban::Box::canMove(Direction dir) const {
 	return false;
