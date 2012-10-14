@@ -5,7 +5,5 @@ class Unmovable :
 {
 public:
 	Unmovable(size_t x, size_t y, size_t z) : Case(x,y,z) {}
-private:
-	Unmovable();
 };
 

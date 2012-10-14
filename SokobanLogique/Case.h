@@ -21,6 +21,4 @@ protected:
 	size_t _x;
 	size_t _y;
 	size_t _z;
-private:
-	Case();
 };
