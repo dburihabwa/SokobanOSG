@@ -1,8 +1,11 @@
 #include <osgViewer/Viewer>
 #include "Constants.h"
+#include "Ground.h"
+#include <osg/Group>
 using namespace osg;
 
 int main(void) {
+	ref_ptr<Group> root = new Group;
 	// Définition d'un viewer et d'une fenêtre d'écran associée
 	ref_ptr<osgViewer::Viewer> viewer = new osgViewer::Viewer;
 	viewer->setUpViewInWindow(32, 32, 512, 512);
@@ -16,5 +19,10 @@ int main(void) {
 		); 
 	viewer->getCamera()->setViewMatrixAsLookAt(Sokoban::oeil, Sokoban::cible, Sokoban::normale); 
 	viewer->getCamera()->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0)); 
+	ref_ptr<Sokoban::Ground> ground = new Sokoban::Ground(0,0,0);
+	ref_ptr<Sokoban::Ground> ground2 = new Sokoban::Ground(0,1,0);
+	root->addChild(ground->createGeode());
+	root->addChild(ground2->createGeode());
+	viewer->setSceneData(root.get());
 	return viewer->run();
 }
