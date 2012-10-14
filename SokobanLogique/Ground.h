@@ -1,7 +1,5 @@
 #pragma once
-#include "unmovable.h"
-#include <osg/Geode>
-using namespace osg;
+#include "Unmovable.h"
 class Ground :
 	public Unmovable
 {
