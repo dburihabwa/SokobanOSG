@@ -19,6 +19,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">
@@ -49,6 +52,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

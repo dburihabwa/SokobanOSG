@@ -16,7 +16,7 @@ public:
 	size_t getZ() const {
 		return this->_z;
 	}
-	virtual Geode createGeode() = 0;
+	virtual Geode* createGeode() = 0;
 protected:
 	size_t _x;
 	size_t _y;
