@@ -13,7 +13,7 @@ Sokoban::Ground::~Ground(void)
 ref_ptr<Geode> Sokoban::Ground::createGeode()
 {
 	ref_ptr<Geode> noeudGeo = new Geode;
-	noeudGeo->addDrawable(new ShapeDrawable(new Box(Vec3(_x, _y, _z), 1,1,0.2)));
+	noeudGeo->addDrawable(new ShapeDrawable(new Box(Vec3(_x, _y, _z-0.05), 1,1,0.1)));
 
 	// create a simple material
 	Material *material = new Material();
@@ -21,7 +21,7 @@ ref_ptr<Geode> Sokoban::Ground::createGeode()
 
 	// create a texture
 	// load image for texture
-	ref_ptr<Image> image = osgDB::readImageFile("textures/green_ground_texture.jpg");
+	ref_ptr<Image> image = osgDB::readImageFile("textures/rs-ground00.jpg");
 	if (!image) {
 		std::cout << "Couldn't load texture." << std::endl;
 		return NULL;

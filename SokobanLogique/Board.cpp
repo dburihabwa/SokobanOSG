@@ -42,29 +42,26 @@ Sokoban::Board::Board(string level)
 
 				if(c == '#') {
 					s = new Wall(v,u,0);
-					_level->addChild(s->createGeode());
 					d =  new Ground(v,u,0);
 				}
 				else if(c == '.' || c == '*' || c == '+') {
 					s = new Target(v,u,1);
-					_level->addChild(s->createGeode());
 					d =  new Ground(v,u,0);
 				}
 				else if(c == '@' || c == '+') {
 					d = new Player(v,u,1);
-					_level->addChild(d->createGeode());
 					s =  new Ground(v,u,0);
 				}
 				else if(c == '$' || c == '*') {
 					d = new Box(v,u,1);
-					_level->addChild(d->createGeode());
 					s =  new Ground(v,u,0);
 				}
 				else {
 					s =  new Ground(v,u,0);
 					d = s.get();
-					_level->addChild(d->createGeode());
 				}
+				_level->addChild(s->createGeode());
+				_level->addChild(d->createGeode());
 				sTemp.push_back(s);
 				dTemp.push_back(d);
 			}

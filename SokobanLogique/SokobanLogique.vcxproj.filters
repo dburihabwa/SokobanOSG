@@ -73,7 +73,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Textures\green_ground_texture.jpg">
+    <None Include="Textures\brickscolorhx8.jpg">
+      <Filter>Ressources</Filter>
+    </None>
+    <None Include="Textures\rs-ground00.jpg">
+      <Filter>Ressources</Filter>
+    </None>
+    <None Include="Textures\box.jpg">
       <Filter>Ressources</Filter>
     </None>
   </ItemGroup>
