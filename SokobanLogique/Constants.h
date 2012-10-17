@@ -17,7 +17,7 @@ namespace Sokoban
 	static const float ratio = 1.0; 
 
 	//setViewMatrixAsLookAt
-	static const Vec3d oeil(0.0, -3.0, 3.0); 
-	static const Vec3d cible(5.0, 5.0, 0.0); 
-	static const Vec3d normale(0.0, 0.0, 1.0); 
+	static const Vec3d oeil(0.0, 0.0, 15.0); 
+	static const Vec3d cible(0, 0, 0.0); 
+	static const Vec3d normale(0.0, 1.0, 0.0); 
 };
