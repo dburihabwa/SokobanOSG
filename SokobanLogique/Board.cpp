@@ -6,6 +6,7 @@
 #include "Target.h"
 #include <regex>
 #include <osg/Geode>
+#include "Constants.h"
 using namespace std;
 
 
@@ -22,7 +23,9 @@ Sokoban::Board::Board(string level)
 		data.push_back((*iter)[1]);
 		w = max(w, (*iter)[1].length());
 	}
-	for(size_t v = 0; v < data.size(); ++v)
+	int height = data.size();
+	center = ROTATION * Vec3d(height/2.,w/2,0);
+	for(size_t v = 0; v < height; ++v)
 	{
 		vector<ref_ptr<Case>> sTemp;
 		vector<ref_ptr<Case>> dTemp;

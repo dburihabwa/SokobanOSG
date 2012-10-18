@@ -19,7 +19,6 @@ int main(void) {
 		Sokoban::near, 
 		Sokoban::far 
 		); 
-	viewer->getCamera()->setViewMatrixAsLookAt(Sokoban::oeil, Sokoban::cible, Sokoban::normale); 
 	viewer->getCamera()->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0)); 
 	//ref_ptr<Sokoban::Case> ground = new Sokoban::Ground(0,0,0);
 	//ref_ptr<Sokoban::Case> ground2 = new Sokoban::Ground(0,1,0);
@@ -36,6 +35,7 @@ int main(void) {
 		"#.#  @#\n"
 		"#######";
 	Sokoban::Board board =  Sokoban::Board(level);
+	viewer->getCamera()->setViewMatrixAsLookAt(Sokoban::oeil, board.getCenter(), Sokoban::normale); 
 	viewer->setSceneData(board.getLevel());
 	return viewer->run();
 }

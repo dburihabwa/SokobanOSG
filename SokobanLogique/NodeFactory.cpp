@@ -7,11 +7,12 @@
 #include <osg/ShapeDrawable>
 #include <osg/Material>
 #include <osg/MatrixTransform>
+#include "Constants.h"
 
 
 ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size_t z, Type element) {
-	ref_ptr<Geode> noeudGeo = new Geode;
 	ref_ptr<ShapeDrawable> shape;
+	ref_ptr<MatrixTransform> matrix = new MatrixTransform;
 	char* textureImage;
 	switch(element)
 	{
@@ -31,17 +32,21 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size
 		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0), 1,1,0.1));
 		textureImage ="textures/target.png";
 		break;
+	case PLAYER:
+		shape = new ShapeDrawable(new osg::Sphere(Vec3(0, 0, -0.5), 0.6));
+		textureImage = "textures/creeper.jpg";
+		break;
 	default:
 		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0-0.05), 1,1,0.1));
 		textureImage ="textures/rs-ground00.jpg";
 		break;
 	}
+	ref_ptr<Geode> noeudGeo = new Geode;
 	noeudGeo->addDrawable(shape);
 
 	// create a simple material
 	Material *material = new Material();
 	material->setEmission(Material::FRONT, Vec4(0.8, 0.8, 0.8, 1.0));
-
 	// create a texture
 	// load image for texture
 	ref_ptr<Image> image = osgDB::readImageFile(textureImage);
@@ -62,10 +67,11 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size
 	sphereStateSet->ref();
 	sphereStateSet->setAttribute(material);
 	sphereStateSet->setTextureAttributeAndModes(0, texture, StateAttribute::ON);
-	ref_ptr<MatrixTransform> matrix = new MatrixTransform;
 	matrix->addChild(noeudGeo);
+
+
 	matrix->setMatrix(Matrix::translate(x,y,z));
 	//Rotation of -1.57 (Pi/2 = -90°) to see the level as the input string.
-	matrix->postMult(Matrix::rotate(-1.57,Z_AXIS));
+	matrix->postMult(Matrix::rotate(ROTATION));
 	return matrix;
 }
