@@ -20,7 +20,7 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size
 		textureImage ="textures/rs-ground00.jpg";
 		break;
 	case BOX:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0-0.55),0.8));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0-0.6),0.8));
 		textureImage ="textures/box.jpg";
 		break;
 	case WALL:
