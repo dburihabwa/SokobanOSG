@@ -1,5 +1,6 @@
 #pragma once
 #include <osg\MatrixTransform>
+#include "NodeFactory.h"
 using namespace osg;
 namespace Sokoban
 {
@@ -17,7 +18,10 @@ namespace Sokoban
 		size_t getZ() const {
 			return this->_z;
 		}
-		virtual ref_ptr<Node> createNode() = 0;
+		virtual ref_ptr<Node> createNode() {
+			return NodeFactory::createNode(_x,_y,_z,getType());
+		}
+		virtual Type getType()=0;
 		//From Referenced
 		void ref() {
 			_refCount++;
@@ -28,11 +32,10 @@ namespace Sokoban
 		int getReferenceCount() {
 			return _refCount;
 		}
-	protected:
+	private:
 		size_t _x;
 		size_t _y;
 		size_t _z;
-	private:
 		int _refCount;
 	};
 };

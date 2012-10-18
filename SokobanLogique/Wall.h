@@ -7,8 +7,9 @@ namespace Sokoban
 	{
 	public:
 		Wall(size_t x, size_t y, size_t z) : Unmovable(x,y,z) {}
-		ref_ptr<Node> createNode();
-		~Wall(void);
+		Type getType() {
+			return WALL;
+		}
 	};
 };
 

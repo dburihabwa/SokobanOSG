@@ -7,7 +7,9 @@ namespace Sokoban
 	{
 	public:
 		Player(size_t x, size_t y, size_t z) : Movable(x,y,z) {}
-		ref_ptr<Node> createNode();
+		Type getType() {
+			return PLAYER;
+		}
 		bool canMove(Direction) const;
 		bool move(Direction);
 		~Player(void);

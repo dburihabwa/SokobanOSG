@@ -4,15 +4,6 @@
     <ClCompile Include="Box.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Ground.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Target.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Wall.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -20,6 +11,9 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeFactory.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -55,6 +49,12 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Board.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeFactory.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GUITypes.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

@@ -70,7 +70,9 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="Ground.h" />
+    <ClInclude Include="GUITypes.h" />
     <ClInclude Include="Movable.h" />
+    <ClInclude Include="NodeFactory.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Target.h" />
     <ClInclude Include="Unmovable.h" />
@@ -79,11 +81,9 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Box.cpp" />
-    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NodeFactory.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Target.cpp" />
-    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Textures\box.jpg" />
