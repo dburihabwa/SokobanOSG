@@ -5,7 +5,7 @@ using namespace osg;
 Sokoban::Player::~Player(void)
 {
 }
-ref_ptr<Geode> Sokoban::Player::createGeode() {
+ref_ptr<Node> Sokoban::Player::createNode() {
 	ref_ptr<Geode> geode = new Geode;
 	return geode;
 }

@@ -23,8 +23,8 @@ int main(void) {
 	viewer->getCamera()->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0)); 
 	//ref_ptr<Sokoban::Case> ground = new Sokoban::Ground(0,0,0);
 	//ref_ptr<Sokoban::Case> ground2 = new Sokoban::Ground(0,1,0);
-	//root->addChild(ground->createGeode());
-	//root->addChild(ground2->createGeode());
+	//root->addChild(ground->createNode());
+	//root->addChild(ground2->createNode());
 	//viewer->setSceneData(root.get());
 	std::string level =
 		"#######\n"

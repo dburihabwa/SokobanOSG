@@ -11,7 +11,7 @@ using namespace osg;
 Sokoban::Wall::~Wall(void)
 {
 }
-ref_ptr<Geode> Sokoban::Wall::createGeode()
+ref_ptr<Node> Sokoban::Wall::createNode()
 {
 	ref_ptr<Geode> noeudGeo = new Geode;
 	noeudGeo->addDrawable(new ShapeDrawable(new Box(Vec3(_x, _y, _z+0.5),1)));

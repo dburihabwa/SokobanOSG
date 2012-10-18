@@ -7,7 +7,7 @@ namespace Sokoban
 	{
 	public:
 		Target(size_t x, size_t y, size_t z) : Unmovable(x, y, z) {}
-		ref_ptr<Geode> createGeode();
+		ref_ptr<Node> createNode();
 		~Target(void);
 	};
 };

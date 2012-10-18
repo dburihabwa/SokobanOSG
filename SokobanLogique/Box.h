@@ -8,7 +8,7 @@ namespace Sokoban
 
 	public:
 		Box(size_t x, size_t y, size_t z) : Movable(x,y,z) {}
-		ref_ptr<Geode> createGeode();
+		ref_ptr<Node> createNode();
 		bool canMove(Direction) const;
 		bool move(Direction);
 		~Box(void);

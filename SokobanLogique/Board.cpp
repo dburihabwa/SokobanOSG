@@ -31,7 +31,7 @@ Sokoban::Board::Board(string level)
 			if(u > data[v].size())
 			{
 				ref_ptr<Case> ground = new Ground(v,u,0);
-				_level->addChild(ground->createGeode());
+				_level->addChild(ground->createNode());
 				sTemp.push_back(ground);
 				dTemp.push_back(ground);
 			}
@@ -60,8 +60,8 @@ Sokoban::Board::Board(string level)
 					s =  new Ground(v,u,0);
 					d = s.get();
 				}
-				_level->addChild(s->createGeode());
-				_level->addChild(d->createGeode());
+				_level->addChild(s->createNode());
+				_level->addChild(d->createNode());
 				sTemp.push_back(s);
 				dTemp.push_back(d);
 			}

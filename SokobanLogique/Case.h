@@ -17,7 +17,7 @@ namespace Sokoban
 		size_t getZ() const {
 			return this->_z;
 		}
-		virtual ref_ptr<Geode> createGeode() = 0;
+		virtual ref_ptr<Node> createNode() = 0;
 		//From Referenced
 		void ref() {
 			_refCount++;
