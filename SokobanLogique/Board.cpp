@@ -45,7 +45,7 @@ Sokoban::Board::Board(string level)
 					d =  new Ground(v,u,0);
 				}
 				else if(c == '.' || c == '*' || c == '+') {
-					s = new Target(v,u,1);
+					s = new Target(v,u,0);
 					d =  new Ground(v,u,0);
 				}
 				else if(c == '@' || c == '+') {

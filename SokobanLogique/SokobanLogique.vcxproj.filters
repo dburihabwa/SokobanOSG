@@ -82,5 +82,8 @@
     <None Include="Textures\box.jpg">
       <Filter>Ressources</Filter>
     </None>
+    <None Include="Textures\target.png">
+      <Filter>Ressources</Filter>
+    </None>
   </ItemGroup>
 </Project>

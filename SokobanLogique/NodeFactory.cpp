@@ -20,12 +20,16 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size
 		textureImage ="textures/rs-ground00.jpg";
 		break;
 	case BOX:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0-0.7),0.8));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0-0.55),0.8));
 		textureImage ="textures/box.jpg";
 		break;
 	case WALL:
 		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0+0.5),1));
 		textureImage ="textures/brickscolorhx8.jpg";
+		break;
+	case TARGET:
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0), 1,1,0.1));
+		textureImage ="textures/target.png";
 		break;
 	default:
 		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0-0.05), 1,1,0.1));
@@ -61,6 +65,7 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size
 	ref_ptr<MatrixTransform> matrix = new MatrixTransform;
 	matrix->addChild(noeudGeo);
 	matrix->setMatrix(Matrix::translate(x,y,z));
-	matrix->postMult(Matrix::rotate(90,Z_AXIS));
+	//Rotation of -1.57 (Pi/2 = -90°) to see the level as the input string.
+	matrix->postMult(Matrix::rotate(-1.57,Z_AXIS));
 	return matrix;
 }
