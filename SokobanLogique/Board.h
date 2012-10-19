@@ -12,7 +12,7 @@ namespace Sokoban
 {
 	class Board
 	{
-		friend Movable;
+		friend class Movable;
 	public:
 		static Board& getInstance() {
 			// The only instance

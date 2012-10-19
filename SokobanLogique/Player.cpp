@@ -9,7 +9,7 @@ Sokoban::Player::~Player(void)
 {
 }
 bool Sokoban::Player::canMove(Direction dir) {
-	ref_ptr<Case> lvlCase = Sokoban::Board::getInstance().getCase(this->_x-dir.getX(),this->_y-dir.getY());
+	ref_ptr<Case> lvlCase = getCase(dir);
 	if(lvlCase->getType() == WALL)
 		return false;
 	if(lvlCase->getType() == BOX) {

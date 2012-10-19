@@ -16,6 +16,7 @@ namespace Sokoban
 		}
 	protected:
 		Direction _nextMove;
+		ref_ptr<Case> getCase(Direction) const;
 	};
 };
 
