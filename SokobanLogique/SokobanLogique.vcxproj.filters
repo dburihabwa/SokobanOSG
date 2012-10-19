@@ -19,6 +19,9 @@
     <ClCompile Include="Movable.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerPositionUpdater.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">
@@ -58,6 +61,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="GUITypes.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerPositionUpdater.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

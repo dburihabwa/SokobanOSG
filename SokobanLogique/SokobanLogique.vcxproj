@@ -74,6 +74,7 @@
     <ClInclude Include="Movable.h" />
     <ClInclude Include="NodeFactory.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerPositionUpdater.h" />
     <ClInclude Include="Target.h" />
     <ClInclude Include="Unmovable.h" />
     <ClInclude Include="Wall.h" />
@@ -85,6 +86,7 @@
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="NodeFactory.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerPositionUpdater.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Textures\box.jpg" />
