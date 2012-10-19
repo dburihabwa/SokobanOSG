@@ -13,6 +13,7 @@ bool Sokoban::Player::canMove(Direction dir) {
 	if(lvlCase->getType() == WALL)
 		return false;
 	if(lvlCase->getType() == BOX) {
+		_lastBox.release();
 		_lastBox =  static_cast<Box*>(lvlCase.get());
 		_canMoveBox = _lastBox->canMove(dir);
 		return _canMoveBox;
