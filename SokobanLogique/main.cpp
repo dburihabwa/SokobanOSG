@@ -50,11 +50,12 @@ int main(void) {
 		"    #     #########\n"
 		"    #######        ";
 #endif
-	Sokoban::Board board =  Sokoban::Board(level);
-	Vec3 center = board.getCenter();
+	
+	Sokoban::Board::getInstance().init(level);
+	Vec3 center = Sokoban::Board::getInstance().getCenter();
 	Vec3 centerEye = Vec3(center[0],center[1],15.0);
 	viewer->getCamera()->setViewMatrixAsLookAt(centerEye, center, Sokoban::HAUT); 
-	viewer->setSceneData(board.getLevel());
-	board.getPlayer()->move(Sokoban::UP);
+	viewer->setSceneData(Sokoban::Board::getInstance().getLevel());
+	Sokoban::Board::getInstance().getPlayer()->move(Sokoban::UP);
 	return viewer->run();
 }

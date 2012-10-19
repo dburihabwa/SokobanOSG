@@ -10,7 +10,7 @@
 using namespace std;
 
 
-Sokoban::Board::Board(string level)
+void Sokoban::Board::init(string level)
 {
 	_level = new osg::Group;
 	regex pattern("([^\\n]+)\\n?");

@@ -17,7 +17,7 @@ namespace Sokoban
 		/// </summary>
 		/// <seealso cref="getLevel()">
 		/// The OSG Graphical Level can be get in that method </seealso>
-		Board(std::string);
+		void init(std::string);
 		///<summary>
 		///Get the OSG Level with all the graphical element </summary>
 		ref_ptr<osg::Group> getLevel() const {
@@ -33,6 +33,14 @@ namespace Sokoban
 		ref_ptr<Player> getPlayer() const {
 			return _player;
 		}
+		static Board& getInstance() {
+			// The only instance
+			// Guaranteed to be lazy initialized
+			// Guaranteed that it will be destroyed correctly
+			//Explained : http://stackoverflow.com/questions/86582/singleton-how-should-it-be-used
+			static Board instance;
+			return instance;
+		}
 
 		~Board(void);
 	private:
@@ -41,6 +49,9 @@ namespace Sokoban
 		ref_ptr<Group> _level;
 		Vec3 center;
 		ref_ptr<Player> _player;
+		Board(){};
+		Board(Board const&);              // Don't Implement
+		void operator=(Board const&); // Don't implement
 	};
 };
 
