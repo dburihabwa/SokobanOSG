@@ -4,6 +4,7 @@
 #include <osg/Group>
 
 #include "Case.h"
+#include "Player.h"
 
 using namespace osg;
 namespace Sokoban
@@ -24,15 +25,22 @@ namespace Sokoban
 		}
 		///<summary>
 		///Get the center of the level, will be used to center the camera </summary>
-		Vec3 getCenter() {
+		Vec3 getCenter() const {
 			return center;
 		}
+		///<summary>
+		///Get the player</summary>
+		ref_ptr<Player> getPlayer() const {
+			return _player;
+		}
+
 		~Board(void);
 	private:
 		std::vector<std::vector<ref_ptr<Case>>> _movable;
 		std::vector<std::vector<ref_ptr<Case>>> _unMovable;
 		ref_ptr<Group> _level;
 		Vec3 center;
+		ref_ptr<Player> _player;
 	};
 };
 

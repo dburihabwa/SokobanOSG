@@ -56,7 +56,8 @@ Sokoban::Board::Board(string level)
 					d =  new Ground(v,u,0);
 				}
 				else if(c == '@' || c == '+') {
-					d = new Player(v,u,1);
+					_player = new Player(v,u,1);
+					d = _player.get();					
 					s =  new Ground(v,u,0);
 				}
 				else if(c == '$' || c == '*') {
