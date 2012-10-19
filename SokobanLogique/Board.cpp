@@ -52,7 +52,9 @@ void Sokoban::Board::init(string level)
 					d =  new Ground(v,u,0);
 				}
 				else if(c == '.' || c == '*' || c == '+') {
-					s = new Target(v,u,0);
+					ref_ptr<Target> target = new Target(v,u,0);
+					_targets.push_back(target);
+					s = target.get();
 					d =  new Ground(v,u,0);
 				}
 				else if(c == '@' || c == '+') {
