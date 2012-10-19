@@ -2,7 +2,7 @@
 #include "Direction.h"
 #include "Constants.h"
 Sokoban::Direction Sokoban::Movable::applyMove() {
-	Direction tmp = nextMove;
-	nextMove = NONE;
+	Direction tmp = _nextMove;
+	_nextMove = NONE;
 	return tmp;
 }

@@ -15,7 +15,7 @@ namespace Sokoban
 		{
 		}
 	protected:
-		Direction nextMove;
+		Direction _nextMove;
 	};
 };
 
