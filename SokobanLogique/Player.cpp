@@ -10,7 +10,8 @@ bool Sokoban::Player::canMove(Direction dir) const {
 	return false;
 }
 bool Sokoban::Player::move(Direction dir) {
-	return false;
+	_nextMove = dir;
+	return true;
 }
 ref_ptr<Node> Sokoban::Player::createNode() {
 	ref_ptr<Node> matrix = Case::createNode();

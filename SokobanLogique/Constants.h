@@ -5,10 +5,10 @@ using namespace osg;
 namespace Sokoban
 {
 	//Directions
-	static const Direction UP(0,1);
-	static const Direction DOWN(0,-1);
-	static const Direction RIGHT(1,0);
-	static const Direction LEFT(-1,0);
+	static const Direction RIGHT(0,1);
+	static const Direction LEFT(0,-1);
+	static const Direction DOWN(1,0);
+	static const Direction UP(-1,0);
 	static const Direction NONE;
 
 	//Camera 
