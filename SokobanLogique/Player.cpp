@@ -5,8 +5,8 @@
 #include "Box.h"
 using namespace osg;
 
-Sokoban::Player::~Player(void)
-{
+Sokoban::Player::~Player(void) {
+	_lastBox.release();
 }
 bool Sokoban::Player::canMove(Direction dir) {
 	ref_ptr<Case> lvlCase = getCase(dir);

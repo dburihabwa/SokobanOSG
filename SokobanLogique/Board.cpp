@@ -128,6 +128,19 @@ void Sokoban::Board::displayLevel() const {
 
 
 }
-Sokoban::Board::~Board(void)
-{
+Sokoban::Board::~Board(void) {
+	for(unsigned int i = 0; i < _movable.size();i++)
+	{
+		std::vector<ref_ptr<Case>> vect = _movable[i];
+		std::vector<ref_ptr<Case>> vect2 = _unMovable[i];
+		for(unsigned int j =0; j < vect.size(); j++) {
+			vect[j].release();
+			vect2[j].release();
+		}
+	}
+	for(unsigned int i = 0; i < _targets.size(); i++) {
+		_targets[i].release();
+	}
+	_player.release();
+	_level.release();
 }
