@@ -92,6 +92,7 @@
     <None Include="Textures\box.jpg" />
     <None Include="Textures\brickscolorhx8.jpg" />
     <None Include="Textures\creeper.jpg" />
+    <None Include="Textures\default.jpg" />
     <None Include="Textures\rs-ground00.jpg" />
     <None Include="Textures\target.png" />
   </ItemGroup>

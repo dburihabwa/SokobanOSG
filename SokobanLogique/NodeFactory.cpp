@@ -18,28 +18,28 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size
 	switch(element)
 	{
 	case GROUND :
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0-0.05), 1,1,0.1));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0.05), 1,1,0.1));
 		textureImage ="textures/rs-ground00.jpg";
 		break;
 	case BOX:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0-0.6),0.8));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0.6),0.8));
 		textureImage ="textures/box.jpg";
 		break;
 	case WALL:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0+0.5),1));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0.5),1));
 		textureImage ="textures/brickscolorhx8.jpg";
 		break;
 	case TARGET:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0), 1,1,0.1));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0.1), 1,1,0.05));
 		textureImage ="textures/target.png";
 		break;
 	case PLAYER:
-		shape = new ShapeDrawable(new osg::Sphere(Vec3(0, 0, -0.5), 0.6));
+		shape = new ShapeDrawable(new osg::Sphere(Vec3(0, 0, -0.7), 0.4));
 		textureImage = "textures/creeper.jpg";
 		break;
 	default:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0-0.05), 1,1,0.1));
-		textureImage ="textures/rs-ground00.jpg";
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0), 1));
+		textureImage ="textures/default.jpg";
 		break;
 	}
 	ref_ptr<Geode> noeudGeo = new Geode;
