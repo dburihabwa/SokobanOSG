@@ -94,6 +94,7 @@ Sokoban::Type Sokoban::Board::getCase(unsigned int x, unsigned int y) const{
 	ref_ptr<Case> lvlCase = _unMovable[x][y];
 	if(lvlCase->getType() == GROUND)
 		return  _movable[x][y]->getType();
+	return lvlCase->getType();
 }
 
 Sokoban::Board::~Board(void)
