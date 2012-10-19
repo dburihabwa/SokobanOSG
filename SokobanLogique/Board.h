@@ -41,7 +41,7 @@ namespace Sokoban
 		///<summary> Try to move the player in the wanted direction
 		bool movePlayer(Direction);
 		///
-		Type getCase(unsigned int, unsigned int) const;
+		ref_ptr<Case> getCase(unsigned int, unsigned int) const;
 
 		~Board(void);
 	private:
