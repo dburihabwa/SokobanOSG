@@ -9,7 +9,7 @@ namespace Sokoban
 	static const Direction DOWN(0,-1);
 	static const Direction RIGHT(1,0);
 	static const Direction LEFT(-1,0);
-	static const Direction NONE();
+	static const Direction NONE;
 
 	//Camera 
 	//setProjectionMatrixAsPerspective
