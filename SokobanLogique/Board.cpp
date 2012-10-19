@@ -84,7 +84,18 @@ void Sokoban::Board::init(string level)
 
 bool Sokoban::Board::movePlayer(Direction dir) {
 	if(_player->canMove(dir)) {
+		bool playerWillMoveBox = _player->willMoveBox();
 		_player->move(dir);
+		//Check winning condition
+		if(playerWillMoveBox){
+			_placedBox=0;
+			for(unsigned int i=0; i < _targets.size();i++) {
+				ref_ptr<Target> target = _targets[i];
+				if(_movable[target->getX()][target->getY()]->getType() == BOX) {
+					_placedBox++;
+				}
+			}
+		}
 		return true;
 	}
 	return false;

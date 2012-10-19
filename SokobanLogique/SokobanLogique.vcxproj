@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="Box.h" />
+    <ClInclude Include="BoxPositionUpdater.h" />
     <ClInclude Include="Case.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Direction.h" />
@@ -82,6 +83,7 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="BoxPositionUpdater.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="NodeFactory.cpp" />

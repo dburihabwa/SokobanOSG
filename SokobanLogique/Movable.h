@@ -16,6 +16,7 @@ namespace Sokoban
 		}
 	protected:
 		Direction _nextMove;
+		///<summary>Wrapper for ref_ptr<Case> getCase(unsigned int, unsigned int) const; of Board</summary>
 		ref_ptr<Case> getCase(Direction) const;
 	};
 };

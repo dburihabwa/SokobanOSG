@@ -14,6 +14,10 @@ namespace Sokoban
 		ref_ptr<Node> createNode();
 		bool canMove(Direction);
 		void move(Direction);
+		///<summary> Check if the player will move a box when move(Direction) is called.</summaray>
+		bool willMoveBox() const{
+			return _canMoveBox;
+		}
 		~Player(void);
 	private:
 		ref_ptr<Box> _lastBox;
