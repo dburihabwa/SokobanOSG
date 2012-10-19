@@ -82,6 +82,18 @@ void Sokoban::Board::init(string level)
 	}
 }
 
+bool Sokoban::Board::movePlayer(Direction dir) {
+
+}
+Sokoban::Type Sokoban::Board::getCase(unsigned int x, unsigned int y) const{
+	if(x>_movable.size())
+		throw exception("X not in the level");
+	if(y>_movable[0].size())
+		throw exception("Y not in the level");
+	ref_ptr<Case> lvlCase = _unMovable[x][y];
+	if(lvlCase->getType() == GROUND)
+		return  _movable[x][y]->getType();
+}
 
 Sokoban::Board::~Board(void)
 {

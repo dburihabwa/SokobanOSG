@@ -11,7 +11,16 @@ namespace Sokoban
 {
 	class Board
 	{
+		friend Movable;
 	public:
+		static Board& getInstance() {
+			// The only instance
+			// Guaranteed to be lazy initialized
+			// Guaranteed that it will be destroyed correctly
+			//Explained : http://stackoverflow.com/questions/86582/singleton-how-should-it-be-used
+			static Board instance;
+			return instance;
+		}
 		/// <summary>
 		/// Parse the String that represent the level, create the level and instance all the OSG graphical items
 		/// </summary>
@@ -28,19 +37,10 @@ namespace Sokoban
 		Vec3 getCenter() const {
 			return center;
 		}
-		///<summary>
-		///Get the player</summary>
-		ref_ptr<Player> getPlayer() const {
-			return _player;
-		}
-		static Board& getInstance() {
-			// The only instance
-			// Guaranteed to be lazy initialized
-			// Guaranteed that it will be destroyed correctly
-			//Explained : http://stackoverflow.com/questions/86582/singleton-how-should-it-be-used
-			static Board instance;
-			return instance;
-		}
+		///<summary> Try to move the player in the wanted direction
+		bool movePlayer(Direction);
+		///
+		Type getCase(unsigned int, unsigned int) const;
 
 		~Board(void);
 	private:
