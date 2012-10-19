@@ -1,4 +1,5 @@
 #include "Box.h"
+#include "Direction.h"
 using namespace osg;
 
 Sokoban::Box::~Box(void)

@@ -16,6 +16,9 @@
     <ClCompile Include="NodeFactory.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Movable.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">

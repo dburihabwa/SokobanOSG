@@ -5,7 +5,7 @@
 #include <string>
 #include "Board.h"
 using namespace osg;
-
+//#define lvl 1;
 int main(void) {
 	//ref_ptr<Group> root = new Group;
 	// Définition d'un viewer et d'une fenêtre d'écran associée
@@ -25,7 +25,9 @@ int main(void) {
 	//root->addChild(ground->createNode());
 	//root->addChild(ground2->createNode());
 	//viewer->setSceneData(root.get());
-	std::string level =
+	std::string level;
+#ifdef lvl
+	level =
 		"#######\n"
 		"#     #\n"
 		"#     #\n"
@@ -34,6 +36,20 @@ int main(void) {
 		"#.$$  #\n"
 		"#.#  @#\n"
 		"#######";
+#else
+	level = 
+		"    #####          \n"
+		"    #   #          \n"
+		"    #$  #          \n"
+		"  ###  $##         \n"
+		"  #  $ $ #         \n"
+		"### # ## #   ######\n"
+		"#   # ## #####  ..#\n"
+		"# $  $          ..#\n"
+		"##### ### #@##  ..#\n"
+		"    #     #########\n"
+		"    #######        ";
+#endif
 	Sokoban::Board board =  Sokoban::Board(level);
 	viewer->getCamera()->setViewMatrixAsLookAt(Sokoban::oeil, board.getCenter(), Sokoban::normale); 
 	viewer->setSceneData(board.getLevel());

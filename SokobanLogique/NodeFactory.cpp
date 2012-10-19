@@ -66,7 +66,6 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size
 
 	// assign the material and texture to the sphere
 	ref_ptr<StateSet> sphereStateSet = noeudGeo->getOrCreateStateSet();
-	sphereStateSet->ref();
 	sphereStateSet->setAttribute(material);
 	sphereStateSet->setTextureAttributeAndModes(0, texture, StateAttribute::ON);
 	matrix->addChild(noeudGeo);

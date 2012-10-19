@@ -4,10 +4,8 @@ namespace Sokoban
 	class Direction
 	{
 	public:
-		Direction(int x,int y)	{
-			this->_x = x;
-			this->_y = y;
-		}
+		Direction(int x,int y) : _x(x),_y(y){}
+		Direction() : _x(0),_y(0){}
 		const int getX() const {
 			return this->_x;
 		}

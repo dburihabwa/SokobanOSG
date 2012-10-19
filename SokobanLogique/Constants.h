@@ -5,10 +5,11 @@ using namespace osg;
 namespace Sokoban
 {
 	//Directions
-	static const Direction UP = Direction(0,1);
-	static const Direction DOWN = Direction(0,-1);
-	static const Direction RIGHT = Direction(1,0);
-	static const Direction LEFT = Direction(-1,0);
+	static const Direction UP(0,1);
+	static const Direction DOWN(0,-1);
+	static const Direction RIGHT(1,0);
+	static const Direction LEFT(-1,0);
+	static const Direction NONE();
 
 	//Camera 
 	//setProjectionMatrixAsPerspective
@@ -23,5 +24,5 @@ namespace Sokoban
 	static const Vec3d normale(0.0, 1.0, 0.0); 
 
 	//Rotation of -90° (-Pi/2) on Z axis
-	static const Quat ROTATION = Quat(-1.57, Z_AXIS);
+	static const Quat ROTATION(-1.57, Z_AXIS);
 };

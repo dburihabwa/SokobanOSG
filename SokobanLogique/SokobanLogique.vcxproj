@@ -82,6 +82,7 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Movable.cpp" />
     <ClCompile Include="NodeFactory.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
