@@ -9,11 +9,11 @@ Sokoban::Direction Sokoban::Movable::applyMove() {
 }
 void Sokoban::Movable::move(Direction dir) {
 	_nextMove = dir;
-	int newX = _x-dir.getX();
-	int newY = _y-dir.getY();
+	int newX = _x+dir.getX();
+	int newY = _y+dir.getY();
 	Board::getInstance().swapMovable(_x,_y,newX,newY);
-	this->_x -= newX;
-	this->_y -= newY;
+	this->_x = newX;
+	this->_y = newY;
 	
 }
 
