@@ -11,10 +11,19 @@ namespace Sokoban
 	class Board
 	{
 	public:
+		/// <summary>
+		/// Parse the String that represent the level, create the level and instance all the OSG graphical items
+		/// </summary>
+		/// <seealso cref="getLevel()">
+		/// The OSG Graphical Level can be get in that method </seealso>
 		Board(std::string);
+		///<summary>
+		///Get the OSG Level with all the graphical element </summary>
 		ref_ptr<osg::Group> getLevel() const {
 			return _level;
 		}
+		///<summary>
+		///Get the center of the level, will be used to center the camera </summary>
 		Vec3 getCenter() {
 			return center;
 		}

@@ -14,6 +14,7 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size
 	ref_ptr<ShapeDrawable> shape;
 	ref_ptr<MatrixTransform> matrix = new MatrixTransform;
 	char* textureImage;
+	//Switch on the element for texture and shape
 	switch(element)
 	{
 	case GROUND :
@@ -54,6 +55,7 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size
 		std::cout << "Couldn't load texture : " << textureImage <<std::endl;
 		return NULL;
 	}
+	//Create the texture putting the correct option and set the image
 	ref_ptr<Texture2D> texture = new Texture2D;
 	texture->setDataVariance(Object::DYNAMIC);
 	texture->setFilter(Texture::MIN_FILTER, Texture::LINEAR_MIPMAP_LINEAR);
@@ -69,7 +71,7 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size
 	sphereStateSet->setTextureAttributeAndModes(0, texture, StateAttribute::ON);
 	matrix->addChild(noeudGeo);
 
-
+	//Translate the item to put it were the item should be.
 	matrix->setMatrix(Matrix::translate(x,y,z));
 	//Rotation of -1.57 (Pi/2 = -90°) to see the level as the input string.
 	matrix->postMult(Matrix::rotate(ROTATION));

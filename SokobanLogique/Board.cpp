@@ -18,12 +18,16 @@ Sokoban::Board::Board(string level)
 
 	int w = 0;
 	vector<string> data;
+	//Get every line of the string, check their 
+	//length to find the lenght of the level
 	for(; iter != end; ++iter)
 	{
 		data.push_back((*iter)[1]);
 		w = max(w, (*iter)[1].length());
 	}
 	int height = data.size();
+	//Get the center of the level, since we are doing a rotation on every element
+	//The rotation need to be applied on the center vector also.
 	center = ROTATION * Vec3d(height/2.,w/2,0);
 	for(size_t v = 0; v < height; ++v)
 	{
