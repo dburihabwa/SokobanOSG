@@ -51,7 +51,9 @@ int main(void) {
 		"    #######        ";
 #endif
 	Sokoban::Board board =  Sokoban::Board(level);
-	viewer->getCamera()->setViewMatrixAsLookAt(Sokoban::oeil, board.getCenter(), Sokoban::normale); 
+	Vec3 center = board.getCenter();
+	Vec3 centerEye = Vec3(center[0],center[1],15.0);
+	viewer->getCamera()->setViewMatrixAsLookAt(centerEye, center, Sokoban::HAUT); 
 	viewer->setSceneData(board.getLevel());
 	return viewer->run();
 }
