@@ -10,7 +10,7 @@ namespace Sokoban
 		Movable(int x, int y, int z) : Case(x,y,z) {}
 		virtual bool canMove(Direction) const=0;
 		virtual Direction applyMove();
-		virtual bool move(Direction)=0;
+		virtual void move(Direction);
 		~Movable(void)
 		{
 		}

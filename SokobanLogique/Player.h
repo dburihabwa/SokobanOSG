@@ -12,7 +12,6 @@ namespace Sokoban
 		}
 		ref_ptr<Node> createNode();
 		bool canMove(Direction) const;
-		bool move(Direction);
 		~Player(void);
 	};
 };

@@ -12,7 +12,6 @@ namespace Sokoban
 			return BOX;
 		}
 		bool canMove(Direction) const;
-		bool move(Direction);
 		~Box(void);
 	};
 };

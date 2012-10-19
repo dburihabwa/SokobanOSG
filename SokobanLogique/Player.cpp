@@ -9,10 +9,6 @@ Sokoban::Player::~Player(void)
 bool Sokoban::Player::canMove(Direction dir) const {
 	return false;
 }
-bool Sokoban::Player::move(Direction dir) {
-	_nextMove = dir;
-	return true;
-}
 ref_ptr<Node> Sokoban::Player::createNode() {
 	ref_ptr<Node> matrix = Case::createNode();
 	ref_ptr<NodeCallback> posUpdater = new PlayerPositionUpdater(ref_ptr<Player>(this));

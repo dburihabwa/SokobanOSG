@@ -6,3 +6,8 @@ Sokoban::Direction Sokoban::Movable::applyMove() {
 	_nextMove = NONE;
 	return tmp;
 }
+void Sokoban::Movable::move(Direction dir) {
+	_nextMove = dir;
+	this->_x -= dir.getX();
+	this->_y -= dir.getY();
+}

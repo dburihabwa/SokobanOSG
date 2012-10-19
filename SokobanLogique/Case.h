@@ -28,7 +28,7 @@ namespace Sokoban
 		/// <seealso cref="Type">
 		/// Use the enum Type defined in GUITypes.h </seealso>
 		virtual Type getType()=0;
-	private:
+	protected:
 		int _x;
 		int _y;
 		int _z;
