@@ -54,6 +54,7 @@ namespace Sokoban
 		Board(){};
 		Board(Board const&);              // Don't Implement
 		void operator=(Board const&); // Don't implement
+		void swapMovable(unsigned int, unsigned int,unsigned int, unsigned int);
 	};
 };
 

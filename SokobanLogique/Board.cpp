@@ -96,7 +96,20 @@ ref_ptr<Sokoban::Case> Sokoban::Board::getCase(unsigned int x, unsigned int y) c
 		return  _movable[x][y];
 	return lvlCase;
 }
-
+void Sokoban::Board::swapMovable(unsigned int x1, unsigned int y1,unsigned int x2, unsigned int y2) {
+	if(x1>_movable.size())
+		throw exception("X1 not in the level");
+	if(y1>_movable[0].size())
+		throw exception("Y1 not in the level");
+	if(x2>_movable.size())
+		throw exception("X2 not in the level");
+	if(y2>_movable[0].size())
+		throw exception("Y2 not in the level");
+	ref_ptr<Case> movable1 = _movable[x1][y1];
+	ref_ptr<Case> movable2 = _movable[x2][y2];
+	_movable[x1][y1] = movable2;
+	_movable[x2][y2] = movable1;
+}
 Sokoban::Board::~Board(void)
 {
 }
