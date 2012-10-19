@@ -113,6 +113,21 @@ void Sokoban::Board::swapMovable(unsigned int x1, unsigned int y1,unsigned int x
 	_movable[x1][y1] = movable2;
 	_movable[x2][y2] = movable1;
 }
+
+void Sokoban::Board::displayLevel() const {
+
+	for(unsigned int i = 0; i < _movable.size();i++)
+	{
+		std::vector<ref_ptr<Case>> vect = _movable[i];
+		std::vector<ref_ptr<Case>> vect2 = _unMovable[i];
+		for(unsigned int j =0; j < vect.size(); j++) {
+			std::cout<<vect[j]->getType() + vect2[j]->getType();
+		}
+		std::cout<<std::endl;
+	}
+
+
+}
 Sokoban::Board::~Board(void)
 {
 }

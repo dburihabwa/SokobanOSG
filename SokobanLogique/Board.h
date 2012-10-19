@@ -2,10 +2,12 @@
 #include <string>
 #include <vector>
 #include <osg/Group>
+#include <iostream>
 
 #include "Case.h"
 #include "Player.h"
 #include "Target.h"
+
 
 using namespace osg;
 namespace Sokoban
@@ -40,6 +42,8 @@ namespace Sokoban
 		}
 		///<summary> Try to move the player in the wanted direction
 		bool movePlayer(Direction);
+
+		void displayLevel() const;
 		
 
 		~Board(void);

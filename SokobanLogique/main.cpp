@@ -57,5 +57,6 @@ int main(void) {
 	viewer->getCamera()->setViewMatrixAsLookAt(centerEye, center, Sokoban::HAUT); 
 	viewer->setSceneData(Sokoban::Board::getInstance().getLevel());
 	Sokoban::Board::getInstance().movePlayer(Sokoban::UP);
+	Sokoban::Board::getInstance().displayLevel();
 	return viewer->run();
 }
