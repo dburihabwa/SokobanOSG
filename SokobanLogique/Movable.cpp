@@ -18,5 +18,5 @@ void Sokoban::Movable::move(Direction dir) {
 }
 
 ref_ptr<Sokoban::Case> Sokoban::Movable::getCase(Direction dir) const {
-	return Board::getInstance().getCase(this->_x-dir.getX(),this->_y-dir.getY());
+	return Board::getInstance().getCase(this->_x+dir.getX(),this->_y+dir.getY());
 }

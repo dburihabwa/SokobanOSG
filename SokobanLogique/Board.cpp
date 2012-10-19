@@ -83,8 +83,11 @@ void Sokoban::Board::init(string level)
 }
 
 bool Sokoban::Board::movePlayer(Direction dir) {
+	if(_player->canMove(dir)) {
+		_player->move(dir);
+		return true;
+	}
 	return false;
-
 }
 ref_ptr<Sokoban::Case> Sokoban::Board::getCase(unsigned int x, unsigned int y) const{
 	if(x>_movable.size())

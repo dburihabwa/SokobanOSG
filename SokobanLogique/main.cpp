@@ -56,5 +56,6 @@ int main(void) {
 	Vec3 centerEye = Vec3(center[0],center[1],15.0);
 	viewer->getCamera()->setViewMatrixAsLookAt(centerEye, center, Sokoban::HAUT); 
 	viewer->setSceneData(Sokoban::Board::getInstance().getLevel());
+	Sokoban::Board::getInstance().movePlayer(Sokoban::UP);
 	return viewer->run();
 }
