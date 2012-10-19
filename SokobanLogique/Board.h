@@ -40,8 +40,7 @@ namespace Sokoban
 		}
 		///<summary> Try to move the player in the wanted direction
 		bool movePlayer(Direction);
-		///
-		ref_ptr<Case> getCase(unsigned int, unsigned int) const;
+		
 
 		~Board(void);
 	private:
@@ -55,6 +54,9 @@ namespace Sokoban
 		Board(Board const&);              // Don't Implement
 		void operator=(Board const&); // Don't implement
 		void swapMovable(unsigned int, unsigned int,unsigned int, unsigned int);
+		///<summaray>
+		///Get the Case on the wanted coordonate </summary>
+		ref_ptr<Case> getCase(unsigned int, unsigned int) const;
 	};
 };
 

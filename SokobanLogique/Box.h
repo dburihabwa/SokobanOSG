@@ -11,7 +11,7 @@ namespace Sokoban
 		Type getType() {
 			return BOX;
 		}
-		bool canMove(Direction) const;
+		bool canMove(Direction);
 		~Box(void);
 	};
 };
