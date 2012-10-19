@@ -5,6 +5,7 @@
 
 #include "Case.h"
 #include "Player.h"
+#include "Target.h"
 
 using namespace osg;
 namespace Sokoban
@@ -40,7 +41,7 @@ namespace Sokoban
 		///<summary> Try to move the player in the wanted direction
 		bool movePlayer(Direction);
 		///
-		Type getCase(int, int) const;
+		Type getCase(unsigned int, unsigned int) const;
 
 		~Board(void);
 	private:

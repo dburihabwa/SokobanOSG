@@ -16,24 +16,24 @@ void Sokoban::Board::init(string level)
 	regex pattern("([^\\n]+)\\n?");
 	sregex_iterator end, iter(level.begin(), level.end(), pattern);
 
-	int w = 0;
+	unsigned int w = 0;
 	vector<string> data;
 	//Get every line of the string, check their 
 	//length to find the lenght of the level
 	for(; iter != end; ++iter)
 	{
 		data.push_back((*iter)[1]);
-		w = max(w, (*iter)[1].length());
+		w =max(w, (unsigned int)(*iter)[1].length());
 	}
-	int height = data.size();
+	unsigned int height = data.size();
 	//Get the center of the level, since we are doing a rotation on every element
 	//The rotation need to be applied on the center vector also.
 	center = ROTATION * Vec3d(height/2.,w/2,0);
-	for(int v = 0; v < height; ++v)
+	for(unsigned int v = 0; v < height; ++v)
 	{
 		vector<ref_ptr<Case>> sTemp;
 		vector<ref_ptr<Case>> dTemp;
-		for(int u = 0; u < w; ++u)
+		for(unsigned int u = 0; u < w; ++u)
 		{
 			if(u > data[v].size())
 			{
@@ -83,9 +83,10 @@ void Sokoban::Board::init(string level)
 }
 
 bool Sokoban::Board::movePlayer(Direction dir) {
+	return false;
 
 }
-Sokoban::Type Sokoban::Board::getCase(int x, int y) const{
+Sokoban::Type Sokoban::Board::getCase(unsigned int x, unsigned int y) const{
 	if(x>_movable.size())
 		throw exception("X not in the level");
 	if(y>_movable[0].size())
