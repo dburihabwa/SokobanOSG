@@ -9,7 +9,7 @@ namespace Sokoban
 	public:
 		///<summary>
 		///Create the OSG Node that represent the wanted item</summary>
-		static ref_ptr<MatrixTransform> createNode(size_t x,size_t y,size_t z, Type element);
+		static ref_ptr<MatrixTransform> createNode(int x,int y,int z, Type element);
 	private:
 		NodeFactory(void)
 		{

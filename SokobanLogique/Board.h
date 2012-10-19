@@ -40,7 +40,7 @@ namespace Sokoban
 		///<summary> Try to move the player in the wanted direction
 		bool movePlayer(Direction);
 		///
-		Type getCase(unsigned int, unsigned int) const;
+		Type getCase(int, int) const;
 
 		~Board(void);
 	private:

@@ -29,11 +29,11 @@ void Sokoban::Board::init(string level)
 	//Get the center of the level, since we are doing a rotation on every element
 	//The rotation need to be applied on the center vector also.
 	center = ROTATION * Vec3d(height/2.,w/2,0);
-	for(size_t v = 0; v < height; ++v)
+	for(int v = 0; v < height; ++v)
 	{
 		vector<ref_ptr<Case>> sTemp;
 		vector<ref_ptr<Case>> dTemp;
-		for(size_t u = 0; u < w; ++u)
+		for(int u = 0; u < w; ++u)
 		{
 			if(u > data[v].size())
 			{
@@ -85,7 +85,7 @@ void Sokoban::Board::init(string level)
 bool Sokoban::Board::movePlayer(Direction dir) {
 
 }
-Sokoban::Type Sokoban::Board::getCase(unsigned int x, unsigned int y) const{
+Sokoban::Type Sokoban::Board::getCase(int x, int y) const{
 	if(x>_movable.size())
 		throw exception("X not in the level");
 	if(y>_movable[0].size())

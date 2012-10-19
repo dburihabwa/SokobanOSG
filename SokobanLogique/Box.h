@@ -7,7 +7,7 @@ namespace Sokoban
 	{
 
 	public:
-		Box(size_t x, size_t y, size_t z) : Movable(x,y,z) {}
+		Box(int x, int y, int z) : Movable(x,y,z) {}
 		Type getType() {
 			return BOX;
 		}

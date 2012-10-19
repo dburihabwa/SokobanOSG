@@ -6,7 +6,7 @@ namespace Sokoban
 		public Movable
 	{
 	public:
-		Player(size_t x, size_t y, size_t z) : Movable(x,y,z) {}
+		Player(int x, int y, int z) : Movable(x,y,z) {}
 		Type getType() {
 			return PLAYER;
 		}

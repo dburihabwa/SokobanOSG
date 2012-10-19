@@ -6,7 +6,7 @@ namespace Sokoban
 		public Unmovable
 	{
 	public:
-		Target(size_t x, size_t y, size_t z) : Unmovable(x, y, z), _withBox(false) {}
+		Target(int x, int y, int z) : Unmovable(x, y, z), _withBox(false) {}
 		Type getType() {
 			return TARGET;
 		}

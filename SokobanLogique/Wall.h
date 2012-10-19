@@ -6,7 +6,7 @@ namespace Sokoban
 		public Unmovable
 	{
 	public:
-		Wall(size_t x, size_t y, size_t z) : Unmovable(x,y,z) {}
+		Wall(int x, int y, int z) : Unmovable(x,y,z) {}
 		Type getType() {
 			return WALL;
 		}

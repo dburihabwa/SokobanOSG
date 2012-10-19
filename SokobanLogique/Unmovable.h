@@ -6,7 +6,7 @@ namespace Sokoban
 		public Case
 	{
 	public:
-		Unmovable(size_t x, size_t y, size_t z) : Case(x,y,z) {}
+		Unmovable(int x, int y, int z) : Case(x,y,z) {}
 	};
 };
 

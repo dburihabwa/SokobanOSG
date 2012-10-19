@@ -10,7 +10,7 @@
 #include "Constants.h"
 
 
-ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(size_t x,size_t y,size_t z, Type element) {
+ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
 	ref_ptr<ShapeDrawable> shape;
 	ref_ptr<MatrixTransform> matrix = new MatrixTransform;
 	char* textureImage;

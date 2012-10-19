@@ -6,7 +6,7 @@ namespace Sokoban
 		public Unmovable
 	{
 	public:
-		Ground(size_t x, size_t y, size_t z) : Unmovable(x, y, z) {}
+		Ground(int x, int y, int z) : Unmovable(x, y, z) {}
 		Type getType() {
 			return GROUND;
 		}

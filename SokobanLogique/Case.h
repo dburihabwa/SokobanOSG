@@ -7,15 +7,15 @@ namespace Sokoban
 	class Case : public Referenced
 	{
 	public:
-		Case(size_t x,size_t y, size_t z) : _x(x), _y(y), _z(z){}
-		size_t getX() const {
+		Case(int x,int y, int z) : _x(x), _y(y), _z(z){}
+		int getX() const {
 			return this->_x;
 		}
 
-		size_t getY() const {
+		int getY() const {
 			return this->_y;
 		}
-		size_t getZ() const {
+		int getZ() const {
 			return this->_z;
 		}
 		///<summary>
@@ -29,8 +29,8 @@ namespace Sokoban
 		/// Use the enum Type defined in GUITypes.h </seealso>
 		virtual Type getType()=0;
 	private:
-		size_t _x;
-		size_t _y;
-		size_t _z;
+		int _x;
+		int _y;
+		int _z;
 	};
 };
