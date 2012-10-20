@@ -30,7 +30,7 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Typ
 		textureImage ="textures/brickscolorhx8.jpg";
 		break;
 	case TARGET:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0), 1,1,0.05));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0.05), 1,1,0.05));
 		textureImage ="textures/target.png";
 		break;
 	case PLAYER:
