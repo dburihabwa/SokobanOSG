@@ -18,23 +18,23 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Typ
 	switch(element)
 	{
 	case GROUND :
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, -0.05), 1,1,0.1));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0), 1,1,0.1));
 		textureImage ="textures/rs-ground00.jpg";
 		break;
 	case BOX:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, -0.55),0.9));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0),0.9));
 		textureImage ="textures/box.jpg";
 		break;
 	case WALL:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0.6),1,1,1.2));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0),1,1,1.2));
 		textureImage ="textures/brickscolorhx8.jpg";
 		break;
 	case TARGET:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0.05), 1,1,0.05));
+		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0), 1,1,0.05));
 		textureImage ="textures/target.png";
 		break;
 	case PLAYER:
-		shape = new ShapeDrawable(new osg::Sphere(Vec3(0, 0, -0.6), 0.4));
+		shape = new ShapeDrawable(new osg::Sphere(Vec3(0, 0, 0), 0.4));
 		textureImage = "textures/creeper.jpg";
 		break;
 	default:

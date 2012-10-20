@@ -37,7 +37,7 @@ void Sokoban::Board::init(string level)
 		{
 			if(u > data[v].size())
 			{
-				ref_ptr<Case> ground = new Ground(v,u,0);
+				ref_ptr<Case> ground = new Ground(v,u,-0.05);
 				_level->addChild(ground->createNode());
 				sTemp.push_back(ground);
 				dTemp.push_back(ground);
@@ -48,26 +48,26 @@ void Sokoban::Board::init(string level)
 				char c = data[v][u];
 
 				if(c == '#') {
-					s = new Wall(v,u,0);
-					d =  new Ground(v,u,0);
+					s = new Wall(v,u,0.6);
+					d =  new Ground(v,u,-0.05);
 				}
 				else if(c == '.' || c == '*' || c == '+') {
-					ref_ptr<Target> target = new Target(v,u,0);
+					ref_ptr<Target> target = new Target(v,u,0.05);
 					_targets.push_back(target);
 					s = target.get();
-					d =  new Ground(v,u,0);
+					d =  new Ground(v,u,-0.05);
 				}
 				else if(c == '@' || c == '+') {
-					_player = new Player(v,u,1);
+					_player = new Player(v,u,0.4);
 					d = _player.get();					
-					s =  new Ground(v,u,0);
+					s =  new Ground(v,u,-0.05);
 				}
 				else if(c == '$' || c == '*') {
-					d = new Box(v,u,1);
-					s =  new Ground(v,u,0);
+					d = new Box(v,u,0.45);
+					s =  new Ground(v,u,-0.05);
 				}
 				else {
-					s =  new Ground(v,u,0);
+					s =  new Ground(v,u,-0.05);
 					d = s.get();
 				}
 				_level->addChild(s->createNode());
