@@ -1,6 +1,6 @@
 #pragma once
 #include "Player.h"
-#include "Direction.h"
+using namespace osg;
 namespace Sokoban
 {
 	class PlayerPositionUpdater : public NodeCallback
@@ -10,7 +10,6 @@ namespace Sokoban
 		~PlayerPositionUpdater(void);
 		void operator()(Node* node, NodeVisitor* nv);
 	private:
-		Direction _lastAppliedMove;
 		ref_ptr<Player> _player;
 	};
 }

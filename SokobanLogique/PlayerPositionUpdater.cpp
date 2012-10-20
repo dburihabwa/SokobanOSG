@@ -9,12 +9,9 @@ void Sokoban::PlayerPositionUpdater::operator()(Node* node, NodeVisitor* nv) {
 		traverse(node,nv);
 		return;
 	}
+	mt->setMatrix(Matrix::translate(Vec3(_player->getX(),_player->getY(),_player->getZ()))); // réinitialisation
 	// Modifie la matrice de model-view du Node
-	mt->postMult(Matrix::translate(move.getVector()));
-	//Save the last applied move
-	//used to define the rotation to have the face were we want.
-	//TODO : Rotation of the face
-	_lastAppliedMove = move;
+	mt->postMult(Matrix::rotate(ROTATION));
 	traverse(node,nv);
 }
 
