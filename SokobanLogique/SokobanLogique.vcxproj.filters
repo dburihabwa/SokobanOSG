@@ -25,6 +25,9 @@
     <ClCompile Include="BoxPositionUpdater.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="EventController.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">
@@ -70,6 +73,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="BoxPositionUpdater.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventController.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

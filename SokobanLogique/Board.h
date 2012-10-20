@@ -54,7 +54,7 @@ namespace Sokoban
 		ref_ptr<Group> _level;
 		Vec3 center;
 		ref_ptr<Player> _player;
-		Board(): _placedBox(0){};
+		Board(): _placedBox(0) {};
 		Board(Board const&);              // Don't Implement
 		void operator=(Board const&); // Don't implement
 		void swapMovable(unsigned int, unsigned int,unsigned int, unsigned int);

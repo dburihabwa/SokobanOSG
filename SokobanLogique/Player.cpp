@@ -3,6 +3,7 @@
 #include "PlayerPositionUpdater.h"
 #include "Board.h"
 #include "Box.h"
+#include "EventController.h"
 using namespace osg;
 
 Sokoban::Player::~Player(void) {
@@ -24,13 +25,14 @@ ref_ptr<Node> Sokoban::Player::createNode() {
 	ref_ptr<Node> matrix = Case::createNode();
 	ref_ptr<NodeCallback> posUpdater = new PlayerPositionUpdater(ref_ptr<Player>(this));
 	matrix->setUpdateCallback(posUpdater);
+	matrix->setEventCallback(new EventController);
 	return matrix;
 }
 
 void Sokoban::Player::move(Direction dir) {
-	Movable::move(dir);
 	if(_canMoveBox) {
 		_lastBox->move(dir);
 		_canMoveBox = false;
 	}
+	Movable::move(dir);
 }
