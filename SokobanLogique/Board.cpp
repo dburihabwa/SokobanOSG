@@ -6,7 +6,6 @@
 #include "Target.h"
 #include <regex>
 #include <osg/Geode>
-#include "Constants.h"
 using namespace std;
 
 

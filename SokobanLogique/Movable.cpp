@@ -1,6 +1,5 @@
 #include "Movable.h"
 #include "Direction.h"
-#include "Constants.h"
 #include "Board.h"
 Sokoban::Direction Sokoban::Movable::applyMove() {
 	Direction tmp = _nextMove;

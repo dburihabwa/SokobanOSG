@@ -10,8 +10,7 @@ void Sokoban::BoxPositionUpdater::operator()(Node* node, NodeVisitor* nv) {
 		return;
 	}
 	// Modifie la matrice de model-view du Node
-	Vec3 moveVec = ROTATION * Vec3(move.getX(),move.getY(),0);
-	mt->postMult(Matrix::translate(moveVec));
+	mt->postMult(Matrix::translate(move.getVector()));
 
 	traverse(node,nv);
 }
