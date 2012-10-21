@@ -72,7 +72,5 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Typ
 
 	//Translate the item to put it were the item should be.
 	matrix->setMatrix(Matrix::translate(x,y,z));
-	//Rotation of -1.57 (Pi/2 = -90°) to see the level as the input string.
-	matrix->postMult(Matrix::rotate(ROTATION));
 	return matrix;
 }

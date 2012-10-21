@@ -28,7 +28,7 @@ void Sokoban::Board::init(string level)
 	unsigned int height = data.size();
 	//Get the center of the level, since we are doing a rotation on every element
 	//The rotation need to be applied on the center vector also.
-	center = ROTATION * Vec3d(height/2.,w/2,0);
+	center = Vec3d(height/2.,w/2,0);
 	for(unsigned int v = 0; v < height; ++v)
 	{
 		vector<ref_ptr<Case>> sTemp;

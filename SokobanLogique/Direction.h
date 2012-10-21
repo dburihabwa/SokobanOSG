@@ -17,7 +17,7 @@ namespace Sokoban
 			return (this->_x == b._x && this->_y == b._y);
 		}
 		osg::Vec3 getVector() {
-			return ROTATION * osg::Vec3(_x,_y,0);
+			return osg::Vec3(_x,_y,0);
 		}
 
 	private:

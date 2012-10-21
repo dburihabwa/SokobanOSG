@@ -11,8 +11,5 @@ namespace Sokoban
 	static const float ratio = 1.0f; 
 
 	//setViewMatrixAsLookAt
-	static const Vec3d HAUT(0.0, 1.0, 0.0); 
-
-	//Rotation of -90° (-Pi/2) on Z axis
-	static const Quat ROTATION(-1.57, Z_AXIS);
+	static const Vec3d HAUT(-1.0, 0.0, 0.0); 
 };
