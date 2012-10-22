@@ -70,6 +70,7 @@
     <ClInclude Include="Case.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Direction.h" />
+    <ClInclude Include="DirectionButton.h" />
     <ClInclude Include="EventController.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="GUITypes.h" />
@@ -86,6 +87,7 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="BoxPositionUpdater.cpp" />
+    <ClCompile Include="DirectionButton.cpp" />
     <ClCompile Include="EventController.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="main.cpp" />

@@ -31,6 +31,9 @@
     <ClCompile Include="Hud.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="DirectionButton.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">
@@ -82,6 +85,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Hud.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionButton.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
