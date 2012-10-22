@@ -97,6 +97,7 @@
     <ClCompile Include="PlayerPositionUpdater.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Textures\arrow.jpg" />
     <None Include="Textures\box.jpg" />
     <None Include="Textures\brickscolorhx8.jpg" />
     <None Include="Textures\creeper.jpg" />

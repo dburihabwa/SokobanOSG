@@ -124,5 +124,8 @@
     <None Include="Textures\default.jpg">
       <Filter>Ressources</Filter>
     </None>
+    <None Include="Textures\arrow.jpg">
+      <Filter>Ressources</Filter>
+    </None>
   </ItemGroup>
 </Project>
