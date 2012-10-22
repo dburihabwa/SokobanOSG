@@ -73,6 +73,7 @@
     <ClInclude Include="EventController.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="GUITypes.h" />
+    <ClInclude Include="Hud.h" />
     <ClInclude Include="Movable.h" />
     <ClInclude Include="NodeFactory.h" />
     <ClInclude Include="Player.h" />
@@ -86,6 +87,7 @@
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="BoxPositionUpdater.cpp" />
     <ClCompile Include="EventController.cpp" />
+    <ClCompile Include="Hud.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="NodeFactory.cpp" />
