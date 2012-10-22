@@ -7,7 +7,8 @@ namespace Sokoban {
         public Sokoban::Unmovable
     {
     public:
-         DirectionButton(Direction direction);
+        DirectionButton(int x, int y, int z, Direction direction);
+        Type getType();
         Direction getDirection() const;
     private:
         Direction _direction;

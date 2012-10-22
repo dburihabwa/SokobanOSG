@@ -37,6 +37,10 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Typ
 		shape = new ShapeDrawable(new osg::Sphere(Vec3(0, 0, 0), 0.4));
 		textureImage = "textures/creeper.jpg";
 		break;
+    case DIRECTION_BUTTON:
+        shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0),1,1,1.2));
+        textureImage = "textures/arrow.jpg";
+        break;
 	default:
 		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0), 1));
 		textureImage ="textures/default.jpg";
