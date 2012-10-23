@@ -28,6 +28,12 @@
     <ClCompile Include="EventController.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Hud.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionButton.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">
@@ -78,6 +84,12 @@
     <ClInclude Include="EventController.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Hud.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionButton.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -110,6 +122,9 @@
       <Filter>Ressources</Filter>
     </None>
     <None Include="Textures\default.jpg">
+      <Filter>Ressources</Filter>
+    </None>
+    <None Include="Textures\arrow.jpg">
       <Filter>Ressources</Filter>
     </None>
   </ItemGroup>
