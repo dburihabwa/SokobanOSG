@@ -14,6 +14,7 @@ Sokoban::Hud::Hud(void) {
 }
 
 
+
 Sokoban::Hud::~Hud(void)
 {
 }
@@ -26,4 +27,9 @@ unsigned int Sokoban::Hud::getElapsedTime() const
 const std::vector<ref_ptr<Sokoban::DirectionButton> >& Sokoban::Hud::getButtons() const
 {
     return this->_buttons;
+}
+
+const ref_ptr<osg::Group>& Sokoban::Hud::getNodes() const
+{
+    return this->_nodes;
 }
