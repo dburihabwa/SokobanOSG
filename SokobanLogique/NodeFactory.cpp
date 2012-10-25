@@ -6,13 +6,12 @@
 #include <osg\Texture2D>
 #include <osg/ShapeDrawable>
 #include <osg/Material>
-#include <osg/MatrixTransform>
+#include <osg/PositionAttitudeTransform>
 #include "Constants.h"
 
 
-ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
+ref_ptr<Node> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
 	ref_ptr<ShapeDrawable> shape;
-	ref_ptr<MatrixTransform> matrix = new MatrixTransform;
 	char* textureImage;
 	//Switch on the element for texture and shape
 	switch(element)
@@ -72,9 +71,10 @@ ref_ptr<MatrixTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Typ
 	ref_ptr<StateSet> sphereStateSet = noeudGeo->getOrCreateStateSet();
 	sphereStateSet->setAttribute(material);
 	sphereStateSet->setTextureAttributeAndModes(0, texture, StateAttribute::ON);
-	matrix->addChild(noeudGeo);
+	ref_ptr<PositionAttitudeTransform> postAtt = new PositionAttitudeTransform();
+	postAtt->addChild(noeudGeo);
 
 	//Translate the item to put it were the item should be.
-	matrix->setMatrix(Matrix::translate(x,y,z));
-	return matrix;
+	postAtt->setPosition(Vec3(x,y,z));
+	return postAtt;
 }
