@@ -1,18 +1,30 @@
 #include "Hud.h"
-
+/// Creates the new Hud
 Sokoban::Hud::Hud(void) {
     this->_timer = clock();
-    ref_ptr<DirectionButton> upDirectionButton =  new DirectionButton(0, 0, 0, Sokoban::UP);
-    ref_ptr<DirectionButton> downDirectionButton =  new DirectionButton(0, 0, 0, Sokoban::DOWN);
-    ref_ptr<DirectionButton> leftDirectionButton =  new DirectionButton(0, 0, 0, Sokoban::LEFT);
-    ref_ptr<DirectionButton> rightDirectionButton =  new DirectionButton(0, 0, 0, Sokoban::RIGHT);
-
+    this->_nodes = new osg::Group();
+    ref_ptr<DirectionButton> upDirectionButton =  new DirectionButton(0, 1 - 3, 0, Sokoban::UP);
+    ref_ptr<DirectionButton> downDirectionButton =  new DirectionButton(2, 1 - 3, 0, Sokoban::DOWN);
+    ref_ptr<DirectionButton> leftDirectionButton =  new DirectionButton(1, 0 - 3, 0, Sokoban::LEFT);
+    ref_ptr<DirectionButton> rightDirectionButton =  new DirectionButton(1, 2 - 3, 0, Sokoban::RIGHT);
+    
     this->_buttons.push_back(upDirectionButton);
     this->_buttons.push_back(downDirectionButton);
     this->_buttons.push_back(leftDirectionButton);
     this->_buttons.push_back(rightDirectionButton);
-}
+    
+    std::vector<ref_ptr<Sokoban::DirectionButton> >::iterator it;
+    for (it = this->_buttons.begin(); it < this->_buttons.end(); it++) {
+        this->_nodes->addChild((*it)->createNode());
+    }
 
+    ref_ptr<osg::Geode> geodeText = new osg::Geode();
+    ref_ptr<osgText::Text> text = new osgText::Text(); 
+    text->setText("Score");
+    text->setPosition(osg::Vec3(100, 100, 6));
+    geodeText->addDrawable(text);
+    this->_nodes->addChild(geodeText);
+}
 
 
 Sokoban::Hud::~Hud(void)

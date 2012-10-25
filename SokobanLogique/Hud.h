@@ -2,9 +2,11 @@
 
 #include <time.h>
 #include <vector>
+#include <osgText\Text>
 
 #include "Board.h"
 #include "DirectionButton.h"
+
 
 namespace Sokoban 
 {

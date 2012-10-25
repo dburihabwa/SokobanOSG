@@ -4,6 +4,8 @@
 #include <osg/Group>
 #include <string>
 #include "Board.h"
+#include "Hud.h"
+
 using namespace osg;
 //#define lvl 1;
 int main(void) {
@@ -50,12 +52,18 @@ int main(void) {
 		"    #     #########\n"
 		"    #######        ";
 #endif
-	
+	Sokoban::Hud hud;
+    ref_ptr<osg::Group> entireScene = new osg::Group();
 	Sokoban::Board::getInstance().init(level);
+    
+    entireScene->addChild(hud.getNodes().get());
+    entireScene->addChild(Sokoban::Board::getInstance().getLevel().get());
+
 	Vec3 center = Sokoban::Board::getInstance().getCenter();
-	Vec3 centerEye = Vec3(center[0],center[1],15.0);
+	Vec3 centerEye = Vec3(center[0],center[1] + 3,15.0);
 	viewer->getCamera()->setViewMatrixAsLookAt(centerEye, center, Sokoban::HAUT); 
-	viewer->setSceneData(Sokoban::Board::getInstance().getLevel());
+    viewer->setSceneData(entireScene);
+	//viewer->setSceneData(Sokoban::Board::getInstance().getLevel());
 	//Sokoban::Board::getInstance().movePlayer(Sokoban::UP);
 	Sokoban::Board::getInstance().displayLevel();
 	return viewer->run();
