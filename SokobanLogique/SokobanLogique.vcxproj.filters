@@ -19,12 +19,6 @@
     <ClCompile Include="Movable.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerPositionUpdater.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="BoxPositionUpdater.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="EventController.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -32,6 +26,9 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="DirectionButton.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationUpdater.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,12 +72,6 @@
     <ClInclude Include="GUITypes.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerPositionUpdater.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxPositionUpdater.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="EventController.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -88,6 +79,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="DirectionButton.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationUpdater.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
