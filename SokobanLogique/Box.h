@@ -7,13 +7,20 @@ namespace Sokoban
 	{
 
 	public:
-		Box(int x, int y, int z) : Movable(x,y,z) {}
+		Box(int x, int y, int z) : Movable(x,y,z), _onTarget(false), _willBeOnTarget(false) {}
 		Type getType() {
 			return BOX;
 		}
 		ref_ptr<Node> createNode();
 		bool canMove(Direction);
+		void move(Direction);
 		~Box(void);
+		bool isOnTarget() const {
+			return _onTarget;
+		}
+	private:
+		bool _onTarget;
+		bool _willBeOnTarget;
 	};
 };
 
