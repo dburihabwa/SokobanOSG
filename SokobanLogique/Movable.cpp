@@ -19,3 +19,7 @@ void Sokoban::Movable::move(Direction dir) {
 ref_ptr<Sokoban::Case> Sokoban::Movable::getCase(Direction dir) const {
 	return Board::getInstance().getCase(this->_x+dir.getX(),this->_y+dir.getY());
 }
+ref_ptr<Node> Sokoban::Movable::createNode() {
+	_graphNode = Case::createNode();
+	return _graphNode;
+}
