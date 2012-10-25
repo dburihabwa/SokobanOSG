@@ -11,7 +11,6 @@ namespace Sokoban
 		Type getType() {
 			return BOX;
 		}
-		ref_ptr<Node> createNode();
 		bool canMove(Direction);
 		void move(Direction);
 		~Box(void);
