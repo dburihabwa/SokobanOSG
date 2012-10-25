@@ -1,6 +1,6 @@
 #include "Player.h"
 #include <osg/Geode>
-#include "PlayerPositionUpdater.h"
+#include "AnimationUpdater.h"
 #include "Board.h"
 #include "Box.h"
 #include "EventController.h"
@@ -22,9 +22,7 @@ bool Sokoban::Player::canMove(Direction dir) {
 	return true;
 }
 ref_ptr<Node> Sokoban::Player::createNode() {
-	ref_ptr<Node> matrix = Case::createNode();
-	ref_ptr<NodeCallback> posUpdater = new PlayerPositionUpdater(ref_ptr<Player>(this));
-	matrix->setUpdateCallback(posUpdater);
+	ref_ptr<Node> matrix = Movable::createNode();
 	matrix->setEventCallback(new EventController);
 	return matrix;
 }
@@ -34,5 +32,6 @@ void Sokoban::Player::move(Direction dir) {
 		_lastBox->move(dir);
 		_canMoveBox = false;
 	}
+	_graphNode->setUpdateCallback(new AnimationUpdater(getPosition(),dir));
 	Movable::move(dir);
 }

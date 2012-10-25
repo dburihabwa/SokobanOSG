@@ -50,18 +50,17 @@ namespace Sokoban
 	private:
 		std::vector<std::vector<ref_ptr<Case>>> _movable;
 		std::vector<std::vector<ref_ptr<Case>>> _unMovable;
-		std::vector<ref_ptr<Target>> _targets;
+		unsigned int _win;
 		ref_ptr<Group> _level;
 		Vec3 center;
 		ref_ptr<Player> _player;
-		Board(): _placedBox(0) {};
+		Board(): _win(0) {};
 		Board(Board const&);              // Don't Implement
 		void operator=(Board const&); // Don't implement
 		void swapMovable(unsigned int, unsigned int,unsigned int, unsigned int);
 		///<summaray>
 		///Get the Case on the wanted coordonate </summary>
 		ref_ptr<Case> getCase(unsigned int, unsigned int) const;
-		unsigned int _placedBox;
 	};
 };
 

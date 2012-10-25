@@ -28,6 +28,10 @@ namespace Sokoban
 		/// <seealso cref="Type">
 		/// Use the enum Type defined in GUITypes.h </seealso>
 		virtual Type getType()=0;
+
+		Vec3 getPosition() const {
+			return Vec3(_x,_y,_z);
+		}
 	protected:
 		int _x;
 		int _y;

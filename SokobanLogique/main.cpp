@@ -7,7 +7,7 @@
 #include "Hud.h"
 
 using namespace osg;
-//#define lvl 1;
+#define lvl 1;
 int main(void) {
 	//ref_ptr<Group> root = new Group;
 	// Définition d'un viewer et d'une fenêtre d'écran associée
@@ -32,11 +32,11 @@ int main(void) {
 	level =
 		"#######\n"
 		"#     #\n"
-		"#     #\n"
-		"#. #  #\n"
-		"#. $$ #\n"
-		"#.$$  #\n"
-		"#.#  @#\n"
+		"#$    #\n"
+		"#  #  #\n"
+		"#  #  #\n"
+		"#.$   #\n"
+		"# .  @#\n"
 		"#######";
 #else
 	level = 

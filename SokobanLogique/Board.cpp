@@ -51,11 +51,10 @@ void Sokoban::Board::init(string level)
 					s = new Wall(v,u,0.6);
 					d =  new Ground(v,u,-0.05);
 				}
-				else if(c == '.' || c == '*' || c == '+') {
-					ref_ptr<Target> target = new Target(v,u,0);
-					_targets.push_back(target);
-					s = target.get();
+				else if(c == '.' || c == '*' || c == '+') { 
+					s = new Target(v,u,0);
 					d =  new Ground(v,u,-0.05);
+					_win++;
 				}
 				else if(c == '@' || c == '+') {
 					_player = new Player(v,u,0.4);
@@ -84,17 +83,20 @@ void Sokoban::Board::init(string level)
 
 bool Sokoban::Board::movePlayer(Direction dir) {
 	if(_player->canMove(dir)) {
-		bool playerWillMoveBox = _player->willMoveBox();
-		_player->move(dir);
-		//Check winning condition
-		if(playerWillMoveBox){
-			_placedBox=0;
-			for(unsigned int i=0; i < _targets.size();i++) {
-				ref_ptr<Target> target = _targets[i];
-				if(_movable[target->getX()][target->getY()]->getType() == BOX) {
-					_placedBox++;
-				}
+		if(_player->willMoveBox()) {
+			bool wasOnTarget = _player->getMovedBox()->isOnTarget();
+			_player->move(dir);
+			if(wasOnTarget && !_player->getMovedBox()->isOnTarget()) {
+				_win++;
+			} else if(!wasOnTarget && _player->getMovedBox()->isOnTarget()) {
+				_win--;
 			}
+			if(_win==0) {
+				std::cout<<"Vous avez Gagné !"<<std::endl;
+			}
+		}
+		else {
+		_player->move(dir);
 		}
 		displayLevel();
 		return true;
@@ -137,6 +139,7 @@ void Sokoban::Board::displayLevel() const {
 		}
 		std::cout<<std::endl;
 	}
+	std::cout<<std::endl<<"Win : "<<_win<<std::endl;
 
 
 }
@@ -149,9 +152,6 @@ Sokoban::Board::~Board(void) {
 			vect[j].release();
 			vect2[j].release();
 		}
-	}
-	for(unsigned int i = 0; i < _targets.size(); i++) {
-		_targets[i].release();
 	}
 	_player.release();
 	_level.release();

@@ -64,9 +64,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationUpdater.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Box.h" />
-    <ClInclude Include="BoxPositionUpdater.h" />
     <ClInclude Include="Case.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Direction.h" />
@@ -78,15 +78,14 @@
     <ClInclude Include="Movable.h" />
     <ClInclude Include="NodeFactory.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerPositionUpdater.h" />
     <ClInclude Include="Target.h" />
     <ClInclude Include="Unmovable.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationUpdater.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Box.cpp" />
-    <ClCompile Include="BoxPositionUpdater.cpp" />
     <ClCompile Include="DirectionButton.cpp" />
     <ClCompile Include="EventController.cpp" />
     <ClCompile Include="Hud.cpp" />
@@ -94,7 +93,6 @@
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="NodeFactory.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerPositionUpdater.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Textures\arrow.jpg" />
