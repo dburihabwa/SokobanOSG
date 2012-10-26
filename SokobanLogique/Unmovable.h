@@ -7,6 +7,7 @@ namespace Sokoban
 	{
 	public:
 		Unmovable(int x, int y, int z) : Case(x,y,z) {}
+		virtual ~Unmovable() {}
 	};
 };
 

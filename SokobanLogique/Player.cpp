@@ -1,6 +1,5 @@
 #include "Player.h"
 #include <osg/Geode>
-#include "AnimationUpdater.h"
 #include "Board.h"
 #include "Box.h"
 #include "EventController.h"
@@ -32,6 +31,5 @@ void Sokoban::Player::move(Direction dir) {
 		_lastBox->move(dir);
 		_canMoveBox = false;
 	}
-	_graphNode->setUpdateCallback(new AnimationUpdater(getPosition(),dir));
 	Movable::move(dir);
 }
