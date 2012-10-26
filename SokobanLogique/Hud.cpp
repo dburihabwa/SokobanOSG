@@ -21,7 +21,6 @@ Sokoban::Hud::Hud(void) {
 		node->setUserData((*it));
         this->_nodes->addChild(node);
     }
-	//this->_nodes->setEventCallback(new DirectionButtonEventHandler());
 
     /*
     ref_ptr<osg::Geode> geodeText = new osg::Geode();
