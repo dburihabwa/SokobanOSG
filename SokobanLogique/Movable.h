@@ -11,7 +11,7 @@ namespace Sokoban
 		virtual bool canMove(Direction)=0;
 		virtual void move(Direction);
 		virtual ref_ptr<Node> createNode();
-		~Movable(void)
+		virtual ~Movable(void)
 		{
 			_graphNode.release();
 		}

@@ -32,6 +32,7 @@ namespace Sokoban
 		Vec3 getPosition() const {
 			return Vec3(_x,_y,_z);
 		}
+		virtual ~Case() {}
 	protected:
 		int _x;
 		int _y;
