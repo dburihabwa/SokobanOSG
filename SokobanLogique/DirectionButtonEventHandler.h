@@ -15,12 +15,10 @@ namespace Sokoban {
     class DirectionButtonEventHandler : public osg::NodeCallback
     {
     public:
-        DirectionButtonEventHandler(Direction direction);
+        DirectionButtonEventHandler(void);
         ~DirectionButtonEventHandler(void);
 
         void operator()(Node* node, NodeVisitor* nv);
-    private:
-        Sokoban::Direction _direction;
     };
 };
 

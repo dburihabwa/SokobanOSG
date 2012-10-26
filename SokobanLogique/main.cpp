@@ -5,6 +5,7 @@
 #include <string>
 #include "Board.h"
 #include "Hud.h"
+#include "DirectionButtonEventHandler.h"
 
 using namespace osg;
 #define lvl 1;
@@ -22,6 +23,7 @@ int main(void) {
 		Sokoban::far 
 		); 
 	viewer->getCamera()->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0)); 
+	viewer->getCamera()->setEventCallback(new Sokoban::DirectionButtonEventHandler());
 	//ref_ptr<Sokoban::Case> ground = new Sokoban::Ground(0,0,0);
 	//ref_ptr<Sokoban::Case> ground2 = new Sokoban::Ground(0,1,0);
 	//root->addChild(ground->createNode());
