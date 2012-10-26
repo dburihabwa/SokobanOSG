@@ -4,11 +4,13 @@
 #include "Hud.h"
 
 
-Sokoban::View::View(std::string level)
+Sokoban::View::View(void)
 {
 
-	unsigned int height = 800;
-	unsigned int width = height;
+	
+
+}
+void Sokoban::View::init(std::string level, unsigned int height, unsigned int width) {
 	ref_ptr<Group> root = new Group;
 	//Viewer Init
 	_viewer = new osgViewer::Viewer;
@@ -16,24 +18,24 @@ Sokoban::View::View(std::string level)
 	_viewer->setSceneData(root);
 	//Camera init
 	ref_ptr<Camera> playBoard = new Camera;
-	ref_ptr<Camera> buttons = new Camera;
+	_buttons = new Camera;
 
 	root->addChild(playBoard);
-	root->addChild(buttons);
+	root->addChild(_buttons);
 
 	unsigned int playBoardHeight = height*(3/4.0);
-	unsigned int buttonsHeight = height - playBoardHeight;
+	unsigned int _buttonsHeight = height - playBoardHeight;
 
 	//Camera init
 	playBoard->setAllowEventFocus(false);
-	buttons->setAllowEventFocus(false);
+	_buttons->setAllowEventFocus(false);
 	playBoard->setReferenceFrame(Camera::ABSOLUTE_RF);
-	buttons->setReferenceFrame(Camera::ABSOLUTE_RF);
+	_buttons->setReferenceFrame(Camera::ABSOLUTE_RF);
 
 	playBoard->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0));
-	buttons->setClearColor(osg::Vec4(1.0, 1.0, 1.0, 0.0));
+	_buttons->setClearColor(osg::Vec4(1.0, 1.0, 1.0, 0.0));
 
-	buttons->setEventCallback(new DirectionButtonEventHandler());
+	_buttons->setEventCallback(new DirectionButtonEventHandler());
 
 	playBoard->setProjectionMatrixAsPerspective( 
 		Sokoban::fovy, 
@@ -41,10 +43,10 @@ Sokoban::View::View(std::string level)
 		Sokoban::near, 
 		Sokoban::far 
 		); 
-	buttons->setProjectionMatrixAsOrtho(-12,12,-3,3,0.5,5);
+	_buttons->setProjectionMatrixAsOrtho(-12,12,-3,3,0.5,5);
 	//Viewport
-	playBoard->setViewport(new Viewport(0,buttonsHeight,width,playBoardHeight));
-	buttons->setViewport(new Viewport(0,0,width,buttonsHeight));
+	playBoard->setViewport(new Viewport(0,_buttonsHeight,width,playBoardHeight));
+	_buttons->setViewport(new Viewport(0,0,width,_buttonsHeight));
 
 	//Board
 	Sokoban::Board::getInstance().init(level);
@@ -53,13 +55,11 @@ Sokoban::View::View(std::string level)
 	Vec3 centerEye = Vec3(center[0],center[1],15.0);
 	playBoard->setViewMatrixAsLookAt(centerEye, center, Sokoban::HAUT); 
 
-	//Buttons
+	//_buttons
 	Hud hud;
-	buttons->addChild(hud.getNodes());
-	buttons->setViewMatrixAsLookAt(Vec3(0,0,7),Vec3(0,0,0),Sokoban::HAUT);
-
+	_buttons->addChild(hud.getNodes());
+	_buttons->setViewMatrixAsLookAt(Vec3(0,0,7),Vec3(0,0,0),Sokoban::HAUT);
 }
-
 
 Sokoban::View::~View(void)
 {

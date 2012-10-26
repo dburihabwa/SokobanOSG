@@ -61,6 +61,6 @@ int main(void) {
 	////viewer->setSceneData(Sokoban::Board::getInstance().getLevel());
 	////Sokoban::Board::getInstance().movePlayer(Sokoban::UP);
 	//Sokoban::Board::getInstance().displayLevel();
-	Sokoban::View view(level);
-	return view.getViewer()->run();
+	Sokoban::View::getInstance().init(level,800,800);
+	return Sokoban::View::getInstance().getViewer()->run();
 }
