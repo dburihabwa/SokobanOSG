@@ -18,12 +18,14 @@ Sokoban::Hud::Hud(void) {
         this->_nodes->addChild((*it)->createNode());
     }
 
+    /*
     ref_ptr<osg::Geode> geodeText = new osg::Geode();
     ref_ptr<osgText::Text> text = new osgText::Text(); 
     text->setText("Score");
     text->setPosition(osg::Vec3(100, 100, 6));
     geodeText->addDrawable(text);
     this->_nodes->addChild(geodeText);
+    */
 }
 
 

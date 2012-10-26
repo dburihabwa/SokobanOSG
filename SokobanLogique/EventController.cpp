@@ -36,6 +36,8 @@ void Sokoban::EventController::operator()(Node* node, NodeVisitor* nv)
 			case GUIEventAdapter::KEY_Up : // flêche vers la gauche
 				Board::getInstance().movePlayer(UP);
 				break;
+            case GUIEventAdapter::LEFT_MOUSE_BUTTON:
+                break;
 			default:
 				break;
 			}

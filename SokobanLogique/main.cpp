@@ -60,7 +60,7 @@ int main(void) {
     entireScene->addChild(Sokoban::Board::getInstance().getLevel().get());
 
 	Vec3 center = Sokoban::Board::getInstance().getCenter();
-	Vec3 centerEye = Vec3(center[0],center[1] + 3,15.0);
+	Vec3 centerEye = Vec3(center[0],center[1],15.0 + 3);
 	viewer->getCamera()->setViewMatrixAsLookAt(centerEye, center, Sokoban::HAUT); 
     viewer->setSceneData(entireScene);
 	//viewer->setSceneData(Sokoban::Board::getInstance().getLevel());
