@@ -1,4 +1,6 @@
 #include "Hud.h"
+#include "DirectionButtonEventHandler.h"
+
 /// Creates the new Hud
 Sokoban::Hud::Hud(void) {
     this->_timer = clock();
@@ -15,7 +17,9 @@ Sokoban::Hud::Hud(void) {
     
     std::vector<ref_ptr<Sokoban::DirectionButton> >::iterator it;
     for (it = this->_buttons.begin(); it < this->_buttons.end(); it++) {
-        this->_nodes->addChild((*it)->createNode());
+        ref_ptr<osg::Node> node = (*it)->createNode();
+        node->setEventCallback(new DirectionButtonEventHandler((*it)->getDirection()));
+        this->_nodes->addChild(node);
     }
 
     /*
@@ -43,7 +47,7 @@ const std::vector<ref_ptr<Sokoban::DirectionButton> >& Sokoban::Hud::getButtons(
     return this->_buttons;
 }
 
-const ref_ptr<osg::Group>& Sokoban::Hud::getNodes() const
+ref_ptr<osg::Group> Sokoban::Hud::getNodes() const
 {
     return this->_nodes;
 }
