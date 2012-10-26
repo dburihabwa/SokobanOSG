@@ -1,7 +1,6 @@
 #include "Box.h"
 #include "Direction.h"
 #include "Board.h"
-#include "AnimationUpdater.h"
 using namespace osg;
 
 Sokoban::Box::~Box(void)
@@ -19,7 +18,6 @@ bool Sokoban::Box::canMove(Direction dir) {
 
 
 void Sokoban::Box::move(Direction dir) {
-	_graphNode->setUpdateCallback(new AnimationUpdater(getPosition(),dir));
 	Movable::move(dir);
 	_onTarget = _willBeOnTarget;
 	_willBeOnTarget=false;

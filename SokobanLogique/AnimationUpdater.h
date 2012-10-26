@@ -7,7 +7,8 @@ namespace Sokoban {
 	class AnimationUpdater : public AnimationPathCallback
 	{
 	public:
-		AnimationUpdater(Vec3, Direction);
+		AnimationUpdater(void);
 		~AnimationUpdater(void);
+		void setMovement(Vec3, Vec3);
 	};
 }

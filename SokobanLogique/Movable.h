@@ -1,6 +1,7 @@
 #pragma once
 #include "case.h"
 #include "Direction.h"
+#include "AnimationUpdater.h"
 namespace Sokoban
 {
 	class Movable :
@@ -14,11 +15,13 @@ namespace Sokoban
 		virtual ~Movable(void)
 		{
 			_graphNode.release();
+			_aniUpdater.release();
 		}
 	protected:
 		///<summary>Wrapper for ref_ptr<Case> getCase(unsigned int, unsigned int) const; of Board</summary>
 		ref_ptr<Case> getCase(Direction) const;
 		ref_ptr<Node> _graphNode;
+		ref_ptr<AnimationUpdater> _aniUpdater;
 	};
 };
 
