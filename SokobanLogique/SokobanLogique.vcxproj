@@ -81,6 +81,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Target.h" />
     <ClInclude Include="Unmovable.h" />
+    <ClInclude Include="View.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +96,7 @@
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="NodeFactory.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Textures\arrow.jpg" />
