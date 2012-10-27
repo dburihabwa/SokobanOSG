@@ -41,7 +41,7 @@ bool Sokoban::DirectionButtonEventHandler::handle(const osgGA::GUIEventAdapter& 
 }
 void Sokoban::DirectionButtonEventHandler::pick(const osgGA::GUIEventAdapter& ea) {
 	osgUtil::LineSegmentIntersector* picker;
-	picker = new osgUtil::LineSegmentIntersector( osgUtil::Intersector::PROJECTION, ea.getXnormalized(),ea.getYnormalized() );
+	picker = new osgUtil::LineSegmentIntersector( osgUtil::Intersector::WINDOW, ea.getX(),ea.getY() );
 
 	osgUtil::IntersectionVisitor iv(picker);
 	Sokoban::View::getInstance().getButtonsCamera()->accept(iv);

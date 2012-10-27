@@ -37,7 +37,7 @@ ref_ptr<Node> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) 
 		textureImage = "textures/creeper.jpg";
 		break;
     case DIRECTION_BUTTON:
-        shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0),1,1, 0.01));
+        shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0),1,1, 0));
         textureImage = "textures/arrow.jpg";
         break;
 	default:
