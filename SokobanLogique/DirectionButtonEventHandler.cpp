@@ -40,19 +40,15 @@ bool Sokoban::DirectionButtonEventHandler::handle(const osgGA::GUIEventAdapter& 
 
 }
 void Sokoban::DirectionButtonEventHandler::pick(const osgGA::GUIEventAdapter& ea) {
-	osgUtil::PolytopeIntersector* picker;
-	double mx = ea.getXnormalized();
-	double my = ea.getYnormalized();
-	double w = 0.05;
-	double h = 0.05;
-	picker = new osgUtil::PolytopeIntersector( osgUtil::Intersector::PROJECTION, mx-w, my-h, mx+w, my+h );
-	osgUtil::IntersectionVisitor iv(picker);
+	osgUtil::LineSegmentIntersector* picker;
+	picker = new osgUtil::LineSegmentIntersector( osgUtil::Intersector::PROJECTION, ea.getXnormalized(),ea.getYnormalized() );
 
+	osgUtil::IntersectionVisitor iv(picker);
 	Sokoban::View::getInstance().getButtonsCamera()->accept(iv);
 
 	if (picker->containsIntersections())
 	{
-		osgUtil::PolytopeIntersector::Intersection intersection = picker->getFirstIntersection();
+		osgUtil::LineSegmentIntersector::Intersection intersection = picker->getFirstIntersection();
 		ref_ptr<DirectionButton> button = dynamic_cast<DirectionButton*>(intersection.nodePath.at(2)->getUserData());
 		if(button) {
 			Board::getInstance().movePlayer(button->getDirection());

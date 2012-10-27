@@ -1,5 +1,4 @@
 #pragma once
-#include "Constants.h"
 namespace Sokoban
 {
 	class Direction
