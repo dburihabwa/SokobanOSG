@@ -18,9 +18,7 @@ Sokoban::Hud::Hud(void) {
     
     std::vector<ref_ptr<Sokoban::DirectionButton> >::iterator it;
     for (it = this->_buttons.begin(); it < this->_buttons.end(); it++) {
-        ref_ptr<osg::Node> node = (*it)->createNode();
-		node->setUserData((*it));
-        this->_nodes->addChild(node);
+        this->_nodes->addChild((*it)->createNode());
     }
 
     /*

@@ -8,6 +8,7 @@ namespace Sokoban {
     {
     public:
         DirectionButton(int x, int y, int z, Direction direction);
+		ref_ptr<Node> createNode();
         Type getType();
         Direction getDirection() const;
     private:
