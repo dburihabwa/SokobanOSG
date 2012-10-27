@@ -36,8 +36,6 @@ void Sokoban::View::init(std::string level, unsigned int height, unsigned int wi
 	playBoard->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0));
 	_buttons->setClearColor(osg::Vec4(1.0, 1.0, 1.0, 0.0));
 
-	_buttons->setEventCallback(new DirectionButtonEventHandler());
-
 	playBoard->setProjectionMatrixAsPerspective( 
 		Sokoban::fovy, 
 		width/(double)playBoardHeight, 
@@ -68,6 +66,7 @@ void Sokoban::View::init(std::string level, unsigned int height, unsigned int wi
 
 	//Add keyboardController
 	_viewer->addEventHandler(new EventController());
+	_viewer->addEventHandler(new DirectionButtonEventHandler());
 }
 
 Sokoban::View::~View(void)
