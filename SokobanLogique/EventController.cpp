@@ -1,6 +1,6 @@
 #include "EventController.h"
 #include <osgGA/GUIEventAdapter>
-#include <osgGA/EventVisitor>
+#include <osgViewer/Viewer>
 #include "Board.h"
 #include "Direction.h"
 
@@ -11,43 +11,42 @@ Sokoban::EventController::EventController(void)
 {
 }
 
-void Sokoban::EventController::operator()(Node* node, NodeVisitor* nv)
-{
-	//La classe osgGA::GUIEventAdapter gère tous les types d'évènemens  qui peuvent survenir
-	std::list<ref_ptr<GUIEventAdapter>> events; // Structure de type liste (librairie standard)
-	EventVisitor* ev = dynamic_cast<EventVisitor*>(nv); // Particularise le "visiteur" de noeuds
-	if(ev) {
-		events = ev->getEvents(); // Récupère les "évènements" dans la liste
-		ref_ptr<GUIEventAdapter> ea = events.back(); // Récupère le dernier élément de la liste
-		events.pop_back(); // Supprime l'élément récupéré de la liste
-		switch(ea->getEventType())
-		{
-		case GUIEventAdapter::KEYDOWN: // Enfoncement d'une touche
-			switch(ea->getKey()){
-			case GUIEventAdapter::KEY_Right : // flêche vers la droite
-				Board::getInstance().movePlayer(RIGHT);
-				break;
-			case GUIEventAdapter::KEY_Left : // flêche vers la gauche
-				Board::getInstance().movePlayer(LEFT);
-				break;
-			case GUIEventAdapter::KEY_Down : // flêche vers la gauche
-				Board::getInstance().movePlayer(DOWN);
-				break;
-			case GUIEventAdapter::KEY_Up : // flêche vers la gauche
-				Board::getInstance().movePlayer(UP);
-				break;
-            case GUIEventAdapter::LEFT_MOUSE_BUTTON:
-                break;
-			default:
-				break;
-			}
+bool Sokoban::EventController::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa) {
+
+	osgViewer::Viewer* viewer = dynamic_cast<osgViewer::Viewer*>(&aa);
+	if (!viewer) {
+		return false;
+	}
+	switch(ea.getEventType())
+	{
+	case GUIEventAdapter::KEYDOWN: // Enfoncement d'une touche
+		switch(ea.getKey()){
+		case GUIEventAdapter::KEY_Right : // flêche vers la droite
+			Board::getInstance().movePlayer(RIGHT);
+			return true;
+			break;
+		case GUIEventAdapter::KEY_Left : // flêche vers la gauche
+			Board::getInstance().movePlayer(LEFT);
+			return true;
+			break;
+		case GUIEventAdapter::KEY_Down : // flêche vers le bas
+			Board::getInstance().movePlayer(DOWN);
+			return true;
+			break;
+		case GUIEventAdapter::KEY_Up : // flêche vers le haut
+			Board::getInstance().movePlayer(UP);
+			return true;
 			break;
 		default:
 			break;
 		}
+		break;
+	default:
+		break;
 	}
-	traverse(node,nv);
+	return false;
 }
+
 
 Sokoban::EventController::~EventController(void)
 {

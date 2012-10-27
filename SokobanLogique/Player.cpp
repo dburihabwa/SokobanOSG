@@ -20,12 +20,6 @@ bool Sokoban::Player::canMove(Direction dir) {
 	}
 	return true;
 }
-ref_ptr<Node> Sokoban::Player::createNode() {
-	ref_ptr<Node> matrix = Movable::createNode();
-	matrix->setEventCallback(new EventController);
-	return matrix;
-}
-
 void Sokoban::Player::move(Direction dir) {
 	if(_canMoveBox) {
 		_lastBox->move(dir);

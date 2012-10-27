@@ -11,7 +11,6 @@ namespace Sokoban
 		Type getType() {
 			return PLAYER;
 		}
-		ref_ptr<Node> createNode();
 		bool canMove(Direction);
 		void move(Direction);
 		///<summary> Check if the player will move a box when move(Direction) is called.</summaray>
