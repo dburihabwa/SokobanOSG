@@ -25,7 +25,7 @@ void Sokoban::View::init(std::string level, unsigned int height, unsigned int wi
 	root->addChild(_buttons);
 
 	unsigned int playBoardHeight = height*(3/4.0);
-	unsigned int _buttonsHeight = height - playBoardHeight;
+	unsigned int buttonsHeight = height - playBoardHeight;
 
 	//Camera init
 	playBoard->setAllowEventFocus(false);
@@ -44,10 +44,15 @@ void Sokoban::View::init(std::string level, unsigned int height, unsigned int wi
 		Sokoban::near, 
 		Sokoban::far 
 		); 
-	_buttons->setProjectionMatrixAsOrtho(-12,12,-3,3,0.5,5);
+	_buttons->setProjectionMatrixAsPerspective( 
+		Sokoban::fovy, 
+		width/(double)buttonsHeight, 
+		Sokoban::near, 
+		100.0F
+		); 
 	//Viewport
-	playBoard->setViewport(new Viewport(0,_buttonsHeight,width,playBoardHeight));
-	_buttons->setViewport(new Viewport(0,0,width,_buttonsHeight));
+	playBoard->setViewport(new Viewport(0,buttonsHeight,width,playBoardHeight));
+	_buttons->setViewport(new Viewport(0,0,width,buttonsHeight));
 
 	//Board
 	Sokoban::Board::getInstance().init(level);
@@ -59,7 +64,7 @@ void Sokoban::View::init(std::string level, unsigned int height, unsigned int wi
 	//_buttons
 	Hud hud;
 	_buttons->addChild(hud.getNodes());
-	_buttons->setViewMatrixAsLookAt(Vec3(0,0,7),Vec3(0,0,0),Sokoban::HAUT);
+	_buttons->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Sokoban::HAUT);
 
 	//Add keyboardController
 	_viewer->addEventHandler(new EventController());
