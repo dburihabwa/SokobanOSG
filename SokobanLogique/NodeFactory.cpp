@@ -9,8 +9,23 @@
 #include <osg/PositionAttitudeTransform>
 #include "Constants.h"
 
+///Cache
+std::map<Sokoban::Type,ref_ptr<Geode>> Sokoban::NodeFactory::_geoCache;
 
 ref_ptr<Node> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
+	
+	ref_ptr<PositionAttitudeTransform> postAtt = new PositionAttitudeTransform();
+	postAtt->addChild(getOrCreateGeode(element));
+
+	//Translate the item to put it were the item should be.
+	postAtt->setPosition(Vec3(x,y,z));
+	return postAtt;
+}
+
+ref_ptr<Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
+	if(_geoCache.find(element) != _geoCache.end()) {
+		return _geoCache[element];
+	}
 	ref_ptr<ShapeDrawable> shape;
 	char* textureImage;
 	//Switch on the element for texture and shape
@@ -71,10 +86,6 @@ ref_ptr<Node> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) 
 	ref_ptr<StateSet> sphereStateSet = noeudGeo->getOrCreateStateSet();
 	sphereStateSet->setAttribute(material);
 	sphereStateSet->setTextureAttributeAndModes(0, texture, StateAttribute::ON);
-	ref_ptr<PositionAttitudeTransform> postAtt = new PositionAttitudeTransform();
-	postAtt->addChild(noeudGeo);
-
-	//Translate the item to put it were the item should be.
-	postAtt->setPosition(Vec3(x,y,z));
-	return postAtt;
+	_geoCache.insert(std::make_pair(element,noeudGeo));
+	return noeudGeo;
 }
