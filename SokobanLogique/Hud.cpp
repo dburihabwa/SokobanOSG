@@ -5,10 +5,11 @@
 Sokoban::Hud::Hud(void) {
     this->_timer = clock();
     this->_nodes = new osg::Group();
-    ref_ptr<DirectionButton> upDirectionButton =  new DirectionButton(0, 1 - 3, 0, Sokoban::UP);
-    ref_ptr<DirectionButton> downDirectionButton =  new DirectionButton(2, 1 - 3, 0, Sokoban::DOWN);
-    ref_ptr<DirectionButton> leftDirectionButton =  new DirectionButton(1, 0 - 3, 0, Sokoban::LEFT);
-    ref_ptr<DirectionButton> rightDirectionButton =  new DirectionButton(1, 2 - 3, 0, Sokoban::RIGHT);
+	int posY = -10;
+    ref_ptr<DirectionButton> upDirectionButton =  new DirectionButton(-1, 1+posY, 0, Sokoban::UP);
+    ref_ptr<DirectionButton> downDirectionButton =  new DirectionButton(3, 1+posY, 0, Sokoban::DOWN);
+    ref_ptr<DirectionButton> leftDirectionButton =  new DirectionButton(1, -1+posY, 0, Sokoban::LEFT);
+    ref_ptr<DirectionButton> rightDirectionButton =  new DirectionButton(1, 3+posY, 0, Sokoban::RIGHT);
     
     this->_buttons.push_back(upDirectionButton);
     this->_buttons.push_back(downDirectionButton);
