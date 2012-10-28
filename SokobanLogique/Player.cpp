@@ -26,7 +26,7 @@ void Sokoban::Player::move(Direction dir) {
 		_lastBox->move(dir);
 		_canMoveBox = false;
 	}
-	dynamic_cast<PlayerAnimationUpdater*>(_aniUpdater.get())->setDirection(dir);
+	static_cast<PlayerAnimationUpdater*>(_aniUpdater.get())->setDirection(dir);
 	Movable::move(dir);
 }
 
