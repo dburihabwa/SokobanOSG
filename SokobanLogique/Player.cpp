@@ -2,7 +2,7 @@
 #include <osg/Geode>
 #include "Board.h"
 #include "Box.h"
-#include "EventController.h"
+#include "KeyboardHandler.h"
 using namespace osg;
 
 Sokoban::Player::~Player(void) {

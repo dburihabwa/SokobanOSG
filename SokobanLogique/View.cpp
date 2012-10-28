@@ -1,7 +1,7 @@
 #include "View.h"
 #include "Constants.h"
 #include "DirectionButtonEventHandler.h"
-#include "EventController.h"
+#include "KeyboardHandler.h"
 #include "Hud.h"
 
 
@@ -65,7 +65,7 @@ void Sokoban::View::init(std::string level, unsigned int height, unsigned int wi
 	_buttons->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Sokoban::HAUT);
 
 	//Add keyboardController
-	_viewer->addEventHandler(new EventController());
+	_viewer->addEventHandler(new KeyboardHandler());
 	_viewer->addEventHandler(new DirectionButtonEventHandler());
 }
 

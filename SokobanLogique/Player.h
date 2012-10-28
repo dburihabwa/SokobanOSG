@@ -17,6 +17,7 @@ namespace Sokoban
 		bool willMoveBox() const{
 			return _canMoveBox;
 		}
+		///<summary>Get the box that will be moved.</summary>
 		ref_ptr<Box> getMovedBox() const {
 			return _lastBox;
 		}

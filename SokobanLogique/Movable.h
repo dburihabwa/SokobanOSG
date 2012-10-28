@@ -9,7 +9,9 @@ namespace Sokoban
 	{
 	public:
 		Movable(int x, int y, int z) : Case(x,y,z) {}
+		///<summary>Check if the Movable can or not move in the wanted direction.</summary>
 		virtual bool canMove(Direction)=0;
+		///<summary>Move the Movable in the wanted direction.</summary>
 		virtual void move(Direction);
 		virtual ref_ptr<Node> createNode();
 		virtual ~Movable(void)

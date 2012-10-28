@@ -16,7 +16,7 @@ int main(void) {
 	//	Sokoban::far 
 	//	); 
 	//viewer->getCamera()->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0)); 
-	//viewer->getCamera()->setEventCallback(new Sokoban::DirectionButtonEventHandler());
+	//viewer->getCamera()->setEventCallback(new Sokoban::MouseHandler());
 	////ref_ptr<Sokoban::Case> ground = new Sokoban::Ground(0,0,0);
 	////ref_ptr<Sokoban::Case> ground2 = new Sokoban::Ground(0,1,0);
 	////root->addChild(ground->createNode());

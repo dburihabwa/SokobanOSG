@@ -16,7 +16,7 @@ namespace Sokoban {
 			static View instance;
 			return instance;
 		}
-
+		///<summary>Init the viewer with the size of the window.</summary>
 		void init(std::string,unsigned int, unsigned int);
 		ref_ptr<osgViewer::Viewer> getViewer() const {
 			return _viewer;
