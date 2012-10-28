@@ -80,6 +80,7 @@
     <ClInclude Include="Movable.h" />
     <ClInclude Include="NodeFactory.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerAnimationUpdater.h" />
     <ClInclude Include="Target.h" />
     <ClInclude Include="Unmovable.h" />
     <ClInclude Include="View.h" />
@@ -98,6 +99,7 @@
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="NodeFactory.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerAnimationUpdater.cpp" />
     <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>

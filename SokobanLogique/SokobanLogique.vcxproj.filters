@@ -40,6 +40,9 @@
     <ClCompile Include="DirectionButtonEventHandler.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerAnimationUpdater.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">
@@ -100,6 +103,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="DirectionButtonEventHandler.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAnimationUpdater.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
