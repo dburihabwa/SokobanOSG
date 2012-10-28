@@ -4,7 +4,6 @@
 #include "Box.h"
 #include "KeyboardHandler.h"
 #include "PlayerAnimationUpdater.h"
-using namespace osg;
 
 Sokoban::Player::~Player(void) {
 	_lastBox.release();

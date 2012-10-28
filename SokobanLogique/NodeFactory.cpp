@@ -10,82 +10,82 @@
 #include "Constants.h"
 
 ///Cache
-std::map<Sokoban::Type,ref_ptr<Geode>> Sokoban::NodeFactory::_geoCache;
+std::map<Sokoban::Type,osg::ref_ptr<osg::Geode>> Sokoban::NodeFactory::_geoCache;
 
-ref_ptr<Node> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
+osg::ref_ptr<osg::Node> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
 	
-	ref_ptr<PositionAttitudeTransform> postAtt = new PositionAttitudeTransform();
+	osg::ref_ptr<osg::PositionAttitudeTransform> postAtt = new osg::PositionAttitudeTransform();
 	postAtt->addChild(getOrCreateGeode(element));
 
 	//Translate the item to put it were the item should be.
-	postAtt->setPosition(Vec3(x,y,z));
+	postAtt->setPosition(osg::Vec3(x,y,z));
 	return postAtt;
 }
 
-ref_ptr<Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
+osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	if(_geoCache.find(element) != _geoCache.end()) {
 		return _geoCache[element];
 	}
-	ref_ptr<ShapeDrawable> shape;
+	osg::ref_ptr<osg::ShapeDrawable> shape;
 	char* textureImage;
 	//Switch on the element for texture and shape
 	switch(element)
 	{
 	case GROUND :
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0), 1,1,0.1));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1,1,0.1));
 		textureImage ="textures/rs-ground00.jpg";
 		break;
 	case BOX:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0),0.9));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),0.9));
 		textureImage ="textures/box.jpg";
 		break;
 	case WALL:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0),1,1,1.2));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1,1.2));
 		textureImage ="textures/brickscolorhx8.jpg";
 		break;
 	case TARGET:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0.05), 1,1,0.05));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.05), 1,1,0.05));
 		textureImage ="textures/target.png";
 		break;
 	case PLAYER:
-		shape = new ShapeDrawable(new osg::Sphere(Vec3(0, 0, 0), 0.4));
+		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, 0), 0.4));
 		textureImage = "textures/creeper.jpg";
 		break;
     case DIRECTION_BUTTON:
-        shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0),1,1, 0));
+        shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1, 0));
         textureImage = "textures/arrow.jpg";
         break;
 	default:
-		shape = new ShapeDrawable(new osg::Box(Vec3(0, 0, 0), 1));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1));
 		textureImage ="textures/default.jpg";
 		break;
 	}
-	ref_ptr<Geode> noeudGeo = new Geode;
+	osg::ref_ptr<osg::Geode> noeudGeo = new osg::Geode;
 	noeudGeo->addDrawable(shape);
 
 	// create a simple material
-	Material *material = new Material();
-	material->setEmission(Material::FRONT, Vec4(0.8, 0.8, 0.8, 1.0));
+	osg::Material *material = new osg::Material();
+	material->setEmission(osg::Material::FRONT, osg::Vec4(0.8, 0.8, 0.8, 1.0));
 	// create a texture
 	// load image for texture
-	ref_ptr<Image> image = osgDB::readImageFile(textureImage);
+	osg::ref_ptr<osg::Image> image = osgDB::readImageFile(textureImage);
 	if (!image) {
 		std::cout << "Couldn't load texture : " << textureImage <<std::endl;
 		return NULL;
 	}
 	//Create the texture putting the correct option and set the image
-	ref_ptr<Texture2D> texture = new Texture2D;
-	texture->setDataVariance(Object::DYNAMIC);
-	texture->setFilter(Texture::MIN_FILTER, Texture::LINEAR_MIPMAP_LINEAR);
-	texture->setFilter(Texture::MAG_FILTER, Texture::LINEAR);
-	texture->setWrap(Texture::WRAP_S, Texture::CLAMP);
-	texture->setWrap(Texture::WRAP_T, Texture::CLAMP);
+	osg::ref_ptr<osg::Texture2D> texture = new osg::Texture2D;
+	texture->setDataVariance(osg::Object::DYNAMIC);
+	texture->setFilter(osg::Texture::MIN_FILTER, osg::Texture::LINEAR_MIPMAP_LINEAR);
+	texture->setFilter(osg::Texture::MAG_FILTER, osg::Texture::LINEAR);
+	texture->setWrap(osg::Texture::WRAP_S, osg::Texture::CLAMP);
+	texture->setWrap(osg::Texture::WRAP_T, osg::Texture::CLAMP);
 	texture->setImage(image);
 
 	// assign the material and texture to the sphere
-	ref_ptr<StateSet> sphereStateSet = noeudGeo->getOrCreateStateSet();
+	osg::ref_ptr<osg::StateSet> sphereStateSet = noeudGeo->getOrCreateStateSet();
 	sphereStateSet->setAttribute(material);
-	sphereStateSet->setTextureAttributeAndModes(0, texture, StateAttribute::ON);
+	sphereStateSet->setTextureAttributeAndModes(0, texture, osg::StateAttribute::ON);
 	_geoCache.insert(std::make_pair(element,noeudGeo));
 	return noeudGeo;
 }

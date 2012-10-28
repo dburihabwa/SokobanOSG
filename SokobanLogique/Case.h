@@ -1,16 +1,16 @@
 #pragma once
 #include <osg\MatrixTransform>
 #include "NodeFactory.h"
-using namespace osg;
+
 namespace Sokoban
 {
-	class Case : public Referenced
+	class Case : public osg::Referenced
 	{
 	public:
 		Case(int x,int y, int z) : _x(x), _y(y), _z(z){}
 		///<summary>
 		///Create the OSG Graphical element.</summary>
-		virtual ref_ptr<Node> createNode() {
+		virtual osg::ref_ptr<osg::Node> createNode() {
 			return NodeFactory::createNode(_x,_y,_z,getType());
 		}
 		///<summary>
@@ -19,8 +19,8 @@ namespace Sokoban
 		/// Use the enum Type defined in GUITypes.h </seealso>
 		virtual Type getType()=0;
 
-		Vec3 getPosition() const {
-			return Vec3(_x,_y,_z);
+		osg::Vec3 getPosition() const {
+			return osg::Vec3(_x,_y,_z);
 		}
 		virtual ~Case() {}
 	protected:

@@ -14,8 +14,8 @@ Sokoban::Direction Sokoban::DirectionButton::getDirection() const {
 Sokoban::Type Sokoban::DirectionButton::getType() {
     return DIRECTION_BUTTON;
 }
-ref_ptr<Node> Sokoban::DirectionButton::createNode() {
-	ref_ptr<PositionAttitudeTransform> node = dynamic_cast<PositionAttitudeTransform*>(Case::createNode().get());
+osg::ref_ptr<osg::Node> Sokoban::DirectionButton::createNode() {
+	osg::ref_ptr<osg::PositionAttitudeTransform> node = dynamic_cast<osg::PositionAttitudeTransform*>(Case::createNode().get());
 	node->setUserData(this);
 	if(_direction==UP) {
 		node->setAttitude(DEGREE_180);

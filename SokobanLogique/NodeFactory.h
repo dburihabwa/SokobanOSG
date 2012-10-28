@@ -2,7 +2,7 @@
 #include <osg/Geode>
 #include "GUITypes.h"
 #include <map>
-using namespace osg;
+
 namespace Sokoban
 {
 	class NodeFactory
@@ -10,13 +10,13 @@ namespace Sokoban
 	public:
 		///<summary>
 		///Create the OSG Node that represent the wanted item</summary>
-		static ref_ptr<Node> createNode(int x,int y,int z, Type element);
+		static osg::ref_ptr<osg::Node> createNode(int x,int y,int z, Type element);
 	private:
 		NodeFactory(void)
 		{
 		}
-		static std::map<Type,ref_ptr<Geode>> _geoCache;
-		static ref_ptr<Geode> getOrCreateGeode(Type);
+		static std::map<Type, osg::ref_ptr<osg::Geode>> _geoCache;
+		static osg::ref_ptr<osg::Geode> getOrCreateGeode(Type);
 
 	};
 

@@ -1,7 +1,8 @@
 #pragma once
 #include <osg/NodeCallback>
 #include <osgGA/GUIEventHandler>
-using namespace osg;
+
+
 namespace Sokoban
 {
 	class KeyboardHandler  : public osgGA::GUIEventHandler

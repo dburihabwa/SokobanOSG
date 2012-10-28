@@ -8,23 +8,22 @@
 
 #include <regex>
 #include <osg/Geode>
-using namespace std;
 
 
-void Sokoban::Board::init(string level)
+void Sokoban::Board::init(std::string level)
 {
 	_level = new osg::Group;
-	regex pattern("([^\\n]+)\\n?");
-	sregex_iterator end, iter(level.begin(), level.end(), pattern);
+	std::regex pattern("([^\\n]+)\\n?");
+	std::sregex_iterator end, iter(level.begin(), level.end(), pattern);
 
 	unsigned int w = 0;
-	vector<string> data;
+	std::vector<std::string> data;
 	//Get every line of the string, check their 
 	//length to find the lenght of the level
 	for(; iter != end; ++iter)
 	{
 		data.push_back((*iter)[1]);
-		w =max(w, (unsigned int)(*iter)[1].length());
+		w = std::max(w, (unsigned int)(*iter)[1].length());
 	}
 	unsigned int height = data.size();
 	//Get the center of the level, since we are doing a rotation on every element
@@ -32,8 +31,8 @@ void Sokoban::Board::init(string level)
 	center = Vec3d(height/2.,w/2,0);
 	for(unsigned int v = 0; v < height; ++v)
 	{
-		vector<ref_ptr<Case>> sTemp;
-		vector<ref_ptr<Case>> dTemp;
+		std::vector<ref_ptr<Case>> sTemp;
+		std::vector<ref_ptr<Case>> dTemp;
 		for(unsigned int u = 0; u < w; ++u)
 		{
 			if(u > data[v].size())
@@ -108,9 +107,9 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 }
 ref_ptr<Sokoban::Case> Sokoban::Board::getCase(unsigned int x, unsigned int y) const{
 	if(x>_movable.size())
-		throw exception("X not in the level");
+		throw std::exception("X not in the level");
 	if(y>_movable[0].size())
-		throw exception("Y not in the level");
+		throw std::exception("Y not in the level");
 	ref_ptr<Case> lvlCase = _movable[x][y];
 	if(lvlCase->getType() == GROUND)
 		return  _unMovable[x][y];
@@ -118,13 +117,13 @@ ref_ptr<Sokoban::Case> Sokoban::Board::getCase(unsigned int x, unsigned int y) c
 }
 void Sokoban::Board::swapMovable(unsigned int x1, unsigned int y1,unsigned int x2, unsigned int y2) {
 	if(x1>_movable.size())
-		throw exception("X1 not in the level");
+		throw std::exception("X1 not in the level");
 	if(y1>_movable[0].size())
-		throw exception("Y1 not in the level");
+		throw std::exception("Y1 not in the level");
 	if(x2>_movable.size())
-		throw exception("X2 not in the level");
+		throw std::exception("X2 not in the level");
 	if(y2>_movable[0].size())
-		throw exception("Y2 not in the level");
+		throw std::exception("Y2 not in the level");
 	ref_ptr<Case> movable1 = _movable[x1][y1];
 	ref_ptr<Case> movable2 = _movable[x2][y2];
 	_movable[x1][y1] = movable2;

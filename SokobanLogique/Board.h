@@ -9,7 +9,7 @@
 #include "Target.h"
 
 
-using namespace osg;
+
 namespace Sokoban
 {
 	class Board

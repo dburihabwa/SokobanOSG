@@ -3,7 +3,7 @@
 #include <osg/Camera>
 #include <osgViewer/Viewer>
 #include <string>
-using namespace osg;
+
 namespace Sokoban {
 	class View
 	{
@@ -18,16 +18,17 @@ namespace Sokoban {
 		}
 		///<summary>Init the viewer with the size of the window.</summary>
 		void init(std::string,unsigned int, unsigned int);
-		ref_ptr<osgViewer::Viewer> getViewer() const {
+		
+		osg::ref_ptr<osgViewer::Viewer> getViewer() const {
 			return _viewer;
 		}
-		ref_ptr<Camera> getButtonsCamera() {
+		osg::ref_ptr<osg::Camera> getButtonsCamera() {
 			return _buttons;
 		}
 		~View(void);
 	private:
-		ref_ptr<osgViewer::Viewer> _viewer;
-		ref_ptr<Camera> _buttons;	
+		osg::ref_ptr<osgViewer::Viewer> _viewer;
+		osg::ref_ptr<osg::Camera> _buttons;	
 		View();
 		View(View const&);              // Don't Implement
 		void operator=(View const&); // Don't implement

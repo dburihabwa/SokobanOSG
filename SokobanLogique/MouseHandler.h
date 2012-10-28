@@ -7,11 +7,9 @@
 #include "Board.h"
 #include "DirectionButton.h"
 
-using namespace osgGA;
-using namespace osg;
 
 namespace Sokoban {
-	class MouseHandler : public GUIEventHandler
+	class MouseHandler : public osgGA::GUIEventHandler
 	{
 	public:
 		MouseHandler(void): _mx(0.0),_my(0.0) {};

@@ -1,14 +1,13 @@
 #include "Box.h"
 #include "Direction.h"
 #include "Board.h"
-using namespace osg;
 
 Sokoban::Box::~Box(void)
 {
 }
 
 bool Sokoban::Box::canMove(Direction dir) {
-	ref_ptr<Case> lvlCase = getCase(dir);
+	osg::ref_ptr<Case> lvlCase = getCase(dir);
 	if(lvlCase->getType() == WALL || lvlCase->getType() == BOX || lvlCase->getType() == PLAYER)
 		return false;
 	if(lvlCase->getType() == TARGET)
