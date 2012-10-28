@@ -1,6 +1,6 @@
 #pragma once
 #include <osg\MatrixTransform>
-#include "NodeFactory.h"
+#include "../Factories/NodeFactory.h"
 
 namespace Sokoban
 {

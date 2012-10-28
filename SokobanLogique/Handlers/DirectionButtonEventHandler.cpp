@@ -1,7 +1,9 @@
 #include "DirectionButtonEventHandler.h"
 #include <osgUtil/LineSegmentIntersector>
 #include <osgViewer\Viewer>
-#include "View.h"
+#include "../GUI/View.h"
+#include "../GUI/DirectionButton.h"
+#include "../Logic/Board.h"
 
 
 Sokoban::DirectionButtonEventHandler::DirectionButtonEventHandler(void)

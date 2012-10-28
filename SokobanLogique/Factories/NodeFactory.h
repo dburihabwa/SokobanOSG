@@ -1,6 +1,6 @@
 #pragma once
 #include <osg/Geode>
-#include "GUITypes.h"
+#include "../Logic/GUITypes.h"
 #include <map>
 
 namespace Sokoban

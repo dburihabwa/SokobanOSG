@@ -1,6 +1,6 @@
 #pragma once
-#include "Case.h"
-#include "Direction.h"
+#include "../Logic/Case.h"
+#include "../Logic/Direction.h"
 
 namespace Sokoban {
 	///<summary>

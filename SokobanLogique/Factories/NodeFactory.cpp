@@ -7,7 +7,6 @@
 #include <osg/ShapeDrawable>
 #include <osg/Material>
 #include <osg/PositionAttitudeTransform>
-#include "Constants.h"
 
 ///Cache
 std::map<Sokoban::Type,osg::ref_ptr<osg::Geode>> Sokoban::NodeFactory::_geoCache;

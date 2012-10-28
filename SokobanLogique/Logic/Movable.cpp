@@ -1,5 +1,4 @@
 #include "Movable.h"
-#include "Direction.h"
 #include "Board.h"
 void Sokoban::Movable::move(Direction dir) {
 	int newX = _x+dir.getX();

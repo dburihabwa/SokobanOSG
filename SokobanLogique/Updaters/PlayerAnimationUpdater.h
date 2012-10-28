@@ -1,6 +1,6 @@
 #pragma once
 #include "AnimationUpdater.h"
-#include "Direction.h"
+#include "../Logic/Direction.h"
 #include <osg/Quat>
 namespace Sokoban {
 	class PlayerAnimationUpdater : public AnimationUpdater

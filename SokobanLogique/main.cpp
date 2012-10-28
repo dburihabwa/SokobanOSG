@@ -1,5 +1,5 @@
 #include <osgViewer/Viewer>
-#include "View.h"
+#include "GUI/View.h"
 #include "Constants.h"
 int main(void) {
 	std::string level;

@@ -1,8 +1,8 @@
 #include "View.h"
-#include "Constants.h"
-#include "DirectionButtonEventHandler.h"
-#include "KeyboardHandler.h"
-#include "Hud.h"
+#include "../Constants.h"
+#include "../Handlers/DirectionButtonEventHandler.h"
+#include "../Handlers/KeyboardHandler.h"
+#include "../GUI/Hud.h"
 
 
 Sokoban::View::View(void)

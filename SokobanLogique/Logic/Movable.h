@@ -1,7 +1,7 @@
 #pragma once
 #include "case.h"
 #include "Direction.h"
-#include "AnimationUpdater.h"
+#include "../Updaters/AnimationUpdater.h"
 namespace Sokoban
 {
 	class Movable :

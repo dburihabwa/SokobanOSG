@@ -64,45 +64,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationUpdater.h" />
-    <ClInclude Include="Board.h" />
-    <ClInclude Include="Box.h" />
-    <ClInclude Include="Case.h" />
-    <ClInclude Include="Constants.h" />
-    <ClInclude Include="Direction.h" />
-    <ClInclude Include="DirectionButton.h" />
-    <ClInclude Include="DirectionButtonEventHandler.h" />
-    <ClInclude Include="MouseHandler.h" />
-    <ClInclude Include="KeyboardHandler.h" />
-    <ClInclude Include="Ground.h" />
-    <ClInclude Include="GUITypes.h" />
-    <ClInclude Include="Hud.h" />
-    <ClInclude Include="Movable.h" />
-    <ClInclude Include="NodeFactory.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerAnimationUpdater.h" />
-    <ClInclude Include="Target.h" />
-    <ClInclude Include="Unmovable.h" />
-    <ClInclude Include="View.h" />
-    <ClInclude Include="Wall.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AnimationUpdater.cpp" />
-    <ClCompile Include="Board.cpp" />
-    <ClCompile Include="Box.cpp" />
-    <ClCompile Include="DirectionButton.cpp" />
-    <ClCompile Include="DirectionButtonEventHandler.cpp" />
-    <ClCompile Include="MouseHandler.cpp" />
-    <ClCompile Include="KeyboardHandler.cpp" />
-    <ClCompile Include="Hud.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Movable.cpp" />
-    <ClCompile Include="NodeFactory.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerAnimationUpdater.cpp" />
-    <ClCompile Include="View.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Textures\arrow.jpg" />
     <None Include="Textures\box.jpg" />
     <None Include="Textures\brickscolorhx8.jpg" />
@@ -110,6 +71,45 @@
     <None Include="Textures\default.jpg" />
     <None Include="Textures\rs-ground00.jpg" />
     <None Include="Textures\target.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Factories\NodeFactory.cpp" />
+    <ClCompile Include="GUI\DirectionButton.cpp" />
+    <ClCompile Include="GUI\Hud.cpp" />
+    <ClCompile Include="GUI\View.cpp" />
+    <ClCompile Include="Handlers\DirectionButtonEventHandler.cpp" />
+    <ClCompile Include="Handlers\KeyboardHandler.cpp" />
+    <ClCompile Include="Handlers\MouseHandler.cpp" />
+    <ClCompile Include="Logic\Board.cpp" />
+    <ClCompile Include="Logic\Box.cpp" />
+    <ClCompile Include="Logic\Movable.cpp" />
+    <ClCompile Include="Logic\Player.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Updaters\AnimationUpdater.cpp" />
+    <ClCompile Include="Updaters\PlayerAnimationUpdater.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="Factories\NodeFactory.h" />
+    <ClInclude Include="GUI\DirectionButton.h" />
+    <ClInclude Include="GUI\Hud.h" />
+    <ClInclude Include="GUI\View.h" />
+    <ClInclude Include="Handlers\DirectionButtonEventHandler.h" />
+    <ClInclude Include="Handlers\KeyboardHandler.h" />
+    <ClInclude Include="Handlers\MouseHandler.h" />
+    <ClInclude Include="Logic\Board.h" />
+    <ClInclude Include="Logic\Box.h" />
+    <ClInclude Include="Logic\Case.h" />
+    <ClInclude Include="Logic\Direction.h" />
+    <ClInclude Include="Logic\Ground.h" />
+    <ClInclude Include="Logic\GUITypes.h" />
+    <ClInclude Include="Logic\Movable.h" />
+    <ClInclude Include="Logic\Player.h" />
+    <ClInclude Include="Logic\Target.h" />
+    <ClInclude Include="Logic\Unmovable.h" />
+    <ClInclude Include="Logic\Wall.h" />
+    <ClInclude Include="Updaters\AnimationUpdater.h" />
+    <ClInclude Include="Updaters\PlayerAnimationUpdater.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

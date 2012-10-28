@@ -1,6 +1,4 @@
 #include "Box.h"
-#include "Direction.h"
-#include "Board.h"
 
 Sokoban::Box::~Box(void)
 {

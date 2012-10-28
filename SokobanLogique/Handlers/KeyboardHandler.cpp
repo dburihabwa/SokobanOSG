@@ -1,8 +1,7 @@
 #include "KeyboardHandler.h"
 #include <osgGA/GUIEventAdapter>
 #include <osgViewer/Viewer>
-#include "Board.h"
-#include "Direction.h"
+#include "../Logic/Board.h"
 
 
 Sokoban::KeyboardHandler::KeyboardHandler(void)

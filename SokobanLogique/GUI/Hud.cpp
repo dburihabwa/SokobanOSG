@@ -1,5 +1,4 @@
 #include "Hud.h"
-#include "MouseHandler.h"
 
 /// Creates the new Hud
 Sokoban::Hud::Hud(void) {

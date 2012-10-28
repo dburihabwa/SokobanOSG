@@ -1,9 +1,6 @@
 #include "Player.h"
-#include <osg/Geode>
-#include "Board.h"
 #include "Box.h"
-#include "KeyboardHandler.h"
-#include "PlayerAnimationUpdater.h"
+#include "../Updaters/PlayerAnimationUpdater.h"
 
 Sokoban::Player::~Player(void) {
 	_lastBox.release();

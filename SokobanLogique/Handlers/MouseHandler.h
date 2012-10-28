@@ -1,11 +1,5 @@
 #pragma once
-#include <list>
-
-#include <osg/NodeCallback>
 #include <osgGA/GUIEventHandler>
-
-#include "Board.h"
-#include "DirectionButton.h"
 
 
 namespace Sokoban {

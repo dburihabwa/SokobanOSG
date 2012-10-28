@@ -1,5 +1,5 @@
 #include "PlayerAnimationUpdater.h"
-#include "Constants.h"
+#include "../Constants.h"
 
 
 Sokoban::PlayerAnimationUpdater::~PlayerAnimationUpdater(void)
