@@ -1,4 +1,4 @@
-#include "EventController.h"
+#include "KeyboardHandler.h"
 #include <osgGA/GUIEventAdapter>
 #include <osgViewer/Viewer>
 #include "Board.h"
@@ -7,11 +7,11 @@
 using namespace osg;
 using namespace osgGA;
 
-Sokoban::EventController::EventController(void)
+Sokoban::KeyboardHandler::KeyboardHandler(void)
 {
 }
 
-bool Sokoban::EventController::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa) {
+bool Sokoban::KeyboardHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa) {
 
 	osgViewer::Viewer* viewer = dynamic_cast<osgViewer::Viewer*>(&aa);
 	if (!viewer) {
@@ -48,6 +48,6 @@ bool Sokoban::EventController::handle(const osgGA::GUIEventAdapter& ea, osgGA::G
 }
 
 
-Sokoban::EventController::~EventController(void)
+Sokoban::KeyboardHandler::~KeyboardHandler(void)
 {
 }

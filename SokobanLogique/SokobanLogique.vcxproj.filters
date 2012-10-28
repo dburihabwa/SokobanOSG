@@ -19,9 +19,6 @@
     <ClCompile Include="Movable.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="EventController.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="Hud.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -31,10 +28,16 @@
     <ClCompile Include="AnimationUpdater.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="DirectionButtonEventHandler.cpp">
+    <ClCompile Include="View.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="View.cpp">
+    <ClCompile Include="KeyboardHandler.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseHandler.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionButtonEventHandler.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,9 +81,6 @@
     <ClInclude Include="GUITypes.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="EventController.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="Hud.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -90,10 +90,16 @@
     <ClInclude Include="AnimationUpdater.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="DirectionButtonEventHandler.h">
+    <ClInclude Include="View.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="View.h">
+    <ClInclude Include="KeyboardHandler.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseHandler.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionButtonEventHandler.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

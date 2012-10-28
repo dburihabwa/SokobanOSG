@@ -4,12 +4,13 @@
 using namespace osg;
 namespace Sokoban
 {
-	class EventController  : public osgGA::GUIEventHandler
+	class KeyboardHandler  : public osgGA::GUIEventHandler
 	{
 	public:
-		EventController(void);
+		KeyboardHandler(void);
+		///<summary> Coming from the GUIEventHandler to handle an event</summary>
 		bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
-		~EventController(void);
+		~KeyboardHandler(void);
 	};
 }
 

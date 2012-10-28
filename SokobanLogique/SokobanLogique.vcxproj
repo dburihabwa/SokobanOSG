@@ -72,7 +72,8 @@
     <ClInclude Include="Direction.h" />
     <ClInclude Include="DirectionButton.h" />
     <ClInclude Include="DirectionButtonEventHandler.h" />
-    <ClInclude Include="EventController.h" />
+    <ClInclude Include="MouseHandler.h" />
+    <ClInclude Include="KeyboardHandler.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="GUITypes.h" />
     <ClInclude Include="Hud.h" />
@@ -90,7 +91,8 @@
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="DirectionButton.cpp" />
     <ClCompile Include="DirectionButtonEventHandler.cpp" />
-    <ClCompile Include="EventController.cpp" />
+    <ClCompile Include="MouseHandler.cpp" />
+    <ClCompile Include="KeyboardHandler.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Movable.cpp" />
