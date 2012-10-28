@@ -3,6 +3,7 @@
 #include "Board.h"
 #include "Box.h"
 #include "KeyboardHandler.h"
+#include "PlayerAnimationUpdater.h"
 using namespace osg;
 
 Sokoban::Player::~Player(void) {
@@ -25,5 +26,13 @@ void Sokoban::Player::move(Direction dir) {
 		_lastBox->move(dir);
 		_canMoveBox = false;
 	}
+	dynamic_cast<PlayerAnimationUpdater*>(_aniUpdater.get())->setDirection(dir);
 	Movable::move(dir);
+}
+
+ref_ptr<Node> Sokoban::Player::createNode() {
+	_graphNode = Case::createNode();
+	_aniUpdater = new PlayerAnimationUpdater();
+	_graphNode->setUpdateCallback(_aniUpdater);
+	return _graphNode;
 }

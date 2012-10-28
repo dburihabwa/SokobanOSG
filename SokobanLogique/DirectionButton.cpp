@@ -1,6 +1,6 @@
 #include "DirectionButton.h"
 #include <osg/PositionAttitudeTransform>
-#include <osg/Quat>
+#include "Constants.h"
 
 
 Sokoban::DirectionButton::DirectionButton(int x, int y, int z, Sokoban::Direction direction) : Sokoban::Case(x, y, z) {
@@ -18,11 +18,11 @@ ref_ptr<Node> Sokoban::DirectionButton::createNode() {
 	ref_ptr<PositionAttitudeTransform> node = dynamic_cast<PositionAttitudeTransform*>(Case::createNode().get());
 	node->setUserData(this);
 	if(_direction==UP) {
-		node->setAttitude(Quat(3.1415,Z_AXIS));
+		node->setAttitude(DEGREE_180);
 	} else if(_direction == LEFT) {
-		node->setAttitude(Quat(-1.57,Z_AXIS));
+		node->setAttitude(DEGREE_MIN_90);
 	} else if(_direction == RIGHT) {
-		node->setAttitude(Quat(1.57,Z_AXIS));
+		node->setAttitude(DEGREE_90);
 	}
 	return node;
 }

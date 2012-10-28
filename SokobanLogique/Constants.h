@@ -14,4 +14,10 @@ namespace Sokoban
 
 	//setViewMatrixAsLookAt
 	static const Vec3d UP_AXIS(-1.0, 0.0, 0.0); 
+	
+	//Rotations
+	static const Quat DEGREE_180(3.1415,Z_AXIS);
+	static const Quat DEGREE_MIN_90(-1.57,Z_AXIS);
+	static const Quat DEGREE_90(1.57,Z_AXIS);
+	static const Quat DEGREE_0(0,Z_AXIS);
 };

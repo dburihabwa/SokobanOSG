@@ -15,6 +15,9 @@ namespace Sokoban
 		bool Direction::operator ==(Direction b) {
 			return (this->_x == b._x && this->_y == b._y);
 		}
+		bool Direction::operator !=(Direction b) {
+			return (this->_x != b._x || this->_y != b._y);
+		}
 		osg::Vec3 getVector() {
 			return osg::Vec3(_x,_y,0);
 		}

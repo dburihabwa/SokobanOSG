@@ -10,6 +10,6 @@ namespace Sokoban {
 		AnimationUpdater(void);
 		~AnimationUpdater(void);
 		///<summary>Set the origin and the destination point for the animation</summary>
-		void setMovement(Vec3, Vec3);
+		virtual void setMovement(Vec3, Vec3);
 	};
 }

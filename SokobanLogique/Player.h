@@ -21,6 +21,7 @@ namespace Sokoban
 		ref_ptr<Box> getMovedBox() const {
 			return _lastBox;
 		}
+		ref_ptr<Node> createNode();
 		~Player(void);
 	private:
 		ref_ptr<Box> _lastBox;
