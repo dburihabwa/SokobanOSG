@@ -1,6 +1,9 @@
 #pragma once
 #include <osg/Quat>
 using namespace osg;
+#define TRUE 1
+#define FALSE 0
+#define DEBUG FALSE
 namespace Sokoban
 {
 	//Camera 

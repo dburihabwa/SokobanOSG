@@ -4,6 +4,7 @@
 #include "Box.h"
 #include "Player.h"
 #include "Target.h"
+#include "Constants.h"
 
 #include <regex>
 #include <osg/Geode>
@@ -98,7 +99,9 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 		else {
 		_player->move(dir);
 		}
+#if DEBUG == TRUE
 		displayLevel();
+#endif
 		return true;
 	}
 	return false;

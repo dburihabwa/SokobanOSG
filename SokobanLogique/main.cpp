@@ -1,10 +1,9 @@
 #include <osgViewer/Viewer>
 #include "View.h"
-
-#define LVL 2
+#include "Constants.h"
 int main(void) {
 	std::string level;
-#if LVL == 1
+#if DEBUG == TRUE
 	level =
 		"#######\n"
 		"#     #\n"
