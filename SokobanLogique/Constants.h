@@ -6,10 +6,9 @@ namespace Sokoban
 	//Camera 
 	//setProjectionMatrixAsPerspective
 	static const float near = 0.1f; 
-	static const float far = 0.5f; 
-	static const float fovy = 45.0f; 
-	static const float ratio = 1.0f; 
+	static const float far = 100.0f; 
+	static const float fovy = 50.0f; 
 
 	//setViewMatrixAsLookAt
-	static const Vec3d HAUT(-1.0, 0.0, 0.0); 
+	static const Vec3d UP_AXIS(-1.0, 0.0, 0.0); 
 };

@@ -17,7 +17,7 @@ void Sokoban::AnimationUpdater::setMovement(Vec3 position, Vec3 newPosition) {
 	osg::AnimationPath::ControlPoint destination(newPosition);
 
 	simpleMove->insert( 0, orign ); 
-	simpleMove->insert( 0.5, destination );
+	simpleMove->insert( 0.25, destination );
 	this->reset();
 	this->setAnimationPath(simpleMove);
 }

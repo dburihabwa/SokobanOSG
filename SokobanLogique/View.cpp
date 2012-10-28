@@ -56,13 +56,13 @@ void Sokoban::View::init(std::string level, unsigned int height, unsigned int wi
 	Sokoban::Board::getInstance().init(level);
 	playBoard->addChild(Sokoban::Board::getInstance().getLevel());
 	Vec3 center = Sokoban::Board::getInstance().getCenter();
-	Vec3 centerEye = Vec3(center[0],center[1],15.0);
-	playBoard->setViewMatrixAsLookAt(centerEye, center, Sokoban::HAUT); 
+	Vec3 centerEye = Vec3(center[0],center[1],16.0);
+	playBoard->setViewMatrixAsLookAt(centerEye, center, Sokoban::UP_AXIS); 
 
 	//_buttons
 	Hud hud;
 	_buttons->addChild(hud.getNodes());
-	_buttons->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Sokoban::HAUT);
+	_buttons->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Sokoban::UP_AXIS);
 
 	//Add keyboardController
 	_viewer->addEventHandler(new KeyboardHandler());
