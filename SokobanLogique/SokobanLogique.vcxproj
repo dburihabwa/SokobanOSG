@@ -64,16 +64,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="Textures\arrow.jpg" />
-    <None Include="Textures\box.jpg" />
-    <None Include="Textures\brickscolorhx8.jpg" />
-    <None Include="Textures\creeper.jpg" />
-    <None Include="Textures\default.jpg" />
-    <None Include="Textures\rs-ground00.jpg" />
-    <None Include="Textures\target.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp" />
     <ClCompile Include="GUI\DirectionButton.cpp" />
     <ClCompile Include="GUI\Hud.cpp" />
@@ -111,6 +101,18 @@
     <ClInclude Include="Logic\Wall.h" />
     <ClInclude Include="Updaters\AnimationUpdater.h" />
     <ClInclude Include="Updaters\PlayerAnimationUpdater.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\Levels\level_1.sok" />
+    <None Include="Ressources\Levels\level_2.sok" />
+    <None Include="Ressources\Levels\level_3.sok" />
+    <None Include="Ressources\Textures\arrow.jpg" />
+    <None Include="Ressources\Textures\box.jpg" />
+    <None Include="Ressources\Textures\brickscolorhx8.jpg" />
+    <None Include="Ressources\Textures\creeper.jpg" />
+    <None Include="Ressources\Textures\default.jpg" />
+    <None Include="Ressources\Textures\rs-ground00.jpg" />
+    <None Include="Ressources\Textures\target.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
