@@ -17,24 +17,24 @@ void Sokoban::Board::init(std::string level)
 	std::regex pattern("([^\\n]+)\\n?");
 	std::sregex_iterator end, iter(level.begin(), level.end(), pattern);
 
-	unsigned int w = 0;
+	_width = 0;
 	std::vector<std::string> data;
 	//Get every line of the string, check their 
 	//length to find the lenght of the level
 	for(; iter != end; ++iter)
 	{
 		data.push_back((*iter)[1]);
-		w = std::max(w, (unsigned int)(*iter)[1].length());
+		_width = std::max(_width, (unsigned int)(*iter)[1].length());
 	}
-	unsigned int height = data.size();
+	_height = data.size();
 	//Get the center of the level, since we are doing a rotation on every element
 	//The rotation need to be applied on the center vector also.
-	center = Vec3d(height/2.,w/2,0);
-	for(unsigned int v = 0; v < height; ++v)
+	center = Vec3d(_height/2.,_width/2,0);
+	for(unsigned int v = 0; v < _height; ++v)
 	{
 		std::vector<ref_ptr<Case>> sTemp;
 		std::vector<ref_ptr<Case>> dTemp;
-		for(unsigned int u = 0; u < w; ++u)
+		for(unsigned int u = 0; u < _width; ++u)
 		{
 			if(u > data[v].size())
 			{

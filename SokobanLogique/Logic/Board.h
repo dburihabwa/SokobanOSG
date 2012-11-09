@@ -56,6 +56,8 @@ namespace Sokoban
 			std::vector<std::vector<ref_ptr<Case>>> _movable;
 			std::vector<std::vector<ref_ptr<Case>>> _unMovable;
 			unsigned int _win;
+		unsigned int _width;
+		unsigned int _height;
 			ref_ptr<Group> _level;
 			Vec3 center;
 			ref_ptr<Player> _player;
