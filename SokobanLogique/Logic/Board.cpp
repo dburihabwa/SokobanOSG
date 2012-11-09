@@ -82,6 +82,9 @@ void Sokoban::Board::init(std::string level)
 }
 
 bool Sokoban::Board::movePlayer(Direction dir) {
+	if(_win == 0) {
+		return false;
+	}
 	if(_player->canMove(dir)) {
 		if(_player->willMoveBox()) {
 			bool wasOnTarget = _player->getMovedBox()->isOnTarget();
@@ -96,7 +99,7 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 			}
 		}
 		else {
-		_player->move(dir);
+			_player->move(dir);
 		}
 #if DEBUG == TRUE
 		displayLevel();
