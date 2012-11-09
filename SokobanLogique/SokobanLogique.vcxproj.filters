@@ -11,7 +11,7 @@
     </Filter>
     <Filter Include="Ressources">
       <UniqueIdentifier>{8346fca4-9bca-4e74-b91c-814e878308a1}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpeg;jpe;resx;tiff;tif;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Sources\Factories">
       <UniqueIdentifier>{1f3a32aa-99b1-4c93-a062-35d67c1a79fa}</UniqueIdentifier>
@@ -53,30 +53,14 @@
       <UniqueIdentifier>{69c3bc52-796f-4b82-bc4b-f0e8d0ad99fb}</UniqueIdentifier>
       <Extensions>Factory.h</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Textures\creeper.jpg">
-      <Filter>Ressources</Filter>
-    </None>
-    <None Include="Textures\box.jpg">
-      <Filter>Ressources</Filter>
-    </None>
-    <None Include="Textures\brickscolorhx8.jpg">
-      <Filter>Ressources</Filter>
-    </None>
-    <None Include="Textures\rs-ground00.jpg">
-      <Filter>Ressources</Filter>
-    </None>
-    <None Include="Textures\target.png">
-      <Filter>Ressources</Filter>
-    </None>
-    <None Include="Textures\default.jpg">
-      <Filter>Ressources</Filter>
-    </None>
-    <None Include="Textures\arrow.jpg">
-      <Filter>Ressources</Filter>
-    </None>
-    <None Include="ClassDiagram1.cd" />
+    <Filter Include="Ressources\Textures">
+      <UniqueIdentifier>{ad752704-0748-4a06-9514-a7e8b7ba22a9}</UniqueIdentifier>
+      <Extensions>jpg;png;</Extensions>
+    </Filter>
+    <Filter Include="Ressources\Levels">
+      <UniqueIdentifier>{7a1e33ec-f45c-4195-9abf-9fe1f8ef0890}</UniqueIdentifier>
+      <Extensions>sok;</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Factories\NodeFactory.h">
@@ -186,5 +170,37 @@
     <ClCompile Include="main.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\Textures\arrow.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\box.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\brickscolorhx8.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\creeper.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\default.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\rs-ground00.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\target.png">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Levels\level_1.sok">
+      <Filter>Ressources\Levels</Filter>
+    </None>
+    <None Include="Ressources\Levels\level_2.sok">
+      <Filter>Ressources\Levels</Filter>
+    </None>
+    <None Include="Ressources\Levels\level_3.sok">
+      <Filter>Ressources\Levels</Filter>
+    </None>
   </ItemGroup>
 </Project>

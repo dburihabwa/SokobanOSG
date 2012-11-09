@@ -7,12 +7,13 @@
 #include <osg/ShapeDrawable>
 #include <osg/Material>
 #include <osg/PositionAttitudeTransform>
+#include <string>
 
 ///Cache
 std::map<Sokoban::Type,osg::ref_ptr<osg::Geode>> Sokoban::NodeFactory::_geoCache;
 
 osg::ref_ptr<osg::Node> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
-	
+
 	osg::ref_ptr<osg::PositionAttitudeTransform> postAtt = new osg::PositionAttitudeTransform();
 	postAtt->addChild(getOrCreateGeode(element));
 
@@ -26,37 +27,37 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		return _geoCache[element];
 	}
 	osg::ref_ptr<osg::ShapeDrawable> shape;
-	char* textureImage;
+	std::string textureImage = "ressources/textures/";
 	//Switch on the element for texture and shape
 	switch(element)
 	{
 	case GROUND :
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1,1,0.1));
-		textureImage ="textures/rs-ground00.jpg";
+		textureImage.append("rs-ground00.jpg");
 		break;
 	case BOX:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),0.9));
-		textureImage ="textures/box.jpg";
+		textureImage.append("/box.jpg");
 		break;
 	case WALL:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1,1.2));
-		textureImage ="textures/brickscolorhx8.jpg";
+		textureImage.append("brickscolorhx8.jpg");
 		break;
 	case TARGET:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.05), 1,1,0.05));
-		textureImage ="textures/target.png";
+		textureImage.append("target.png");
 		break;
 	case PLAYER:
 		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, 0), 0.4));
-		textureImage = "textures/creeper.jpg";
+		textureImage.append("creeper.jpg");
 		break;
-    case DIRECTION_BUTTON:
-        shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1, 0));
-        textureImage = "textures/arrow.jpg";
-        break;
+	case DIRECTION_BUTTON:
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1, 0));
+		textureImage.append("arrow.jpg");
+		break;
 	default:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1));
-		textureImage ="textures/default.jpg";
+		textureImage.append("default.jpg");
 		break;
 	}
 	osg::ref_ptr<osg::Geode> noeudGeo = new osg::Geode;
