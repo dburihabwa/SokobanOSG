@@ -52,26 +52,26 @@ namespace Sokoban
 			return out;
 		}
 
-		private:
-			std::vector<std::vector<ref_ptr<Case>>> _movable;
-			std::vector<std::vector<ref_ptr<Case>>> _unMovable;
-			unsigned int _win;
-			unsigned int _width;
-			unsigned int _height;
-			ref_ptr<Group> _level;
-			Vec3 center;
-			ref_ptr<Player> _player;
-			Board(): _win(0), _height(0), _width(0) {};
-			Board(Board const&);              // Don't Implement
-			void operator=(Board const&); // Don't implement
-			void swapMovable(unsigned int, unsigned int,unsigned int, unsigned int);
-			///<summary>
-			///Get the Case on the wanted coordonate </summary>
-			ref_ptr<Case> getCase(unsigned int, unsigned int) const;
-
-		};
-
-
+	private:
+		std::vector<std::vector<ref_ptr<Case>>> _movable;
+		std::vector<std::vector<ref_ptr<Case>>> _unMovable;
+		unsigned int _win;
+		unsigned int _width;
+		unsigned int _height;
+		ref_ptr<Group> _level;
+		Vec3 center;
+		ref_ptr<Player> _player;
+		Board(): _win(0), _height(0), _width(0) {};
+		Board(Board const&);              // Don't Implement
+		void operator=(Board const&); // Don't implement
+		void swapMovable(unsigned int, unsigned int,unsigned int, unsigned int);
+		///<summary>
+		///Get the Case on the wanted coordonate </summary>
+		ref_ptr<Case> getCase(unsigned int, unsigned int) const;
 
 	};
+
+
+
+};
 
