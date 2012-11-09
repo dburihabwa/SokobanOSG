@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <osg/Group>
-#include <iostream>
+#include <ostream>
 
 #include "Case.h"
 #include "Player.h"
@@ -44,9 +44,15 @@ namespace Sokoban
 		bool movePlayer(Direction);
 
 		void displayLevel() const;
-		
+
 
 		~Board(void);
+
+		friend std::ostream& operator<<(std::ostream& out, Board& board)
+		{
+			return out;
+		}
+
 	private:
 		std::vector<std::vector<ref_ptr<Case>>> _movable;
 		std::vector<std::vector<ref_ptr<Case>>> _unMovable;
@@ -61,6 +67,10 @@ namespace Sokoban
 		///<summary>
 		///Get the Case on the wanted coordonate </summary>
 		ref_ptr<Case> getCase(unsigned int, unsigned int) const;
+
 	};
+
+
+
 };
 
