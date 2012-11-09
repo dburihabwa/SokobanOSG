@@ -65,6 +65,9 @@ void Sokoban::Board::init(std::string level)
 				else if(c == '$' || c == '*') {
 					d = new Box(v,u,0.45);
 					s =  new Ground(v,u,-0.05);
+				} else if(c == '=') {
+					s = new Target(v,u,0);
+					d = new Box(v,u,0.45);
 				}
 				else {
 					s =  new Ground(v,u,-0.05);

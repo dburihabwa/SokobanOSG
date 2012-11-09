@@ -37,7 +37,7 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		break;
 	case BOX:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),0.9));
-		textureImage.append("/box.jpg");
+		textureImage.append("box.jpg");
 		break;
 	case WALL:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1,1.2));
