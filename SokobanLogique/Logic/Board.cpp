@@ -8,6 +8,7 @@
 
 #include <regex>
 #include <osg/Geode>
+#include <iostream>
 
 
 void Sokoban::Board::init(std::string level)
