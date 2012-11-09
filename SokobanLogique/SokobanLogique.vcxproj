@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Textures\arrow.jpg" />
     <None Include="Textures\box.jpg" />
     <None Include="Textures\brickscolorhx8.jpg" />

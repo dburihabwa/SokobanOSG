@@ -76,6 +76,7 @@
     <None Include="Textures\arrow.jpg">
       <Filter>Ressources</Filter>
     </None>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Factories\NodeFactory.h">

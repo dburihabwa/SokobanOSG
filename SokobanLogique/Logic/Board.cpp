@@ -4,6 +4,7 @@
 #include "Box.h"
 #include "Player.h"
 #include "Target.h"
+#include "../Constants.h"
 
 #include <regex>
 #include <osg/Geode>
