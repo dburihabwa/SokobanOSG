@@ -1,4 +1,5 @@
 #include "NodeFactory.h"
+#include "../Constants.h"
 #include <osg/Geode>
 #include <osgViewer/Viewer> 
 #include <osg/Geometry> 
@@ -27,7 +28,7 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		return _geoCache[element];
 	}
 	osg::ref_ptr<osg::ShapeDrawable> shape;
-	std::string textureImage = "ressources/textures/";
+	std::string textureImage = TEXTURE_DIR;
 	//Switch on the element for texture and shape
 	switch(element)
 	{

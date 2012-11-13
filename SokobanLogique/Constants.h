@@ -2,7 +2,7 @@
 #include <osg/Quat>
 #define TRUE 1
 #define FALSE 0
-#define DEBUG FALSE
+#define DEBUG TRUE
 namespace Sokoban
 {
 	//Camera 
@@ -19,4 +19,9 @@ namespace Sokoban
 	static const osg::Quat DEGREE_MIN_90(-1.57, osg::Z_AXIS);
 	static const osg::Quat DEGREE_90(1.57, osg::Z_AXIS);
 	static const osg::Quat DEGREE_0(0, osg::Z_AXIS);
+
+	//Directories
+	static const char* LVL_DIR = "Ressources/Levels/";
+	static const char* TEXTURE_DIR = "Ressources/Textures/";
+	static const char* SAVE_DIR = "Ressources/Saves/";
 };

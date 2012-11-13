@@ -126,6 +126,9 @@
     <ClInclude Include="Constants.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="dirent.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">

@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="dirent.h" />
     <ClInclude Include="Factories\NodeFactory.h" />
     <ClInclude Include="GUI\DirectionButton.h" />
     <ClInclude Include="GUI\Hud.h" />

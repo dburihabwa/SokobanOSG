@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Target.h"
 #include "../Constants.h"
+#include "../dirent.h"
 
 #include <regex>
 #include <osg/Geode>
@@ -24,7 +25,7 @@ void Sokoban::Board::init(std::string level)
 	for(; iter != end; ++iter)
 	{
 		data.push_back((*iter)[1]);
-		_width = std::max(_width, (unsigned int)(*iter)[1].length());
+		_width = max(_width, (unsigned int)(*iter)[1].length());
 	}
 	_height = data.size();
 	//Get the center of the level, since we are doing a rotation on every element
@@ -164,4 +165,25 @@ Sokoban::Board::~Board(void) {
 	}
 	_player.release();
 	_level.release();
+}
+Sokoban::Board::Board(void): _win(0), _height(0), _width(0) {
+	DIR *dp;
+	struct dirent *dirp;
+	if((dp  = opendir(LVL_DIR)) == NULL) {
+		std::cout << "Error(" << errno << ") opening " << LVL_DIR << std::endl;
+		return;
+	}
+#if DEBUG==TRUE
+	std::cout<<"Loading Lvl files :"<<std::endl;
+#endif
+	while ((dirp = readdir(dp)) != NULL) {
+		char* level = dirp->d_name;
+		if(std::strcmp(level,"..") == 0|| std::strcmp(level,".") == 0)
+			continue;
+		_levelFile.push_back(level);
+#if DEBUG==TRUE
+		std::cout<<level<<std::endl;
+#endif
+	}
+	closedir(dp);
 }
