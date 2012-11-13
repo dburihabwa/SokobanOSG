@@ -51,11 +51,15 @@ namespace Sokoban
 		friend std::ostream& operator<<(std::ostream& out, Board& board){
 			return out;
 		}
+		friend std::istream& operator>>(std::istream& in, Board& board) {
+			return in;
+		}
 
 	private:
 		std::vector<std::vector<ref_ptr<Case>>> _movable;
 		std::vector<std::vector<ref_ptr<Case>>> _unMovable;
 		std::vector<char*> _levelFile;
+		char* _currentLvl;
 		unsigned int _win;
 		unsigned int _width;
 		unsigned int _height;
@@ -69,6 +73,7 @@ namespace Sokoban
 		///<summary>
 		///Get the Case on the wanted coordonate </summary>
 		ref_ptr<Case> getCase(unsigned int, unsigned int) const;
+		void resetBoard();
 
 	};
 

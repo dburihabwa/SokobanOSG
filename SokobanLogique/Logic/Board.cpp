@@ -154,17 +154,7 @@ void Sokoban::Board::displayLevel() const {
 
 }
 Sokoban::Board::~Board(void) {
-	for(unsigned int i = 0; i < _movable.size();i++)
-	{
-		std::vector<ref_ptr<Case>> vect = _movable[i];
-		std::vector<ref_ptr<Case>> vect2 = _unMovable[i];
-		for(unsigned int j =0; j < vect.size(); j++) {
-			vect[j].release();
-			vect2[j].release();
-		}
-	}
-	_player.release();
-	_level.release();
+	this->resetBoard();
 }
 Sokoban::Board::Board(void): _win(0), _height(0), _width(0) {
 	DIR *dp;
@@ -186,4 +176,27 @@ Sokoban::Board::Board(void): _win(0), _height(0), _width(0) {
 #endif
 	}
 	closedir(dp);
+	if(_levelFile.size() != 0) {
+		_currentLvl = _levelFile[0];
+	} else {
+		std::cout<<"NO LEVELS in the level directory !"<<std::endl;
+	}
+}
+void Sokoban::Board::resetBoard() {
+	for(unsigned int i = 0; i < _movable.size();i++)
+	{
+		std::vector<ref_ptr<Case>> vect = _movable[i];
+		std::vector<ref_ptr<Case>> vect2 = _unMovable[i];
+		for(unsigned int j =0; j < vect.size(); j++) {
+			vect[j].release();
+			vect2[j].release();
+		}
+	}
+	_player.release();
+	const std::vector<osg::Group*>& parents = _level->getParents();
+	for(unsigned int i = 0; i < parents.size(); ++i){
+		osg::Group& parent = *parents[i];
+		parent.removeChild(_level.get());
+	}
+	_level.release();
 }
