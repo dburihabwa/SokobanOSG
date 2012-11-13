@@ -84,6 +84,7 @@ void Sokoban::Board::init(std::string level)
 		_unMovable.push_back(sTemp);
 		_movable.push_back(dTemp);
 	}
+	_set =true;
 }
 
 bool Sokoban::Board::movePlayer(Direction dir) {
@@ -101,6 +102,7 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 			}
 			if(_win==0) {
 				std::cout<<"Vous avez Gagné !"<<std::endl;
+				//this->resetBoard();
 			}
 		}
 		else {
@@ -156,7 +158,7 @@ void Sokoban::Board::displayLevel() const {
 Sokoban::Board::~Board(void) {
 	this->resetBoard();
 }
-Sokoban::Board::Board(void): _win(0), _height(0), _width(0) {
+Sokoban::Board::Board(void): _win(0), _height(0), _width(0), _set(false) {
 	DIR *dp;
 	struct dirent *dirp;
 	if((dp  = opendir(LVL_DIR)) == NULL) {
@@ -183,20 +185,23 @@ Sokoban::Board::Board(void): _win(0), _height(0), _width(0) {
 	}
 }
 void Sokoban::Board::resetBoard() {
-	for(unsigned int i = 0; i < _movable.size();i++)
-	{
-		std::vector<ref_ptr<Case>> vect = _movable[i];
-		std::vector<ref_ptr<Case>> vect2 = _unMovable[i];
-		for(unsigned int j =0; j < vect.size(); j++) {
-			vect[j].release();
-			vect2[j].release();
+	if(_set) {
+		for(unsigned int i = 0; i < _movable.size();i++)
+		{
+			std::vector<ref_ptr<Case>> vect = _movable[i];
+			std::vector<ref_ptr<Case>> vect2 = _unMovable[i];
+			for(unsigned int j =0; j < vect.size(); j++) {
+				vect[j].release();
+				vect2[j].release();
+			}
 		}
+		_player.release();
+		const std::vector<osg::Group*>& parents = _level->getParents();
+		for(unsigned int i = 0; i < parents.size(); ++i){
+			osg::Group& parent = *parents[i];
+			parent.removeChild(_level.get());
+		}
+		_level.release();
+		_set = false;
 	}
-	_player.release();
-	const std::vector<osg::Group*>& parents = _level->getParents();
-	for(unsigned int i = 0; i < parents.size(); ++i){
-		osg::Group& parent = *parents[i];
-		parent.removeChild(_level.get());
-	}
-	_level.release();
 }

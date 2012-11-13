@@ -63,6 +63,7 @@ namespace Sokoban
 		unsigned int _win;
 		unsigned int _width;
 		unsigned int _height;
+		bool _set;
 		ref_ptr<Group> _level;
 		Vec3 center;
 		ref_ptr<Player> _player;
