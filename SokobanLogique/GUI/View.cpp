@@ -11,7 +11,7 @@ Sokoban::View::View(void)
 	
 
 }
-void Sokoban::View::init(std::string level, unsigned int height, unsigned int width) {
+void Sokoban::View::init(unsigned int height, unsigned int width) {
 	ref_ptr<Group> root = new Group;
 	//Viewer Init
 	_viewer = new osgViewer::Viewer;
@@ -53,7 +53,7 @@ void Sokoban::View::init(std::string level, unsigned int height, unsigned int wi
 	_buttons->setViewport(new Viewport(0,0,width,buttonsHeight));
 
 	//Board
-	Sokoban::Board::getInstance().init(level);
+	Sokoban::Board::getInstance().loadNextLvl();
 	playBoard->addChild(Sokoban::Board::getInstance().getLevel());
 	Vec3 center = Sokoban::Board::getInstance().getCenter();
 	Vec3 centerEye = Vec3(center[0],center[1],16.0);

@@ -22,6 +22,16 @@ void Sokoban::Board::init(std::string level)
 	std::vector<std::string> data;
 	//Get every line of the string, check their 
 	//length to find the lenght of the level
+	int lvl;
+	int result;
+	std::stringstream lvlNbr ((*iter)[1].str());
+	lvlNbr >> lvl;
+	if(lvlNbr) {
+		if(lvl >= 0) {
+			_currentLvl = lvl;
+		}
+		++iter;
+	}
 	for(; iter != end; ++iter)
 	{
 		data.push_back((*iter)[1]);
@@ -172,7 +182,7 @@ Sokoban::Board::Board(void): _win(0), _height(0), _width(0), _set(false),_curren
 		char* level = dirp->d_name;
 		if(std::strcmp(level,"..") == 0|| std::strcmp(level,".") == 0)
 			continue;
-		_levelFile.push_back(level);
+		_levelFile.push_back(std::string(level));
 #if DEBUG==TRUE
 		std::cout<<level<<std::endl;
 #endif
