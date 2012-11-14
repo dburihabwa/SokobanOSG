@@ -47,6 +47,8 @@ namespace Sokoban
 		friend std::ostream& operator<<(std::ostream& out, Board const& board){
 			//Première ligne doit être le num du niveau
 			//le reste c'est le format qu'on a décidé
+			out << board._currentLvl << std::endl;
+			out << board._levelFile[board._currentLvl];
 			return out;
 		}
 		friend std::istream& operator>>(std::istream& in, Board& board) {
