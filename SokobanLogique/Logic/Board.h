@@ -3,6 +3,7 @@
 #include <vector>
 #include <osg/Group>
 #include <ostream>
+#include <fstream>
 
 #include "Case.h"
 #include "Player.h"
@@ -48,18 +49,41 @@ namespace Sokoban
 
 		~Board(void);
 
-		friend std::ostream& operator<<(std::ostream& out, Board& board){
+		friend std::ostream& operator<<(std::ostream& out, Board const& board){
+			//Première ligne doit être le num du niveau + 1 (car ATOI qui sera utilisé dans <<
+			// renvoit 0 s'il peut pas convertir, donc on ne peut pas avoir 0 comme num de lvl
+			//le reste c'est le format qu'on a décidé
 			return out;
 		}
 		friend std::istream& operator>>(std::istream& in, Board& board) {
+			std::string line, level;
+			if(!in.eof()) {
+				getline(in,line); // Saves the line in STRING.
+				int lvl = atoi(line.c_str());
+				if(lvl == 0){
+					level.append(line);
+				}
+				else {
+					board._currentLvl = lvl-1;
+				}
+			}
+			while(!in.eof()) // To get you all the lines.
+			{
+				getline(in,line); // Saves the line in STRING.
+				level.append(line+"\n");
+			}
+			board.init(level);
 			return in;
 		}
+		///<summary>Load the next level and return it</summary>
+		ref_ptr<Group> loadNextLvl();
+
 
 	private:
 		std::vector<std::vector<ref_ptr<Case>>> _movable;
 		std::vector<std::vector<ref_ptr<Case>>> _unMovable;
 		std::vector<char*> _levelFile;
-		char* _currentLvl;
+		int _currentLvl;
 		unsigned int _win;
 		unsigned int _width;
 		unsigned int _height;
@@ -75,6 +99,7 @@ namespace Sokoban
 		///Get the Case on the wanted coordonate </summary>
 		ref_ptr<Case> getCase(unsigned int, unsigned int) const;
 		void resetBoard();
+		void loadFile(const char* file);	
 
 	};
 

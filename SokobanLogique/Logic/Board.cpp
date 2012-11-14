@@ -158,7 +158,7 @@ void Sokoban::Board::displayLevel() const {
 Sokoban::Board::~Board(void) {
 	this->resetBoard();
 }
-Sokoban::Board::Board(void): _win(0), _height(0), _width(0), _set(false) {
+Sokoban::Board::Board(void): _win(0), _height(0), _width(0), _set(false),_currentLvl(-1) {
 	DIR *dp;
 	struct dirent *dirp;
 	if((dp  = opendir(LVL_DIR)) == NULL) {
@@ -178,11 +178,9 @@ Sokoban::Board::Board(void): _win(0), _height(0), _width(0), _set(false) {
 #endif
 	}
 	closedir(dp);
-	if(_levelFile.size() != 0) {
-		_currentLvl = _levelFile[0];
-	} else {
+	if(_levelFile.size() == 0) {
 		std::cout<<"NO LEVELS in the level directory !"<<std::endl;
-	}
+	} 
 }
 void Sokoban::Board::resetBoard() {
 	if(_set) {
@@ -204,4 +202,24 @@ void Sokoban::Board::resetBoard() {
 		_level.release();
 		_set = false;
 	}
+}
+void Sokoban::Board::loadFile(const char* file) {
+	std::ifstream levelFile;
+	levelFile.open(file);
+	levelFile >> *this;
+	levelFile.close();
+}
+ref_ptr<osg::Group> Sokoban::Board::loadNextLvl() {
+	this->resetBoard();
+	_currentLvl++;
+	if(_currentLvl == _levelFile.size()) {
+		std::cout<<"No more levels"<<std::endl;
+		return ref_ptr<Group>(new Group());
+	}
+	std::string level = LVL_DIR;
+	level.append(_levelFile[_currentLvl]);
+
+	this->loadFile(level.c_str());
+
+	return _level;
 }
