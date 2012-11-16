@@ -129,6 +129,9 @@
     <ClInclude Include="dirent.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="GUI\TextPanel.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\TextPanel.cpp">
+      <Filter>Sources\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

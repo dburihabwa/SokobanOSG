@@ -76,6 +76,7 @@
     <ClCompile Include="Logic\Movable.cpp" />
     <ClCompile Include="Logic\Player.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="GUI\TextPanel.cpp" />
     <ClCompile Include="Updaters\AnimationUpdater.cpp" />
     <ClCompile Include="Updaters\PlayerAnimationUpdater.cpp" />
   </ItemGroup>
@@ -100,6 +101,7 @@
     <ClInclude Include="Logic\Target.h" />
     <ClInclude Include="Logic\Unmovable.h" />
     <ClInclude Include="Logic\Wall.h" />
+    <ClInclude Include="GUI\TextPanel.h" />
     <ClInclude Include="Updaters\AnimationUpdater.h" />
     <ClInclude Include="Updaters\PlayerAnimationUpdater.h" />
   </ItemGroup>

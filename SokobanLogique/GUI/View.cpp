@@ -20,12 +20,16 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	//Camera init
 	ref_ptr<Camera> playBoard = new Camera;
 	_buttons = new Camera;
+	ref_ptr<Camera> textCamera = new Camera;
 
 	root->addChild(playBoard);
 	root->addChild(_buttons);
+	root->addChild(textCamera);
 
 	unsigned int playBoardHeight = height*(3/4.0);
 	unsigned int buttonsHeight = height - playBoardHeight;
+	unsigned int textWidth = width/3;
+	unsigned int restWidth = width - textWidth;
 
 	//Camera init
 	playBoard->setAllowEventFocus(false);
@@ -38,19 +42,20 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 
 	playBoard->setProjectionMatrixAsPerspective( 
 		Sokoban::fovy, 
-		width/(double)playBoardHeight, 
+		restWidth/(double)playBoardHeight, 
 		Sokoban::near, 
 		Sokoban::far 
 		); 
 	_buttons->setProjectionMatrixAsPerspective( 
-		Sokoban::fovy, 
-		width/(double)buttonsHeight, 
+		50.0f, 
+		restWidth/(double)buttonsHeight, 
 		Sokoban::near, 
 		100.0F
 		); 
 	//Viewport
-	playBoard->setViewport(new Viewport(0,buttonsHeight,width,playBoardHeight));
-	_buttons->setViewport(new Viewport(0,0,width,buttonsHeight));
+	playBoard->setViewport(new Viewport(0,buttonsHeight,restWidth,playBoardHeight));
+	_buttons->setViewport(new Viewport(0,0,restWidth,buttonsHeight));
+	textCamera->setViewport(new Viewport(restWidth,0,textWidth, height));
 
 	//Board
 	Sokoban::Board::getInstance().loadNextLvl();
@@ -64,6 +69,8 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	_buttons->addChild(hud.getNodes());
 	_buttons->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Sokoban::UP_AXIS);
 
+	//Text
+	_textPanel = new TextPanel(textCamera);
 	//Add keyboardController
 	_viewer->addEventHandler(new KeyboardHandler());
 	_viewer->addEventHandler(new DirectionButtonEventHandler());
