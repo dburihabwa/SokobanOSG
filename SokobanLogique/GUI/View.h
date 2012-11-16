@@ -3,6 +3,7 @@
 #include <osg/Camera>
 #include <osgViewer/Viewer>
 #include <string>
+#include "TextPanel.h"
 
 namespace Sokoban {
 	class View
@@ -25,10 +26,14 @@ namespace Sokoban {
 		osg::ref_ptr<osg::Camera> getButtonsCamera() {
 			return _buttons;
 		}
+		void addText(std::string str) {
+			_textPanel->addText(str);
+		}
 		~View(void);
 	private:
 		osg::ref_ptr<osgViewer::Viewer> _viewer;
 		osg::ref_ptr<osg::Camera> _buttons;	
+		osg::ref_ptr<TextPanel> _textPanel;
 		View();
 		View(View const&);              // Don't Implement
 		void operator=(View const&); // Don't implement

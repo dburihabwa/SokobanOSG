@@ -69,6 +69,8 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	_buttons->addChild(hud.getNodes());
 	_buttons->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Sokoban::UP_AXIS);
 
+	//Text
+	_textPanel = new TextPanel(textCamera);
 	//Add keyboardController
 	_viewer->addEventHandler(new KeyboardHandler());
 	_viewer->addEventHandler(new DirectionButtonEventHandler());
