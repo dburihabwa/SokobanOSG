@@ -2,6 +2,7 @@
 #include <string>
 #include <osg/Group>
 #include <osg/Camera>
+#include <osgText\Font>
 
 namespace Sokoban {
 	class TextPanel : public osg::Referenced
@@ -17,5 +18,6 @@ namespace Sokoban {
 		osg::ref_ptr<osg::Group> _textGroup;
 		unsigned int _lastY;
 		unsigned int _nbTxt;
+		static osg::ref_ptr<osgText::Font> _font;
 	};
 }
