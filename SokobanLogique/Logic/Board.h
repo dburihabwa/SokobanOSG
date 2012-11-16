@@ -54,21 +54,25 @@ namespace Sokoban
 				for (unsigned int j = 0; j < board._width; j++) {
 					char symbol;
 					ref_ptr<Case> c = board.getCase(i, j);
-					
-					ref_ptr<Box> box;
+
 					switch (c->getType()) {
 					case BOX:
-						box = static_cast<Box *> (c.get());
-						if (box->isOnTarget()) 
+						if (board._unMovable[i][j]->getType() == TARGET) 
 							symbol = '=';
 						else
 							symbol = '$';
 						break;
 					case PLAYER:
-						symbol = '@';
+						if (board._unMovable[i][j]->getType() == TARGET)
+							symbol = '%';
+						else
+							symbol = '@';
 						break;
 					case TARGET: 
 						symbol = '.';
+						break;
+					case WALL:
+						symbol = '#';
 						break;
 					default: /* case GROUND : */
 						symbol = ' ';
@@ -89,6 +93,7 @@ namespace Sokoban
 		///<summary>Load the next level and return it</summary>
 		ref_ptr<Group> loadNextLvl();
 
+		void save() const;
 
 	private:
 		std::vector<std::vector<ref_ptr<Case>>> _movable;

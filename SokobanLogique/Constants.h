@@ -24,4 +24,5 @@ namespace Sokoban
 	static const char* LVL_DIR = "Ressources/Levels/";
 	static const char* TEXTURE_DIR = "Ressources/Textures/";
 	static const char* SAVE_DIR = "Ressources/Saves/";
+	static const char* SAVE_FILE = "save.sav";
 };
