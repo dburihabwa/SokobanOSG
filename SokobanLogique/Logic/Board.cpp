@@ -1,3 +1,5 @@
+#include <sys/stat.h>
+
 #include "Board.h"
 #include "Ground.h"
 #include "Wall.h"
@@ -78,6 +80,10 @@ void Sokoban::Board::init(std::string level)
 				} else if(c == '=') {
 					s = new Target(v,u,0);
 					d = new Box(v,u,0.45);
+				} else if(c == '%') {
+					s = new Target(v,u,0);
+					_player = new Player(v,u,0.4);
+					d = _player.get();			
 				}
 				else {
 					s =  new Ground(v,u,-0.05);
@@ -229,7 +235,9 @@ ref_ptr<osg::Group> Sokoban::Board::loadNextLvl() {
 	std::string level = LVL_DIR;
 	level.append(_levelFile[_currentLvl]);
 
-	this->loadFile(level.c_str());
+
+	this->loadSave();
+	//this->loadFile(level.c_str());
 
 	return _level;
 }
@@ -242,4 +250,17 @@ void Sokoban::Board::save() const {
 	out.open(filePath.c_str());
 	out << *this;
 	out.close();
+}
+
+
+void Sokoban::Board::loadSave() {
+	struct stat buf;
+	std::string fileName(SAVE_DIR);
+	fileName.append("/");
+	fileName.append(SAVE_FILE);
+	// Tests if the save file does exist
+	if (stat(fileName.c_str(), &buf) != -1)
+    {
+		loadFile(fileName.c_str());
+    }
 }
