@@ -95,6 +95,8 @@ namespace Sokoban
 
 		void save() const;
 
+		void loadSave();
+
 	private:
 		std::vector<std::vector<ref_ptr<Case>>> _movable;
 		std::vector<std::vector<ref_ptr<Case>>> _unMovable;
