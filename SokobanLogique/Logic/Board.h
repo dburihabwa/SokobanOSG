@@ -47,8 +47,37 @@ namespace Sokoban
 		friend std::ostream& operator<<(std::ostream& out, Board const& board){
 			//Première ligne doit être le num du niveau
 			//le reste c'est le format qu'on a décidé
+			std::string level;
 			out << board._currentLvl << std::endl;
-			out << board._levelFile[board._currentLvl];
+
+			for (unsigned int i = 0; i < board._height; i++) {
+				for (unsigned int j = 0; j < board._width; j++) {
+					char symbol;
+					ref_ptr<Case> c = board.getCase(i, j);
+					
+					ref_ptr<Box> box;
+					switch (c->getType()) {
+					case BOX:
+						box = static_cast<Box *> (c.get());
+						if (box->isOnTarget()) 
+							symbol = '=';
+						else
+							symbol = '$';
+						break;
+					case PLAYER:
+						symbol = '@';
+						break;
+					case TARGET: 
+						symbol = '.';
+						break;
+					default: /* case GROUND : */
+						symbol = ' ';
+					}
+					level.push_back(symbol);
+				}
+				level.push_back('\n');
+			}
+			out << level;
 			return out;
 		}
 		friend std::istream& operator>>(std::istream& in, Board& board) {
