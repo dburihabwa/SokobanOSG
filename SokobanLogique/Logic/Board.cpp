@@ -8,6 +8,7 @@
 #include "Target.h"
 #include "../Constants.h"
 #include "../dirent.h"
+#include "../GUI/View.h"
 
 #include <regex>
 #include <osg/Geode>
@@ -116,7 +117,9 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 				_win--;
 			}
 			if(_win==0) {
-				std::cout<<"Vous avez Gagné !"<<std::endl;
+				//std::cout<<"Vous avez Gagné !"<<std::endl;
+				std::string victoryMessage("Vous avez gagné");
+				View::getInstance().addText(victoryMessage);
 				//this->resetBoard();
 			}
 		}
@@ -229,7 +232,9 @@ ref_ptr<osg::Group> Sokoban::Board::loadNextLvl() {
 	this->resetBoard();
 	_currentLvl++;
 	if(_currentLvl == _levelFile.size()) {
-		std::cout<<"No more levels"<<std::endl;
+		//std::cout<<"No more levels"<<std::endl;
+		std::string message("No more levels");
+		View::getInstance().addText(message);
 		return ref_ptr<Group>(new Group());
 	}
 	std::string level = LVL_DIR;
