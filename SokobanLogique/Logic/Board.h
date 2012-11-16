@@ -91,7 +91,7 @@ namespace Sokoban
 			return in;
 		}
 		///<summary>Load the next level and return it</summary>
-		ref_ptr<Group> loadNextLvl();
+		void loadNextLvl();
 
 		void save() const;
 		///<summary> Load the save, return true if there is a save else return false</summary>

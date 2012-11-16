@@ -18,6 +18,8 @@ namespace Sokoban {
 		osg::ref_ptr<osg::Group> _textGroup;
 		unsigned int _lastY;
 		unsigned int _nbTxt;
+		unsigned int _maxHeight;
 		static osg::ref_ptr<osgText::Font> _font;
+		void updatePostion();
 	};
 }

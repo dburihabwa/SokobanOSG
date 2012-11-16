@@ -34,8 +34,10 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	//Camera init
 	playBoard->setAllowEventFocus(false);
 	_buttons->setAllowEventFocus(false);
+	textCamera->setAllowEventFocus(false);
 	playBoard->setReferenceFrame(Camera::ABSOLUTE_RF);
 	_buttons->setReferenceFrame(Camera::ABSOLUTE_RF);
+	textCamera->setReferenceFrame(Camera::ABSOLUTE_RF);
 
 	playBoard->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0));
 	_buttons->setClearColor(osg::Vec4(1.0, 1.0, 1.0, 0.0));
@@ -49,6 +51,12 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	_buttons->setProjectionMatrixAsPerspective( 
 		50.0f, 
 		restWidth/(double)buttonsHeight, 
+		Sokoban::near, 
+		100.0F
+		); 
+	textCamera->setProjectionMatrixAsPerspective( 
+		80.0f, 
+		textWidth/(double)height, 
 		Sokoban::near, 
 		100.0F
 		); 
@@ -72,7 +80,9 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	_buttons->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Sokoban::UP_AXIS);
 
 	//Text
+	textCamera->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Y_AXIS);
 	_textPanel = new TextPanel(textCamera);
+
 	//Add keyboardController
 	_viewer->addEventHandler(new KeyboardHandler());
 	_viewer->addEventHandler(new DirectionButtonEventHandler());

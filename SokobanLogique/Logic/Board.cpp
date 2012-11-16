@@ -107,6 +107,9 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 	if(_win == 0) {
 		return false;
 	}
+	std::stringstream buffer;
+	buffer<<"Direction : "<<dir.getX()<<", "<<dir.getY();
+	View::getInstance().addText(buffer.str());
 	if(_player->canMove(dir)) {
 		if(_player->willMoveBox()) {
 			bool wasOnTarget = _player->getMovedBox()->isOnTarget();
@@ -228,21 +231,19 @@ void Sokoban::Board::loadFile(const char* file) {
 	levelFile >> *this;
 	levelFile.close();
 }
-ref_ptr<osg::Group> Sokoban::Board::loadNextLvl() {
+void Sokoban::Board::loadNextLvl() {
 	this->resetBoard();
 	_currentLvl++;
 	if(_currentLvl == _levelFile.size()) {
 		//std::cout<<"No more levels"<<std::endl;
 		std::string message("No more levels");
 		View::getInstance().addText(message);
-		return ref_ptr<Group>(new Group());
+		return;
 	}
 	std::string level = LVL_DIR;
 	level.append(_levelFile[_currentLvl]);
 
 	this->loadFile(level.c_str());
-
-	return _level;
 }
 
 
