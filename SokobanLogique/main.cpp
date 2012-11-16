@@ -27,6 +27,6 @@ int main(void) {
 		"    #     #########\n"
 		"    #######        ";
 #endif
-	Sokoban::View::getInstance().init(800,800);
+	Sokoban::View::getInstance().init(800,1024);
 	return Sokoban::View::getInstance().getViewer()->run();
 }
