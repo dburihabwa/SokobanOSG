@@ -94,8 +94,8 @@ namespace Sokoban
 		ref_ptr<Group> loadNextLvl();
 
 		void save() const;
-
-		void loadSave();
+		///<summary> Load the save, return true if there is a save else return false</summary>
+		bool loadSave();
 
 	private:
 		std::vector<std::vector<ref_ptr<Case>>> _movable;

@@ -8,7 +8,7 @@
 Sokoban::View::View(void)
 {
 
-	
+
 
 }
 void Sokoban::View::init(unsigned int height, unsigned int width) {
@@ -58,7 +58,9 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	textCamera->setViewport(new Viewport(restWidth,0,textWidth, height));
 
 	//Board
-	Sokoban::Board::getInstance().loadNextLvl();
+	if(!Sokoban::Board::getInstance().loadSave()) {
+		Sokoban::Board::getInstance().loadNextLvl();
+	}
 	playBoard->addChild(Sokoban::Board::getInstance().getLevel());
 	Vec3 center = Sokoban::Board::getInstance().getCenter();
 	Vec3 centerEye = Vec3(center[0],center[1],16.0);

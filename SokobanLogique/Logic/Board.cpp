@@ -240,9 +240,7 @@ ref_ptr<osg::Group> Sokoban::Board::loadNextLvl() {
 	std::string level = LVL_DIR;
 	level.append(_levelFile[_currentLvl]);
 
-
-	this->loadSave();
-	//this->loadFile(level.c_str());
+	this->loadFile(level.c_str());
 
 	return _level;
 }
@@ -258,14 +256,17 @@ void Sokoban::Board::save() const {
 }
 
 
-void Sokoban::Board::loadSave() {
+bool Sokoban::Board::loadSave() {
+	this->resetBoard();
 	struct stat buf;
 	std::string fileName(SAVE_DIR);
 	fileName.append("/");
 	fileName.append(SAVE_FILE);
 	// Tests if the save file does exist
 	if (stat(fileName.c_str(), &buf) != -1)
-    {
+	{
 		loadFile(fileName.c_str());
-    }
+		return true;
+	}
+	return false;
 }
