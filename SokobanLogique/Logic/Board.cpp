@@ -23,7 +23,6 @@ void Sokoban::Board::init(std::string level)
 	//Get every line of the string, check their 
 	//length to find the lenght of the level
 	int lvl;
-	int result;
 	std::stringstream lvlNbr ((*iter)[1].str());
 	lvlNbr >> lvl;
 	if(lvlNbr) {
@@ -63,17 +62,17 @@ void Sokoban::Board::init(std::string level)
 					s = new Wall(v,u,0.6);
 					d =  new Ground(v,u,-0.05);
 				}
-				else if(c == '.' || c == '*' || c == '+') { 
+				else if(c == '.') { 
 					s = new Target(v,u,0);
 					d =  new Ground(v,u,-0.05);
 					_win++;
 				}
-				else if(c == '@' || c == '+') {
+				else if(c == '@' ) {
 					_player = new Player(v,u,0.4);
 					d = _player.get();					
 					s =  new Ground(v,u,-0.05);
 				}
-				else if(c == '$' || c == '*') {
+				else if(c == '$') {
 					d = new Box(v,u,0.45);
 					s =  new Ground(v,u,-0.05);
 				} else if(c == '=') {
