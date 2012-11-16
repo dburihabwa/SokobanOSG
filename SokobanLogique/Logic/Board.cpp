@@ -120,6 +120,7 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 #if DEBUG == TRUE
 		displayLevel();
 #endif
+		save();
 		return true;
 	}
 	return false;
@@ -231,4 +232,14 @@ ref_ptr<osg::Group> Sokoban::Board::loadNextLvl() {
 	this->loadFile(level.c_str());
 
 	return _level;
+}
+
+
+void Sokoban::Board::save() const {
+	std::ofstream out;
+	std::string filePath(SAVE_DIR);
+	filePath.append(SAVE_FILE);
+	out.open(filePath.c_str());
+	out << *this;
+	out.close();
 }
