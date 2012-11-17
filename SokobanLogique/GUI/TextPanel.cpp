@@ -12,7 +12,7 @@ osg::ref_ptr<osgText::Font> Sokoban::TextPanel::_font = osgText::readFontFile("f
 Sokoban::TextPanel::TextPanel(osg::ref_ptr<osg::Camera> cam) : _camera(cam.get()), _nbTxt(0), _lastY(0)
 {
 	init();
-	_maxHeight = (_camera->getViewport()->height()/2)- 160;
+	_maxHeight = (_camera->getViewport()->height()/2)- 110;
 }
 
 
@@ -41,6 +41,7 @@ void Sokoban::TextPanel::addText(std::string str) {
 	text->setPosition(osg::Vec3(-3.3,8,0));
 	text->setText(str);
 	osg::ref_ptr<osg::Geode> message = new osg::Geode;
+	message->setName(str);
 	osg::ref_ptr<osg::StateSet> stateset;
 	stateset = message->getOrCreateStateSet();
 	stateset->setMode(GL_LIGHTING,osg::StateAttribute::OFF);
@@ -65,6 +66,8 @@ void Sokoban::TextPanel::updatePostion() {
 	if(toBeDeleted) {
 		_textGroup->removeChild(toBeDeleted);
 		_nbTxt--;
-		std::cout<<"Child deleted"<<std::endl;
+#if DEBUG == TRUE
+		std::cout<<"Child deleted : "<<toBeDeleted->getName()<<std::endl;
+#endif
 	}
 }
