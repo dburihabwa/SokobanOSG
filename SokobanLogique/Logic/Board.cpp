@@ -101,20 +101,30 @@ void Sokoban::Board::init(std::string level)
 }
 
 bool Sokoban::Board::movePlayer(Direction dir) {
+	//If the win counter == 0, the player have finished the level.
 	if(_win == 0) {
 		return false;
 	}
+	//Check if the player can move
 	if(_player->canMove(dir)) {
+		//Check if the player is going to move a box
+		//It's set when the player check if he can move
 		if(_player->willMoveBox()) {
+			//retain the state of the box (on a target or not)
 			bool wasOnTarget = _player->getMovedBox()->isOnTarget();
 			_player->move(dir);
+			//check if the box was on a target and is not on a target anymore
+			//if it's the case, increment the win counter.
 			if(wasOnTarget && !_player->getMovedBox()->isOnTarget()) {
 				_win++;
+			//if the box wasn't on a target and is a on a target now
+			//Decrement the win counter.
 			} else if(!wasOnTarget && _player->getMovedBox()->isOnTarget()) {
 				_win--;
 			}
+			//If the win counter == 0, the player have finished the level.
 			if(_win==0) {
-				std::string victoryMessage("Vous avez gagné");
+				std::string victoryMessage("Vous avez gagné !");
 				View::getInstance().addText(victoryMessage, MSG_OK);
 			}
 		}

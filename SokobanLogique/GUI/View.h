@@ -30,11 +30,13 @@ namespace Sokoban {
 			return _buttons;
 		}
 		void addText(std::string str) const {
-			_textPanel->addText(str, MSG_NORMAL);
+			this->addText(str, MSG_NORMAL);
 		}
+		///<summary>Display a text in the text panel with the wanted color</summary>
 		void addText(std::string str, osg::Vec4 color) const {
 			_textPanel->addText(str, color);
 		}
+		///<summary> Notify the view that it have to refresh</summary>
 		void notify(Event);
 		~View(void);
 	private:
