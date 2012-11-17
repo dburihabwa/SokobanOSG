@@ -13,6 +13,7 @@ Sokoban::TextPanel::TextPanel(osg::ref_ptr<osg::Camera> cam) : _camera(cam.get()
 {
 	init();
 	_maxHeight = (_camera->getViewport()->height()/2)- 110;
+	_camera->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0));
 }
 
 
@@ -29,14 +30,14 @@ void Sokoban::TextPanel::init() {
 	_camera->addChild(_textGroup);
 }
 
-void Sokoban::TextPanel::addText(std::string str) {
+void Sokoban::TextPanel::addText(std::string str, osg::Vec4 color) {
 #if DEBUG==TRUE
 	std::cout<<str<<std::endl;
 #endif
 	updatePostion();
 	osg::ref_ptr<osgText::Text> text = new osgText::Text;
 	text->setFont(_font);
-	text->setColor(osg::Vec4(0,0,0,1));
+	text->setColor(color);
 	text->setCharacterSize(0.4);
 	text->setPosition(osg::Vec3(-3.3,8,0));
 	text->setText(str);

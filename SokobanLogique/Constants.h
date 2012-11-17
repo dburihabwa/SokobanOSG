@@ -1,5 +1,6 @@
 #pragma once
 #include <osg/Quat>
+#include <osg/Vec4>
 #define TRUE 1
 #define FALSE 0
 #define DEBUG TRUE
@@ -25,4 +26,9 @@ namespace Sokoban
 	static const char* TEXTURE_DIR = "Ressources/Textures/";
 	static const char* SAVE_DIR = "Ressources/Saves/";
 	static const char* SAVE_FILE = "save.sav";
+
+	//Messages
+	static const osg::Vec4 MSG_NORMAL(1,1,1,1);
+	static const osg::Vec4 MSG_WARNING(1.0, 0.0, 0.0, 1.0);
+	static const osg::Vec4 MSG_OK(0,1,0,1);
 };

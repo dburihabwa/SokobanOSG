@@ -9,7 +9,8 @@ namespace Sokoban {
 	{
 	public:
 		TextPanel(osg::ref_ptr<osg::Camera> cam);
-		void addText(std::string);
+		///<summary>Display a text in the panel with the wanted color</summary>
+		void addText(std::string, osg::Vec4);
 		void reset();
 		~TextPanel(void);
 	private:

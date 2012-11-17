@@ -4,6 +4,7 @@
 #include <osgViewer/Viewer>
 #include <string>
 #include "TextPanel.h"
+#include "../Constants.h"
 
 namespace Sokoban {
 	class View
@@ -27,7 +28,10 @@ namespace Sokoban {
 			return _buttons;
 		}
 		void addText(std::string str) {
-			_textPanel->addText(str);
+			_textPanel->addText(str, MSG_NORMAL);
+		}
+		void addText(std::string str, osg::Vec4 color) {
+			_textPanel->addText(str, color);
 		}
 		~View(void);
 	private:
