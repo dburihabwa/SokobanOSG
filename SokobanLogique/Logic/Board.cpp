@@ -9,6 +9,7 @@
 #include "../Constants.h"
 #include "../dirent.h"
 #include "../GUI/View.h"
+#include "../Event.h"
 
 #include <regex>
 #include <osg/Geode>
@@ -17,7 +18,6 @@
 
 void Sokoban::Board::init(std::string level)
 {
-	_level = new osg::Group;
 	std::regex pattern("([^\\n]+)\\n?");
 	std::sregex_iterator end, iter(level.begin(), level.end(), pattern);
 
@@ -52,7 +52,6 @@ void Sokoban::Board::init(std::string level)
 			if(u > data[v].size())
 			{
 				ref_ptr<Case> ground = new Ground(v,u,-0.05);
-				_level->addChild(ground->createNode());
 				sTemp.push_back(ground);
 				dTemp.push_back(ground);
 			}
@@ -90,8 +89,6 @@ void Sokoban::Board::init(std::string level)
 					s =  new Ground(v,u,-0.05);
 					d = s.get();
 				}
-				_level->addChild(s->createNode());
-				_level->addChild(d->createNode());
 				sTemp.push_back(s);
 				dTemp.push_back(d);
 			}
@@ -216,12 +213,6 @@ void Sokoban::Board::resetBoard() {
 			}
 		}
 		_player.release();
-		const std::vector<osg::Group*>& parents = _level->getParents();
-		for(unsigned int i = 0; i < parents.size(); ++i){
-			osg::Group& parent = *parents[i];
-			parent.removeChild(_level.get());
-		}
-		_level.release();
 		_set = false;
 	}
 }
@@ -241,8 +232,8 @@ void Sokoban::Board::loadNextLvl() {
 	}
 	std::string level = LVL_DIR;
 	level.append(_levelFile[_currentLvl]);
-
 	this->loadFile(level.c_str());
+	View::getInstance().notify(LOAD_LVL);
 }
 
 
@@ -270,6 +261,7 @@ bool Sokoban::Board::loadSave() {
 		loadFile(fileName.c_str());
 		std::string victoryMessage("Sauvergarde chargée.");
 		View::getInstance().addText(victoryMessage, MSG_OK);
+		View::getInstance().notify(LOAD_SAVE);
 		return true;
 	}
 	std::string victoryMessage("Aucune sauvergarde à charger");

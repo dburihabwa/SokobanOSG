@@ -132,6 +132,9 @@
     <ClInclude Include="GUI\TextPanel.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">

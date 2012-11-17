@@ -5,6 +5,8 @@
 #include <string>
 #include "TextPanel.h"
 #include "../Constants.h"
+#include "../Event.h"
+#include "../Logic/Case.h"
 
 namespace Sokoban {
 	class View
@@ -27,20 +29,25 @@ namespace Sokoban {
 		osg::ref_ptr<osg::Camera> getButtonsCamera() {
 			return _buttons;
 		}
-		void addText(std::string str) {
+		void addText(std::string str) const {
 			_textPanel->addText(str, MSG_NORMAL);
 		}
-		void addText(std::string str, osg::Vec4 color) {
+		void addText(std::string str, osg::Vec4 color) const {
 			_textPanel->addText(str, color);
 		}
+		void notify(Event);
 		~View(void);
 	private:
 		osg::ref_ptr<osgViewer::Viewer> _viewer;
 		osg::ref_ptr<osg::Camera> _buttons;	
+		osg::ref_ptr<osg::Camera> _playBoard;	
 		osg::ref_ptr<TextPanel> _textPanel;
+		osg::ref_ptr<osg::Group> _level;
 		View();
 		View(View const&);              // Don't Implement
 		void operator=(View const&); // Don't implement
+		void resetLevel();
+		void loadLevel(const std::vector<std::vector<osg::ref_ptr<Case>>>&,const std::vector<std::vector<osg::ref_ptr<Case>>> &);
 
 	};
 }

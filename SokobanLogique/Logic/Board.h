@@ -27,11 +27,6 @@ namespace Sokoban
 			return instance;
 		}
 		///<summary>
-		///Get the OSG Level with all the graphical element </summary>
-		ref_ptr<osg::Group> getLevel() const {
-			return _level;
-		}
-		///<summary>
 		///Get the center of the level, will be used to center the camera </summary>
 		Vec3 getCenter() const {
 			return center;
@@ -96,6 +91,12 @@ namespace Sokoban
 		void save() const;
 		///<summary> Load the save, return true if there is a save else return false</summary>
 		bool loadSave();
+		const std::vector<std::vector<ref_ptr<Case>>>& getMovable() const {
+			return _movable;
+		}
+		const std::vector<std::vector<ref_ptr<Case>>>& getUnMovable() const {
+			return _unMovable;
+		}
 
 	private:
 		std::vector<std::vector<ref_ptr<Case>>> _movable;
@@ -106,7 +107,6 @@ namespace Sokoban
 		unsigned int _width;
 		unsigned int _height;
 		bool _set;
-		ref_ptr<Group> _level;
 		Vec3 center;
 		ref_ptr<Player> _player;
 		Board();

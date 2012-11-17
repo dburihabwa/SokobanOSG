@@ -18,11 +18,11 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	_viewer->setUpViewInWindow(32, 32, width, height);
 	_viewer->setSceneData(root);
 	//Camera init
-	ref_ptr<Camera> playBoard = new Camera;
+	_playBoard = new Camera;
 	_buttons = new Camera;
 	ref_ptr<Camera> textCamera = new Camera;
 
-	root->addChild(playBoard);
+	root->addChild(_playBoard);
 	root->addChild(_buttons);
 	root->addChild(textCamera);
 
@@ -32,17 +32,17 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	unsigned int restWidth = width - textWidth;
 
 	//Camera init
-	playBoard->setAllowEventFocus(false);
+	_playBoard->setAllowEventFocus(false);
 	_buttons->setAllowEventFocus(false);
 	textCamera->setAllowEventFocus(false);
-	playBoard->setReferenceFrame(Camera::ABSOLUTE_RF);
+	_playBoard->setReferenceFrame(Camera::ABSOLUTE_RF);
 	_buttons->setReferenceFrame(Camera::ABSOLUTE_RF);
 	textCamera->setReferenceFrame(Camera::ABSOLUTE_RF);
 
-	playBoard->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0));
+	_playBoard->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0));
 	_buttons->setClearColor(osg::Vec4(1.0, 1.0, 1.0, 0.0));
 
-	playBoard->setProjectionMatrixAsPerspective( 
+	_playBoard->setProjectionMatrixAsPerspective( 
 		Sokoban::fovy, 
 		restWidth/(double)playBoardHeight, 
 		Sokoban::near, 
@@ -61,16 +61,15 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 		100.0F
 		); 
 	//Viewport
-	playBoard->setViewport(new Viewport(0,buttonsHeight,restWidth,playBoardHeight));
+	_playBoard->setViewport(new Viewport(0,buttonsHeight,restWidth,playBoardHeight));
 	_buttons->setViewport(new Viewport(0,0,restWidth,buttonsHeight));
 	textCamera->setViewport(new Viewport(restWidth,0,textWidth, height));
 
 	//Board
 	Sokoban::Board::getInstance().loadNextLvl();
-	playBoard->addChild(Sokoban::Board::getInstance().getLevel());
 	Vec3 center = Sokoban::Board::getInstance().getCenter();
 	Vec3 centerEye = Vec3(center[0],center[1],16.0);
-	playBoard->setViewMatrixAsLookAt(centerEye, center, Sokoban::UP_AXIS); 
+	_playBoard->setViewMatrixAsLookAt(centerEye, center, Sokoban::UP_AXIS); 
 
 	//_buttons
 	Hud hud;
@@ -86,6 +85,43 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	_viewer->addEventHandler(new DirectionButtonEventHandler());
 }
 
+void Sokoban::View::resetLevel(){
+	if(_level) {
+		const std::vector<osg::Group*>& parents = _level->getParents();
+		for(unsigned int i = 0; i < parents.size(); ++i){
+			osg::Group& parent = *parents[i];
+			parent.removeChild(_level.get());
+		}
+		_level.release();
+	}
+}
+
+void Sokoban::View::notify(Event modelEvent) {
+	switch(modelEvent) {
+	case LOAD_LVL:
+	case LOAD_SAVE:
+		this->resetLevel();
+		loadLevel(Board::getInstance().getMovable(),Board::getInstance().getUnMovable());
+		break;
+	default:
+		break;
+	}
+}
+void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Case>>> &movable,const std::vector<std::vector<osg::ref_ptr<Case>>>& unMovable) {
+	_level = new osg::Group;
+	if(movable.size() == 0) {
+		addText("Problème lors du chargement du niveau", MSG_WARNING);
+		return;
+	}
+	unsigned int lenght = movable[0].size();
+	for(unsigned int i =0; i < movable.size(); i++) {
+		for(unsigned int j = 0; j < lenght; j++) {
+			_level->addChild(unMovable[i][j]->createNode());
+			_level->addChild(movable[i][j]->createNode());
+		}
+	}
+	_playBoard->addChild(_level);
+}
 Sokoban::View::~View(void)
 {
 }
