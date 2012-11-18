@@ -15,7 +15,6 @@ namespace Sokoban {
 		///		<param>x</param>
 		///	</summary>
         DirectionButton(int x, int y, int z, Direction direction);
-		osg::ref_ptr<osg::Node> createNode();
         Type getType();
 		///	<summary>
 		///		Returns the logical direction of the button
