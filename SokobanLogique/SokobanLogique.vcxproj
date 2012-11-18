@@ -127,6 +127,8 @@
     <None Include="Ressources\Textures\floppy.jpg" />
     <None Include="Ressources\Textures\rs-ground00.jpg" />
     <None Include="Ressources\Textures\target.png" />
+    <None Include="Ressources\Textures\zoom_in.png" />
+    <None Include="Ressources\Textures\zoom_out.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

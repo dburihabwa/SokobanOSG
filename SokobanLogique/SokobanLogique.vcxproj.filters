@@ -250,5 +250,11 @@
     <None Include="Ressources\Textures\floppy.jpg">
       <Filter>Ressources\Textures</Filter>
     </None>
+    <None Include="Ressources\Textures\zoom_in.png">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\zoom_out.png">
+      <Filter>Ressources\Textures</Filter>
+    </None>
   </ItemGroup>
 </Project>
