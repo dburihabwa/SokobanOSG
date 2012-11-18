@@ -7,7 +7,6 @@ namespace Sokoban {
 	public:
 		SaveButton(int x, int y, int z);
 		Type getType();
-		osg::ref_ptr<osg::Node> createNode();
 	};
 };
 

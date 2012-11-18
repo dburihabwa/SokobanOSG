@@ -18,9 +18,10 @@ Sokoban::Hud::Hud(void) {
 	this->_buttons.push_back(downDirectionButton);
 	this->_buttons.push_back(leftDirectionButton);
 	this->_buttons.push_back(rightDirectionButton);
+	
+	this->_saveButton = new SaveButton(0, 0, 0);
 
 	createNodes();
-	this->saveButton = new SaveButton(1, posY, 0);
 
 	/*
 	ref_ptr<osg::Geode> geodeText = new osg::Geode();
@@ -67,4 +68,9 @@ void Sokoban::Hud::createNodes() {
 		}
 		this->_nodes->addChild(node);
 	}
+	osg::Vec3 pos = this->_saveButton->getPosition();
+	ref_ptr<PositionAttitudeTransform> node = dynamic_cast<PositionAttitudeTransform *> (NodeFactory::createNode(pos.x(),pos.y(),pos.z(), SAVE_BUTTON).get());
+	node->setUserData(this->_saveButton);
+	this->_nodes->addChild(node);
+
 }

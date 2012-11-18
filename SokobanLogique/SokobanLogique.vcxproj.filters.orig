@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{7a765510-e84d-4657-b9da-55f502a26fc8}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{25868314-6ba3-4f9c-aba8-c30e358a970e}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Ressources">
+      <UniqueIdentifier>{8346fca4-9bca-4e74-b91c-814e878308a1}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpeg;jpe;resx;tiff;tif;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Sources\Factories">
+      <UniqueIdentifier>{1f3a32aa-99b1-4c93-a062-35d67c1a79fa}</UniqueIdentifier>
+      <Extensions>Factory.cpp</Extensions>
+    </Filter>
+    <Filter Include="Headers\GUI">
+      <UniqueIdentifier>{7648e78a-a513-48bc-8d66-2009dc4517b7}</UniqueIdentifier>
+      <Extensions>GUI</Extensions>
+    </Filter>
+    <Filter Include="Sources\GUI">
+      <UniqueIdentifier>{0049668e-b4fe-4fab-9ce6-4903f01d9bb8}</UniqueIdentifier>
+      <Extensions>GUI</Extensions>
+    </Filter>
+    <Filter Include="Headers\Handlers">
+      <UniqueIdentifier>{37aaa80c-97f3-4f3e-9e69-78c676b24be2}</UniqueIdentifier>
+      <Extensions>Handlers</Extensions>
+    </Filter>
+    <Filter Include="Sources\Handlers">
+      <UniqueIdentifier>{f98b3fc3-a1b4-4ea6-9ad1-5ea49adb43ff}</UniqueIdentifier>
+      <Extensions>Handlers</Extensions>
+    </Filter>
+    <Filter Include="Headers\Logic">
+      <UniqueIdentifier>{88a33910-418a-4814-aa3c-5b002bb342af}</UniqueIdentifier>
+      <Extensions>Logic</Extensions>
+    </Filter>
+    <Filter Include="Sources\Logic">
+      <UniqueIdentifier>{9ea31592-dbe2-4d2c-9ee8-18751f7395a2}</UniqueIdentifier>
+      <Extensions>Logic</Extensions>
+    </Filter>
+    <Filter Include="Headers\Updaters">
+      <UniqueIdentifier>{b1d2d6ba-4d96-47b2-a55d-ddad7a1bf412}</UniqueIdentifier>
+      <Extensions>Updaters</Extensions>
+    </Filter>
+    <Filter Include="Sources\Updaters">
+      <UniqueIdentifier>{5cb55f1c-41a8-4af8-8023-3081a2ad07c0}</UniqueIdentifier>
+      <Extensions>Updaters</Extensions>
+    </Filter>
+    <Filter Include="Headers\Factories">
+      <UniqueIdentifier>{69c3bc52-796f-4b82-bc4b-f0e8d0ad99fb}</UniqueIdentifier>
+      <Extensions>Factory.h</Extensions>
+    </Filter>
+    <Filter Include="Ressources\Textures">
+      <UniqueIdentifier>{ad752704-0748-4a06-9514-a7e8b7ba22a9}</UniqueIdentifier>
+      <Extensions>jpg;png;</Extensions>
+    </Filter>
+    <Filter Include="Ressources\Levels">
+      <UniqueIdentifier>{7a1e33ec-f45c-4195-9abf-9fe1f8ef0890}</UniqueIdentifier>
+      <Extensions>sok;</Extensions>
+    </Filter>
+    <Filter Include="Headers\Adapters">
+      <UniqueIdentifier>{5ecb87d1-a900-4e09-80c7-4a1780dcdb3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Adapters">
+      <UniqueIdentifier>{c5b79007-fd53-4102-b9f2-489b886761bc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Factories\NodeFactory.h">
+      <Filter>Headers\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\DirectionButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\View.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Hud.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\DirectionButtonEventHandler.h">
+      <Filter>Headers\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\MouseHandler.h">
+      <Filter>Headers\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers\KeyboardHandler.h">
+      <Filter>Headers\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Board.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Wall.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Box.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Case.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Direction.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Ground.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\GUITypes.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Movable.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Player.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Target.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Unmovable.h">
+      <Filter>Headers\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Updaters\AnimationUpdater.h">
+      <Filter>Headers\Updaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Updaters\PlayerAnimationUpdater.h">
+      <Filter>Headers\Updaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="dirent.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\TextPanel.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="GUI\GUIButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadSavedGameButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\SaveButton.h">
+      <Filter>Headers\GUI</Filter>
+=======
+    <ClInclude Include="Adapters\MoveAdapter.h">
+      <Filter>Headers\Adapters</Filter>
+    </ClInclude>
+    <ClInclude Include="Adapters\OSGMoveAdapter.h">
+      <Filter>Headers\Adapters</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic\Empty.h">
+      <Filter>Headers\Logic</Filter>
+>>>>>>> 2c282e4980aa6945984729901e97028dba048d36
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Factories\NodeFactory.cpp">
+      <Filter>Sources\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\DirectionButton.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\View.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\Hud.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Handlers\DirectionButtonEventHandler.cpp">
+      <Filter>Sources\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Handlers\MouseHandler.cpp">
+      <Filter>Sources\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Handlers\KeyboardHandler.cpp">
+      <Filter>Sources\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\Board.cpp">
+      <Filter>Sources\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\Player.cpp">
+      <Filter>Sources\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\Box.cpp">
+      <Filter>Sources\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic\Movable.cpp">
+      <Filter>Sources\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Updaters\AnimationUpdater.cpp">
+      <Filter>Sources\Updaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Updaters\PlayerAnimationUpdater.cpp">
+      <Filter>Sources\Updaters</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\TextPanel.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\GUIButton.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadSavedGameButton.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\SaveButton.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\Textures\arrow.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\box.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\brickscolorhx8.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\creeper.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\default.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\rs-ground00.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\target.png">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Levels\level_1.sok">
+      <Filter>Ressources\Levels</Filter>
+    </None>
+    <None Include="Ressources\Levels\level_2.sok">
+      <Filter>Ressources\Levels</Filter>
+    </None>
+    <None Include="Ressources\Levels\level_3.sok">
+      <Filter>Ressources\Levels</Filter>
+    </None>
+    <None Include="Ressources\Textures\floppy.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+  </ItemGroup>
+</Project>
