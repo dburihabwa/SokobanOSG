@@ -5,19 +5,19 @@
 Sokoban::PlayerAnimationUpdater::~PlayerAnimationUpdater(void)
 {
 }
-void Sokoban::PlayerAnimationUpdater::setMovement(Vec3 position, Vec3 newPosition) {
+void Sokoban::PlayerAnimationUpdater::setMovement(Vec3 position, Vec3 newPosition, Direction nextDir) {
 	osg::ref_ptr<osg::AnimationPath> simpleMove = new osg::AnimationPath;
 	simpleMove->setLoopMode( osg::AnimationPath::NO_LOOPING );
 
 	osg::AnimationPath::ControlPoint orign(position,_lastRot);
 	osg::AnimationPath::ControlPoint destination;
-	if(_nextDir == UP) {
+	if(nextDir == UP) {
 		_lastRot = DEGREE_0;
-	}else if(_nextDir==DOWN) {
+	}else if(nextDir==DOWN) {
 		_lastRot = DEGREE_180;
-	} else if(_nextDir == RIGHT) {
+	} else if(nextDir == RIGHT) {
 		_lastRot = DEGREE_MIN_90;
-	} else if(_nextDir == LEFT) {
+	} else if(nextDir == LEFT) {
 		_lastRot = DEGREE_90;
 	}
 
