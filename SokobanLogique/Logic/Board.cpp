@@ -6,6 +6,7 @@
 #include "Box.h"
 #include "Player.h"
 #include "Target.h"
+#include "Empty.h"
 #include "../Constants.h"
 #include "../dirent.h"
 #include "../GUI/View.h"
@@ -45,28 +46,30 @@ void Sokoban::Board::init(std::string level)
 	center = Vec3d(_height/2.,_width/2,0);
 	for(unsigned int v = 0; v < _height; ++v)
 	{
-		std::vector<ref_ptr<Case>> sTemp;
-		std::vector<ref_ptr<Case>> dTemp;
+		std::vector<ref_ptr<Unmovable>> sTemp;
+		std::vector<ref_ptr<Movable>> dTemp;
 		for(unsigned int u = 0; u < _width; ++u)
 		{
 			if(u > data[v].size())
 			{
-				ref_ptr<Case> ground = new Ground(v,u,-0.05);
+				ref_ptr<Unmovable> ground = new Ground(v,u,-0.05);
+				ref_ptr<Movable> empty = new Empty(v,u,0);
 				sTemp.push_back(ground);
-				dTemp.push_back(ground);
+				dTemp.push_back(empty);
 			}
 			else
 			{
-				ref_ptr<Case> s, d;
+				ref_ptr<Unmovable> s;
+				ref_ptr<Movable>d;
 				char c = data[v][u];
 
 				if(c == '#') {
 					s = new Wall(v,u,0.6);
-					d =  new Ground(v,u,-0.05);
+					d =  new Empty(v,u,-0.05);
 				}
 				else if(c == '.') { 
 					s = new Target(v,u,0);
-					d =  new Ground(v,u,-0.05);
+					d =  new Empty(v,u,-0.05);
 					_win++;
 				}
 				else if(c == '@' ) {
@@ -86,8 +89,8 @@ void Sokoban::Board::init(std::string level)
 					d = _player.get();			
 				}
 				else {
-					s =  new Ground(v,u,-0.05);
-					d = s.get();
+					s = new Ground(v,u,-0.05);
+					d = new Empty(v,u,-0.05);
 				}
 				sTemp.push_back(s);
 				dTemp.push_back(d);
@@ -146,7 +149,7 @@ ref_ptr<Sokoban::Case> Sokoban::Board::getCase(unsigned int x, unsigned int y) c
 	if(y>_movable[0].size())
 		throw std::exception("Y not in the level");
 	ref_ptr<Case> lvlCase = _movable[x][y];
-	if(lvlCase->getType() == GROUND)
+	if(lvlCase->getType() == EMPTY)
 		return  _unMovable[x][y];
 	return lvlCase;
 }
@@ -159,8 +162,8 @@ void Sokoban::Board::swapMovable(unsigned int x1, unsigned int y1,unsigned int x
 		throw std::exception("X2 not in the level");
 	if(y2>_movable[0].size())
 		throw std::exception("Y2 not in the level");
-	ref_ptr<Case> movable1 = _movable[x1][y1];
-	ref_ptr<Case> movable2 = _movable[x2][y2];
+	ref_ptr<Movable> movable1 = _movable[x1][y1];
+	ref_ptr<Movable> movable2 = _movable[x2][y2];
 	_movable[x1][y1] = movable2;
 	_movable[x2][y2] = movable1;
 }
@@ -169,8 +172,8 @@ void Sokoban::Board::displayLevel() const {
 
 	for(unsigned int i = 0; i < _movable.size();i++)
 	{
-		std::vector<ref_ptr<Case>> vect = _movable[i];
-		std::vector<ref_ptr<Case>> vect2 = _unMovable[i];
+		std::vector<ref_ptr<Movable>> vect = _movable[i];
+		std::vector<ref_ptr<Unmovable>> vect2 = _unMovable[i];
 		for(unsigned int j =0; j < vect.size(); j++) {
 			std::cout<<vect[j]->getType() + vect2[j]->getType();
 		}
@@ -215,8 +218,8 @@ void Sokoban::Board::resetBoard() {
 	if(_set) {
 		for(unsigned int i = 0; i < _movable.size();i++)
 		{
-			std::vector<ref_ptr<Case>> vect = _movable[i];
-			std::vector<ref_ptr<Case>> vect2 = _unMovable[i];
+			std::vector<ref_ptr<Movable>> vect = _movable[i];
+			std::vector<ref_ptr<Unmovable>> vect2 = _unMovable[i];
 			for(unsigned int j =0; j < vect.size(); j++) {
 				vect[j].release();
 				vect2[j].release();

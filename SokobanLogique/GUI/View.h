@@ -6,7 +6,8 @@
 #include "TextPanel.h"
 #include "../Constants.h"
 #include "../Event.h"
-#include "../Logic/Case.h"
+#include "../Logic/Movable.h"
+#include "../Logic/Unmovable.h"
 
 namespace Sokoban {
 	class View
@@ -49,7 +50,7 @@ namespace Sokoban {
 		View(View const&);              // Don't Implement
 		void operator=(View const&); // Don't implement
 		void resetLevel();
-		void loadLevel(const std::vector<std::vector<osg::ref_ptr<Case>>>&,const std::vector<std::vector<osg::ref_ptr<Case>>> &);
+		void loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable>>>&,const std::vector<std::vector<osg::ref_ptr<Unmovable>>> &);
 
 	};
 }

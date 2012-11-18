@@ -91,16 +91,16 @@ namespace Sokoban
 		void save() const;
 		///<summary> Load the save, return true if there is a save else return false</summary>
 		bool loadSave();
-		const std::vector<std::vector<ref_ptr<Case>>>& getMovable() const {
+		const std::vector<std::vector<ref_ptr<Movable>>>& getMovable() const {
 			return _movable;
 		}
-		const std::vector<std::vector<ref_ptr<Case>>>& getUnMovable() const {
+		const std::vector<std::vector<ref_ptr<Unmovable>>>& getUnMovable() const {
 			return _unMovable;
 		}
 
 	private:
-		std::vector<std::vector<ref_ptr<Case>>> _movable;
-		std::vector<std::vector<ref_ptr<Case>>> _unMovable;
+		std::vector<std::vector<ref_ptr<Movable>>> _movable;
+		std::vector<std::vector<ref_ptr<Unmovable>>> _unMovable;
 		std::vector<std::string> _levelFile;
 		int _currentLvl;
 		unsigned int _win;

@@ -101,13 +101,14 @@ void Sokoban::View::notify(Event modelEvent) {
 	case LOAD_LVL:
 	case LOAD_SAVE:
 		this->resetLevel();
+		this->_textPanel->reset();
 		loadLevel(Board::getInstance().getMovable(),Board::getInstance().getUnMovable());
 		break;
 	default:
 		break;
 	}
 }
-void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Case>>> &movable,const std::vector<std::vector<osg::ref_ptr<Case>>>& unMovable) {
+void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable>>> &movable,const std::vector<std::vector<osg::ref_ptr<Unmovable>>>& unMovable) {
 	_level = new osg::Group;
 	if(movable.size() == 0) {
 		addText("Problème lors du chargement du niveau", MSG_WARNING);
