@@ -14,7 +14,7 @@ namespace Sokoban
 		virtual bool canMove(Direction)=0;
 		///<summary>Move the Movable in the wanted direction.</summary>
 		virtual void move(Direction);
-		void setMoveAdapter(MoveAdapter& adapter) {
+		void setMoveAdapter(osg::ref_ptr<MoveAdapter> adapter) {
 			_moveAdapter = adapter;
 		}
 		virtual ~Movable(void)

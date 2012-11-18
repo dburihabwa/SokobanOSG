@@ -1,6 +1,7 @@
 #pragma once
 #include <osg/Vec3>
 #include "../Logic/Direction.h"
+#include <osg/Referenced>
 namespace Sokoban {
 	class MoveAdapter : public osg::Referenced
 	{

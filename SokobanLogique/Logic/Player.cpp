@@ -22,13 +22,5 @@ void Sokoban::Player::move(Direction dir) {
 		_lastBox->move(dir);
 		_canMoveBox = false;
 	}
-	static_cast<PlayerAnimationUpdater*>(_aniUpdater.get())->setDirection(dir);
 	Movable::move(dir);
-}
-
-ref_ptr<Node> Sokoban::Player::createNode() {
-	_graphNode = Case::createNode();
-	_aniUpdater = new PlayerAnimationUpdater();
-	_graphNode->setUpdateCallback(_aniUpdater);
-	return _graphNode;
 }
