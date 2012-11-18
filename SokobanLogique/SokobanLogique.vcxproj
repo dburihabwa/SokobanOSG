@@ -121,6 +121,7 @@
     <None Include="Ressources\Textures\brickscolorhx8.jpg" />
     <None Include="Ressources\Textures\creeper.jpg" />
     <None Include="Ressources\Textures\default.jpg" />
+    <None Include="Ressources\Textures\floppy.jpg" />
     <None Include="Ressources\Textures\rs-ground00.jpg" />
     <None Include="Ressources\Textures\target.png" />
   </ItemGroup>

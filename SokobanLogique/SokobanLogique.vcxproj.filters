@@ -232,5 +232,8 @@
     <None Include="Ressources\Levels\level_3.sok">
       <Filter>Ressources\Levels</Filter>
     </None>
+    <None Include="Ressources\Textures\floppy.jpg">
+      <Filter>Ressources\Textures</Filter>
+    </None>
   </ItemGroup>
 </Project>

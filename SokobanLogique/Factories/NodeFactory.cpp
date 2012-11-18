@@ -56,6 +56,10 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1, 0));
 		textureImage.append("arrow.jpg");
 		break;
+	case SAVE_BUTTON:
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1, 1, 0));
+		textureImage.append("floppy.jpg");
+		break;
 	default:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1));
 		textureImage.append("default.jpg");
