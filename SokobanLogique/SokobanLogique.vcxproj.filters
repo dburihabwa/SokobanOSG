@@ -159,6 +159,12 @@
     <ClInclude Include="GUI\SaveButton.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="ZoomButton.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\ZoomButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">
@@ -213,6 +219,9 @@
       <Filter>Sources\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GUI\SaveButton.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\ZoomButton.cpp">
       <Filter>Sources\GUI</Filter>
     </ClCompile>
   </ItemGroup>

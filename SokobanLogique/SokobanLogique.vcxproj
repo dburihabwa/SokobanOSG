@@ -70,6 +70,7 @@
     <ClCompile Include="GUI\Hud.cpp" />
     <ClCompile Include="GUI\SaveButton.cpp" />
     <ClCompile Include="GUI\View.cpp" />
+    <ClCompile Include="GUI\ZoomButton.cpp" />
     <ClCompile Include="Handlers\DirectionButtonEventHandler.cpp" />
     <ClCompile Include="Handlers\KeyboardHandler.cpp" />
     <ClCompile Include="Handlers\MouseHandler.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="GUI\Hud.h" />
     <ClInclude Include="GUI\SaveButton.h" />
     <ClInclude Include="GUI\View.h" />
+    <ClInclude Include="GUI\ZoomButton.h" />
     <ClInclude Include="Handlers\DirectionButtonEventHandler.h" />
     <ClInclude Include="Handlers\KeyboardHandler.h" />
     <ClInclude Include="Handlers\MouseHandler.h" />
@@ -114,6 +116,7 @@
     <ClInclude Include="GUI\TextPanel.h" />
     <ClInclude Include="Updaters\AnimationUpdater.h" />
     <ClInclude Include="Updaters\PlayerAnimationUpdater.h" />
+    <ClInclude Include="ZoomButton.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\Levels\level_1.sok" />
