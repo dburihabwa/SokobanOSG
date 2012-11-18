@@ -3,7 +3,9 @@
 #include "../Handlers/DirectionButtonEventHandler.h"
 #include "../Handlers/KeyboardHandler.h"
 #include "../GUI/Hud.h"
-
+#include "../Factories/NodeFactory.h"
+#include "../Updaters/PlayerAnimationUpdater.h"
+#include "../Adapters/OSGMoveAdapter.h"
 
 Sokoban::View::View(void)
 {
@@ -117,8 +119,23 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 	unsigned int lenght = movable[0].size();
 	for(unsigned int i =0; i < movable.size(); i++) {
 		for(unsigned int j = 0; j < lenght; j++) {
-			_level->addChild(unMovable[i][j]->createNode());
-			_level->addChild(movable[i][j]->createNode());
+			osg::Vec3 pos = unMovable[i][j]->getPosition();
+			_level->addChild(NodeFactory::createNode(pos.x(),pos.y(),pos.z(), unMovable[i][j]->getType()));
+			osg::ref_ptr<Movable> mov = movable[i][j];
+			if(mov->getType() == EMPTY) {
+				continue;
+			}
+			pos = mov->getPosition();
+			osg::ref_ptr<osg::Node> node = NodeFactory::createNode(pos.x(),pos.y(),pos.z(), mov->getType());
+			osg::ref_ptr<AnimationUpdater> updater;
+			if(mov->getType() == BOX) {
+				updater= new AnimationUpdater();
+			} else if(mov->getType() == PLAYER) {
+				updater = new PlayerAnimationUpdater();
+			}
+			osg::ref_ptr<MoveAdapter> adapter = new OSGMoveAdapter(updater);
+			mov->setMoveAdapter(adapter);
+			_level->addChild(node);
 		}
 	}
 	_playBoard->addChild(_level);

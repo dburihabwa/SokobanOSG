@@ -6,7 +6,7 @@ namespace Sokoban {
 	{
 	public:
 		OSGMoveAdapter(osg::ref_ptr<AnimationUpdater> ani) : _aniUpdater(ani) {}
-		void move(osg::Vec3 from,osg::Vec3 to,Direction dir) {
+		void move(osg::Vec3 from,osg::Vec3 to,Direction dir) const {
 			_aniUpdater->setMovement(from,to,dir);
 		}
 		~OSGMoveAdapter(void) {}
