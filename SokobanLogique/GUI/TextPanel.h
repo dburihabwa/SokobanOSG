@@ -21,6 +21,6 @@ namespace Sokoban {
 		unsigned int _nbTxt;
 		unsigned int _maxHeight;
 		static osg::ref_ptr<osgText::Font> _font;
-		void updatePostion();
+		void updatePosition();
 	};
 }
