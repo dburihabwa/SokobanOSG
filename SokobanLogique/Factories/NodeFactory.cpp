@@ -66,7 +66,7 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		break;
 	case ZOOM_OUT:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1, 1, 0));
-		textureImage.append("zoom_in.png");
+		textureImage.append("zoom_out.png");
 		break;
 	default:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1));
