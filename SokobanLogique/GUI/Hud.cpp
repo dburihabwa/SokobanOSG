@@ -20,6 +20,8 @@ Sokoban::Hud::Hud(void) {
         this->_nodes->addChild((*it)->createNode());
     }
 
+	this->saveButton = new SaveButton(1, posY, 0);
+
     /*
     ref_ptr<osg::Geode> geodeText = new osg::Geode();
     ref_ptr<osgText::Text> text = new osgText::Text(); 

@@ -135,6 +135,15 @@
     <ClInclude Include="Event.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="GUI\GUIButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadSavedGameButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\SaveButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">
@@ -180,6 +189,15 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="GUI\TextPanel.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\GUIButton.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadSavedGameButton.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\SaveButton.cpp">
       <Filter>Sources\GUI</Filter>
     </ClCompile>
   </ItemGroup>

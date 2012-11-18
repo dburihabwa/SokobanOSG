@@ -1,5 +1,5 @@
 #pragma once
-#include "../Logic/Case.h"
+#include "GUIButton.h"
 #include "../Logic/Direction.h"
 
 namespace Sokoban {
@@ -7,7 +7,7 @@ namespace Sokoban {
 	/// Direction Button is a object used to pilot the character through the puzzle by using your mouse.
 	///</summary>
     class DirectionButton :
-        public Sokoban::Case
+        public Sokoban::GUIButton
     {
     public:
 		///	<summary>
