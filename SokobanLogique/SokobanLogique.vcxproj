@@ -97,6 +97,7 @@
     <ClInclude Include="Logic\Box.h" />
     <ClInclude Include="Logic\Case.h" />
     <ClInclude Include="Logic\Direction.h" />
+    <ClInclude Include="Logic\Empty.h" />
     <ClInclude Include="Logic\Ground.h" />
     <ClInclude Include="Logic\GUITypes.h" />
     <ClInclude Include="Logic\Movable.h" />
