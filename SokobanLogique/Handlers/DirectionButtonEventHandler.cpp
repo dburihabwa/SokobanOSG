@@ -4,7 +4,7 @@
 #include "../GUI/View.h"
 #include "../GUI/DirectionButton.h"
 #include "../Logic/Board.h"
-
+#include "../GUI/SaveButton.h"
 
 Sokoban::DirectionButtonEventHandler::DirectionButtonEventHandler(void)
 {
@@ -30,6 +30,11 @@ bool Sokoban::DirectionButtonEventHandler::pick(const osgGA::GUIEventAdapter& ea
 		ref_ptr<DirectionButton> button = dynamic_cast<DirectionButton*>(intersection.nodePath.at(2)->getUserData());
 		if(button) {
 			Board::getInstance().movePlayer(button->getDirection());
+			return true;
+		}
+		ref_ptr<SaveButton> saveButton = dynamic_cast<SaveButton*>(intersection.nodePath.at(2)->getUserData());
+		if (saveButton) {
+			Board::getInstance().save();
 			return true;
 		}
 	}
