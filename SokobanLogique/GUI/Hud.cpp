@@ -19,7 +19,14 @@ Sokoban::Hud::Hud(void) {
 	this->_buttons.push_back(leftDirectionButton);
 	this->_buttons.push_back(rightDirectionButton);
 	
+	// Game option buttons
 	this->_saveButton = new SaveButton(0, 0, 0);
+	this->_zoomInButton = new ZoomButton(-2, 0, 0, ZOOM_IN);
+	this->_zoomOutButton = new ZoomButton(-2, 2, 0, ZOOM_OUT);
+
+	this->_buttons.push_back(this->_saveButton);
+	this->_buttons.push_back(this->_zoomInButton);
+	this->_buttons.push_back(this->_zoomOutButton);
 
 	createNodes();
 
@@ -43,7 +50,7 @@ unsigned int Sokoban::Hud::getElapsedTime() const
 	return (this->_timer - clock()) / CLOCKS_PER_SEC;
 }
 
-const std::vector<ref_ptr<Sokoban::DirectionButton> >& Sokoban::Hud::getButtons() const
+const std::vector<ref_ptr<Sokoban::GUIButton> >& Sokoban::Hud::getButtons() const
 {
 	return this->_buttons;
 }
@@ -53,24 +60,24 @@ ref_ptr<osg::Group> Sokoban::Hud::getNodes() const
 	return this->_nodes;
 }
 void Sokoban::Hud::createNodes() {
-	std::vector<ref_ptr<Sokoban::DirectionButton> >::iterator it;
+	std::vector<ref_ptr<Sokoban::GUIButton> >::iterator it;
 	for (it = this->_buttons.begin(); it < this->_buttons.end(); it++) {
 		osg::Vec3 pos = (*it)->getPosition();
-		ref_ptr<PositionAttitudeTransform> node = dynamic_cast<PositionAttitudeTransform *> (NodeFactory::createNode(pos.x(),pos.y(),pos.z(),DIRECTION_BUTTON).get());
+		ref_ptr<PositionAttitudeTransform> node = dynamic_cast<PositionAttitudeTransform *> (NodeFactory::createNode(pos.x(),pos.y(),pos.z(),(*it)->getType()).get());
 		node->setUserData(*it);
-		Direction direction = (*it)->getDirection();
-		if(direction==UP) {
-			node->setAttitude(DEGREE_180);
-		} else if(direction == LEFT) {
-			node->setAttitude(DEGREE_MIN_90);
-		} else if(direction == RIGHT) {
-			node->setAttitude(DEGREE_90);
+		
+		// If the GUIButton is DirectionButton
+		if ((*it)->getType() == DIRECTION_BUTTON) {
+			ref_ptr<DirectionButton> db = static_cast<DirectionButton *>((*it).get());
+			Direction direction = db->getDirection();
+			if(direction==UP) {
+				node->setAttitude(DEGREE_180);
+			} else if(direction == LEFT) {
+				node->setAttitude(DEGREE_MIN_90);
+			} else if(direction == RIGHT) {
+				node->setAttitude(DEGREE_90);
+			}
 		}
 		this->_nodes->addChild(node);
 	}
-	osg::Vec3 pos = this->_saveButton->getPosition();
-	ref_ptr<PositionAttitudeTransform> node = dynamic_cast<PositionAttitudeTransform *> (NodeFactory::createNode(pos.x(),pos.y(),pos.z(), SAVE_BUTTON).get());
-	node->setUserData(this->_saveButton);
-	this->_nodes->addChild(node);
-
 }
