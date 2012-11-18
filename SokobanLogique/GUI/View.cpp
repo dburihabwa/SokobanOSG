@@ -103,7 +103,9 @@ void Sokoban::View::notify(Event modelEvent) {
 	case LOAD_LVL:
 	case LOAD_SAVE:
 		this->resetLevel();
-		this->_textPanel->reset();
+		if(this->_textPanel) {
+			this->_textPanel->reset();
+		}
 		loadLevel(Board::getInstance().getMovable(),Board::getInstance().getUnMovable());
 		break;
 	default:
@@ -134,6 +136,7 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 				updater = new PlayerAnimationUpdater();
 			}
 			osg::ref_ptr<MoveAdapter> adapter = new OSGMoveAdapter(updater);
+			node->setUpdateCallback(updater);
 			mov->setMoveAdapter(adapter);
 			_level->addChild(node);
 		}
