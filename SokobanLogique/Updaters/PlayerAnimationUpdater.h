@@ -6,14 +6,10 @@ namespace Sokoban {
 	class PlayerAnimationUpdater : public AnimationUpdater
 	{
 	public:
-		PlayerAnimationUpdater(void): _nextDir(NONE),_lastRot(0,Z_AXIS) {}
+		PlayerAnimationUpdater(void): _lastRot(0,Z_AXIS) {}
 		~PlayerAnimationUpdater(void);
-		void setMovement(Vec3, Vec3);
-		void setDirection(Direction dir) {
-			_nextDir = dir;
-		}
+		void setMovement(Vec3, Vec3, Direction);
 	private:
-		Direction _nextDir;
 		Quat _lastRot;
 	};
 }

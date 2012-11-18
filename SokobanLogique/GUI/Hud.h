@@ -24,6 +24,6 @@ namespace Sokoban
         clock_t _timer;
         std::vector<osg::ref_ptr<DirectionButton> > _buttons;
         osg::ref_ptr<osg::Group> _nodes;
-		osg::ref_ptr<SaveButton> saveButton;
+		void createNodes();
     };
 };

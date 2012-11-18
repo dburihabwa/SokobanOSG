@@ -84,6 +84,8 @@
     <ClCompile Include="Updaters\PlayerAnimationUpdater.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Adapters\MoveAdapter.h" />
+    <ClInclude Include="Adapters\OSGMoveAdapter.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="dirent.h" />
     <ClInclude Include="Event.h" />
@@ -101,6 +103,7 @@
     <ClInclude Include="Logic\Box.h" />
     <ClInclude Include="Logic\Case.h" />
     <ClInclude Include="Logic\Direction.h" />
+    <ClInclude Include="Logic\Empty.h" />
     <ClInclude Include="Logic\Ground.h" />
     <ClInclude Include="Logic\GUITypes.h" />
     <ClInclude Include="Logic\Movable.h" />

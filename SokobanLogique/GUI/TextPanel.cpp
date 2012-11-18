@@ -34,7 +34,7 @@ void Sokoban::TextPanel::addText(std::string str, osg::Vec4 color) {
 #if DEBUG==TRUE
 	std::cout<<str<<std::endl;
 #endif
-	updatePostion();
+	updatePosition();
 	osg::ref_ptr<osgText::Text> text = new osgText::Text;
 	text->setFont(_font);
 	text->setColor(color);
@@ -50,7 +50,7 @@ void Sokoban::TextPanel::addText(std::string str, osg::Vec4 color) {
 	_textGroup->addChild(message);
 	_nbTxt++;
 }
-void Sokoban::TextPanel::updatePostion() {
+void Sokoban::TextPanel::updatePosition() {
 	osg::ref_ptr<osg::Geode> toBeDeleted;
 	for(unsigned int i = 0; i < _nbTxt; i++) {
 		osg::ref_ptr<osg::Geode> node = static_cast<osg::Geode*>(_textGroup->getChild(i));
