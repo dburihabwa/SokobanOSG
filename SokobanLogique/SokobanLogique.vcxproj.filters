@@ -153,16 +153,13 @@
     <ClInclude Include="GUI\GUIButton.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="LoadSavedGameButton.h">
-      <Filter>Headers\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\SaveButton.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="ZoomButton.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\ZoomButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\LoadSavedGameButton.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
   </ItemGroup>
@@ -215,13 +212,13 @@
     <ClCompile Include="GUI\GUIButton.cpp">
       <Filter>Sources\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="LoadSavedGameButton.cpp">
-      <Filter>Sources\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="GUI\SaveButton.cpp">
       <Filter>Sources\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GUI\ZoomButton.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\LoadSavedGameButton.cpp">
       <Filter>Sources\GUI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -264,6 +261,9 @@
     </None>
     <None Include="Ressources\Textures\zoom_out.png">
       <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Levels\level_0.sok">
+      <Filter>Ressources\Levels</Filter>
     </None>
   </ItemGroup>
 </Project>

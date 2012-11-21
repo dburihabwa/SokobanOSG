@@ -1,5 +1,5 @@
 #pragma once
-#include "c:\users\dorian\documents\visual studio 2010\projects\sokobanosg\sokobanlogique\gui\guibutton.h"
+#include "guibutton.h"
 
 namespace Sokoban {
 	class LoadSavedGameButton :

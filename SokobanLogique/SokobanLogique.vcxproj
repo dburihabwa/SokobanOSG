@@ -74,7 +74,7 @@
     <ClCompile Include="Handlers\DirectionButtonEventHandler.cpp" />
     <ClCompile Include="Handlers\KeyboardHandler.cpp" />
     <ClCompile Include="Handlers\MouseHandler.cpp" />
-    <ClCompile Include="LoadSavedGameButton.cpp" />
+    <ClCompile Include="GUI\LoadSavedGameButton.cpp" />
     <ClCompile Include="Logic\Board.cpp" />
     <ClCompile Include="Logic\Box.cpp" />
     <ClCompile Include="Logic\Movable.cpp" />
@@ -100,7 +100,7 @@
     <ClInclude Include="Handlers\DirectionButtonEventHandler.h" />
     <ClInclude Include="Handlers\KeyboardHandler.h" />
     <ClInclude Include="Handlers\MouseHandler.h" />
-    <ClInclude Include="LoadSavedGameButton.h" />
+    <ClInclude Include="GUI\LoadSavedGameButton.h" />
     <ClInclude Include="Logic\Board.h" />
     <ClInclude Include="Logic\Box.h" />
     <ClInclude Include="Logic\Case.h" />
@@ -116,9 +116,9 @@
     <ClInclude Include="GUI\TextPanel.h" />
     <ClInclude Include="Updaters\AnimationUpdater.h" />
     <ClInclude Include="Updaters\PlayerAnimationUpdater.h" />
-    <ClInclude Include="ZoomButton.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Ressources\Levels\level_0.sok" />
     <None Include="Ressources\Levels\level_1.sok" />
     <None Include="Ressources\Levels\level_2.sok" />
     <None Include="Ressources\Levels\level_3.sok" />
