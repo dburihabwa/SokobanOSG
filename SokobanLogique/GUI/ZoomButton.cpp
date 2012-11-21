@@ -30,5 +30,5 @@ bool Sokoban::ZoomButton::onClick() {
 		fov-=2;
 	}
 	board->setProjectionMatrixAsPerspective(fov,ar,near,far);
-	return false;
+	return true;
 }

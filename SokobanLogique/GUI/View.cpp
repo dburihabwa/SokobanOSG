@@ -6,6 +6,7 @@
 #include "../Factories/NodeFactory.h"
 #include "../Updaters/PlayerAnimationUpdater.h"
 #include "../Adapters/OSGMoveAdapter.h"
+#include "../Handlers/ScrollHandler.h"
 
 Sokoban::View::View(void)
 {
@@ -85,6 +86,7 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	//Add keyboardController
 	_viewer->addEventHandler(new KeyboardHandler());
 	_viewer->addEventHandler(new DirectionButtonEventHandler());
+	_viewer->addEventHandler(new ScrollHandler());
 }
 
 void Sokoban::View::resetLevel(){

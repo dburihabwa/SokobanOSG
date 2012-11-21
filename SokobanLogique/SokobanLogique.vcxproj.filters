@@ -162,6 +162,9 @@
     <ClInclude Include="GUI\LoadSavedGameButton.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Handlers\ScrollHandler.h">
+      <Filter>Headers\Handlers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">
@@ -220,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="GUI\LoadSavedGameButton.cpp">
       <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Handlers\ScrollHandler.cpp">
+      <Filter>Sources\Handlers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
