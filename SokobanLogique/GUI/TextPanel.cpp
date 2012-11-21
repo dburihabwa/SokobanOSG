@@ -10,7 +10,7 @@
 
 osg::ref_ptr<osgText::Font> Sokoban::TextPanel::_font = osgText::readFontFile("fonts/arial.ttf");
 
-Sokoban::TextPanel::TextPanel(osg::ref_ptr<osg::Camera> cam) : _camera(cam.get()), _nbTxt(0), _lastY(0)
+Sokoban::TextPanel::TextPanel(osg::ref_ptr<osg::Camera> cam) : _camera(cam.get()), _nbTxt(0)
 {
 	init();
 	_maxHeight = (_camera->getViewport()->height()/2)- 110;
@@ -25,6 +25,7 @@ void Sokoban::TextPanel::reset() {
 	_camera->removeChild(_textGroup);
 	_textGroup.release();
 	_textCache.clear();
+	_nbTxt = 0;
 	init();
 }
 void Sokoban::TextPanel::init() {

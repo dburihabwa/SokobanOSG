@@ -206,6 +206,8 @@ void Sokoban::Board::resetBoard() {
 			}
 		}
 		_player.release();
+		_movable.clear();
+		_unMovable.clear();
 		_set = false;
 	}
 }
