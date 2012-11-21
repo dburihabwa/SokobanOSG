@@ -57,19 +57,19 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		textureImage.append("arrow.jpg");
 		break;
 	case SAVE_BUTTON:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1, 1, 0));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
 		textureImage.append("floppy.jpg");
 		break;
 	case ZOOM_IN:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1, 1, 0));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
 		textureImage.append("zoom_in.png");
 		break;
 	case ZOOM_OUT:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1, 1, 0));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
 		textureImage.append("zoom_out.png");
 		break;
 	case LOAD_BUTTON:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1, 1, 0));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
 		textureImage.append("load.png");
 		break;
 	default:
