@@ -40,6 +40,7 @@ void Sokoban::TextPanel::addText(std::string str, osg::Vec4 color) {
 	osg::ref_ptr<osg::PositionAttitudeTransform> pos = new osg::PositionAttitudeTransform();
 	pos->addChild(this->getOrCreateGeode(str,color));
 	pos->setPosition(osg::Vec3(-3.3,8,0));
+	pos->setName(str);
 	_textGroup->addChild(pos);
 	_nbTxt++;
 }
@@ -77,7 +78,6 @@ osg::ref_ptr<osg::Geode> Sokoban::TextPanel::getOrCreateGeode(std::string str, o
 	text->setCharacterSize(0.4);
 	text->setText(str);
 	osg::ref_ptr<osg::Geode> message = new osg::Geode;
-	message->setName(str);
 	osg::ref_ptr<osg::StateSet> stateset;
 	stateset = message->getOrCreateStateSet();
 	stateset->setMode(GL_LIGHTING,osg::StateAttribute::OFF);
