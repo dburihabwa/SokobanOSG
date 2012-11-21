@@ -51,7 +51,7 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 		Sokoban::far 
 		); 
 	_buttons->setProjectionMatrixAsPerspective( 
-		50.0f, 
+		43.0f, 
 		restWidth/(double)buttonsHeight, 
 		Sokoban::near, 
 		100.0F

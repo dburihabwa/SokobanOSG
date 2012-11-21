@@ -10,6 +10,7 @@ namespace Sokoban {
 		Type getType() {
 			return LOAD_BUTTON;
 		}
+		bool onClick();
 		~LoadSavedGameButton(void);
 	};
 };

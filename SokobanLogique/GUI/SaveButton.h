@@ -7,6 +7,7 @@ namespace Sokoban {
 	public:
 		SaveButton(int x, int y, int z);
 		Type getType();
+		bool onClick();
 	};
 };
 

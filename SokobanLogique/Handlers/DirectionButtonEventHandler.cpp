@@ -1,10 +1,8 @@
 #include "DirectionButtonEventHandler.h"
 #include <osgUtil/LineSegmentIntersector>
 #include <osgViewer\Viewer>
+#include "../GUI/GUIButton.h"
 #include "../GUI/View.h"
-#include "../GUI/DirectionButton.h"
-#include "../Logic/Board.h"
-#include "../GUI/SaveButton.h"
 
 Sokoban::DirectionButtonEventHandler::DirectionButtonEventHandler(void)
 {
@@ -25,17 +23,11 @@ bool Sokoban::DirectionButtonEventHandler::pick(const osgGA::GUIEventAdapter& ea
 	if (picker->containsIntersections())
 	{
 		osgUtil::LineSegmentIntersector::Intersection intersection = picker->getFirstIntersection();
-		//We used the UserData to add the DirectionButton to the graphical object, with that no check to be made to know
+		//We used the UserData to add the GuiButton to the graphical object, with that no check to be made to know
 		//which buttons has been clicked.
-		ref_ptr<DirectionButton> button = dynamic_cast<DirectionButton*>(intersection.nodePath.at(2)->getUserData());
+		ref_ptr<GUIButton> button = dynamic_cast<GUIButton*>(intersection.nodePath.at(2)->getUserData());
 		if(button) {
-			Board::getInstance().movePlayer(button->getDirection());
-			return true;
-		}
-		ref_ptr<SaveButton> saveButton = dynamic_cast<SaveButton*>(intersection.nodePath.at(2)->getUserData());
-		if (saveButton) {
-			Board::getInstance().save();
-			return true;
+			return button->onClick();
 		}
 	}
 	return false;

@@ -8,6 +8,7 @@ namespace Sokoban {
 	{
 	public:
 		GUIButton(int x, int y, int z);
+		virtual bool onClick() = 0;
 	};
 };
 

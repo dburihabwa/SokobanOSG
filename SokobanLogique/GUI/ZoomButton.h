@@ -7,6 +7,7 @@ namespace Sokoban {
 	public:
 		ZoomButton(int x, int y, int z, Type type);
 		Type getType();
+		bool onClick();
 		~ZoomButton(void);
 	protected:
 		Type _type;

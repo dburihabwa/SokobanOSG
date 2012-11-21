@@ -1,4 +1,5 @@
 #include "ZoomButton.h"
+#include "View.h"
 
 
 Sokoban::ZoomButton::ZoomButton(int x, int y, int z, Sokoban::Type type) : GUIButton(x, y, z)
@@ -16,4 +17,8 @@ Sokoban::Type Sokoban::ZoomButton::getType() {
 
 Sokoban::ZoomButton::~ZoomButton(void)
 {
+}
+
+bool Sokoban::ZoomButton::onClick() {
+	return false;
 }

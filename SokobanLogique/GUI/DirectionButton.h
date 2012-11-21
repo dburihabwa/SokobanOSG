@@ -20,6 +20,7 @@ namespace Sokoban {
 		///		Returns the logical direction of the button
 		///	</summary>*
         Direction getDirection() const;
+		bool onClick();
     private:
         Direction _direction;
     };
