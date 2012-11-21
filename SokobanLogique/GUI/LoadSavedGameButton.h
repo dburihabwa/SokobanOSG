@@ -7,6 +7,9 @@ namespace Sokoban {
 	{
 	public:
 		LoadSavedGameButton(int x, int y, int z);
+		Type getType() {
+			return LOAD_BUTTON;
+		}
 		~LoadSavedGameButton(void);
 	};
 };

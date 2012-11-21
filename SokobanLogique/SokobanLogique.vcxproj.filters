@@ -265,5 +265,8 @@
     <None Include="Ressources\Levels\level_0.sok">
       <Filter>Ressources\Levels</Filter>
     </None>
+    <None Include="Ressources\Textures\load.png">
+      <Filter>Ressources\Textures</Filter>
+    </None>
   </ItemGroup>
 </Project>
