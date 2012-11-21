@@ -34,6 +34,10 @@ bool Sokoban::KeyboardHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::G
 			Board::getInstance().movePlayer(UP);
 			return true;
 			break;
+		case osgGA::GUIEventAdapter::KEY_N: //touche N
+			Board::getInstance().loadNextLvl();
+			return true;
+			break;
 		default:
 			break;
 		}
