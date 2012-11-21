@@ -220,6 +220,13 @@ void Sokoban::Board::loadFile(const char* file) {
 	levelFile.close();
 }
 void Sokoban::Board::loadNextLvl() {
+	if(_win !=0) {
+		std::string message("Vous ne pouvez pas charger le niveau");
+		View::getInstance().addText(std::string("précédant !"), MSG_WARNING);
+		View::getInstance().addText(std::string("suivant sans savoir terminer le "), MSG_WARNING);
+		View::getInstance().addText(message, MSG_WARNING);
+		return;
+	}
 	this->resetBoard();
 	if(_currentLvl == _levelFile.size() - 1) {
 		std::string message("Vous avez fini le jeu.");
