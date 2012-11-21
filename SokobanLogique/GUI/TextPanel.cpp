@@ -4,6 +4,7 @@
 #include <osgText\Text>
 #include <iostream>
 #include <osg/Node>
+#include <osg/PositionAttitudeTransform>
 
 
 
@@ -23,6 +24,7 @@ Sokoban::TextPanel::~TextPanel(void) {
 void Sokoban::TextPanel::reset() {
 	_camera->removeChild(_textGroup);
 	_textGroup.release();
+	_textCache.clear();
 	init();
 }
 void Sokoban::TextPanel::init() {
@@ -35,33 +37,25 @@ void Sokoban::TextPanel::addText(std::string str, osg::Vec4 color) {
 	std::cout<<str<<std::endl;
 #endif
 	updatePosition();
-	osg::ref_ptr<osgText::Text> text = new osgText::Text;
-	text->setFont(_font);
-	text->setColor(color);
-	text->setCharacterSize(0.4);
-	text->setPosition(osg::Vec3(-3.3,8,0));
-	text->setText(str);
-	osg::ref_ptr<osg::Geode> message = new osg::Geode;
-	message->setName(str);
-	osg::ref_ptr<osg::StateSet> stateset;
-	stateset = message->getOrCreateStateSet();
-	stateset->setMode(GL_LIGHTING,osg::StateAttribute::OFF);
-	message->addDrawable(text);
-	_textGroup->addChild(message);
+	osg::ref_ptr<osg::PositionAttitudeTransform> pos = new osg::PositionAttitudeTransform();
+	pos->addChild(this->getOrCreateGeode(str,color));
+	pos->setPosition(osg::Vec3(-3.3,8,0));
+	_textGroup->addChild(pos);
 	_nbTxt++;
 }
 void Sokoban::TextPanel::updatePosition() {
-	osg::ref_ptr<osg::Geode> toBeDeleted;
+	osg::ref_ptr<osg::Node> toBeDeleted;
 	for(unsigned int i = 0; i < _nbTxt; i++) {
-		osg::ref_ptr<osg::Geode> node = static_cast<osg::Geode*>(_textGroup->getChild(i));
+		osg::ref_ptr<osg::PositionAttitudeTransform> posAtt = static_cast<osg::PositionAttitudeTransform *>(_textGroup->getChild(i));
+		osg::ref_ptr<osg::Geode> node = static_cast<osg::Geode*>(posAtt->getChild(0));
 		osg::ref_ptr<osgText::Text> text = static_cast<osgText::Text*>(node->getDrawable(0));
-		osg::Vec3 pos = text->getPosition();
+		osg::Vec3 pos = posAtt->getPosition();
 		pos += osg::Vec3(0,-0.4,0);
 		if(-pos.y() * text->getFontHeight()  >= _maxHeight) {
-			toBeDeleted = node;
+			toBeDeleted = posAtt;
 		}
 		else {
-			text->setPosition(pos);
+			posAtt->setPosition(pos);
 		}
 	}
 	if(toBeDeleted) {
@@ -71,4 +65,23 @@ void Sokoban::TextPanel::updatePosition() {
 		std::cout<<"Child deleted : "<<toBeDeleted->getName()<<std::endl;
 #endif
 	}
+}
+
+osg::ref_ptr<osg::Geode> Sokoban::TextPanel::getOrCreateGeode(std::string str, osg::Vec4 color) {
+	if(_textCache.find(str) != _textCache.end()) {
+		return _textCache[str];
+	}
+	osg::ref_ptr<osgText::Text> text = new osgText::Text;
+	text->setFont(_font);
+	text->setColor(color);
+	text->setCharacterSize(0.4);
+	text->setText(str);
+	osg::ref_ptr<osg::Geode> message = new osg::Geode;
+	message->setName(str);
+	osg::ref_ptr<osg::StateSet> stateset;
+	stateset = message->getOrCreateStateSet();
+	stateset->setMode(GL_LIGHTING,osg::StateAttribute::OFF);
+	message->addDrawable(text);
+	_textCache.insert(std::make_pair(str,message));
+	return message;
 }

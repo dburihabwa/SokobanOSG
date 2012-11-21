@@ -3,6 +3,7 @@
 #include <osg/Group>
 #include <osg/Camera>
 #include <osgText\Font>
+#include <map>
 
 namespace Sokoban {
 	class TextPanel : public osg::Referenced
@@ -22,5 +23,7 @@ namespace Sokoban {
 		unsigned int _maxHeight;
 		static osg::ref_ptr<osgText::Font> _font;
 		void updatePosition();
+		std::map<std::string,osg::ref_ptr<osg::Geode>> _textCache;
+		osg::ref_ptr<osg::Geode> getOrCreateGeode(std::string text, osg::Vec4 color);
 	};
 }
