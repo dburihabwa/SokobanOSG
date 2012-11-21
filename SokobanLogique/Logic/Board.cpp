@@ -108,7 +108,8 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 			//If the win counter == 0, the player have finished the level.
 			if(_win==0) {
 				std::string victoryMessage("Vous avez gagné !");
-				View::getInstance().addText(victoryMessage, MSG_OK);
+				View::getInstance().addText(std::string("Appuyez sur N pour le niveau suivant."));
+				View::getInstance().addText(victoryMessage, MSG_OK);				
 			}
 		}
 		else {
@@ -220,12 +221,12 @@ void Sokoban::Board::loadFile(const char* file) {
 }
 void Sokoban::Board::loadNextLvl() {
 	this->resetBoard();
-	_currentLvl++;
-	if(_currentLvl == _levelFile.size()) {
+	if(_currentLvl == _levelFile.size() - 1) {
 		std::string message("Vous avez fini le jeu.");
 		View::getInstance().addText(message);
 		return;
 	}
+	_currentLvl++;
 	std::string level = LVL_DIR;
 	level.append(_levelFile[_currentLvl]);
 	this->loadFile(level.c_str());
