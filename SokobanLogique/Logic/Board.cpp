@@ -19,28 +19,8 @@
 
 void Sokoban::Board::init(std::string level)
 {
-	std::regex pattern("([^\\n]+)\\n?");
-	std::sregex_iterator end, iter(level.begin(), level.end(), pattern);
 
-	_width = 0;
-	std::vector<std::string> data;
-	//Get every line of the string, check their 
-	//length to find the lenght of the level
-	int lvl;
-	std::stringstream lvlNbr ((*iter)[1].str());
-	lvlNbr >> lvl;
-	if(lvlNbr) {
-		if(lvl >= 0) {
-			_currentLvl = lvl;
-		}
-		++iter;
-	}
-	for(; iter != end; ++iter)
-	{
-		data.push_back((*iter)[1]);
-		_width = max(_width, (unsigned int)(*iter)[1].length());
-	}
-	_height = data.size();
+	std::vector<std::string> data= this->parseStringLevel(level);
 	//Get the center of the level, since we are doing a rotation on every element
 	//The rotation need to be applied on the center vector also.
 	center = Vec3d(_height/2.,_width/2,0);
@@ -120,8 +100,8 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 			//if it's the case, increment the win counter.
 			if(wasOnTarget && !_player->getMovedBox()->isOnTarget()) {
 				_win++;
-			//if the box wasn't on a target and is a on a target now
-			//Decrement the win counter.
+				//if the box wasn't on a target and is a on a target now
+				//Decrement the win counter.
 			} else if(!wasOnTarget && _player->getMovedBox()->isOnTarget()) {
 				_win--;
 			}
@@ -280,4 +260,30 @@ bool Sokoban::Board::loadSave() {
 	std::string victoryMessage("Aucune sauvergarde à charger");
 	View::getInstance().addText(victoryMessage, MSG_WARNING);
 	return false;
+}
+
+std::vector<std::string> Sokoban::Board::parseStringLevel(std::string level) {
+	std::regex pattern("([^\\n]+)\\n?");
+	std::sregex_iterator end, iter(level.begin(), level.end(), pattern);
+
+	_width = 0;
+	std::vector<std::string> data;
+	//Get every line of the string, check their 
+	//length to find the lenght of the level
+	int lvl;
+	std::stringstream lvlNbr ((*iter)[1].str());
+	lvlNbr >> lvl;
+	if(lvlNbr) {
+		if(lvl >= 0) {
+			_currentLvl = lvl;
+		}
+		++iter;
+	}
+	for(; iter != end; ++iter)
+	{
+		data.push_back((*iter)[1]);
+		_width = max(_width, (unsigned int)(*iter)[1].length());
+	}
+	_height = data.size();
+	return data;
 }

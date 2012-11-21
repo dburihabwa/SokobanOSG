@@ -124,6 +124,7 @@ namespace Sokoban
 		/// <seealso cref="getLevel()">
 		/// The OSG Graphical Level can be get in that method </seealso>
 		void init(std::string);
+		std::vector<std::string> parseStringLevel(std::string);
 
 	};
 
