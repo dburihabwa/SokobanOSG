@@ -29,14 +29,10 @@ bool Sokoban::ScrollHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUI
 
 }
 bool Sokoban::ScrollHandler::scrollHandle( osgGA::GUIEventAdapter::ScrollingMotion type) const {
-	osg::ref_ptr<osg::Camera> board = View::getInstance().getBoardCamera();
-	double fov, ar,near,far;
-	board->getProjectionMatrixAsPerspective(fov,ar,near,far);
 	if(type == osgGA::GUIEventAdapter::SCROLL_DOWN) {
-		fov+=1;
+		View::getInstance().changeZoomOnBoard(1);
 	} else if(type == osgGA::GUIEventAdapter::SCROLL_UP) {
-		fov-=1;
-	}
-	board->setProjectionMatrixAsPerspective(fov,ar,near,far);
+		View::getInstance().changeZoomOnBoard(-1);
+	}	
 	return true;
 }

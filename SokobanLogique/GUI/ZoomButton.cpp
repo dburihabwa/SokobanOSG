@@ -21,14 +21,11 @@ Sokoban::ZoomButton::~ZoomButton(void)
 }
 
 bool Sokoban::ZoomButton::onClick() {
-	osg::ref_ptr<osg::Camera> board = View::getInstance().getBoardCamera();
-	double fov, ar,near,far;
-	board->getProjectionMatrixAsPerspective(fov,ar,near,far);
+
 	if(_type == ZOOM_OUT) {
-		fov+=2;
+		View::getInstance().changeZoomOnBoard(2);
 	} else if(_type == ZOOM_IN) {
-		fov-=2;
+		View::getInstance().changeZoomOnBoard(-2);
 	}
-	board->setProjectionMatrixAsPerspective(fov,ar,near,far);
 	return true;
 }

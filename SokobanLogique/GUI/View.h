@@ -40,10 +40,7 @@ namespace Sokoban {
 		///<summary> Notify the view that it have to refresh</summary>
 		void notify(Event);
 		~View(void);
-
-		osg::ref_ptr<osg::Camera> getBoardCamera() {
-			return _playBoard;
-		}
+		void changeZoomOnBoard(double) const;
 	private:
 		osg::ref_ptr<osgViewer::Viewer> _viewer;
 		osg::ref_ptr<osg::Camera> _buttons;	

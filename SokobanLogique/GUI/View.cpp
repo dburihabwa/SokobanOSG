@@ -149,6 +149,14 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 	Vec3 centerEye = Vec3(center[0],center[1],16.0);
 	_playBoard->setViewMatrixAsLookAt(centerEye, center, Sokoban::UP_AXIS); 
 }
+
+void Sokoban::View::changeZoomOnBoard(double fovDiff) const{
+	double fov, ar,near,far;
+	_playBoard->getProjectionMatrixAsPerspective(fov,ar,near,far);
+	fov+=fovDiff;
+	_playBoard->setProjectionMatrixAsPerspective(fov,ar,near,far);
+}
+
 Sokoban::View::~View(void)
 {
 }
