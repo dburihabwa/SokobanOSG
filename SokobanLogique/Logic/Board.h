@@ -39,52 +39,9 @@ namespace Sokoban
 
 		~Board(void);
 
-		friend std::ostream& operator<<(std::ostream& out, Board const& board){
-			//Première ligne doit être le num du niveau
-			//le reste c'est le format qu'on a décidé
-			std::string level;
-			out << board._currentLvl << std::endl;
+		friend std::ostream& operator<<(std::ostream& out, Board const& board);
+		friend std::istream& operator>>(std::istream& in, Board& board);
 
-			for (unsigned int i = 0; i < board._height; i++) {
-				for (unsigned int j = 0; j < board._width; j++) {
-					char symbol;
-					ref_ptr<Case> c = board.getCase(i, j);
-
-					switch (c->getType()) {
-					case BOX:
-						if (board._unMovable[i][j]->getType() == TARGET) 
-							symbol = '=';
-						else
-							symbol = '$';
-						break;
-					case PLAYER:
-						if (board._unMovable[i][j]->getType() == TARGET)
-							symbol = '%';
-						else
-							symbol = '@';
-						break;
-					case TARGET: 
-						symbol = '.';
-						break;
-					case WALL:
-						symbol = '#';
-						break;
-					default: /* case GROUND : */
-						symbol = ' ';
-					}
-					level.push_back(symbol);
-				}
-				level.push_back('\n');
-			}
-			out << level;
-			return out;
-		}
-		friend std::istream& operator>>(std::istream& in, Board& board) {
-			std::stringstream buffer;
-			buffer << in.rdbuf();
-			board.init(buffer.str());
-			return in;
-		}
 		///<summary>Load the next level and return it</summary>
 		void loadNextLvl();
 

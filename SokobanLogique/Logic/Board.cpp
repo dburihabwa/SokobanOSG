@@ -298,3 +298,51 @@ std::vector<std::string> Sokoban::Board::parseStringLevel(std::string level) {
 	_height = data.size();
 	return data;
 }
+//Operators
+std::istream& Sokoban::operator>>(std::istream& in, Sokoban::Board& board) {
+	std::stringstream buffer;
+	buffer << in.rdbuf();
+	board.init(buffer.str());
+	return in;
+}
+
+std::ostream&  Sokoban::operator<<(std::ostream& out,Sokoban::Board const& board) {
+	//Première ligne doit être le num du niveau
+	//le reste c'est le format qu'on a décidé
+	std::string level;
+	out << board._currentLvl << std::endl;
+
+	for (unsigned int i = 0; i < board._height; i++) {
+		for (unsigned int j = 0; j < board._width; j++) {
+			char symbol;
+			ref_ptr<Sokoban::Case> c = board.getCase(i, j);
+
+			switch (c->getType()) {
+			case Sokoban::BOX:
+				if (board._unMovable[i][j]->getType() == TARGET) 
+					symbol = '=';
+				else
+					symbol = '$';
+				break;
+			case Sokoban::PLAYER:
+				if (board._unMovable[i][j]->getType() == TARGET)
+					symbol = '%';
+				else
+					symbol = '@';
+				break;
+			case Sokoban::TARGET: 
+				symbol = '.';
+				break;
+			case Sokoban::WALL:
+				symbol = '#';
+				break;
+			default: /* case GROUND : */
+				symbol = ' ';
+			}
+			level.push_back(symbol);
+		}
+		level.push_back('\n');
+	}
+	out << level;
+	return out;
+}
