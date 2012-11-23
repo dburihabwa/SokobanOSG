@@ -23,17 +23,101 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::createNode(int x,int y,int z, Type
 	return postAtt;
 }
 
+osg::ref_ptr<osg::Geometry> createGround() {
+	osg::ref_ptr<osg::Geometry> geometry = new osg::Geometry();
+	osg::ref_ptr<osg::Vec3Array> groundVertices = new osg::Vec3Array();
+	/*groundVertices->push_back(osg::Vec3(0, 0, 0));
+	groundVertices->push_back(osg::Vec3(1, 0, 0));
+	groundVertices->push_back(osg::Vec3(1, 1, 0));
+	groundVertices->push_back(osg::Vec3(0, 1, 0));
+	groundVertices->push_back(osg::Vec3(0, 0, 0.1));
+	groundVertices->push_back(osg::Vec3(1, 0, 0.1));
+	groundVertices->push_back(osg::Vec3(1, 1, 0.1));
+	groundVertices->push_back(osg::Vec3(0, 1,0.1));*/
+
+	groundVertices->push_back(osg::Vec3(0 - 0.5, 0 - 0.5, 0));
+	groundVertices->push_back(osg::Vec3(1 - 0.5, 0 - 0.5, 0));
+	groundVertices->push_back(osg::Vec3(1 - 0.5, 1 - 0.5, 0));
+	groundVertices->push_back(osg::Vec3(0 - 0.5, 1 - 0.5, 0));
+	groundVertices->push_back(osg::Vec3(0 - 0.5, 0 - 0.5, 0.1));
+	groundVertices->push_back(osg::Vec3(1 - 0.5, 0 - 0.5, 0.1));
+	groundVertices->push_back(osg::Vec3(1 - 0.5, 1 - 0.5, 0.1));
+	groundVertices->push_back(osg::Vec3(0 - 0.5, 1 - 0.5,0.1));
+
+	geometry->setVertexArray(groundVertices);
+
+	
+	osg::ref_ptr<osg::Vec2Array> texCoords = new osg::Vec2Array();
+	texCoords->push_back(osg::Vec2(0,1));
+	texCoords->push_back(osg::Vec2(1,1));
+	texCoords->push_back(osg::Vec2(1,0));
+	texCoords->push_back(osg::Vec2(0,0));
+	geometry->setTexCoordArray(0, texCoords);
+	
+	osg::ref_ptr<osg::DrawElementsUInt> topFace = 
+		new osg::DrawElementsUInt(osg::PrimitiveSet::QUADS, 0);
+	topFace->push_back(3);
+	topFace->push_back(2);
+	topFace->push_back(1);
+	topFace->push_back(0);
+	geometry->addPrimitiveSet(topFace);
+	/*
+	osg::ref_ptr<osg::DrawElementsUInt> bottomFace = 
+		new osg::DrawElementsUInt(osg::PrimitiveSet::QUADS, 0);
+	bottomFace->push_back(7);
+	bottomFace->push_back(6);
+	bottomFace->push_back(5);
+	bottomFace->push_back(4);
+	geometry->addPrimitiveSet(bottomFace);
+	
+	/*
+	osg::ref_ptr<osg::DrawElementsUInt> leftFace = 
+		new osg::DrawElementsUInt(osg::PrimitiveSet::QUADS, 0);
+	leftFace->push_back(3);
+	leftFace->push_back(7);
+	leftFace->push_back(1);
+	leftFace->push_back(0);
+	geometry->addPrimitiveSet(leftFace);
+	
+	osg::ref_ptr<osg::DrawElementsUInt> rightFace = 
+		new osg::DrawElementsUInt(osg::PrimitiveSet::QUADS, 0);
+	rightFace->push_back(2);
+	rightFace->push_back(6);
+	rightFace->push_back(5);
+	rightFace->push_back(1);
+	geometry->addPrimitiveSet(rightFace);
+	
+	osg::ref_ptr<osg::DrawElementsUInt> frontFace = 
+		new osg::DrawElementsUInt(osg::PrimitiveSet::QUADS, 0);
+	frontFace->push_back(2);
+	frontFace->push_back(6);
+	frontFace->push_back(7);
+	frontFace->push_back(3);
+	geometry->addPrimitiveSet(frontFace);
+
+	osg::ref_ptr<osg::DrawElementsUInt> backFace = 
+		new osg::DrawElementsUInt(osg::PrimitiveSet::QUADS, 0);
+	backFace->push_back(1);
+	backFace->push_back(4);
+	backFace->push_back(5);
+	backFace->push_back(0);
+	geometry->addPrimitiveSet(backFace);
+	*/
+	return geometry;
+}
+
 osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	if(_geoCache.find(element) != _geoCache.end()) {
 		return _geoCache[element];
 	}
 	osg::ref_ptr<osg::ShapeDrawable> shape;
-	std::string textureImage = TEXTURE_DIR;
+	std::string textureImage = TEXTURE_DIR;	
+	osg::ref_ptr<osg::Geode> noeudGeo = new osg::Geode();
 	//Switch on the element for texture and shape
 	switch(element)
 	{
 	case GROUND :
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1,1,0.1));
+		noeudGeo->addDrawable(createGround());
 		textureImage.append("rs-ground00.jpg");
 		break;
 	case BOX:
@@ -77,8 +161,8 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		textureImage.append("default.jpg");
 		break;
 	}
-	osg::ref_ptr<osg::Geode> noeudGeo = new osg::Geode;
-	noeudGeo->addDrawable(shape);
+	if (element != GROUND)
+		noeudGeo->addDrawable(shape);
 
 	// create a simple material
 	osg::Material *material = new osg::Material();
@@ -104,5 +188,6 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	sphereStateSet->setAttribute(material);
 	sphereStateSet->setTextureAttributeAndModes(0, texture, osg::StateAttribute::ON);
 	_geoCache.insert(std::make_pair(element,noeudGeo));
+	std::cout << "Fin de l'instanctiation d'un objet" << std::endl;
 	return noeudGeo;
 }
