@@ -349,6 +349,9 @@ void Sokoban::Board::loadLvl() {
 	level.append(_levelFile[_currentLvl]);
 	this->loadFile(level.c_str());
 	View::getInstance().notify(LOAD_LVL);
+	std::stringstream message;
+	message<<"Niveau "<<_currentLvl<<" chargé.";
+	View::getInstance().addText(message.str());
 }
 
 void Sokoban::Board::reloadLvl() {

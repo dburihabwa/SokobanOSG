@@ -68,6 +68,9 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	_buttons->setViewport(new Viewport(0,0,restWidth,buttonsHeight));
 	textCamera->setViewport(new Viewport(restWidth,0,textWidth, height));
 
+	//Text
+	textCamera->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Y_AXIS);
+	_textPanel = new TextPanel(textCamera);
 	//Board
 	Sokoban::Board::getInstance().loadNextLvl();
 
@@ -76,14 +79,13 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	_buttons->addChild(hud.getNodes());
 	_buttons->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Sokoban::UP_AXIS);
 
-	//Text
-	textCamera->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Y_AXIS);
-	_textPanel = new TextPanel(textCamera);
-
 	//Add keyboardController
 	_viewer->addEventHandler(new KeyboardHandler());
 	_viewer->addEventHandler(new DirectionButtonEventHandler());
 	_viewer->addEventHandler(new ScrollHandler());
+	this->addText("appuyer sur R.");
+	this->addText("Pour recharger le niveau");
+	this->addText("Bienvenue dans Sokoban.", MSG_OK);
 }
 
 void Sokoban::View::resetLevel(){
