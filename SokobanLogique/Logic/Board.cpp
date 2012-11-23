@@ -234,10 +234,7 @@ void Sokoban::Board::loadNextLvl() {
 		return;
 	}
 	_currentLvl++;
-	std::string level = LVL_DIR;
-	level.append(_levelFile[_currentLvl]);
-	this->loadFile(level.c_str());
-	View::getInstance().notify(LOAD_LVL);
+	this->loadLvl();
 }
 
 
@@ -345,4 +342,16 @@ std::ostream&  Sokoban::operator<<(std::ostream& out,Sokoban::Board const& board
 	}
 	out << level;
 	return out;
+}
+
+void Sokoban::Board::loadLvl() {
+	std::string level = LVL_DIR;
+	level.append(_levelFile[_currentLvl]);
+	this->loadFile(level.c_str());
+	View::getInstance().notify(LOAD_LVL);
+}
+
+void Sokoban::Board::reloadLvl() {
+	this->resetBoard();
+	this->loadLvl();
 }
