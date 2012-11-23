@@ -188,6 +188,5 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	sphereStateSet->setAttribute(material);
 	sphereStateSet->setTextureAttributeAndModes(0, texture, osg::StateAttribute::ON);
 	_geoCache.insert(std::make_pair(element,noeudGeo));
-	std::cout << "Fin de l'instanctiation d'un objet" << std::endl;
 	return noeudGeo;
 }
