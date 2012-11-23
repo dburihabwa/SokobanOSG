@@ -32,7 +32,7 @@ void Sokoban::Board::init(std::string level)
 		{
 			if(u > data[v].size())
 			{
-				ref_ptr<Unmovable> ground = new Ground(v,u,-0.05);
+				ref_ptr<Unmovable> ground = new Ground(v,u,0);
 				ref_ptr<Movable> empty = new Empty(v,u,0);
 				sTemp.push_back(ground);
 				dTemp.push_back(empty);
@@ -44,33 +44,33 @@ void Sokoban::Board::init(std::string level)
 				char c = data[v][u];
 
 				if(c == '#') {
-					s = new Wall(v,u,0.6);
-					d =  new Empty(v,u,-0.05);
+					s = new Wall(v,u,0);
+					d =  new Empty(v,u,0);
 				}
 				else if(c == '.') { 
 					s = new Target(v,u,0);
-					d =  new Empty(v,u,-0.05);
+					d =  new Empty(v,u,0);
 					_win++;
 				}
 				else if(c == '@' ) {
-					_player = new Player(v,u,0.4);
+					_player = new Player(v,u,1);
 					d = _player.get();					
-					s =  new Ground(v,u,-0.05);
+					s =  new Ground(v,u,0);
 				}
 				else if(c == '$') {
-					d = new Box(v,u,0.45);
-					s =  new Ground(v,u,-0.05);
+					d = new Box(v,u,1);
+					s =  new Ground(v,u,0);
 				} else if(c == '=') {
 					s = new Target(v,u,0);
-					d = new Box(v,u,0.45);
+					d = new Box(v,u,1);
 				} else if(c == '%') {
 					s = new Target(v,u,0);
-					_player = new Player(v,u,0.4);
+					_player = new Player(v,u,1);
 					d = _player.get();			
 				}
 				else {
-					s = new Ground(v,u,-0.05);
-					d = new Empty(v,u,-0.05);
+					s = new Ground(v,u,0);
+					d = new Empty(v,u,0);
 				}
 				sTemp.push_back(s);
 				dTemp.push_back(d);

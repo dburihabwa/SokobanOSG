@@ -33,23 +33,23 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	switch(element)
 	{
 	case GROUND :
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1,1,0.1));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.2), 1,1,0.1));
 		textureImage.append("rs-ground00.jpg");
 		break;
 	case BOX:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),0.9));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.4),0.9));
 		textureImage.append("box.jpg");
 		break;
 	case WALL:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1,1.2));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.55),1,1,1.4));
 		textureImage.append("brickscolorhx8.jpg");
 		break;
 	case TARGET:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.05), 1,1,0.05));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.6), 1,1,1));
 		textureImage.append("target.png");
 		break;
 	case PLAYER:
-		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, 0), 0.4));
+		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), 0.4));
 		textureImage.append("creeper.jpg");
 		break;
 	case DIRECTION_BUTTON:
