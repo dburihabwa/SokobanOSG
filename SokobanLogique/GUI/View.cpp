@@ -143,7 +143,7 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 	_playBoard->addChild(_level);
 
 	Vec3 center = Sokoban::Board::getInstance().getCenter();
-	Vec3 centerEye = Vec3(center[0],center[1],16.0);
+	Vec3 centerEye = Vec3(center.x()+2,center.y(),16.0);
 	_playBoard->setViewMatrixAsLookAt(centerEye, center, Sokoban::UP_AXIS); 
 }
 
