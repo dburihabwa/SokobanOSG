@@ -158,6 +158,10 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
 		textureImage.append("load.png");
 		break;
+	case RELOAD_BUTTON:
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+		textureImage.append("refresh_icon.jpg");
+		break;
 	default:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1));
 		textureImage.append("default.jpg");

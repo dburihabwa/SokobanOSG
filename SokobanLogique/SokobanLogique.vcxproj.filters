@@ -165,6 +165,9 @@
     <ClInclude Include="Handlers\ScrollHandler.h">
       <Filter>Headers\Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="gui\ReloadButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">
@@ -227,6 +230,9 @@
     <ClCompile Include="Handlers\ScrollHandler.cpp">
       <Filter>Sources\Handlers</Filter>
     </ClCompile>
+    <ClCompile Include="GUI\ReloadButton.cpp">
+      <Filter>Sources\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\Textures\arrow.jpg">
@@ -272,6 +278,9 @@
       <Filter>Ressources\Levels</Filter>
     </None>
     <None Include="Ressources\Textures\load.png">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\refresh_icon.jpg">
       <Filter>Ressources\Textures</Filter>
     </None>
   </ItemGroup>

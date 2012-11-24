@@ -2,6 +2,7 @@
 #include "../Factories/NodeFactory.h"
 #include "../Constants.h"
 #include "LoadSavedGameButton.h"
+#include "ReloadButton.h"
 #include <osg/PositionAttitudeTransform>
 
 /// Creates the new Hud
@@ -29,6 +30,7 @@ Sokoban::Hud::Hud(void) {
 	this->_buttons.push_back(this->_zoomInButton);
 	this->_buttons.push_back(this->_zoomOutButton);
 	this->_buttons.push_back(new LoadSavedGameButton(0,2,0));
+	this->_buttons.push_back(new ReloadButton(2,0,0));
 
 	createNodes();
 

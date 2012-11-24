@@ -42,8 +42,11 @@ namespace Sokoban
 		friend std::ostream& operator<<(std::ostream& out, Board const& board);
 		friend std::istream& operator>>(std::istream& in, Board& board);
 
-		///<summary>Load the next level and return it</summary>
+		///<summary>Load the next level and notify the view</summary>
 		void loadNextLvl();
+
+		///<summary>reload the current level to it's first state</summary>
+		void reloadLvl();
 
 		void save() const;
 		///<summary> Load the save, return true if there is a save else return false</summary>
@@ -82,6 +85,8 @@ namespace Sokoban
 		/// The OSG Graphical Level can be get in that method </seealso>
 		void init(std::string);
 		std::vector<std::string> parseStringLevel(std::string);
+		///<summary>Load the lvl pointed by the _currentLvl</summary>
+		void loadLvl();
 
 	};
 
