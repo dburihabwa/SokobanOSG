@@ -10,11 +10,11 @@ Sokoban::Hud::Hud(void) {
 	this->_timer = clock();
 	this->_nodes = new osg::Group();
 	int posY = -10;
-	ref_ptr<DirectionButton> upDirectionButton =  new DirectionButton(-1, 1+posY, 0, Sokoban::UP);
+	osg::ref_ptr<DirectionButton> upDirectionButton =  new DirectionButton(-1, 1+posY, 0, Sokoban::UP);
 
-	ref_ptr<DirectionButton> downDirectionButton =  new DirectionButton(3, 1+posY, 0, Sokoban::DOWN);
-	ref_ptr<DirectionButton> leftDirectionButton =  new DirectionButton(1, -1+posY, 0, Sokoban::LEFT);
-	ref_ptr<DirectionButton> rightDirectionButton =  new DirectionButton(1, 3+posY, 0, Sokoban::RIGHT);
+	osg::ref_ptr<DirectionButton> downDirectionButton =  new DirectionButton(3, 1+posY, 0, Sokoban::DOWN);
+	osg::ref_ptr<DirectionButton> leftDirectionButton =  new DirectionButton(1, -1+posY, 0, Sokoban::LEFT);
+	osg::ref_ptr<DirectionButton> rightDirectionButton =  new DirectionButton(1, 3+posY, 0, Sokoban::RIGHT);
 
 	this->_buttons.push_back(upDirectionButton);
 	this->_buttons.push_back(downDirectionButton);
@@ -54,25 +54,25 @@ unsigned int Sokoban::Hud::getElapsedTime() const
 	return (this->_timer - clock()) / CLOCKS_PER_SEC;
 }
 
-const std::vector<ref_ptr<Sokoban::GUIButton> >& Sokoban::Hud::getButtons() const
+const std::vector<osg::ref_ptr<Sokoban::GUIButton> >& Sokoban::Hud::getButtons() const
 {
 	return this->_buttons;
 }
 
-ref_ptr<osg::Group> Sokoban::Hud::getNodes() const
+osg::ref_ptr<osg::Group> Sokoban::Hud::getNodes() const
 {
 	return this->_nodes;
 }
 void Sokoban::Hud::createNodes() {
-	std::vector<ref_ptr<Sokoban::GUIButton> >::iterator it;
+	std::vector<osg::ref_ptr<Sokoban::GUIButton> >::iterator it;
 	for (it = this->_buttons.begin(); it < this->_buttons.end(); it++) {
 		osg::Vec3 pos = (*it)->getPosition();
-		ref_ptr<PositionAttitudeTransform> node = dynamic_cast<PositionAttitudeTransform *> (NodeFactory::createNode(pos.x(),pos.y(),pos.z(),(*it)->getType()).get());
+		osg::ref_ptr<osg::PositionAttitudeTransform> node = dynamic_cast<osg::PositionAttitudeTransform *> (NodeFactory::createNode(pos.x(),pos.y(),pos.z(),(*it)->getType()).get());
 		node->setUserData(*it);
 		
 		// If the GUIButton is DirectionButton
 		if ((*it)->getType() == DIRECTION_BUTTON) {
-			ref_ptr<DirectionButton> db = static_cast<DirectionButton *>((*it).get());
+			osg::ref_ptr<DirectionButton> db = static_cast<DirectionButton *>((*it).get());
 			Direction direction = db->getDirection();
 			if(direction==UP) {
 				node->setAttitude(DEGREE_180);

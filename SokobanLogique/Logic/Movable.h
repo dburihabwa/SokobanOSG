@@ -22,8 +22,8 @@ namespace Sokoban
 		}
 	protected:
 		///<summary>Wrapper for ref_ptr<Case> getCase(unsigned int, unsigned int) const; of Board</summary>
-		ref_ptr<Case> getCase(Direction) const;
-		ref_ptr<MoveAdapter> _moveAdapter;
+		osg::ref_ptr<Case> getCase(Direction) const;
+		osg::ref_ptr<MoveAdapter> _moveAdapter;
 
 	};
 };

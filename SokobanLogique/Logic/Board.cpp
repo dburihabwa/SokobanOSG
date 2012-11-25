@@ -23,24 +23,24 @@ void Sokoban::Board::init(std::string level)
 	std::vector<std::string> data= this->parseStringLevel(level);
 	//Get the center of the level, since we are doing a rotation on every element
 	//The rotation need to be applied on the center vector also.
-	center = Vec3d(_height/2.,_width/2,0);
+	center = osg::Vec3d(_height/2.,_width/2,0);
 	for(unsigned int v = 0; v < _height; ++v)
 	{
-		std::vector<ref_ptr<Unmovable>> sTemp;
-		std::vector<ref_ptr<Movable>> dTemp;
+		std::vector<osg::ref_ptr<Unmovable>> sTemp;
+		std::vector<osg::ref_ptr<Movable>> dTemp;
 		for(unsigned int u = 0; u < _width; ++u)
 		{
 			if(u > data[v].size())
 			{
-				ref_ptr<Unmovable> ground = new Ground(v,u,0);
-				ref_ptr<Movable> empty = new Empty(v,u,0);
+				osg::ref_ptr<Unmovable> ground = new Ground(v,u,0);
+				osg::ref_ptr<Movable> empty = new Empty(v,u,0);
 				sTemp.push_back(ground);
 				dTemp.push_back(empty);
 			}
 			else
 			{
-				ref_ptr<Unmovable> s;
-				ref_ptr<Movable>d;
+				osg::ref_ptr<Unmovable> s;
+				osg::ref_ptr<Movable>d;
 				char c = data[v][u];
 
 				if(c == '#') {
@@ -124,12 +124,12 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 	View::getInstance().addText(victoryMessage, MSG_WARNING);
 	return false;
 }
-ref_ptr<Sokoban::Case> Sokoban::Board::getCase(unsigned int x, unsigned int y) const{
+osg::ref_ptr<Sokoban::Case> Sokoban::Board::getCase(unsigned int x, unsigned int y) const{
 	if(x>_movable.size())
 		throw std::exception("X not in the level");
 	if(y>_movable[0].size())
 		throw std::exception("Y not in the level");
-	ref_ptr<Case> lvlCase = _movable[x][y];
+	osg::ref_ptr<Case> lvlCase = _movable[x][y];
 	if(lvlCase->getType() == EMPTY)
 		return  _unMovable[x][y];
 	return lvlCase;
@@ -143,8 +143,8 @@ void Sokoban::Board::swapMovable(unsigned int x1, unsigned int y1,unsigned int x
 		throw std::exception("X2 not in the level");
 	if(y2>_movable[0].size())
 		throw std::exception("Y2 not in the level");
-	ref_ptr<Movable> movable1 = _movable[x1][y1];
-	ref_ptr<Movable> movable2 = _movable[x2][y2];
+	osg::ref_ptr<Movable> movable1 = _movable[x1][y1];
+	osg::ref_ptr<Movable> movable2 = _movable[x2][y2];
 	_movable[x1][y1] = movable2;
 	_movable[x2][y2] = movable1;
 }
@@ -153,8 +153,8 @@ void Sokoban::Board::displayLevel() const {
 
 	for(unsigned int i = 0; i < _movable.size();i++)
 	{
-		std::vector<ref_ptr<Movable>> vect = _movable[i];
-		std::vector<ref_ptr<Unmovable>> vect2 = _unMovable[i];
+		std::vector<osg::ref_ptr<Movable>> vect = _movable[i];
+		std::vector<osg::ref_ptr<Unmovable>> vect2 = _unMovable[i];
 		for(unsigned int j =0; j < vect.size(); j++) {
 			std::cout<<vect[j]->getType() + vect2[j]->getType();
 		}
@@ -199,8 +199,8 @@ void Sokoban::Board::resetBoard() {
 	if(_set) {
 		for(unsigned int i = 0; i < _movable.size();i++)
 		{
-			std::vector<ref_ptr<Movable>> vect = _movable[i];
-			std::vector<ref_ptr<Unmovable>> vect2 = _unMovable[i];
+			std::vector<osg::ref_ptr<Movable>> vect = _movable[i];
+			std::vector<osg::ref_ptr<Unmovable>> vect2 = _unMovable[i];
 			for(unsigned int j =0; j < vect.size(); j++) {
 				vect[j].release();
 				vect2[j].release();
@@ -312,7 +312,7 @@ std::ostream&  Sokoban::operator<<(std::ostream& out,Sokoban::Board const& board
 	for (unsigned int i = 0; i < board._height; i++) {
 		for (unsigned int j = 0; j < board._width; j++) {
 			char symbol;
-			ref_ptr<Sokoban::Case> c = board.getCase(i, j);
+			osg::ref_ptr<Sokoban::Case> c = board.getCase(i, j);
 
 			switch (c->getType()) {
 			case Sokoban::BOX:

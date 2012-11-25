@@ -15,15 +15,15 @@ Sokoban::View::View(void)
 
 }
 void Sokoban::View::init(unsigned int height, unsigned int width) {
-	ref_ptr<Group> root = new Group;
+	osg::ref_ptr<osg::Group> root = new osg::Group();
 	//Viewer Init
 	_viewer = new osgViewer::Viewer;
 	_viewer->setUpViewInWindow(32, 32, width, height);
 	_viewer->setSceneData(root);
 	//Camera init
-	_playBoard = new Camera;
-	_buttons = new Camera;
-	ref_ptr<Camera> textCamera = new Camera;
+	_playBoard = new osg::Camera();
+	_buttons = new osg::Camera();
+	osg::ref_ptr<osg::Camera> textCamera = new osg::Camera();
 
 	root->addChild(_playBoard);
 	root->addChild(_buttons);
@@ -38,9 +38,9 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	_playBoard->setAllowEventFocus(false);
 	_buttons->setAllowEventFocus(false);
 	textCamera->setAllowEventFocus(false);
-	_playBoard->setReferenceFrame(Camera::ABSOLUTE_RF);
-	_buttons->setReferenceFrame(Camera::ABSOLUTE_RF);
-	textCamera->setReferenceFrame(Camera::ABSOLUTE_RF);
+	_playBoard->setReferenceFrame(osg::Camera::ABSOLUTE_RF);
+	_buttons->setReferenceFrame(osg::Camera::ABSOLUTE_RF);
+	textCamera->setReferenceFrame(osg::Camera::ABSOLUTE_RF);
 
 	_playBoard->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0));
 	_buttons->setClearColor(osg::Vec4(1.0, 1.0, 1.0, 0.0));
@@ -64,12 +64,12 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 		100.0F
 		); 
 	//Viewport
-	_playBoard->setViewport(new Viewport(0,buttonsHeight,restWidth,playBoardHeight));
-	_buttons->setViewport(new Viewport(0,0,restWidth,buttonsHeight));
-	textCamera->setViewport(new Viewport(restWidth,0,textWidth, height));
+	_playBoard->setViewport(new osg::Viewport(0,buttonsHeight,restWidth,playBoardHeight));
+	_buttons->setViewport(new osg::Viewport(0,0,restWidth,buttonsHeight));
+	textCamera->setViewport(new osg::Viewport(restWidth,0,textWidth, height));
 
 	//Text
-	textCamera->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Y_AXIS);
+	textCamera->setViewMatrixAsLookAt(osg::Vec3(0,0,10),osg::Vec3(0,0,0),osg::Y_AXIS);
 	_textPanel = new TextPanel(textCamera);
 	//Board
 	Sokoban::Board::getInstance().loadNextLvl();
@@ -77,7 +77,7 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	//_buttons
 	Hud hud;
 	_buttons->addChild(hud.getNodes());
-	_buttons->setViewMatrixAsLookAt(Vec3(0,0,10),Vec3(0,0,0),Sokoban::UP_AXIS);
+	_buttons->setViewMatrixAsLookAt(osg::Vec3(0,0,10),osg::Vec3(0,0,0),Sokoban::UP_AXIS);
 
 	//Add keyboardController
 	_viewer->addEventHandler(new KeyboardHandler());
@@ -144,8 +144,8 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 	}
 	_playBoard->addChild(_level);
 
-	Vec3 center = Sokoban::Board::getInstance().getCenter();
-	Vec3 centerEye = Vec3(center.x()+10,center.y(),16.0);
+	osg::Vec3 center = Sokoban::Board::getInstance().getCenter();
+	osg::Vec3 centerEye = osg::Vec3(center.x()+10,center.y(),16.0);
 	_playBoard->setViewMatrixAsLookAt(centerEye, center, Sokoban::UP_AXIS); 
 }
 

@@ -25,7 +25,7 @@ bool Sokoban::DirectionButtonEventHandler::pick(const osgGA::GUIEventAdapter& ea
 		osgUtil::LineSegmentIntersector::Intersection intersection = picker->getFirstIntersection();
 		//We used the UserData to add the GuiButton to the graphical object, with that no check to be made to know
 		//which buttons has been clicked.
-		ref_ptr<GUIButton> button = dynamic_cast<GUIButton*>(intersection.nodePath.at(2)->getUserData());
+		osg::ref_ptr<GUIButton> button = dynamic_cast<GUIButton*>(intersection.nodePath.at(2)->getUserData());
 		if(button) {
 			return button->onClick();
 		}

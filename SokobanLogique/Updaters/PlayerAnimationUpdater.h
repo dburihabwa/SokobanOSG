@@ -6,11 +6,11 @@ namespace Sokoban {
 	class PlayerAnimationUpdater : public AnimationUpdater
 	{
 	public:
-		PlayerAnimationUpdater(void): _lastRot(0,Z_AXIS) {}
+		PlayerAnimationUpdater(void): _lastRot(0,osg::Z_AXIS) {}
 		~PlayerAnimationUpdater(void);
-		void setMovement(Vec3, Vec3, Direction);
+		void setMovement(osg::Vec3, osg::Vec3, Direction);
 	private:
-		Quat _lastRot;
+		osg::Quat _lastRot;
 	};
 }
 

@@ -18,13 +18,13 @@ namespace Sokoban
 			return _canMoveBox;
 		}
 		///<summary>Get the box that will be moved.</summary>
-		ref_ptr<Box> getMovedBox() const {
+		osg::ref_ptr<Box> getMovedBox() const {
 			return _lastBox;
 		}
-		ref_ptr<Node> createNode();
+		osg::ref_ptr<osg::Node> createNode();
 		~Player(void);
 	private:
-		ref_ptr<Box> _lastBox;
+		osg::ref_ptr<Box> _lastBox;
 		bool _canMoveBox;
 	};
 };

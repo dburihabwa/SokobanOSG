@@ -6,7 +6,7 @@ Sokoban::Player::~Player(void) {
 	_lastBox.release();
 }
 bool Sokoban::Player::canMove(Direction dir) {
-	ref_ptr<Case> lvlCase = getCase(dir);
+	osg::ref_ptr<Case> lvlCase = getCase(dir);
 	if(lvlCase->getType() == WALL)
 		return false;
 	if(lvlCase->getType() == BOX) {

@@ -28,7 +28,7 @@ namespace Sokoban
 		}
 		///<summary>
 		///Get the center of the level, will be used to center the camera </summary>
-		Vec3 getCenter() const {
+		osg::Vec3 getCenter() const {
 			return center;
 		}
 		///<summary> Try to move the player in the wanted direction
@@ -51,31 +51,31 @@ namespace Sokoban
 		void save() const;
 		///<summary> Load the save, return true if there is a save else return false</summary>
 		bool loadSave();
-		const std::vector<std::vector<ref_ptr<Movable>>>& getMovable() const {
+		const std::vector<std::vector<osg::ref_ptr<Movable>>>& getMovable() const {
 			return _movable;
 		}
-		const std::vector<std::vector<ref_ptr<Unmovable>>>& getUnMovable() const {
+		const std::vector<std::vector<osg::ref_ptr<Unmovable>>>& getUnMovable() const {
 			return _unMovable;
 		}
 
 	private:
-		std::vector<std::vector<ref_ptr<Movable>>> _movable;
-		std::vector<std::vector<ref_ptr<Unmovable>>> _unMovable;
+		std::vector<std::vector<osg::ref_ptr<Movable>>> _movable;
+		std::vector<std::vector<osg::ref_ptr<Unmovable>>> _unMovable;
 		std::vector<std::string> _levelFile;
 		int _currentLvl;
 		unsigned int _win;
 		unsigned int _width;
 		unsigned int _height;
 		bool _set;
-		Vec3 center;
-		ref_ptr<Player> _player;
+		osg::Vec3 center;
+		osg::ref_ptr<Player> _player;
 		Board();
 		Board(Board const&);              // Don't Implement
 		void operator=(Board const&); // Don't implement
 		void swapMovable(unsigned int, unsigned int,unsigned int, unsigned int);
 		///<summary>
 		///Get the Case on the wanted coordonate </summary>
-		ref_ptr<Case> getCase(unsigned int, unsigned int) const;
+		osg::ref_ptr<Case> getCase(unsigned int, unsigned int) const;
 		void resetBoard();
 		void loadFile(const char* file);
 		/// <summary>

@@ -5,7 +5,7 @@
 Sokoban::PlayerAnimationUpdater::~PlayerAnimationUpdater(void)
 {
 }
-void Sokoban::PlayerAnimationUpdater::setMovement(Vec3 position, Vec3 newPosition, Direction nextDir) {
+void Sokoban::PlayerAnimationUpdater::setMovement(osg::Vec3 position, osg::Vec3 newPosition, Direction nextDir) {
 	osg::ref_ptr<osg::AnimationPath> simpleMove = new osg::AnimationPath;
 	simpleMove->setLoopMode( osg::AnimationPath::NO_LOOPING );
 
