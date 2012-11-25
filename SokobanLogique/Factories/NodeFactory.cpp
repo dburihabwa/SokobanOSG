@@ -66,7 +66,12 @@ osg::ref_ptr<osg::Geometry> createGround() {
 	texCoords->push_back(osg::Vec2(0,1));
 	texCoords->push_back(osg::Vec2(1,1));
 	texCoords->push_back(osg::Vec2(1,0));
-	texCoords->push_back(osg::Vec2(0,0));	
+	texCoords->push_back(osg::Vec2(0,0));
+
+	texCoords->push_back(osg::Vec2(0,1));
+	texCoords->push_back(osg::Vec2(1,1));
+	texCoords->push_back(osg::Vec2(1,0));
+	texCoords->push_back(osg::Vec2(0,0));
 	geometry->setTexCoordArray(0, texCoords);
 	
 
