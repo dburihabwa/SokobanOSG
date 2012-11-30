@@ -159,3 +159,7 @@ void Sokoban::View::changeZoomOnBoard(double fovDiff) const{
 Sokoban::View::~View(void)
 {
 }
+
+bool Sokoban::View::rotatePlayGround(Sokoban::Type type) {
+	return false;
+}
