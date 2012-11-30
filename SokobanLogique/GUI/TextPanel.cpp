@@ -24,14 +24,14 @@ Sokoban::TextPanel::TextPanel(osg::ref_ptr<osg::Camera> cam) : _camera(cam.get()
 	std::stringstream buffer2;
 	buffer2<<_boxString<<_bScore;
 	//Text
-	_movementScore = generateText(buffer.str(), MSG_NORMAL);
-	_boxScore = generateText(buffer2.str(), MSG_NORMAL);
+	_movementText = generateText(buffer.str(), MSG_NORMAL);
+	_boxText = generateText(buffer2.str(), MSG_NORMAL);
 
 	//PostAtt
 	osg::ref_ptr<osg::PositionAttitudeTransform> posPlayer = new osg::PositionAttitudeTransform();
 	osg::ref_ptr<osg::PositionAttitudeTransform> posBox = new osg::PositionAttitudeTransform();
-	posPlayer->addChild(generateGeode(_movementScore));
-	posBox->addChild(generateGeode(_boxScore));
+	posPlayer->addChild(generateGeode(_movementText));
+	posBox->addChild(generateGeode(_boxText));
 
 	posPlayer->setPosition(osg::Vec3(-2.7,8,0));
 	posBox->setPosition(osg::Vec3(1,8,0));
@@ -117,4 +117,16 @@ osg::ref_ptr<osg::Geode> Sokoban::TextPanel::generateGeode(osg::ref_ptr<osgText:
 	stateset->setMode(GL_LIGHTING,osg::StateAttribute::OFF);
 	message->addDrawable(text);
 	return message;
+}
+
+void Sokoban::TextPanel::incrementPlayerMovement() {
+	std::stringstream buffer;
+	buffer<<_playerString<<++_mvntScore;
+	_movementText->setText(buffer.str());
+}
+
+void Sokoban::TextPanel::incrementBoxMovement() {
+	std::stringstream buffer;
+	buffer<<_boxString<<++_bScore;
+	_movementText->setText(buffer.str());
 }

@@ -14,12 +14,14 @@ namespace Sokoban {
 		void addText(std::string, osg::Vec4);
 		void reset();
 		~TextPanel(void);
+		void incrementPlayerMovement();
+		void incrementBoxMovement();
 	private:
 		void init();
 		osg::ref_ptr<osg::Camera> _camera;
 		osg::ref_ptr<osg::Group> _textGroup;
-		osg::ref_ptr<osgText::Text> _movementScore;
-		osg::ref_ptr<osgText::Text> _boxScore;
+		osg::ref_ptr<osgText::Text> _movementText;
+		osg::ref_ptr<osgText::Text> _boxText;
 		unsigned int _nbTxt;
 		unsigned int _maxHeight;
 		unsigned int _mvntScore;
