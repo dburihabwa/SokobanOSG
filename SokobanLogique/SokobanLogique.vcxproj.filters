@@ -168,10 +168,10 @@
     <ClInclude Include="gui\ReloadButton.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="RotateButton.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\RotateButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateButton.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
   </ItemGroup>

@@ -109,6 +109,12 @@ void Sokoban::View::notify(Event modelEvent) {
 		}
 		loadLevel(Board::getInstance().getMovable(),Board::getInstance().getUnMovable());
 		break;
+	case PLAYER_MOVED:
+		_textPanel->incrementPlayerMovement();
+		break;
+	case BOX_MOVED:
+		_textPanel->incrementBoxMovement();
+		break;
 	default:
 		break;
 	}

@@ -128,5 +128,5 @@ void Sokoban::TextPanel::incrementPlayerMovement() {
 void Sokoban::TextPanel::incrementBoxMovement() {
 	std::stringstream buffer;
 	buffer<<_boxString<<++_bScore;
-	_movementText->setText(buffer.str());
+	_boxText->setText(buffer.str());
 }

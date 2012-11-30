@@ -111,6 +111,7 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 				View::getInstance().addText(std::string("Appuyez sur N pour le niveau suivant."));
 				View::getInstance().addText(victoryMessage, MSG_OK);				
 			}
+			View::getInstance().notify(BOX_MOVED);
 		}
 		else {
 			_player->move(dir);
@@ -118,6 +119,7 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 #if DEBUG == TRUE
 		displayLevel();
 #endif
+		View::getInstance().notify(PLAYER_MOVED);
 		return true;
 	}
 	std::string victoryMessage("Mouvement Incorrect.");
