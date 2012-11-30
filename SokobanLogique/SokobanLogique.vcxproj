@@ -69,6 +69,7 @@
     <ClCompile Include="GUI\GUIButton.cpp" />
     <ClCompile Include="GUI\Hud.cpp" />
     <ClCompile Include="GUI\ReloadButton.cpp" />
+    <ClCompile Include="GUI\RotateButton.cpp" />
     <ClCompile Include="GUI\SaveButton.cpp" />
     <ClCompile Include="GUI\View.cpp" />
     <ClCompile Include="GUI\ZoomButton.cpp" />
@@ -97,6 +98,7 @@
     <ClInclude Include="GUI\GUIButton.h" />
     <ClInclude Include="GUI\Hud.h" />
     <ClInclude Include="gui\ReloadButton.h" />
+    <ClInclude Include="GUI\RotateButton.h" />
     <ClInclude Include="GUI\SaveButton.h" />
     <ClInclude Include="GUI\View.h" />
     <ClInclude Include="GUI\ZoomButton.h" />
@@ -118,6 +120,7 @@
     <ClInclude Include="Logic\Wall.h" />
     <ClInclude Include="GUI\TextPanel.h" />
     <ClInclude Include="Handlers\ScrollHandler.h" />
+    <ClInclude Include="RotateButton.h" />
     <ClInclude Include="Updaters\AnimationUpdater.h" />
     <ClInclude Include="Updaters\PlayerAnimationUpdater.h" />
   </ItemGroup>
