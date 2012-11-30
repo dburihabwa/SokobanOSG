@@ -111,6 +111,7 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 				View::getInstance().addText(std::string("Appuyez sur N pour le niveau suivant."));
 				View::getInstance().addText(victoryMessage, MSG_OK);				
 			}
+			_boxScore++;
 			View::getInstance().notify(BOX_MOVED);
 		}
 		else {
@@ -119,6 +120,7 @@ bool Sokoban::Board::movePlayer(Direction dir) {
 #if DEBUG == TRUE
 		displayLevel();
 #endif
+		_playerScore++;
 		View::getInstance().notify(PLAYER_MOVED);
 		return true;
 	}
@@ -169,7 +171,7 @@ void Sokoban::Board::displayLevel() const {
 Sokoban::Board::~Board(void) {
 	this->resetBoard();
 }
-Sokoban::Board::Board(void): _win(0), _height(0), _width(0), _set(false),_currentLvl(-1) {
+Sokoban::Board::Board(void): _win(0), _height(0), _width(0), _set(false),_currentLvl(-1),_boxScore(0),_playerScore(0) {
 	DIR *dp;
 	struct dirent *dirp;
 	if((dp  = opendir(LVL_DIR)) == NULL) {

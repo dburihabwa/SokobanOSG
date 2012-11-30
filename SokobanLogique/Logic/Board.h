@@ -58,6 +58,13 @@ namespace Sokoban
 			return _unMovable;
 		}
 
+		unsigned int getPlayerScore() const {
+			return _playerScore;
+		}
+		unsigned int getBoxScore() const {
+			return _boxScore;
+		}
+
 	private:
 		std::vector<std::vector<osg::ref_ptr<Movable>>> _movable;
 		std::vector<std::vector<osg::ref_ptr<Unmovable>>> _unMovable;
@@ -66,6 +73,8 @@ namespace Sokoban
 		unsigned int _win;
 		unsigned int _width;
 		unsigned int _height;
+		unsigned int _playerScore;
+		unsigned int _boxScore;
 		bool _set;
 		osg::Vec3 center;
 		osg::ref_ptr<Player> _player;
