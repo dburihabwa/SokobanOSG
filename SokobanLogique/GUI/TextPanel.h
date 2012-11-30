@@ -14,8 +14,8 @@ namespace Sokoban {
 		void addText(std::string, osg::Vec4);
 		void reset();
 		~TextPanel(void);
-		void incrementPlayerMovement();
-		void incrementBoxMovement();
+		void setPlayerScore(unsigned int);
+		void setBoxScore(unsigned int);
 	private:
 		void init();
 		osg::ref_ptr<osg::Camera> _camera;
@@ -24,8 +24,6 @@ namespace Sokoban {
 		osg::ref_ptr<osgText::Text> _boxText;
 		unsigned int _nbTxt;
 		unsigned int _maxHeight;
-		unsigned int _mvntScore;
-		unsigned int _bScore;
 		static osg::ref_ptr<osgText::Font> _font;
 		void updatePosition();
 		std::map<std::string,osg::ref_ptr<osg::Geode>> _textCache;

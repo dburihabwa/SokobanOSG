@@ -13,16 +13,16 @@ osg::ref_ptr<osgText::Font> Sokoban::TextPanel::_font = osgText::readFontFile("f
 std::string Sokoban::TextPanel::_playerString = "Joueur: ";
 std::string Sokoban::TextPanel::_boxString = "Boite: ";
 
-Sokoban::TextPanel::TextPanel(osg::ref_ptr<osg::Camera> cam) : _camera(cam.get()), _nbTxt(0), _mvntScore(0), _bScore(0)
+Sokoban::TextPanel::TextPanel(osg::ref_ptr<osg::Camera> cam) : _camera(cam.get()), _nbTxt(0)
 {
 	init();
 	_maxHeight = (_camera->getViewport()->height()/2)- 110;
 	_camera->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0));
 	//Set Score text
 	std::stringstream buffer;
-	buffer<<_playerString<<_mvntScore;
+	buffer<<_playerString<<0;
 	std::stringstream buffer2;
-	buffer2<<_boxString<<_bScore;
+	buffer2<<_boxString<<0;
 	//Text
 	_movementText = generateText(buffer.str(), MSG_NORMAL);
 	_boxText = generateText(buffer2.str(), MSG_NORMAL);
@@ -119,14 +119,14 @@ osg::ref_ptr<osg::Geode> Sokoban::TextPanel::generateGeode(osg::ref_ptr<osgText:
 	return message;
 }
 
-void Sokoban::TextPanel::incrementPlayerMovement() {
+void Sokoban::TextPanel::setPlayerScore(unsigned int score) {
 	std::stringstream buffer;
-	buffer<<_playerString<<++_mvntScore;
+	buffer<<_playerString<<score;
 	_movementText->setText(buffer.str());
 }
 
-void Sokoban::TextPanel::incrementBoxMovement() {
+void Sokoban::TextPanel::setBoxScore(unsigned int score) {
 	std::stringstream buffer;
-	buffer<<_boxString<<++_bScore;
+	buffer<<_boxString<<score;
 	_boxText->setText(buffer.str());
 }

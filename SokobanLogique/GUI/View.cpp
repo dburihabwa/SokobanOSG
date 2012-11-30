@@ -110,10 +110,10 @@ void Sokoban::View::notify(Event modelEvent) {
 		loadLevel(Board::getInstance().getMovable(),Board::getInstance().getUnMovable());
 		break;
 	case PLAYER_MOVED:
-		_textPanel->incrementPlayerMovement();
+		_textPanel->setPlayerScore(Board::getInstance().getPlayerScore());
 		break;
 	case BOX_MOVED:
-		_textPanel->incrementBoxMovement();
+		_textPanel->setBoxScore(Board::getInstance().getBoxScore());
 		break;
 	default:
 		break;
