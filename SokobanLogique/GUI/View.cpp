@@ -167,5 +167,9 @@ Sokoban::View::~View(void)
 }
 
 bool Sokoban::View::rotatePlayGround(Sokoban::Type type) {
-	return false;
+	double fov, ar,near,far;
+	_playBoard->getProjectionMatrixAsPerspective(fov,ar,near,far);
+	fov+=50;
+	_playBoard->setProjectionMatrixAsPerspective(fov,ar,near,far);
+	return true;
 }

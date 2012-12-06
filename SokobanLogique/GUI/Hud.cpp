@@ -25,8 +25,8 @@ Sokoban::Hud::Hud(void) {
 	this->_saveButton = new SaveButton(0, 0, 0);
 	this->_zoomInButton = new ZoomButton(-2, 0, 0, ZOOM_IN);
 	this->_zoomOutButton = new ZoomButton(-2, 2, 0, ZOOM_OUT);
-	this->_rotateLeftButton = new RotateButton(-4, 0, 0, ROTATE_LEFT_BUTTON);
-	this->_rotateRightButton = new RotateButton(-4, 2, 0, ROTATE_RIGHT_BUTTON);
+	this->_rotateLeftButton = new RotateButton(0, 4, 0, ROTATE_LEFT_BUTTON);
+	this->_rotateRightButton = new RotateButton(0, 6, 0, ROTATE_RIGHT_BUTTON);
 
 	this->_buttons.push_back(this->_saveButton);
 	this->_buttons.push_back(this->_zoomInButton);
