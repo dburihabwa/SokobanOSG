@@ -292,5 +292,11 @@
     <None Include="Ressources\Textures\refresh_icon.jpg">
       <Filter>Ressources\Textures</Filter>
     </None>
+    <None Include="Ressources\Textures\rotate_left.png">
+      <Filter>Ressources\Textures</Filter>
+    </None>
+    <None Include="Ressources\Textures\rotate_right.png">
+      <Filter>Ressources\Textures</Filter>
+    </None>
   </ItemGroup>
 </Project>
