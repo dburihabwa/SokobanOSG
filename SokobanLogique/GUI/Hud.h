@@ -8,6 +8,7 @@
 #include "DirectionButton.h"
 #include "SaveButton.h"
 #include "ZoomButton.h"
+#include "RotateButton.h"
 
 namespace Sokoban 
 {
@@ -28,6 +29,8 @@ namespace Sokoban
 		osg::ref_ptr<SaveButton> _saveButton;
 		osg::ref_ptr<ZoomButton> _zoomInButton;
 		osg::ref_ptr<ZoomButton> _zoomOutButton;
+		osg::ref_ptr<RotateButton> _rotateLeftButton;
+		osg::ref_ptr<RotateButton> _rotateRightButton;
 		void createNodes();
     };
 };
