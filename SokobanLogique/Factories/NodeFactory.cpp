@@ -188,7 +188,7 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		break;
 	case ROTATE_RIGHT_BUTTON:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
-		textureImage.append("rotate_left.png");
+		textureImage.append("rotate_right.png");
 		break;
 	default:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1));
