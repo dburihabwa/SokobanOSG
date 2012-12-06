@@ -129,6 +129,7 @@
     <None Include="Ressources\Levels\level_1.sok" />
     <None Include="Ressources\Levels\level_2.sok" />
     <None Include="Ressources\Levels\level_3.sok" />
+    <None Include="Ressources\Textures\arrow-right-double.png" />
     <None Include="Ressources\Textures\arrow.jpg" />
     <None Include="Ressources\Textures\box.jpg" />
     <None Include="Ressources\Textures\brickscolorhx8.jpg" />

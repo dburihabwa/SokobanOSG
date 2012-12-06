@@ -160,7 +160,7 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		break;
 	case DIRECTION_BUTTON:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1, 0));
-		textureImage.append("arrow.jpg");
+		textureImage.append("arrow-right-double.png");
 		break;
 	case SAVE_BUTTON:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
@@ -181,6 +181,14 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	case RELOAD_BUTTON:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
 		textureImage.append("refresh_icon.jpg");
+		break;
+	case ROTATE_LEFT_BUTTON:
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+		textureImage.append("rotate_left.png");
+		break;
+	case ROTATE_RIGHT_BUTTON:
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+		textureImage.append("rotate_left.png");
 		break;
 	default:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1));

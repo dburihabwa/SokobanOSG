@@ -298,5 +298,8 @@
     <None Include="Ressources\Textures\rotate_right.png">
       <Filter>Ressources\Textures</Filter>
     </None>
+    <None Include="Ressources\Textures\arrow-right-double.png">
+      <Filter>Ressources\Textures</Filter>
+    </None>
   </ItemGroup>
 </Project>
