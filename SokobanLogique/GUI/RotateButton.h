@@ -7,7 +7,7 @@ namespace Sokoban {
 	{
 	public:
 		RotateButton(int x, int y, int z, Type type);
-		Type getType() const;
+		Type getType();
 		bool onClick();
 		~RotateButton(void);
 	protected:
