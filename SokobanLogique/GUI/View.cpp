@@ -167,6 +167,10 @@ Sokoban::View::~View(void)
 }
 
 bool Sokoban::View::rotatePlayGround(Sokoban::Type type) {
+	if (type == ROTATE_LEFT_BUTTON)
+		return true;
+	else if (type == ROTATE_RIGHT_BUTTON)
+		return true;
 	return false;
 }
 

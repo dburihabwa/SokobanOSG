@@ -46,7 +46,7 @@ namespace Sokoban {
 	private:
 		osg::ref_ptr<osgViewer::Viewer> _viewer;
 		osg::ref_ptr<osg::Camera> _buttons;	
-		osg::ref_ptr<osg::Camera> _playBoard;	
+		osg::ref_ptr<osg::Camera> _playBoard;
 		osg::ref_ptr<TextPanel> _textPanel;
 		osg::ref_ptr<osg::Group> _level;
 		View();
