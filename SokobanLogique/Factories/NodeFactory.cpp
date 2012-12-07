@@ -197,9 +197,10 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	}
 	if (element != GROUND)
 		noeudGeo->addDrawable(shape);
+
 	// create a simple material
 	osg::Material *material = new osg::Material();
-	material->setEmission(osg::Material::FRONT, osg::Vec4(0.3, 0.3, 0.3, 0.5));
+	material->setEmission(osg::Material::FRONT, osg::Vec4(0.8, 0.8, 0.8, 1.0));
 	// create a texture
 	// load image for texture
 	osg::ref_ptr<osg::Image> image = osgDB::readImageFile(textureImage);
