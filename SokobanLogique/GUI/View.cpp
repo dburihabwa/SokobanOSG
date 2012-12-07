@@ -7,12 +7,9 @@
 #include "../Updaters/PlayerAnimationUpdater.h"
 #include "../Adapters/OSGMoveAdapter.h"
 #include "../Handlers/ScrollHandler.h"
+#include "../Logic/Empty.h"
 
-Sokoban::View::View(void)
-{
-
-
-
+Sokoban::View::View(void) {
 }
 void Sokoban::View::init(unsigned int height, unsigned int width) {
 	osg::ref_ptr<osg::Group> root = new osg::Group();
@@ -131,15 +128,15 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 			osg::Vec3 pos = unMovable[i][j]->getPosition();
 			_level->addChild(NodeFactory::createNode(pos.x(),pos.y(),pos.z(), unMovable[i][j]->getType()));
 			osg::ref_ptr<Movable> mov = movable[i][j];
-			if(mov->getType() == EMPTY) {
+			if(dynamic_cast<Empty*>(mov.get())) {
 				continue;
 			}
 			pos = mov->getPosition();
 			osg::ref_ptr<osg::Node> node = NodeFactory::createNode(pos.x(),pos.y(),pos.z(), mov->getType());
 			osg::ref_ptr<AnimationUpdater> updater;
-			if(mov->getType() == BOX) {
+			if(dynamic_cast<Box*>(mov.get())) {
 				updater= new AnimationUpdater();
-			} else if(mov->getType() == PLAYER) {
+			} else if(dynamic_cast<Player*>(mov.get())) {
 				updater = new PlayerAnimationUpdater();
 			}
 			osg::ref_ptr<MoveAdapter> adapter = new OSGMoveAdapter(updater);
