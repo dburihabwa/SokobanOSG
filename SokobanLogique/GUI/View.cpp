@@ -68,6 +68,10 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	//Text
 	textCamera->setViewMatrixAsLookAt(osg::Vec3(0,0,10),osg::Vec3(0,0,0),osg::Y_AXIS);
 	_textPanel = new TextPanel(textCamera);
+
+	//lights
+	setLights();
+
 	//Board
 	Sokoban::Board::getInstance().loadNextLvl();
 
@@ -122,6 +126,8 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 		addText("Problème lors du chargement du niveau", MSG_WARNING);
 		return;
 	}
+	osg::Vec3 center = Board::getInstance().getCenter();
+	_ambientLight->setPosition(osg::Vec4(center.x(),center.y(),2,0)); // Source directionnelle
 	unsigned int lenght = movable[0].size();
 	for(unsigned int i =0; i < movable.size(); i++) {
 		for(unsigned int j = 0; j < lenght; j++) {
@@ -132,12 +138,13 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 				continue;
 			}
 			pos = mov->getPosition();
-			osg::ref_ptr<osg::Node> node = NodeFactory::createNode(pos.x(),pos.y(),pos.z(), mov->getType());
+			osg::ref_ptr<osg::PositionAttitudeTransform> node = NodeFactory::createNode(pos.x(),pos.y(),pos.z(), mov->getType());
 			osg::ref_ptr<AnimationUpdater> updater;
 			if(dynamic_cast<Box*>(mov.get())) {
 				updater= new AnimationUpdater();
 			} else if(dynamic_cast<Player*>(mov.get())) {
 				updater = new PlayerAnimationUpdater();
+				//node->addChild(_playerLight);
 			}
 			osg::ref_ptr<MoveAdapter> adapter = new OSGMoveAdapter(updater);
 			node->setUpdateCallback(updater);
@@ -147,7 +154,6 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 	}
 	_playBoard->addChild(_level);
 
-	osg::Vec3 center = Sokoban::Board::getInstance().getCenter();
 	osg::Vec3 centerEye = osg::Vec3(center.x()+10,center.y(),16.0);
 	_playBoard->setViewMatrixAsLookAt(centerEye, center, Sokoban::UP_AXIS); 
 }
@@ -177,4 +183,37 @@ void Sokoban::View::initLevel() {
 		this->_textPanel->reset();
 	}
 	loadLevel(Board::getInstance().getMovable(),Board::getInstance().getUnMovable());
+}
+
+void Sokoban::View::setLights() {
+	osg::StateSet *lightStateSet = _playBoard->getOrCreateStateSet();
+	//Player Light
+	//osg::ref_ptr<osg::Light> lightForPlayer = new osg::Light;
+	//lightForPlayer->setLightNum(0);
+	//lightForPlayer->setAmbient(osg::Vec4(0,0,0,1));
+	//lightForPlayer->setDiffuse(osg::Vec4(0,1,0,1));
+	//lightForPlayer->setPosition(osg::Vec4(0,0,0,0));
+	//lightForPlayer->setConstantAttenuation(0.9);
+	//_playerLight = new osg::LightSource();
+	//_playerLight->setLight(lightForPlayer);
+	//_playerLight->setLocalStateSetModes(osg::StateAttribute::ON);
+	//_playerLight->setStateSetModes(*lightStateSet,osg::StateAttribute::ON);
+
+
+	//Ambient light
+	_ambientLight = new osg::Light;
+	_ambientLight->setLightNum(1);
+	_ambientLight->setDiffuse(osg::Vec4(1,0,0,1));
+	_ambientLight->setAmbient( osg::Vec4(0,0, 0, 1.0));
+
+	osg::ref_ptr<osg::LightSource> ambient = new osg::LightSource(); 
+	ambient->setLight(_ambientLight);
+	ambient->setReferenceFrame(osg::LightSource::ABSOLUTE_RF);
+	ambient->setLocalStateSetModes(osg::StateAttribute::ON);
+	ambient->setStateSetModes(*lightStateSet,osg::StateAttribute::ON); // Active la lumière AmbientLight
+
+
+	//Set on Camera
+	_playBoard->addChild(ambient);
+
 }

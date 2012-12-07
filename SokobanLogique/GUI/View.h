@@ -8,6 +8,7 @@
 #include "../Event.h"
 #include "../Logic/Movable.h"
 #include "../Logic/Unmovable.h"
+#include <osg/LightSource>
 
 namespace Sokoban {
 	class View
@@ -49,12 +50,15 @@ namespace Sokoban {
 		osg::ref_ptr<osg::Camera> _playBoard;
 		osg::ref_ptr<TextPanel> _textPanel;
 		osg::ref_ptr<osg::Group> _level;
+		osg::ref_ptr<osg::LightSource> _playerLight;
+		osg::ref_ptr<osg::Light> _ambientLight;
 		View();
 		View(View const&);              // Don't Implement
 		void operator=(View const&); // Don't implement
 		void resetLevel();
 		void loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable>>>&,const std::vector<std::vector<osg::ref_ptr<Unmovable>>> &);
 		void initLevel();
+		void setLights();
 
 	};
 }
