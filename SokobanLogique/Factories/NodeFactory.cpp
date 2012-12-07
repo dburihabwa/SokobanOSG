@@ -28,7 +28,7 @@ osg::ref_ptr<osg::PositionAttitudeTransform> Sokoban::NodeFactory::createNode(in
 osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	osg::ref_ptr<osg::Geometry> geometry = new osg::Geometry();
 	osg::ref_ptr<osg::Vec3Array> groundVertices = new osg::Vec3Array();
-	
+
 	/// Defining the points shaping the parallelepiped
 	groundVertices->push_back(osg::Vec3(0 - 0.5, 0 - 0.5,  0));
 	groundVertices->push_back(osg::Vec3(1 - 0.5, 0 - 0.5,  0));
@@ -40,7 +40,7 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	groundVertices->push_back(osg::Vec3(0 - 0.5, 1 - 0.5, -0.1));
 	geometry->setVertexArray(groundVertices);
 
-	
+
 	/// Defining how the texture must be applied on the ground object
 	osg::ref_ptr<osg::Vec2Array> texCoords = new osg::Vec2Array();
 	texCoords->push_back(osg::Vec2(0,1));
@@ -52,7 +52,7 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	texCoords->push_back(osg::Vec2(1,1));
 	texCoords->push_back(osg::Vec2(1,0));
 	texCoords->push_back(osg::Vec2(0,0));
-	
+
 	texCoords->push_back(osg::Vec2(0,1));
 	texCoords->push_back(osg::Vec2(1,1));
 	texCoords->push_back(osg::Vec2(1,0));
@@ -73,7 +73,7 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	texCoords->push_back(osg::Vec2(1,0));
 	texCoords->push_back(osg::Vec2(0,0));
 	geometry->setTexCoordArray(0, texCoords);
-	
+
 
 	/// Creating the faces tying the points of the parallepiped together
 	osg::ref_ptr<osg::DrawElementsUInt> topFace = 
@@ -83,7 +83,7 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	topFace->push_back(1);
 	topFace->push_back(0);
 	geometry->addPrimitiveSet(topFace);
-	
+
 	osg::ref_ptr<osg::DrawElementsUInt> bottomFace = 
 		new osg::DrawElementsUInt(osg::PrimitiveSet::QUADS, 0);
 	bottomFace->push_back(7);
@@ -91,8 +91,8 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	bottomFace->push_back(5);
 	bottomFace->push_back(4);
 	geometry->addPrimitiveSet(bottomFace);
-	
-	
+
+
 	osg::ref_ptr<osg::DrawElementsUInt> leftFace = 
 		new osg::DrawElementsUInt(osg::PrimitiveSet::QUADS, 0);
 	leftFace->push_back(3);
@@ -100,7 +100,7 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	leftFace->push_back(1);
 	leftFace->push_back(0);
 	geometry->addPrimitiveSet(leftFace);
-	
+
 	osg::ref_ptr<osg::DrawElementsUInt> rightFace = 
 		new osg::DrawElementsUInt(osg::PrimitiveSet::QUADS, 0);
 	rightFace->push_back(2);
@@ -108,7 +108,7 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	rightFace->push_back(5);
 	rightFace->push_back(1);
 	geometry->addPrimitiveSet(rightFace);
-	
+
 	osg::ref_ptr<osg::DrawElementsUInt> frontFace = 
 		new osg::DrawElementsUInt(osg::PrimitiveSet::QUADS, 0);
 	frontFace->push_back(2);
@@ -124,17 +124,57 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	backFace->push_back(5);
 	backFace->push_back(0);
 	geometry->addPrimitiveSet(backFace);
-	
+
 	return geometry;
+}
+
+
+
+osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::setTexture(osg::ref_ptr<osg::Geode> geode, Sokoban::Type type, std::string& texturePath) {
+	// create a simple material
+	osg::Material *material = new osg::Material();
+	material->setEmission(osg::Material::FRONT, osg::Vec4(0.8, 0.8, 0.8, 1.0));
+	// create a texture
+	// load image for texture
+	osg::ref_ptr<osg::Image> image = osgDB::readImageFile(texturePath);
+	if (!image) {
+		std::cerr << "Couldn't load texture : " << texturePath <<std::endl;
+		return NULL;
+	}
+	//Create the texture putting the correct option and set the image
+	osg::ref_ptr<osg::Texture2D> texture = new osg::Texture2D;
+	texture->setDataVariance(osg::Object::DYNAMIC);
+	texture->setFilter(osg::Texture::MIN_FILTER, osg::Texture::LINEAR_MIPMAP_LINEAR);
+	texture->setFilter(osg::Texture::MAG_FILTER, osg::Texture::LINEAR);
+	texture->setWrap(osg::Texture::WRAP_S, osg::Texture::CLAMP);
+	texture->setWrap(osg::Texture::WRAP_T, osg::Texture::CLAMP);
+	texture->setImage(image);
+
+	// assign the material and texture to the sphere
+	osg::ref_ptr<osg::StateSet> stateSet = geode->getOrCreateStateSet();
+	stateSet->setAttribute(material);
+	stateSet->setMode(GL_LIGHTING,osg::StateAttribute::ON);
+	stateSet->setTextureAttributeAndModes(0, texture, osg::StateAttribute::ON);
+	_geoCache.insert(std::make_pair(type, geode));
+	return geode;
 }
 
 osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	if(_geoCache.find(element) != _geoCache.end()) {
 		return _geoCache[element];
 	}
+
+
+	osg::ref_ptr<osg::Switch> nodeSwitch = new osg::Switch();
+
 	osg::ref_ptr<osg::ShapeDrawable> shape;
-	std::string textureImage = TEXTURE_DIR;	
+	std::string textureImage = TEXTURE_DIR;
 	osg::ref_ptr<osg::Geode> noeudGeo = new osg::Geode();
+
+	std::string switchTextureImage = TEXTURE_DIR;
+	osg::ref_ptr<osg::ShapeDrawable> switchShape;
+	osg::ref_ptr<osg::Geode> SwitchNoeudGeo;
+
 	//Switch on the element for texture and shape
 	switch(element)
 	{
@@ -160,6 +200,7 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		break;
 	case DIRECTION_BUTTON:
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1, 0));
+		noeudGeo->addDrawable(shape);
 		textureImage.append("arrow-right-double.png");
 		break;
 	case SAVE_BUTTON:
@@ -208,20 +249,6 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		std::cout << "Couldn't load texture : " << textureImage <<std::endl;
 		return NULL;
 	}
-	//Create the texture putting the correct option and set the image
-	osg::ref_ptr<osg::Texture2D> texture = new osg::Texture2D;
-	texture->setDataVariance(osg::Object::DYNAMIC);
-	texture->setFilter(osg::Texture::MIN_FILTER, osg::Texture::LINEAR_MIPMAP_LINEAR);
-	texture->setFilter(osg::Texture::MAG_FILTER, osg::Texture::LINEAR);
-	texture->setWrap(osg::Texture::WRAP_S, osg::Texture::CLAMP);
-	texture->setWrap(osg::Texture::WRAP_T, osg::Texture::CLAMP);
-	texture->setImage(image);
-
-	// assign the material and texture to the sphere
-	osg::ref_ptr<osg::StateSet> stateSet = noeudGeo->getOrCreateStateSet();
-	stateSet->setAttribute(material);
-	stateSet->setMode(GL_LIGHTING,osg::StateAttribute::ON);
-	stateSet->setTextureAttributeAndModes(0, texture, osg::StateAttribute::ON);
-	_geoCache.insert(std::make_pair(element,noeudGeo));
+	setTexture(noeudGeo, element, textureImage);
 	return noeudGeo;
 }
