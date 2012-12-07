@@ -144,7 +144,7 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 				updater= new AnimationUpdater();
 			} else if(dynamic_cast<Player*>(mov.get())) {
 				updater = new PlayerAnimationUpdater();
-				//node->addChild(_playerLight);
+				node->addChild(_playerLight);
 			}
 			osg::ref_ptr<MoveAdapter> adapter = new OSGMoveAdapter(updater);
 			node->setUpdateCallback(updater);
@@ -188,16 +188,16 @@ void Sokoban::View::initLevel() {
 void Sokoban::View::setLights() {
 	osg::StateSet *lightStateSet = _playBoard->getOrCreateStateSet();
 	//Player Light
-	//osg::ref_ptr<osg::Light> lightForPlayer = new osg::Light;
-	//lightForPlayer->setLightNum(0);
-	//lightForPlayer->setAmbient(osg::Vec4(0,0,0,1));
-	//lightForPlayer->setDiffuse(osg::Vec4(0,1,0,1));
-	//lightForPlayer->setPosition(osg::Vec4(0,0,0,0));
-	//lightForPlayer->setConstantAttenuation(0.9);
-	//_playerLight = new osg::LightSource();
-	//_playerLight->setLight(lightForPlayer);
-	//_playerLight->setLocalStateSetModes(osg::StateAttribute::ON);
-	//_playerLight->setStateSetModes(*lightStateSet,osg::StateAttribute::ON);
+	osg::ref_ptr<osg::Light> lightForPlayer = new osg::Light;
+	lightForPlayer->setLightNum(0);
+	lightForPlayer->setAmbient(osg::Vec4(0,0,0,1));
+	lightForPlayer->setDiffuse(osg::Vec4(0,1,0,1));
+	lightForPlayer->setPosition(osg::Vec4(0,0,0,1));
+	lightForPlayer->setConstantAttenuation(1.5);
+	_playerLight = new osg::LightSource();
+	_playerLight->setLight(lightForPlayer);
+	_playerLight->setLocalStateSetModes(osg::StateAttribute::ON);
+	_playerLight->setStateSetModes(*lightStateSet,osg::StateAttribute::ON);
 
 
 	//Ambient light
