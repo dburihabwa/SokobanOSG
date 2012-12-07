@@ -133,7 +133,7 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::setTexture(osg::ref_ptr<osg::Geode> geode, Sokoban::Type type, std::string& texturePath) {
 	// create a simple material
 	osg::Material *material = new osg::Material();
-	material->setEmission(osg::Material::FRONT, osg::Vec4(0.8, 0.8, 0.8, 1.0));
+	material->setEmission(osg::Material::FRONT, osg::Vec4(0.2, 0.2, 0.2, 0.5));
 	// create a texture
 	// load image for texture
 	osg::ref_ptr<osg::Image> image = osgDB::readImageFile(texturePath);
@@ -159,7 +159,7 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::setTexture(osg::ref_ptr<osg::Geod
 	return geode;
 }
 
-osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
+osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	if(_geoCache.find(element) != _geoCache.end()) {
 		return _geoCache[element];
 	}
@@ -239,16 +239,23 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	if (element != GROUND)
 		noeudGeo->addDrawable(shape);
 
-	// create a simple material
-	osg::Material *material = new osg::Material();
-	material->setEmission(osg::Material::FRONT, osg::Vec4(0.8, 0.8, 0.8, 1.0));
-	// create a texture
-	// load image for texture
-	osg::ref_ptr<osg::Image> image = osgDB::readImageFile(textureImage);
-	if (!image) {
-		std::cout << "Couldn't load texture : " << textureImage <<std::endl;
-		return NULL;
+	if (element == DIRECTION_BUTTON ||
+		element == ZOOM_IN ||
+		element == ZOOM_OUT ||
+		element == SAVE_BUTTON ||
+		element == ROTATE_LEFT_BUTTON ||
+		element == ROTATE_RIGHT_BUTTON ||
+		element == LOAD_BUTTON ||
+		element == RELOAD_BUTTON) {
+			SwitchNoeudGeo = new osg::Geode();
+			switchTextureImage.append("default.jpg");
+			switchShape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+			SwitchNoeudGeo->addDrawable(switchShape);
+			nodeSwitch->addChild(noeudGeo);
+			nodeSwitch->addChild(SwitchNoeudGeo);
+			return nodeSwitch;
 	}
+
 	setTexture(noeudGeo, element, textureImage);
 	return noeudGeo;
 }
