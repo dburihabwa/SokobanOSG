@@ -16,6 +16,20 @@
 #include <osg/Geode>
 #include <iostream>
 
+std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
+	std::stringstream ss(s);
+	std::string item;
+	while(std::getline(ss, item, delim)) {
+		elems.push_back(item);
+	}
+	return elems;
+}
+
+
+std::vector<std::string> split(const std::string &s, char delim) {
+	std::vector<std::string> elems;
+	return split(s, delim, elems);
+}
 
 void Sokoban::Board::init(std::string level)
 {
@@ -282,13 +296,25 @@ std::vector<std::string> Sokoban::Board::parseStringLevel(std::string level) {
 	std::vector<std::string> data;
 	//Get every line of the string, check their 
 	//length to find the lenght of the level
-	int lvl;
-	std::stringstream lvlNbr ((*iter)[1].str());
-	lvlNbr >> lvl;
-	if(lvlNbr) {
-		if(lvl >= 0) {
-			_currentLvl = lvl;
-		}
+	std::vector<std::string> levelData = split((*iter)[1].str(),'-');
+	if(!levelData.empty() && levelData.size() ==3) {
+		std::stringstream level (levelData[0]);
+		unsigned int lvl;
+		level>>lvl;
+		if(level)
+			_currentLvl=lvl;
+
+		std::stringstream playerScore (levelData[1]);
+		unsigned int pScore;
+		playerScore>>pScore;
+		if(playerScore)
+			_playerScore=pScore;
+
+		std::stringstream boxScore (levelData[1]);
+		unsigned int bScore;
+		boxScore>>bScore;
+		if(boxScore)
+			_boxScore=bScore;
 		++iter;
 	}
 	for(; iter != end; ++iter)
@@ -311,7 +337,7 @@ std::ostream&  Sokoban::operator<<(std::ostream& out,Sokoban::Board const& board
 	//Première ligne doit être le num du niveau
 	//le reste c'est le format qu'on a décidé
 	std::string level;
-	out << board._currentLvl << std::endl;
+	out << board._currentLvl <<"-"<<board._playerScore<<"-"<<board._boxScore<<std::endl;
 
 	for (unsigned int i = 0; i < board._height; i++) {
 		for (unsigned int j = 0; j < board._width; j++) {

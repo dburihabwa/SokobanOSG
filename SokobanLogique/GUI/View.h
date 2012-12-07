@@ -54,6 +54,7 @@ namespace Sokoban {
 		void operator=(View const&); // Don't implement
 		void resetLevel();
 		void loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable>>>&,const std::vector<std::vector<osg::ref_ptr<Unmovable>>> &);
+		void initLevel();
 
 	};
 }

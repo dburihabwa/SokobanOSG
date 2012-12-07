@@ -102,12 +102,12 @@ void Sokoban::View::resetLevel(){
 void Sokoban::View::notify(Event modelEvent) {
 	switch(modelEvent) {
 	case LOAD_LVL:
+		initLevel();
+		break;
 	case LOAD_SAVE:
-		this->resetLevel();
-		if(this->_textPanel) {
-			this->_textPanel->reset();
-		}
-		loadLevel(Board::getInstance().getMovable(),Board::getInstance().getUnMovable());
+		initLevel();
+		_textPanel->setPlayerScore(Board::getInstance().getPlayerScore());
+		_textPanel->setBoxScore(Board::getInstance().getBoxScore());
 		break;
 	case PLAYER_MOVED:
 		_textPanel->setPlayerScore(Board::getInstance().getPlayerScore());
@@ -168,4 +168,12 @@ Sokoban::View::~View(void)
 
 bool Sokoban::View::rotatePlayGround(Sokoban::Type type) {
 	return false;
+}
+
+void Sokoban::View::initLevel() {
+	this->resetLevel();
+	if(this->_textPanel) {
+		this->_textPanel->reset();
+	}
+	loadLevel(Board::getInstance().getMovable(),Board::getInstance().getUnMovable());
 }
