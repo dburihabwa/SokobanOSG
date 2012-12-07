@@ -7,13 +7,13 @@
 #include <osg\Texture2D>
 #include <osg/ShapeDrawable>
 #include <osg/Material>
-#include <osg/PositionAttitudeTransform>
 #include <string>
+#include <osg/StateAttribute>
 
 ///Cache
 std::map<Sokoban::Type,osg::ref_ptr<osg::Geode>> Sokoban::NodeFactory::_geoCache;
 
-osg::ref_ptr<osg::Node> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
+osg::ref_ptr<osg::PositionAttitudeTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
 
 	osg::ref_ptr<osg::PositionAttitudeTransform> postAtt = new osg::PositionAttitudeTransform();
 	postAtt->addChild(getOrCreateGeode(element));
@@ -25,7 +25,7 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::createNode(int x,int y,int z, Type
 
 /// Creates and returns a ground object.
 /// <returns>Returns a geometry object representing a Ground object.</returns>
-osg::ref_ptr<osg::Geometry> createGround() {
+osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	osg::ref_ptr<osg::Geometry> geometry = new osg::Geometry();
 	osg::ref_ptr<osg::Vec3Array> groundVertices = new osg::Vec3Array();
 	
@@ -218,9 +218,10 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	texture->setImage(image);
 
 	// assign the material and texture to the sphere
-	osg::ref_ptr<osg::StateSet> sphereStateSet = noeudGeo->getOrCreateStateSet();
-	sphereStateSet->setAttribute(material);
-	sphereStateSet->setTextureAttributeAndModes(0, texture, osg::StateAttribute::ON);
+	osg::ref_ptr<osg::StateSet> stateSet = noeudGeo->getOrCreateStateSet();
+	stateSet->setAttribute(material);
+	stateSet->setMode(GL_LIGHTING,osg::StateAttribute::ON);
+	stateSet->setTextureAttributeAndModes(0, texture, osg::StateAttribute::ON);
 	_geoCache.insert(std::make_pair(element,noeudGeo));
 	return noeudGeo;
 }
