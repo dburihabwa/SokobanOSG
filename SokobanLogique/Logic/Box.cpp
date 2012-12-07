@@ -1,4 +1,6 @@
 #include "Box.h"
+#include "Target.h"
+#include "Ground.h"
 
 Sokoban::Box::~Box(void)
 {
@@ -6,11 +8,13 @@ Sokoban::Box::~Box(void)
 
 bool Sokoban::Box::canMove(Direction dir) {
 	osg::ref_ptr<Case> lvlCase = getCase(dir);
-	if(lvlCase->getType() == WALL || lvlCase->getType() == BOX || lvlCase->getType() == PLAYER)
-		return false;
-	if(lvlCase->getType() == TARGET)
+	if(dynamic_cast<Target*>(lvlCase.get())) {
 		_willBeOnTarget = true;
-	return true;
+		return true;
+	}
+	if(dynamic_cast<Ground *> (lvlCase.get()))
+		return true;	
+	return false;
 }
 
 

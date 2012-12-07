@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Box.h"
+#include "Wall.h"
 #include "../Updaters/PlayerAnimationUpdater.h"
 
 Sokoban::Player::~Player(void) {
@@ -7,11 +8,12 @@ Sokoban::Player::~Player(void) {
 }
 bool Sokoban::Player::canMove(Direction dir) {
 	osg::ref_ptr<Case> lvlCase = getCase(dir);
-	if(lvlCase->getType() == WALL)
+	osg::ref_ptr<Box> box;
+	if(dynamic_cast<Wall*> (lvlCase.get()))
 		return false;
-	if(lvlCase->getType() == BOX) {
+	if(box = dynamic_cast<Box*> (lvlCase.get())) {
 		_lastBox.release();
-		_lastBox =  static_cast<Box*>(lvlCase.get());
+		_lastBox =  box.get();
 		_canMoveBox = _lastBox->canMove(dir);
 		return _canMoveBox;
 	}
