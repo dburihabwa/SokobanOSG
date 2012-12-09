@@ -23,8 +23,6 @@ osg::ref_ptr<osg::PositionAttitudeTransform> Sokoban::NodeFactory::createNode(in
 	return postAtt;
 }
 
-/// Creates and returns a ground object.
-/// <returns>Returns a geometry object representing a Ground object.</returns>
 osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	osg::ref_ptr<osg::Geometry> geometry = new osg::Geometry();
 	osg::ref_ptr<osg::Vec3Array> groundVertices = new osg::Vec3Array();

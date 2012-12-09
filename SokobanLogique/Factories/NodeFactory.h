@@ -18,7 +18,13 @@ namespace Sokoban
 		}
 		static std::map<Type, osg::ref_ptr<osg::Geode>> _geoCache;
 		static osg::ref_ptr<osg::Node> getOrCreateGeode(Type);
+
+		/// <summary>
+		/// Creates and returns a ground object.
+		///	</summary>
+		/// <returns>Returns a ref_ptr to geometry object representing a Ground object.</returns>
 		static osg::ref_ptr<osg::Geometry> createGround();
+
 		///<summary>
 		///	Applies the texture on the drawables of a Geode. If the texture cannot be loaded, the method returns NULL.
 		///</summary>
