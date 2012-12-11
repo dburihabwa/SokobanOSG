@@ -16,7 +16,7 @@ namespace Sokoban
 		NodeFactory(void)
 		{
 		}
-		static std::map<Type, osg::ref_ptr<osg::Geode>> _geoCache;
+		static std::map<Type, osg::ref_ptr<osg::Node>> _geoCache;
 		static osg::ref_ptr<osg::Node> getOrCreateGeode(Type);
 
 		/// <summary>

@@ -11,7 +11,24 @@
 #include <osg/StateAttribute>
 
 ///Cache
-std::map<Sokoban::Type,osg::ref_ptr<osg::Geode>> Sokoban::NodeFactory::_geoCache;
+std::map<Sokoban::Type,osg::ref_ptr<osg::Node>> Sokoban::NodeFactory::_geoCache;
+
+///	<summary>
+///	Checks whether the passed type represents a GUIButton
+///	<param name = "type">The type to test</param>
+///	<returns>Result of the test</returns>
+///	</summary>
+bool isAButton(Sokoban::Type type) {
+	return type == Sokoban::DIRECTION_BUTTON ||
+		type == Sokoban::ZOOM_IN ||
+		type == Sokoban::ZOOM_OUT ||
+		type == Sokoban::SAVE_BUTTON ||
+		type == Sokoban::ROTATE_LEFT_BUTTON ||
+		type == Sokoban::ROTATE_RIGHT_BUTTON ||
+		type == Sokoban::LOAD_BUTTON ||
+		type == Sokoban::RELOAD_BUTTON;
+}
+
 
 osg::ref_ptr<osg::PositionAttitudeTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
 
@@ -131,7 +148,10 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::setTexture(osg::ref_ptr<osg::Geode> geode, Sokoban::Type type, std::string& texturePath) {
 	// create a simple material
 	osg::Material *material = new osg::Material();
-	material->setEmission(osg::Material::FRONT, osg::Vec4(0.2, 0.2, 0.2, 0.5));
+	if (isAButton(type))
+		material->setEmission(osg::Material::FRONT, osg::Vec4(1, 1, 1, 1));
+	else
+		material->setEmission(osg::Material::FRONT, osg::Vec4(0.2, 0.2, 0.2, 0.5));
 	// create a texture
 	// load image for texture
 	osg::ref_ptr<osg::Image> image = osgDB::readImageFile(texturePath);
@@ -148,14 +168,16 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::setTexture(osg::ref_ptr<osg::Geod
 	texture->setWrap(osg::Texture::WRAP_T, osg::Texture::CLAMP);
 	texture->setImage(image);
 
-	// assign the material and texture to the sphere
+	// assign the material and texture to the Geode
 	osg::ref_ptr<osg::StateSet> stateSet = geode->getOrCreateStateSet();
 	stateSet->setAttribute(material);
 	stateSet->setMode(GL_LIGHTING,osg::StateAttribute::ON);
 	stateSet->setTextureAttributeAndModes(0, texture, osg::StateAttribute::ON);
-	_geoCache.insert(std::make_pair(type, geode));
+
 	return geode;
 }
+
+
 
 osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	if(_geoCache.find(element) != _geoCache.end()) {
@@ -164,7 +186,6 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 
 
 	osg::ref_ptr<osg::Switch> nodeSwitch = new osg::Switch();
-
 	osg::ref_ptr<osg::ShapeDrawable> shape;
 	std::string textureImage = TEXTURE_DIR;
 	osg::ref_ptr<osg::Geode> noeudGeo = new osg::Geode();
@@ -172,6 +193,8 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	std::string switchTextureImage = TEXTURE_DIR;
 	osg::ref_ptr<osg::ShapeDrawable> switchShape;
 	osg::ref_ptr<osg::Geode> SwitchNoeudGeo;
+
+	float lengthX, lengthY, lengthZ, width, radius;
 
 	//Switch on the element for texture and shape
 	switch(element)
@@ -181,79 +204,89 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		textureImage.append("rs-ground00.jpg");
 		break;
 	case BOX:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.4),0.9));
+		width = 0.9;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.4), width));
 		textureImage.append("box.jpg");
 		break;
 	case WALL:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.55),1,1,1.4));
+		lengthX = 1, lengthY = 1, lengthZ = 1.4;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.55), lengthX, lengthY, lengthZ));
 		textureImage.append("brickscolorhx8.jpg");
 		break;
 	case TARGET:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.6), 1,1,1));
+		lengthX = 1, lengthY = 1, lengthZ = 1;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.6), lengthX, lengthY, lengthZ));
 		textureImage.append("target.png");
 		break;
 	case PLAYER:
-		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), 0.4));
+		radius = 0.4;
+		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), radius));
 		textureImage.append("creeper.jpg");
 		break;
 	case DIRECTION_BUTTON:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0),1,1, 0));
+		lengthX = 1, lengthY = 1, lengthZ = 0;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		noeudGeo->addDrawable(shape);
 		textureImage.append("arrow-right-double.png");
 		break;
 	case SAVE_BUTTON:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("floppy.jpg");
 		break;
 	case ZOOM_IN:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("zoom_in.png");
 		break;
 	case ZOOM_OUT:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("zoom_out.png");
 		break;
 	case LOAD_BUTTON:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("load.png");
 		break;
 	case RELOAD_BUTTON:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("refresh_icon.jpg");
 		break;
 	case ROTATE_LEFT_BUTTON:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("rotate_left.png");
 		break;
 	case ROTATE_RIGHT_BUTTON:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
+		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("rotate_right.png");
 		break;
 	default:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1));
+		width = 1;
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), width));
 		textureImage.append("default.jpg");
 		break;
 	}
 	if (element != GROUND)
 		noeudGeo->addDrawable(shape);
 
-	if (element == DIRECTION_BUTTON ||
-		element == ZOOM_IN ||
-		element == ZOOM_OUT ||
-		element == SAVE_BUTTON ||
-		element == ROTATE_LEFT_BUTTON ||
-		element == ROTATE_RIGHT_BUTTON ||
-		element == LOAD_BUTTON ||
-		element == RELOAD_BUTTON) {
-			SwitchNoeudGeo = new osg::Geode();
-			switchTextureImage.append("default.jpg");
-			switchShape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 1.5, 1.5, 0));
-			SwitchNoeudGeo->addDrawable(switchShape);
-			nodeSwitch->addChild(noeudGeo);
-			nodeSwitch->addChild(SwitchNoeudGeo);
-			return nodeSwitch;
-	}
+	noeudGeo = setTexture(noeudGeo, element, textureImage);
 
-	setTexture(noeudGeo, element, textureImage);
-	return noeudGeo;
+	if (isAButton(element)) {
+		SwitchNoeudGeo = new osg::Geode();
+		switchTextureImage.append("default.jpg");
+		
+		switchShape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
+		SwitchNoeudGeo->addDrawable(switchShape);
+		nodeSwitch->addChild(noeudGeo);
+		nodeSwitch->addChild(SwitchNoeudGeo);
+		nodeSwitch->setChildValue(SwitchNoeudGeo, false);
+		_geoCache.insert(std::make_pair(element, nodeSwitch));
+		return nodeSwitch;
+	}
+	_geoCache.insert(std::make_pair(element, noeudGeo));
+	return  noeudGeo;
 }
