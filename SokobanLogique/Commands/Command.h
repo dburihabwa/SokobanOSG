@@ -1,6 +1,7 @@
 #pragma once
+#include <osg/Referenced>
 namespace Sokoban {
-	class Command
+	class Command : public osg::Referenced
 	{
 	public:
 
