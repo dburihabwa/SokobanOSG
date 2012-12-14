@@ -395,6 +395,9 @@ void Sokoban::Board::checkWinCond(bool wasOnTarget, bool isOnTarget) {
 }
 
 void Sokoban::Board::revertMove(Direction dir, osg::ref_ptr<Box> movedBox) {
+	if(_win==0) {
+		return;
+	}
 	_player->getRefMutex()->lock();
 	osg::Vec3 pPos = _player->getPosition();
 	_player->move(dir);	
