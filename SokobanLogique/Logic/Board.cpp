@@ -14,7 +14,6 @@
 
 #include <regex>
 #include <osg/Geode>
-#include <iostream>
 
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
 	std::stringstream ss(s);
@@ -380,7 +379,7 @@ void Sokoban::Board::reloadLvl() {
 void Sokoban::Board::checkWinCond(bool wasOnTarget, bool isOnTarget) {
 	//check if the box was on a target and is not on a target anymore
 	//if it's the case, increment the win counter.
-	if(wasOnTarget && isOnTarget) {
+	if(wasOnTarget && !isOnTarget) {
 		_win++;
 		//if the box wasn't on a target and is a on a target now
 		//Decrement the win counter.
@@ -414,6 +413,9 @@ void Sokoban::Board::revertMove(Direction dir, osg::ref_ptr<Box> movedBox) {
 		_boxScore--;
 		notifyViews(BOX_MOVED);
 	}
+#if DEBUG==TRUE
+	std::cout<<"Win : "<<_win<<std::endl;
+#endif
 }
 
 void Sokoban::Board::notifyViews(Event sokoEvent) {
