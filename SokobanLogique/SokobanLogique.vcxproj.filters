@@ -208,6 +208,9 @@
     <ClInclude Include="Commands\MoveCommand.h">
       <Filter>Headers\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Logic\IView.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">

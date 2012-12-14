@@ -9,9 +9,10 @@
 #include "../Logic/Movable.h"
 #include "../Logic/Unmovable.h"
 #include <osg/LightSource>
+#include "../Logic/IView.h"
 
 namespace Sokoban {
-	class View
+	class View : public IView
 	{
 	public:
 		static View& getInstance() {

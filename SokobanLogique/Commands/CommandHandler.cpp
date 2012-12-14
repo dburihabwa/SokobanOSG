@@ -28,3 +28,14 @@ bool Sokoban::CommandHandler::executeCommand(osg::ref_ptr<Command> command) {
 	}
 	return command->execute();
 }
+
+void Sokoban::CommandHandler::notify(Event sokoEvent) {
+	switch(sokoEvent) {
+	case LOAD_LVL:
+	case LOAD_SAVE:
+		_commands.empty();
+		break;
+	default:
+		break;
+	}
+}

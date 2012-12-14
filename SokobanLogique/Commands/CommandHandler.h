@@ -2,9 +2,10 @@
 #include <stack>
 #include "Command.h"
 #include "UnDoableCommand.h"
+#include "../Logic/IView.h"
 #include <osg/ref_ptr>
 namespace Sokoban {
-	class CommandHandler
+	class CommandHandler : public IView
 	{
 	public:
 		static CommandHandler& getInstance() {
@@ -15,11 +16,8 @@ namespace Sokoban {
 			static CommandHandler instance;
 			return instance;
 		}
-		bool emptyCommands() {
-			return _commands.empty();
-		}
-
 		bool executeCommand(osg::ref_ptr<Command> cmd);
+		void notify(Event);
 
 		~CommandHandler(void);
 	private:

@@ -114,6 +114,7 @@
     <ClInclude Include="Handlers\KeyboardHandler.h" />
     <ClInclude Include="Handlers\MouseHandler.h" />
     <ClInclude Include="GUI\LoadSavedGameButton.h" />
+    <ClInclude Include="Logic\IView.h" />
     <ClInclude Include="Logic\Board.h" />
     <ClInclude Include="Logic\Box.h" />
     <ClInclude Include="Logic\Case.h" />
