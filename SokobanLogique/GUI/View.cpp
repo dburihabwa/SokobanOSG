@@ -42,7 +42,7 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	textCamera->setReferenceFrame(osg::Camera::ABSOLUTE_RF);
 
 	_playBoard->setClearColor(osg::Vec4(0.0, 0.0, 0.0, 0.0));
-	_buttons->setClearColor(osg::Vec4(1.0, 1.0, 1.0, 0.0));
+	_buttons->setClearColor(osg::Vec4(0, 0, 0, 0));
 
 	_playBoard->setProjectionMatrixAsPerspective( 
 		Sokoban::fovy, 
