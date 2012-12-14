@@ -45,21 +45,21 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	_buttons->setClearColor(osg::Vec4(0, 0, 0, 0));
 
 	_playBoard->setProjectionMatrixAsPerspective( 
-		Sokoban::fovy, 
+		Sokoban::FOVY, 
 		restWidth/(double)playBoardHeight, 
-		Sokoban::near, 
-		Sokoban::far 
+		Sokoban::NEAR, 
+		Sokoban::FAR 
 		); 
 	_buttons->setProjectionMatrixAsPerspective( 
 		43.0f, 
 		restWidth/(double)buttonsHeight, 
-		Sokoban::near, 
+		Sokoban::NEAR, 
 		100.0F
 		); 
 	textCamera->setProjectionMatrixAsPerspective( 
 		80.0f, 
 		textWidth/(double)height, 
-		Sokoban::near, 
+		Sokoban::NEAR, 
 		100.0F
 		); 
 	//Viewport
@@ -161,10 +161,10 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 }
 
 void Sokoban::View::changeZoomOnBoard(double fovDiff) const{
-	double fov, ar,near,far;
-	_playBoard->getProjectionMatrixAsPerspective(fov,ar,near,far);
+	double fov, ar,NEAR,FAR;
+	_playBoard->getProjectionMatrixAsPerspective(fov,ar,NEAR,FAR);
 	fov+=fovDiff;
-	_playBoard->setProjectionMatrixAsPerspective(fov,ar,near,far);
+	_playBoard->setProjectionMatrixAsPerspective(fov,ar,NEAR,FAR);
 }
 
 Sokoban::View::~View(void) {

@@ -17,7 +17,7 @@ namespace Sokoban {
 	public:
 		static osg::ref_ptr<View> getInstance() {
 			if(!instance) {
-			instance = new View();
+				instance = new View();
 			}
 			return instance;
 		}
