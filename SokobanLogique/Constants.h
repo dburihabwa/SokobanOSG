@@ -34,4 +34,7 @@ namespace Sokoban
 	static const osg::Vec4 MSG_NORMAL(1,1,1,1);
 	static const osg::Vec4 MSG_WARNING(1.0, 0.0, 0.0, 1.0);
 	static const osg::Vec4 MSG_OK(0,1,0,1);
+
+	//Animation
+	static const float ANIM_TIME(0.25);
 };

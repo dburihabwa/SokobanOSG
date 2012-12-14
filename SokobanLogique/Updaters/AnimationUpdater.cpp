@@ -1,4 +1,5 @@
 #include "AnimationUpdater.h"
+#include "../Constants.h"
 
 
 Sokoban::AnimationUpdater::AnimationUpdater(void)
@@ -18,7 +19,7 @@ void Sokoban::AnimationUpdater::setMovement(osg::Vec3 position, osg::Vec3 newPos
 	osg::AnimationPath::ControlPoint destination(newPosition);
 
 	simpleMove->insert( 0, orign ); 
-	simpleMove->insert( 0.25, destination );
+	simpleMove->insert( ANIM_TIME, destination );
 	this->reset();
 	this->setAnimationPath(simpleMove);
 	this->getRefMutex()->unlock();
