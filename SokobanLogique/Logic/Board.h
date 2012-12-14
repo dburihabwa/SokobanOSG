@@ -9,7 +9,7 @@
 #include "Case.h"
 #include "Player.h"
 #include "Target.h"
-
+#include "IView.h"
 
 
 namespace Sokoban
@@ -70,10 +70,15 @@ namespace Sokoban
 		///<summary> Revert the move for the player and the box if it was moved </summary>
 		void revertMove(Direction dir, osg::ref_ptr<Box>);
 
+		void addView(osg::ref_ptr<IView> view) {
+			_views.push_back(view);
+		}
+
 	private:
 		std::vector<std::vector<osg::ref_ptr<Movable>>> _movable;
 		std::vector<std::vector<osg::ref_ptr<Unmovable>>> _unMovable;
 		std::vector<std::string> _levelFile;
+		std::vector<osg::ref_ptr<IView>> _views;
 		int _currentLvl;
 		unsigned int _win;
 		unsigned int _width;
@@ -103,6 +108,7 @@ namespace Sokoban
 		void loadLvl();
 		///<summary>Check what do to with the win counter, increment, decrement or nothing when moving a box</summary>
 		void checkWinCond(bool,bool);
+		void notifyViews(Event);
 
 	};
 

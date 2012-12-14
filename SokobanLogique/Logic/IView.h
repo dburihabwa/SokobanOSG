@@ -1,16 +1,16 @@
 #pragma once
 #include "../Event.h"
+#include <osg/Referenced>
 namespace Sokoban {
-	class IView
+	class IView : public osg::Referenced
 	{
 	public:
 
-		IView(void)
+		IView()
 		{
 		}
 
-		~IView(void)
-		{
+		virtual ~IView() {
 		}
 		virtual void notify(Event) = 0;
 	};
