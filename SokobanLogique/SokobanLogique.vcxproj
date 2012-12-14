@@ -134,7 +134,6 @@
     <ClInclude Include="Updaters\PlayerAnimationUpdater.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ressources\Levels\level_0.sok" />
     <None Include="Ressources\Levels\level_1.sok" />
     <None Include="Ressources\Levels\level_2.sok" />
     <None Include="Ressources\Levels\level_3.sok" />

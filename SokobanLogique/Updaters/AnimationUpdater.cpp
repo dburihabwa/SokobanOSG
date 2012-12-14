@@ -10,6 +10,7 @@ Sokoban::AnimationUpdater::~AnimationUpdater(void)
 {
 }
 void Sokoban::AnimationUpdater::setMovement(osg::Vec3 position, osg::Vec3 newPosition, Direction dir) {
+	this->getRefMutex()->lock();
 	osg::ref_ptr<osg::AnimationPath> simpleMove = new osg::AnimationPath;
 	simpleMove->setLoopMode( osg::AnimationPath::NO_LOOPING );
 
@@ -20,4 +21,5 @@ void Sokoban::AnimationUpdater::setMovement(osg::Vec3 position, osg::Vec3 newPos
 	simpleMove->insert( 0.25, destination );
 	this->reset();
 	this->setAnimationPath(simpleMove);
+	this->getRefMutex()->unlock();
 }
