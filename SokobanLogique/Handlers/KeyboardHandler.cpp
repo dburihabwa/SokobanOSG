@@ -8,6 +8,7 @@
 #include "../Commands/SaveCommand.h"
 #include "../Commands/LoadNextLevelCommand.h"
 #include "../Commands/MoveCommand.h"
+#include "../Commands/UndoCommand.h"
 
 Sokoban::KeyboardHandler::KeyboardHandler(void)
 {
@@ -51,6 +52,9 @@ bool Sokoban::KeyboardHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::G
 			break;
 		case osgGA::GUIEventAdapter::KEY_L: //touche L
 			CommandHandler::getInstance().executeCommand(new LoadCommand());
+			break;
+		case osgGA::GUIEventAdapter::KEY_U: //touche U
+			CommandHandler::getInstance().executeCommand(new UndoCommand());
 			break;
 		default:
 			break;
