@@ -126,8 +126,8 @@ bool Sokoban::Board::movePlayer(Direction dir, osg::ref_ptr<Box>& movedBox) {
 		notifyViews(PLAYER_MOVED);
 		return true;
 	}
-	std::string victoryMessage("Mouvement Incorrect.");
-	View::getInstance()->addText(victoryMessage, MSG_WARNING);
+	_message = "Mouvement Incorrect.";
+	notifyViews(WARN_MSG);
 	return false;
 }
 osg::ref_ptr<Sokoban::Case> Sokoban::Board::getCase(unsigned int x, unsigned int y) const{
@@ -178,8 +178,8 @@ Sokoban::Board::Board(void): _win(0), _height(0), _width(0), _set(false),_curren
 	struct dirent *dirp;
 	if((dp  = opendir(LVL_DIR)) == NULL) {
 		std::cout << "Error(" << errno << ") opening " << LVL_DIR << std::endl;
-		std::string victoryMessage("Problème lors du chargement des niveaux.");
-		View::getInstance()->addText(victoryMessage, MSG_WARNING);
+		_message = "Problème lors du chargement des niveaux.";
+		notifyViews(WARN_MSG);
 		return;
 	}
 #if DEBUG==TRUE
@@ -197,8 +197,8 @@ Sokoban::Board::Board(void): _win(0), _height(0), _width(0), _set(false),_curren
 	closedir(dp);
 	if(_levelFile.size() == 0) {
 		std::cout<<"NO LEVELS in the level directory !"<<std::endl;
-		std::string victoryMessage("Aucun niveau trouvé.");
-		View::getInstance()->addText(victoryMessage, MSG_WARNING);
+		_message = "Aucun niveau trouvé.";
+		notifyViews(WARN_MSG);
 	} 
 }
 void Sokoban::Board::resetBoard() {
@@ -227,16 +227,19 @@ void Sokoban::Board::loadFile(const char* file) {
 }
 void Sokoban::Board::loadNextLvl() {
 	if(_win !=0) {
-		std::string message("Vous ne pouvez pas charger le niveau");
-		View::getInstance()->addText(std::string("précédant !"), MSG_WARNING);
-		View::getInstance()->addText(std::string("suivant sans savoir terminer le "), MSG_WARNING);
-		View::getInstance()->addText(message, MSG_WARNING);
+		_message = "précédant !";
+		notifyViews(WARN_MSG);
+		_message = "suivant sans savoir terminer le ";
+		notifyViews(WARN_MSG);
+		_message = "Vous ne pouvez pas charger le niveau";
+		notifyViews(WARN_MSG);
+
 		return;
 	}
 	this->resetBoard();
 	if(_currentLvl == _levelFile.size() - 1) {
-		std::string message("Vous avez fini le jeu.");
-		View::getInstance()->addText(message);
+		_message="Vous avez fini le jeu.";
+		notifyViews(NORM_MSG);
 		return;
 	}
 	_currentLvl++;
@@ -244,15 +247,15 @@ void Sokoban::Board::loadNextLvl() {
 }
 
 
-void Sokoban::Board::save() const {
+void Sokoban::Board::save() {
 	std::ofstream out;
 	std::string filePath(SAVE_DIR);
 	filePath.append(SAVE_FILE);
 	out.open(filePath.c_str());
 	out << *this;
 	out.close();
-	std::string victoryMessage("Jeu sauvé.");
-	View::getInstance()->addText(victoryMessage, MSG_OK);
+	_message =  "Jeu sauvé.";
+	notifyViews(OK_MSG);
 }
 
 
@@ -266,13 +269,14 @@ bool Sokoban::Board::loadSave() {
 	if (stat(fileName.c_str(), &buf) != -1)
 	{
 		loadFile(fileName.c_str());
-		std::string victoryMessage("Sauvergarde chargée.");
-		View::getInstance()->addText(victoryMessage, MSG_OK);
+		_message ="Sauvergarde chargée.";
+		notifyViews(OK_MSG);
 		notifyViews(LOAD_SAVE);
 		return true;
 	}
 	std::string victoryMessage("Aucune sauvergarde à charger");
-	View::getInstance()->addText(victoryMessage, MSG_WARNING);
+	_message ="Aucune sauvergarde à charger";
+	notifyViews(WARN_MSG);
 	return false;
 }
 
@@ -369,7 +373,8 @@ void Sokoban::Board::loadLvl() {
 	notifyViews(LOAD_LVL);
 	std::stringstream message;
 	message<<"Niveau "<<_currentLvl<<" chargé.";
-	View::getInstance()->addText(message.str());
+	_message = message.str();
+	notifyViews(NORM_MSG);
 }
 
 void Sokoban::Board::reloadLvl() {
@@ -389,8 +394,10 @@ void Sokoban::Board::checkWinCond(bool wasOnTarget, bool isOnTarget) {
 	//If the win counter == 0, the player have finished the level.
 	if(_win==0) {
 		std::string victoryMessage("Vous avez gagné !");
-		View::getInstance()->addText(std::string("Appuyez sur N pour le niveau suivant."));
-		View::getInstance()->addText(victoryMessage, MSG_OK);				
+		_message ="Appuyez sur N pour le niveau suivant.";
+		notifyViews(NORM_MSG);
+		_message ="Vous avez gagné !";
+		notifyViews(OK_MSG);			
 	}
 }
 

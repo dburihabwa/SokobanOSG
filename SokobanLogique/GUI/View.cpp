@@ -118,6 +118,11 @@ void Sokoban::View::notify(Event modelEvent) {
 	case BOX_MOVED:
 		_textPanel->setBoxScore(Board::getInstance().getBoxScore());
 		break;
+	case NORM_MSG:
+	case OK_MSG:
+	case WARN_MSG:
+		manageMessage(modelEvent);
+		break;
 	default:
 		break;
 	}
@@ -217,4 +222,21 @@ void Sokoban::View::setLights() {
 	//Set on Camera
 	_playBoard->addChild(ambient);
 
+}
+
+void Sokoban::View::manageMessage(Event sokoEvent) {
+	switch(sokoEvent)
+	{
+	case NORM_MSG:
+		addText(Board::getInstance().getMessage());
+		break;
+	case OK_MSG:
+		addText(Board::getInstance().getMessage(),MSG_OK);
+		break;
+	case WARN_MSG:
+		addText(Board::getInstance().getMessage(),MSG_WARNING);
+		break;
+	default:
+		break;
+	}
 }

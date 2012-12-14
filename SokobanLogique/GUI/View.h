@@ -30,13 +30,6 @@ namespace Sokoban {
 		osg::ref_ptr<osg::Camera> getButtonsCamera() {
 			return _buttons;
 		}
-		void addText(std::string str) const {
-			this->addText(str, MSG_NORMAL);
-		}
-		///<summary>Display a text in the text panel with the wanted color</summary>
-		void addText(std::string str, osg::Vec4 color) const {
-			_textPanel->addText(str, color);
-		}
 		///<summary> Notify the view that it have to refresh</summary>
 		void notify(Event);
 		~View(void);
@@ -59,7 +52,12 @@ namespace Sokoban {
 		void initLevel();
 		void setLights();
 		static osg::ref_ptr<View> instance;
-
+		///<summary>Display a text in the text panel with the wanted color</summary>
+		void addText(std::string str, osg::Vec4 color = MSG_NORMAL) const {
+			_textPanel->addText(str, color);
+		}
+		void manageMessage(Event);
+		
 	};
 }
 

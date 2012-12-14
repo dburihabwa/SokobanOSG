@@ -51,7 +51,7 @@ namespace Sokoban
 		///<summary>reload the current level to it's first state</summary>
 		void reloadLvl();
 
-		void save() const;
+		void save();
 		///<summary> Load the save, return true if there is a save else return false</summary>
 		bool loadSave();
 		const std::vector<std::vector<osg::ref_ptr<Movable>>>& getMovable() const {
@@ -73,7 +73,9 @@ namespace Sokoban
 		void addView(osg::ref_ptr<IView> view) {
 			_views.push_back(view);
 		}
-
+		std::string getMessage() const {
+			return _message;
+		}
 	private:
 		std::vector<std::vector<osg::ref_ptr<Movable>>> _movable;
 		std::vector<std::vector<osg::ref_ptr<Unmovable>>> _unMovable;
@@ -86,6 +88,7 @@ namespace Sokoban
 		unsigned int _playerScore;
 		unsigned int _boxScore;
 		bool _set;
+		std::string _message;
 		osg::Vec3 center;
 		osg::ref_ptr<Player> _player;
 		Board();
