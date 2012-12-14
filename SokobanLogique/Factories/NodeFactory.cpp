@@ -281,12 +281,12 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		std::cout << "Setting the alternate image to appear on hover : " << switchTextureImage << std::endl;
 		switchShape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		SwitchNoeudGeo->addDrawable(switchShape);
+		setTexture(SwitchNoeudGeo, element, switchTextureImage);
 		nodeSwitch->insertChild(0, noeudGeo); 
 		nodeSwitch->insertChild(1, SwitchNoeudGeo);
 		nodeSwitch->setAllChildrenOff();
 		nodeSwitch->setChildValue(noeudGeo, true);
 		nodeSwitch->setChildValue(SwitchNoeudGeo, false);
-		_geoCache.insert(std::make_pair(element, nodeSwitch));
 		return nodeSwitch;
 	}
 	_geoCache.insert(std::make_pair(element, noeudGeo));
