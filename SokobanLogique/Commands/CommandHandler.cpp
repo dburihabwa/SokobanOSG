@@ -20,7 +20,11 @@ bool Sokoban::CommandHandler::executeCommand(osg::ref_ptr<Command> command) {
 		return unCmd->unExecute();
 	}
 	else if(osg::ref_ptr<UnDoableCommand> unDoableCmd = dynamic_cast<UnDoableCommand*>(command.get())){
-		_commands.push(unDoableCmd);
+		if(command->execute()) {
+			_commands.push(unDoableCmd);
+			return true;
+		}
+		return false;
 	}
 	return command->execute();
 }
