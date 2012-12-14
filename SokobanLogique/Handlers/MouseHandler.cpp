@@ -71,15 +71,9 @@ bool Sokoban::MouseHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIA
 			_mx = ea.getX();
 			_my = ea.getY();
 			if (isHoveringAButton(ea)) {
-				std::cout << "A button is being hovered!" << std::endl;
-				bool res = setButtonToAlternateGeode(ea);
-				std::cout<< "To Alternate = " <<  res << "!" <<std::endl;
-				return res;
+				return setButtonToAlternateGeode(ea);
 			} else {
-				bool res = setButtonToPrimaryGeode(ea);				
-				std::cout<< "NO button IS being hovered!" << std::endl;
-				std::cout<< "To Primary = " <<  res << "!" <<std::endl;
-				return res;
+				return setButtonToPrimaryGeode(ea);				
 			}
 			break;
 		}
