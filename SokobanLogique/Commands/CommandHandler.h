@@ -1,6 +1,7 @@
 #pragma once
 #include <stack>
 #include "Command.h"
+#include "UnDoableCommand.h"
 #include <osg/ref_ptr>
 namespace Sokoban {
 	class CommandHandler
@@ -22,7 +23,7 @@ namespace Sokoban {
 
 		~CommandHandler(void);
 	private:
-		std::stack<osg::ref_ptr<Command>> _commands;
+		std::stack<osg::ref_ptr<UnDoableCommand>> _commands;
 		CommandHandler();
 		CommandHandler(CommandHandler const&);              // Don't Implement
 		void operator=(CommandHandler const&); // Don't implement

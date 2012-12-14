@@ -15,18 +15,12 @@ bool Sokoban::CommandHandler::executeCommand(osg::ref_ptr<Command> command) {
 	if(dynamic_cast<UndoCommand*>(command.get())) {
 		if(_commands.empty())
 			return false;
-		osg::ref_ptr<UnDoableCommand> unCmd;
-		do {
-			unCmd = dynamic_cast<UnDoableCommand*>(_commands.top().get());
-			_commands.pop();
-		} while(!_commands.empty() && !unCmd);
-		if(unCmd)
-			return unCmd->unExecute();
-		return false;
+		osg::ref_ptr<UnDoableCommand> unCmd = _commands.top();
+		_commands.pop();
+		return unCmd->unExecute();
 	}
-	else {
-		_commands.push(command);
-		return command->execute();
+	else if(osg::ref_ptr<UnDoableCommand> unDoableCmd = dynamic_cast<UnDoableCommand*>(command.get())){
+		_commands.push(unDoableCmd);
 	}
-	return false;
+	return command->execute();
 }
