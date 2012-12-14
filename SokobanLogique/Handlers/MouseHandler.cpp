@@ -2,8 +2,6 @@
 #include <osgViewer\Viewer>
 #include "../GUI/View.h"
 
-#include <iostream>
-
 Sokoban::MouseHandler::~MouseHandler(void)
 {
 }

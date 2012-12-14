@@ -4,6 +4,9 @@
 #define TRUE 1
 #define FALSE 0
 #define DEBUG TRUE
+#if DEBUG==TRUE
+#include <iostream>
+#endif
 namespace Sokoban
 {
 	//Camera 

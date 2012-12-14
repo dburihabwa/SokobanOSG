@@ -2,6 +2,7 @@
 #include "UndoCommand.h"
 #include "UnDoableCommand.h"
 #include "../Logic/Board.h"
+#include "../Constants.h"
 
 osg::ref_ptr<Sokoban::CommandHandler> Sokoban::CommandHandler::instance = NULL;
 
@@ -36,6 +37,9 @@ void Sokoban::CommandHandler::notify(Event sokoEvent) {
 	switch(sokoEvent) {
 	case LOAD_LVL:
 	case LOAD_SAVE:
+#if DEBUG==TRUE
+		std::cout<<"Empty Commands"<<std::endl;
+#endif
 		_commands.empty();
 		break;
 	default:
