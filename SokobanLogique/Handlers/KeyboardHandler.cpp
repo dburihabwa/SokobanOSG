@@ -53,7 +53,7 @@ bool Sokoban::KeyboardHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::G
 		case osgGA::GUIEventAdapter::KEY_L: //touche L
 			CommandHandler::getInstance()->executeCommand(new LoadCommand());
 			break;
-		case osgGA::GUIEventAdapter::KEY_U: //touche U
+		case osgGA::GUIEventAdapter::KEY_BackSpace: //touche Retour arrière
 			CommandHandler::getInstance()->executeCommand(new UndoCommand());
 			break;
 		default:
