@@ -33,6 +33,12 @@ namespace Sokoban
 		///	<param name = "texturePath">File path of the texutreto apply</param>
 		///	<returns>Returns the geode</retruns>
 		static osg::ref_ptr<osg::Geode> setTexture(osg::ref_ptr<osg::Geode> geode, Type type, std::string& texturePath);
+		///	<summary>
+		///	Checks whether the passed type represents a GUIButton
+		///	<param name = "type">The type to test</param>
+		///	<returns>Result of the test</returns>
+		///	</summary>
+		static bool isAButton(Type type);
 	};
 
 }
