@@ -209,7 +209,7 @@
       <Filter>Headers\Commands</Filter>
     </ClInclude>
     <ClInclude Include="Logic\IView.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\Logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

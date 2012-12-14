@@ -13,5 +13,5 @@ Sokoban::Type Sokoban::SaveButton::getType() {
 	return SAVE_BUTTON;
 }
 bool Sokoban::SaveButton::onClick() {
-	return CommandHandler::getInstance().executeCommand(new SaveCommand());
+	return CommandHandler::getInstance()->executeCommand(new SaveCommand());
 }

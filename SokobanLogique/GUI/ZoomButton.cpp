@@ -23,9 +23,9 @@ Sokoban::ZoomButton::~ZoomButton(void)
 bool Sokoban::ZoomButton::onClick() {
 
 	if(_type == ZOOM_OUT) {
-		View::getInstance().changeZoomOnBoard(2);
+		View::getInstance()->changeZoomOnBoard(2);
 	} else if(_type == ZOOM_IN) {
-		View::getInstance().changeZoomOnBoard(-2);
+		View::getInstance()->changeZoomOnBoard(-2);
 	}
 	return true;
 }

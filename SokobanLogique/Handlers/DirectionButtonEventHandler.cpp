@@ -18,7 +18,7 @@ bool Sokoban::DirectionButtonEventHandler::pick(const osgGA::GUIEventAdapter& ea
 
 	osgUtil::IntersectionVisitor iv(picker);
 	//We are only interested to get intersections in the buttonsCamera.
-	Sokoban::View::getInstance().getButtonsCamera()->accept(iv);
+	Sokoban::View::getInstance()->getButtonsCamera()->accept(iv);
 
 	if (picker->containsIntersections())
 	{

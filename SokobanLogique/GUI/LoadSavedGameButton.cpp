@@ -13,5 +13,5 @@ Sokoban::LoadSavedGameButton::~LoadSavedGameButton(void)
 {
 }
 bool Sokoban::LoadSavedGameButton::onClick() {
-	return CommandHandler::getInstance().executeCommand(new LoadCommand());
+	return CommandHandler::getInstance()->executeCommand(new LoadCommand());
 }

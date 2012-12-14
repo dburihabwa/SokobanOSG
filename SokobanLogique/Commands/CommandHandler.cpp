@@ -1,9 +1,12 @@
 #include "CommandHandler.h"
 #include "UndoCommand.h"
 #include "UnDoableCommand.h"
+#include "../Logic/Board.h"
 
-Sokoban::CommandHandler::CommandHandler(void)
-{
+osg::ref_ptr<Sokoban::CommandHandler> Sokoban::CommandHandler::instance = NULL;
+
+Sokoban::CommandHandler::CommandHandler(void) {
+	Board::getInstance().addView(osg::ref_ptr<IView>(this));
 }
 
 

@@ -13,5 +13,5 @@ Sokoban::Type Sokoban::ReloadButton::getType() {
 	return RELOAD_BUTTON;
 }
 bool Sokoban::ReloadButton::onClick() {
-	return CommandHandler::getInstance().executeCommand(new ReloadCommand());
+	return CommandHandler::getInstance()->executeCommand(new ReloadCommand());
 }

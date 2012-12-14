@@ -15,19 +15,17 @@ namespace Sokoban {
 	class View : public IView
 	{
 	public:
-		static View& getInstance() {
-			// The only instance
-			// Guaranteed to be lazy initialized
-			// Guaranteed that it will be destroyed correctly
-			//Explained : http://stackoverflow.com/questions/86582/singleton-how-should-it-be-used
-			static View instance;
+		static osg::ref_ptr<View> getInstance() {
+			if(!instance) {
+			instance = new View();
+			}
 			return instance;
 		}
 		///<summary>Init the viewer with the size of the window.</summary>
 		void init(unsigned int, unsigned int);
 		
 		osg::ref_ptr<osgViewer::Viewer> getViewer() const {
-			return _viewer;
+	return _viewer;
 		}
 		osg::ref_ptr<osg::Camera> getButtonsCamera() {
 			return _buttons;
@@ -60,6 +58,7 @@ namespace Sokoban {
 		void loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable>>>&,const std::vector<std::vector<osg::ref_ptr<Unmovable>>> &);
 		void initLevel();
 		void setLights();
+		static osg::ref_ptr<View> instance;
 
 	};
 }

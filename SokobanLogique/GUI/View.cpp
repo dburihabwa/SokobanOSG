@@ -9,6 +9,8 @@
 #include "../Handlers/ScrollHandler.h"
 #include "../Logic/Empty.h"
 
+osg::ref_ptr<Sokoban::View> Sokoban::View::instance = NULL;
+
 Sokoban::View::View(void) {
 }
 void Sokoban::View::init(unsigned int height, unsigned int width) {
@@ -73,7 +75,7 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 	setLights();
 
 	//Board
-	Sokoban::Board::getInstance().loadNextLvl();
+	Sokoban::Board::getInstance().addView(osg::ref_ptr<IView>(this));
 
 	//_buttons
 	Hud hud;
@@ -165,8 +167,7 @@ void Sokoban::View::changeZoomOnBoard(double fovDiff) const{
 	_playBoard->setProjectionMatrixAsPerspective(fov,ar,near,far);
 }
 
-Sokoban::View::~View(void)
-{
+Sokoban::View::~View(void) {
 }
 
 bool Sokoban::View::rotatePlayGround(Sokoban::Type type) {

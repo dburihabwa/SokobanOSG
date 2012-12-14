@@ -30,9 +30,9 @@ bool Sokoban::ScrollHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUI
 }
 bool Sokoban::ScrollHandler::scrollHandle( osgGA::GUIEventAdapter::ScrollingMotion type) const {
 	if(type == osgGA::GUIEventAdapter::SCROLL_DOWN) {
-		View::getInstance().changeZoomOnBoard(1);
+		View::getInstance()->changeZoomOnBoard(1);
 	} else if(type == osgGA::GUIEventAdapter::SCROLL_UP) {
-		View::getInstance().changeZoomOnBoard(-1);
+		View::getInstance()->changeZoomOnBoard(-1);
 	}	
 	return true;
 }

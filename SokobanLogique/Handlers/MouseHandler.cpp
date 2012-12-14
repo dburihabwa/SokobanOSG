@@ -14,7 +14,7 @@ bool isHoveringAButton(const osgGA::GUIEventAdapter& ea) {
 	osgUtil::LineSegmentIntersector* picker;
 	picker = new osgUtil::LineSegmentIntersector( osgUtil::Intersector::WINDOW, ea.getX(),ea.getY() );
 	osgUtil::IntersectionVisitor iv(picker);
-	Sokoban::View::getInstance().getButtonsCamera()->accept(iv);
+	Sokoban::View::getInstance()->getButtonsCamera()->accept(iv);
 	if (picker->containsIntersections()) {
 		osgUtil::LineSegmentIntersector::Intersection intersection = picker->getFirstIntersection();
 		osg::ref_ptr<Sokoban::GUIButton> button = dynamic_cast<Sokoban::GUIButton*>(intersection.nodePath.at(2)->getUserData());
@@ -28,7 +28,7 @@ osg::ref_ptr<osg::Switch> getHoveredButton(const osgGA::GUIEventAdapter& ea) {
 	osgUtil::LineSegmentIntersector* picker;
 	picker = new osgUtil::LineSegmentIntersector( osgUtil::Intersector::WINDOW, ea.getX(),ea.getY() );
 	osgUtil::IntersectionVisitor iv(picker);
-	Sokoban::View::getInstance().getButtonsCamera()->accept(iv);
+	Sokoban::View::getInstance()->getButtonsCamera()->accept(iv);
 	if (picker->containsIntersections()) {
 		osgUtil::LineSegmentIntersector::Intersection intersection = picker->getFirstIntersection();
 		osg::ref_ptr<osg::Switch> switchNode = dynamic_cast<osg::Switch*>(intersection.nodePath.at(3));

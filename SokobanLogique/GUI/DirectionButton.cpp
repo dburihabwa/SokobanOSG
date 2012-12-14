@@ -18,5 +18,5 @@ Sokoban::Type Sokoban::DirectionButton::getType() {
     return DIRECTION_BUTTON;
 }
 bool Sokoban::DirectionButton::onClick() {
-	return CommandHandler::getInstance().executeCommand(new MoveCommand(_direction));
+	return CommandHandler::getInstance()->executeCommand(new MoveCommand(_direction));
 }

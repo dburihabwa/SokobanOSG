@@ -13,7 +13,7 @@ namespace Sokoban
 		}
 		bool canMove(Direction);
 		void move(Direction);
-		~Box(void);
+		virtual ~Box(void);
 		bool isOnTarget() const {
 			return _onTarget;
 		}

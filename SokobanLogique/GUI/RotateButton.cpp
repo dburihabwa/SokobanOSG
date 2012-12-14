@@ -5,7 +5,7 @@ Sokoban::RotateButton::RotateButton(int x, int y, int z, Type type) : Sokoban::G
 
 bool Sokoban::RotateButton::onClick()
 {
-	return View::getInstance().rotatePlayGround(this->_type);
+	return View::getInstance()->rotatePlayGround(this->_type);
 }
 
 Sokoban::Type Sokoban::RotateButton::getType() {

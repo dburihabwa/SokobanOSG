@@ -8,12 +8,10 @@ namespace Sokoban {
 	class CommandHandler : public IView
 	{
 	public:
-		static CommandHandler& getInstance() {
-			// The only instance
-			// Guaranteed to be lazy initialized
-			// Guaranteed that it will be destroyed correctly
-			//Explained : http://stackoverflow.com/questions/86582/singleton-how-should-it-be-used
-			static CommandHandler instance;
+		static osg::ref_ptr<CommandHandler> getInstance() {
+			if(!instance) {
+				instance = new CommandHandler();
+			}
 			return instance;
 		}
 		bool executeCommand(osg::ref_ptr<Command> cmd);
@@ -25,5 +23,6 @@ namespace Sokoban {
 		CommandHandler();
 		CommandHandler(CommandHandler const&);              // Don't Implement
 		void operator=(CommandHandler const&); // Don't implement
+		static osg::ref_ptr<CommandHandler> instance;
 	};
 }
