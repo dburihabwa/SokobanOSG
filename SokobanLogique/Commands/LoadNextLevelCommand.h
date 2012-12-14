@@ -14,7 +14,7 @@ namespace Sokoban {
 		{
 		}
 
-		bool execute() const {
+		bool execute() {
 			Board::getInstance().loadNextLvl();
 			return true;
 		}

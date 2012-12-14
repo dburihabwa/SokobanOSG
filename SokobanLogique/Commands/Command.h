@@ -13,7 +13,7 @@ namespace Sokoban {
 		{
 		}
 		
-		virtual bool execute() const = 0;
+		virtual bool execute() = 0;
 	};
 }
 

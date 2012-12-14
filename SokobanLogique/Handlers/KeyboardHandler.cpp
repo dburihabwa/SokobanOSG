@@ -7,6 +7,7 @@
 #include "../Commands/LoadCommand.h"
 #include "../Commands/SaveCommand.h"
 #include "../Commands/LoadNextLevelCommand.h"
+#include "../Commands/MoveCommand.h"
 
 Sokoban::KeyboardHandler::KeyboardHandler(void)
 {
@@ -23,19 +24,19 @@ bool Sokoban::KeyboardHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::G
 	case osgGA::GUIEventAdapter::KEYDOWN: // Enfoncement d'une touche
 		switch(ea.getKey()){
 		case osgGA::GUIEventAdapter::KEY_Right : // flêche vers la droite
-			Board::getInstance().movePlayer(RIGHT);
+			CommandHandler::getInstance().executeCommand(new MoveCommand(RIGHT));
 			return true;
 			break;
 		case osgGA::GUIEventAdapter::KEY_Left : // flêche vers la gauche
-			Board::getInstance().movePlayer(LEFT);
+			CommandHandler::getInstance().executeCommand(new MoveCommand(LEFT));
 			return true;
 			break;
 		case osgGA::GUIEventAdapter::KEY_Down : // flêche vers le bas
-			Board::getInstance().movePlayer(DOWN);
+			CommandHandler::getInstance().executeCommand(new MoveCommand(DOWN));
 			return true;
 			break;
 		case osgGA::GUIEventAdapter::KEY_Up : // flêche vers le haut
-			Board::getInstance().movePlayer(UP);
+			CommandHandler::getInstance().executeCommand(new MoveCommand(UP));
 			return true;
 			break;
 		case osgGA::GUIEventAdapter::KEY_N: //touche N

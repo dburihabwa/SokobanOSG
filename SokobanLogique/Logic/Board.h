@@ -31,8 +31,11 @@ namespace Sokoban
 		osg::Vec3 getCenter() const {
 			return center;
 		}
-		///<summary> Try to move the player in the wanted direction
-		bool movePlayer(Direction);
+		///<summary> Try to move the player in the wanted direction.
+		/// If the player move a box, the moved box will be set.
+		///</summary>
+		
+		bool movePlayer(Direction, osg::ref_ptr<Box>&);
 
 		void displayLevel() const;
 
@@ -64,6 +67,8 @@ namespace Sokoban
 		unsigned int getBoxScore() const {
 			return _boxScore;
 		}
+		///<summary> Revert the move for the player and the box if it was moved </summary>
+		void revertMove(Direction dir, osg::ref_ptr<Box>);
 
 	private:
 		std::vector<std::vector<osg::ref_ptr<Movable>>> _movable;
@@ -96,6 +101,8 @@ namespace Sokoban
 		std::vector<std::string> parseStringLevel(std::string);
 		///<summary>Load the lvl pointed by the _currentLvl</summary>
 		void loadLvl();
+		///<summary>Check what do to with the win counter, increment, decrement or nothing when moving a box</summary>
+		void checkWinCond(bool,bool);
 
 	};
 

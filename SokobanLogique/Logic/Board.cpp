@@ -97,34 +97,23 @@ void Sokoban::Board::init(std::string level)
 	_set =true;
 }
 
-bool Sokoban::Board::movePlayer(Direction dir) {
+bool Sokoban::Board::movePlayer(Direction dir, osg::ref_ptr<Box>& movedBox) {
 	//If the win counter == 0, the player have finished the level.
 	if(_win == 0) {
 		return false;
 	}
+	movedBox.release();
 	//Check if the player can move
 	if(_player->canMove(dir)) {
 		//Check if the player is going to move a box
 		//It's set when the player check if he can move
 		if(_player->willMoveBox()) {
 			//retain the state of the box (on a target or not)
-			bool wasOnTarget = _player->getMovedBox()->isOnTarget();
+			movedBox = _player->getMovedBox();
+			bool wasOnTarget = movedBox->isOnTarget();			
 			_player->move(dir);
-			//check if the box was on a target and is not on a target anymore
-			//if it's the case, increment the win counter.
-			if(wasOnTarget && !_player->getMovedBox()->isOnTarget()) {
-				_win++;
-				//if the box wasn't on a target and is a on a target now
-				//Decrement the win counter.
-			} else if(!wasOnTarget && _player->getMovedBox()->isOnTarget()) {
-				_win--;
-			}
-			//If the win counter == 0, the player have finished the level.
-			if(_win==0) {
-				std::string victoryMessage("Vous avez gagné !");
-				View::getInstance().addText(std::string("Appuyez sur N pour le niveau suivant."));
-				View::getInstance().addText(victoryMessage, MSG_OK);				
-			}
+			//Check the winning condition
+			checkWinCond(wasOnTarget,movedBox->isOnTarget());
 			_boxScore++;
 			View::getInstance().notify(BOX_MOVED);
 		}
@@ -387,4 +376,42 @@ void Sokoban::Board::loadLvl() {
 void Sokoban::Board::reloadLvl() {
 	this->resetBoard();
 	this->loadLvl();
+}
+void Sokoban::Board::checkWinCond(bool wasOnTarget, bool isOnTarget) {
+	//check if the box was on a target and is not on a target anymore
+	//if it's the case, increment the win counter.
+	if(wasOnTarget && isOnTarget) {
+		_win++;
+		//if the box wasn't on a target and is a on a target now
+		//Decrement the win counter.
+	} else if(!wasOnTarget && isOnTarget) {
+		_win--;
+	}
+	//If the win counter == 0, the player have finished the level.
+	if(_win==0) {
+		std::string victoryMessage("Vous avez gagné !");
+		View::getInstance().addText(std::string("Appuyez sur N pour le niveau suivant."));
+		View::getInstance().addText(victoryMessage, MSG_OK);				
+	}
+}
+void Sokoban::Board::revertMove(Direction dir, osg::ref_ptr<Box> movedBox) {
+	_player->getRefMutex()->lock();
+	osg::Vec3 pPos = _player->getPosition();
+	_player->move(dir);	
+	_player->getRefMutex()->unlock();
+	_playerScore--;
+	View::getInstance().notify(PLAYER_MOVED);	
+	if(movedBox) {
+		movedBox->getRefMutex()->lock();
+		osg::Vec3 oldPos = movedBox->getPosition();
+		osg::Vec3 newPos = oldPos + dir.getVector();
+		bool wasOnTarget = dynamic_cast<Target*>(_unMovable[oldPos.x()][oldPos.y()].get())?true:false;
+		bool willBeOnTarget = dynamic_cast<Target*>(_unMovable[newPos.x()][newPos.y()].get())?true:false;
+		movedBox->move(dir);
+		movedBox->getRefMutex()->unlock();
+		checkWinCond(wasOnTarget,willBeOnTarget);
+		_boxScore--;
+		View::getInstance().notify(BOX_MOVED);
+	}
+
 }

@@ -18,8 +18,11 @@ namespace Sokoban
 		bool Direction::operator !=(Direction b) {
 			return (this->_x != b._x || this->_y != b._y);
 		}
-		osg::Vec3 getVector() {
+		osg::Vec3 getVector() const {
 			return osg::Vec3(_x,_y,0);
+		}
+		Direction getOpposite() const {
+			return Direction(_x*-1,_y*-1); 
 		}
 
 	private:

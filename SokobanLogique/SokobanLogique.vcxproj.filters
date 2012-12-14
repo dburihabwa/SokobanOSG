@@ -205,6 +205,9 @@
     <ClInclude Include="Commands\LoadNextLevelCommand.h">
       <Filter>Headers\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Commands\MoveCommand.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">

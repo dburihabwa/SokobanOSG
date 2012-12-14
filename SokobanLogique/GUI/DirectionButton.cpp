@@ -2,6 +2,8 @@
 #include <osg/PositionAttitudeTransform>
 #include "../Constants.h"
 #include "../Logic/Board.h"
+#include "../Commands/MoveCommand.h"
+#include "../Commands/CommandHandler.h"
 
 
 Sokoban::DirectionButton::DirectionButton(int x, int y, int z, Sokoban::Direction direction) : Sokoban::GUIButton(x, y, z) {
@@ -16,5 +18,5 @@ Sokoban::Type Sokoban::DirectionButton::getType() {
     return DIRECTION_BUTTON;
 }
 bool Sokoban::DirectionButton::onClick() {
-	return Board::getInstance().movePlayer(this->_direction);
+	return CommandHandler::getInstance().executeCommand(new MoveCommand(_direction));
 }
