@@ -193,6 +193,18 @@
     <ClInclude Include="Commands\UndoCommand.h">
       <Filter>Headers\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Commands\SaveCommand.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\LoadCommand.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\ReloadCommand.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\LoadNextLevelCommand.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">

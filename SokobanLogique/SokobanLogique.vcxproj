@@ -93,6 +93,10 @@
     <ClInclude Include="Adapters\OSGMoveAdapter.h" />
     <ClInclude Include="Commands\CommandHandler.h" />
     <ClInclude Include="Commands\Command.h" />
+    <ClInclude Include="Commands\LoadCommand.h" />
+    <ClInclude Include="Commands\LoadNextLevelCommand.h" />
+    <ClInclude Include="Commands\ReloadCommand.h" />
+    <ClInclude Include="Commands\SaveCommand.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="dirent.h" />
     <ClInclude Include="Event.h" />
