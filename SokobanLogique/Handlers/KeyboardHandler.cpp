@@ -2,7 +2,11 @@
 #include <osgGA/GUIEventAdapter>
 #include <osgViewer/Viewer>
 #include "../Logic/Board.h"
-
+#include "../Commands/CommandHandler.h"
+#include "../Commands/ReloadCommand.h"
+#include "../Commands/LoadCommand.h"
+#include "../Commands/SaveCommand.h"
+#include "../Commands/LoadNextLevelCommand.h"
 
 Sokoban::KeyboardHandler::KeyboardHandler(void)
 {
@@ -35,11 +39,17 @@ bool Sokoban::KeyboardHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::G
 			return true;
 			break;
 		case osgGA::GUIEventAdapter::KEY_N: //touche N
-			Board::getInstance().loadNextLvl();
+			CommandHandler::getInstance().executeCommand(new LoadNextLevelCommand());
 			return true;
 			break;
 		case osgGA::GUIEventAdapter::KEY_R: //touche R
-			Board::getInstance().reloadLvl();
+			CommandHandler::getInstance().executeCommand(new ReloadCommand());
+			break;
+		case osgGA::GUIEventAdapter::KEY_S: //touche S
+			CommandHandler::getInstance().executeCommand(new SaveCommand());
+			break;
+		case osgGA::GUIEventAdapter::KEY_L: //touche L
+			CommandHandler::getInstance().executeCommand(new LoadCommand());
 			break;
 		default:
 			break;

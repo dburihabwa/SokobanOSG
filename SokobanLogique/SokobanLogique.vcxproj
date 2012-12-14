@@ -93,6 +93,10 @@
     <ClInclude Include="Adapters\OSGMoveAdapter.h" />
     <ClInclude Include="Commands\CommandHandler.h" />
     <ClInclude Include="Commands\Command.h" />
+    <ClInclude Include="Commands\LoadCommand.h" />
+    <ClInclude Include="Commands\LoadNextLevelCommand.h" />
+    <ClInclude Include="Commands\ReloadCommand.h" />
+    <ClInclude Include="Commands\SaveCommand.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="dirent.h" />
     <ClInclude Include="Event.h" />
@@ -130,7 +134,6 @@
     <ClInclude Include="Updaters\PlayerAnimationUpdater.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ressources\Levels\level_0.sok" />
     <None Include="Ressources\Levels\level_1.sok" />
     <None Include="Ressources\Levels\level_2.sok" />
     <None Include="Ressources\Levels\level_3.sok" />

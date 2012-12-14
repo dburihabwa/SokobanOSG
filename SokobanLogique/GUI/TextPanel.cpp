@@ -56,6 +56,7 @@ void Sokoban::TextPanel::init() {
 }
 
 void Sokoban::TextPanel::addText(std::string str, osg::Vec4 color) {
+	this->getRefMutex()->lock();
 #if DEBUG==TRUE
 	std::cout<<str<<std::endl;
 #endif
@@ -66,6 +67,7 @@ void Sokoban::TextPanel::addText(std::string str, osg::Vec4 color) {
 	pos->setName(str);
 	_textGroup->addChild(pos);
 	_nbTxt++;
+	this->getRefMutex()->unlock();
 }
 void Sokoban::TextPanel::updatePosition() {
 	osg::ref_ptr<osg::Node> toBeDeleted;
@@ -120,13 +122,17 @@ osg::ref_ptr<osg::Geode> Sokoban::TextPanel::generateGeode(osg::ref_ptr<osgText:
 }
 
 void Sokoban::TextPanel::setPlayerScore(unsigned int score) {
+	this->getRefMutex()->lock();
 	std::stringstream buffer;
 	buffer<<_playerString<<score;
 	_movementText->setText(buffer.str());
+	this->getRefMutex()->unlock();
 }
 
 void Sokoban::TextPanel::setBoxScore(unsigned int score) {
+	this->getRefMutex()->lock();
 	std::stringstream buffer;
 	buffer<<_boxString<<score;
 	_boxText->setText(buffer.str());
+	this->getRefMutex()->unlock();
 }
