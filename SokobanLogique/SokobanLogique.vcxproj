@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Commands\CommandHandler.cpp" />
     <ClCompile Include="Factories\NodeFactory.cpp" />
     <ClCompile Include="GUI\DirectionButton.cpp" />
     <ClCompile Include="GUI\GUIButton.cpp" />
@@ -90,6 +91,8 @@
   <ItemGroup>
     <ClInclude Include="Adapters\MoveAdapter.h" />
     <ClInclude Include="Adapters\OSGMoveAdapter.h" />
+    <ClInclude Include="Commands\CommandHandler.h" />
+    <ClInclude Include="Commands\Command.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="dirent.h" />
     <ClInclude Include="Event.h" />
@@ -121,6 +124,8 @@
     <ClInclude Include="GUI\TextPanel.h" />
     <ClInclude Include="Handlers\ScrollHandler.h" />
     <ClInclude Include="RotateButton.h" />
+    <ClInclude Include="Commands\UnDoableCommand.h" />
+    <ClInclude Include="Commands\UndoCommand.h" />
     <ClInclude Include="Updaters\AnimationUpdater.h" />
     <ClInclude Include="Updaters\PlayerAnimationUpdater.h" />
   </ItemGroup>

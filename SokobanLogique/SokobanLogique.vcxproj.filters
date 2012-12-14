@@ -67,6 +67,13 @@
     <Filter Include="Sources\Adapters">
       <UniqueIdentifier>{c5b79007-fd53-4102-b9f2-489b886761bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\Commands">
+      <UniqueIdentifier>{96fb6734-f7ce-443e-b137-75c8f5137daa}</UniqueIdentifier>
+      <Extensions>Command.h;</Extensions>
+    </Filter>
+    <Filter Include="Sources\Commands">
+      <UniqueIdentifier>{0c55a8de-5512-42bc-b99c-58a3f941601a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Factories\NodeFactory.h">
@@ -174,6 +181,18 @@
     <ClInclude Include="RotateButton.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Commands\Command.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\UnDoableCommand.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\CommandHandler.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\UndoCommand.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">
@@ -241,6 +260,9 @@
     </ClCompile>
     <ClCompile Include="GUI\RotateButton.cpp">
       <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\CommandHandler.cpp">
+      <Filter>Sources\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
