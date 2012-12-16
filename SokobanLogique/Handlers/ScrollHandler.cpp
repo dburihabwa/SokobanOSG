@@ -1,6 +1,7 @@
 #include "ScrollHandler.h"
 #include <osgViewer\Viewer>
-#include "../GUI/View.h"
+#include "../Commands/CommandHandler.h"
+#include "../Commands/ZoomCommand.h"
 
 Sokoban::ScrollHandler::ScrollHandler(void)
 {
@@ -30,9 +31,9 @@ bool Sokoban::ScrollHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUI
 }
 bool Sokoban::ScrollHandler::scrollHandle( osgGA::GUIEventAdapter::ScrollingMotion type) const {
 	if(type == osgGA::GUIEventAdapter::SCROLL_DOWN) {
-		View::getInstance()->changeZoomOnBoard(1);
+		CommandHandler::getInstance()->executeCommand(new ZoomCommand(1));
 	} else if(type == osgGA::GUIEventAdapter::SCROLL_UP) {
-		View::getInstance()->changeZoomOnBoard(-1);
+		CommandHandler::getInstance()->executeCommand(new ZoomCommand(-1));
 	}	
 	return true;
 }
