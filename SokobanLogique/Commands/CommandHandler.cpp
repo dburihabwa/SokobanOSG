@@ -40,7 +40,9 @@ void Sokoban::CommandHandler::notify(Event sokoEvent) {
 #if DEBUG==TRUE
 		std::cout<<"Empty Commands"<<std::endl;
 #endif
-		_commands.empty();
+		while(!_commands.empty()) {
+			_commands.pop();
+		}
 		break;
 	default:
 		break;

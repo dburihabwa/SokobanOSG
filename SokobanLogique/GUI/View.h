@@ -2,6 +2,7 @@
 #include <vector>
 #include <osg/Camera>
 #include <osgViewer/Viewer>
+#include <osg/PositionAttitudeTransform>
 #include <string>
 #include "TextPanel.h"
 #include "../Constants.h"
@@ -35,7 +36,7 @@ namespace Sokoban {
 		~View(void);
 		void changeZoomOnBoard(double) const;
 		///<summary> tries to rotate the playground within predefined limits</summary>
-		bool rotatePlayGround(Type type);
+		void rotatePlayGround(float);
 	private:
 		osg::ref_ptr<osgViewer::Viewer> _viewer;
 		osg::ref_ptr<osg::Camera> _buttons;	
@@ -44,6 +45,7 @@ namespace Sokoban {
 		osg::ref_ptr<osg::Group> _level;
 		osg::ref_ptr<osg::LightSource> _playerLight;
 		osg::ref_ptr<osg::Light> _ambientLight;
+		osg::ref_ptr<osg::PositionAttitudeTransform> _rotator;
 		View();
 		View(View const&);              // Don't Implement
 		void operator=(View const&); // Don't implement

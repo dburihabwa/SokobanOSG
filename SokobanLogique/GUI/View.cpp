@@ -8,6 +8,7 @@
 #include "../Adapters/OSGMoveAdapter.h"
 #include "../Handlers/ScrollHandler.h"
 #include "../Logic/Empty.h"
+#include <osg/Quat>
 
 osg::ref_ptr<Sokoban::View> Sokoban::View::instance = NULL;
 
@@ -76,7 +77,8 @@ void Sokoban::View::init(unsigned int height, unsigned int width) {
 
 	//Board
 	Sokoban::Board::getInstance().addView(osg::ref_ptr<IView>(this));
-
+	_rotator = new osg::PositionAttitudeTransform();
+	_playBoard->addChild(_rotator);
 	//_buttons
 	Hud hud;
 	_buttons->addChild(hud.getNodes());
@@ -159,7 +161,7 @@ void Sokoban::View::loadLevel(const std::vector<std::vector<osg::ref_ptr<Movable
 			_level->addChild(node);
 		}
 	}
-	_playBoard->addChild(_level);
+	_rotator->addChild(_level);
 
 	osg::Vec3 centerEye = osg::Vec3(center.x()+10,center.y(),16.0);
 	_playBoard->setViewMatrixAsLookAt(centerEye, center, Sokoban::UP_AXIS); 
@@ -175,16 +177,15 @@ void Sokoban::View::changeZoomOnBoard(double fovDiff) const{
 Sokoban::View::~View(void) {
 }
 
-bool Sokoban::View::rotatePlayGround(Sokoban::Type type) {
-	if (type == ROTATE_LEFT_BUTTON)
-		return true;
-	else if (type == ROTATE_RIGHT_BUTTON)
-		return true;
-	return false;
+void Sokoban::View::rotatePlayGround(float rotation) {
+	osg::Quat rot = _rotator->getAttitude();
+		rot+=osg::Quat(rotation,osg::Z_AXIS);
+		_rotator->setAttitude(rot);
 }
 
 void Sokoban::View::initLevel() {
 	this->resetLevel();
+	_rotator->setAttitude(osg::Quat(0,osg::Z_AXIS));
 	if(this->_textPanel) {
 		this->_textPanel->reset();
 	}

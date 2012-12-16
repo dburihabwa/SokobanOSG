@@ -178,9 +178,6 @@
     <ClInclude Include="GUI\RotateButton.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="RotateButton.h">
-      <Filter>Headers\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="Commands\Command.h">
       <Filter>Headers\Commands</Filter>
     </ClInclude>
@@ -212,6 +209,9 @@
       <Filter>Headers\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Commands\ZoomCommand.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\RotateCommand.h">
       <Filter>Headers\Commands</Filter>
     </ClInclude>
   </ItemGroup>
