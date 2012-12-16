@@ -43,13 +43,13 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	// An offset value is added to allow the 
 	const float offset = 0.5;
 	groundVertices->push_back(osg::Vec3(0 - offset, 0 - offset,  0));
-	groundVertices->push_back(osg::Vec3(defaultLengthX - offset, 0 - offset,  0));
-	groundVertices->push_back(osg::Vec3(defaultLengthX - offset, defaultLengthY - offset,  0));
-	groundVertices->push_back(osg::Vec3(0 - offset, defaultLengthY - offset,  0));
+	groundVertices->push_back(osg::Vec3(DEFAULT_LENGTH_X - offset, 0 - offset,  0));
+	groundVertices->push_back(osg::Vec3(DEFAULT_LENGTH_X - offset, DEFAULT_LENGTH_Y - offset,  0));
+	groundVertices->push_back(osg::Vec3(0 - offset, DEFAULT_LENGTH_Y - offset,  0));
 	groundVertices->push_back(osg::Vec3(0 - offset, 0 - offset, -0.1));
 	groundVertices->push_back(osg::Vec3(1 - offset, 0 - offset, -0.1));
-	groundVertices->push_back(osg::Vec3(defaultLengthX - offset, defaultLengthY - offset, -0.1));
-	groundVertices->push_back(osg::Vec3(0 - offset, defaultLengthY - offset, -0.1));
+	groundVertices->push_back(osg::Vec3(DEFAULT_LENGTH_X - offset, DEFAULT_LENGTH_Y - offset, -0.1));
+	groundVertices->push_back(osg::Vec3(0 - offset, DEFAULT_LENGTH_Y - offset, -0.1));
 	geometry->setVertexArray(groundVertices);
 
 
@@ -200,74 +200,74 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		textureImage.append("rs-ground00.jpg");
 		break;
 	case BOX:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.4), boxWidth));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.4), BOX_WIDTH));
 		textureImage.append("box.jpg");
 		break;
 	case WALL:
-		lengthX = defaultLengthX, lengthY = defaultLengthY, lengthZ = wallLengthZ;
+		lengthX = DEFAULT_LENGTH_X, lengthY = DEFAULT_LENGTH_Y, lengthZ = WALL_LENGTH_Z;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.55), lengthX, lengthY, lengthZ));
 		textureImage.append("brickscolorhx8.jpg");
 		break;
 	case TARGET:
-		lengthX = defaultLengthX, lengthY = defaultLengthY, lengthZ = targetLengthZ;
+		lengthX = DEFAULT_LENGTH_X, lengthY = DEFAULT_LENGTH_Y, lengthZ = TARGET_LENGTH_Z;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.6), lengthX, lengthY, lengthZ));
 		textureImage.append("target.png");
 		break;
 	case PLAYER:
-		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), playerRadius));
+		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), PLAYER_RADIUS));
 		textureImage.append("creeper.jpg");
 		break;
 	case DIRECTION_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
+		lengthX = BUTTON_LENGTH_X, lengthY = BUTTON_LENGTH_Y, lengthZ = BUTTON_LENGTH_Z;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		noeudGeo->addDrawable(shape);
 		textureImage.append("arrow-right-double.png");
 		switchTextureImage.append("hover-arrow-right-double.png");
 		break;
 	case SAVE_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
+		lengthX = BUTTON_LENGTH_X, lengthY = BUTTON_LENGTH_Y, lengthZ = BUTTON_LENGTH_Z;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("archive-add.png");
 		switchTextureImage.append("hover-archive-add.png");
 		break;
 	case ZOOM_IN:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
+		lengthX = BUTTON_LENGTH_X, lengthY = BUTTON_LENGTH_Y, lengthZ = BUTTON_LENGTH_Z;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("add.png");
 		switchTextureImage.append("hover-add.png");
 		break;
 	case ZOOM_OUT:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
+		lengthX = BUTTON_LENGTH_X, lengthY = BUTTON_LENGTH_Y, lengthZ = BUTTON_LENGTH_Z;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("remove.png");
 		switchTextureImage.append("hover-remove.png");
 		break;
 	case LOAD_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
+		lengthX = BUTTON_LENGTH_X, lengthY = BUTTON_LENGTH_Y, lengthZ = BUTTON_LENGTH_Z;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("archive-extract.png");
 		switchTextureImage.append("hover-archive-extract.png");
 		break;
 	case RELOAD_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
+		lengthX = BUTTON_LENGTH_X, lengthY = BUTTON_LENGTH_Y, lengthZ = BUTTON_LENGTH_Z;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("reload.png");
 		switchTextureImage.append("hover-reload.png");
 		break;
 	case ROTATE_LEFT_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
+		lengthX = BUTTON_LENGTH_X, lengthY = BUTTON_LENGTH_Y, lengthZ = BUTTON_LENGTH_Z;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("rotate_left.png");
 		switchTextureImage.append("hover-rotate_left.png");
 		break;
 	case ROTATE_RIGHT_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
+		lengthX = BUTTON_LENGTH_X, lengthY = BUTTON_LENGTH_Y, lengthZ = BUTTON_LENGTH_Z;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("rotate_right.png");
 		switchTextureImage.append("hover-rotate_right.png");
 		break;
 	default:
-		width = defaultWidth;
+		width = DEFAULT_WIDTH;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), width));
 		textureImage.append("default.jpg");
 		break;
