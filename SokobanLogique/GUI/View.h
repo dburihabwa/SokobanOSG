@@ -36,7 +36,7 @@ namespace Sokoban {
 		~View(void);
 		void changeZoomOnBoard(double) const;
 		///<summary> tries to rotate the playground within predefined limits</summary>
-		bool rotatePlayGround(Type type);
+		void rotatePlayGround(float);
 	private:
 		osg::ref_ptr<osgViewer::Viewer> _viewer;
 		osg::ref_ptr<osg::Camera> _buttons;	

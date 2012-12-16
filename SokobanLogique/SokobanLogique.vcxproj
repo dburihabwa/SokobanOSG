@@ -97,6 +97,7 @@
     <ClInclude Include="Commands\LoadNextLevelCommand.h" />
     <ClInclude Include="Commands\MoveCommand.h" />
     <ClInclude Include="Commands\ReloadCommand.h" />
+    <ClInclude Include="Commands\RotateCommand.h" />
     <ClInclude Include="Commands\SaveCommand.h" />
     <ClInclude Include="Commands\ZoomCommand.h" />
     <ClInclude Include="Constants.h" />
@@ -130,7 +131,6 @@
     <ClInclude Include="Logic\Wall.h" />
     <ClInclude Include="GUI\TextPanel.h" />
     <ClInclude Include="Handlers\ScrollHandler.h" />
-    <ClInclude Include="RotateButton.h" />
     <ClInclude Include="Commands\UnDoableCommand.h" />
     <ClInclude Include="Commands\UndoCommand.h" />
     <ClInclude Include="Updaters\AnimationUpdater.h" />

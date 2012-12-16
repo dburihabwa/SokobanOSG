@@ -177,19 +177,10 @@ void Sokoban::View::changeZoomOnBoard(double fovDiff) const{
 Sokoban::View::~View(void) {
 }
 
-bool Sokoban::View::rotatePlayGround(Sokoban::Type type) {
+void Sokoban::View::rotatePlayGround(float rotation) {
 	osg::Quat rot = _rotator->getAttitude();
-	if (type == ROTATE_LEFT_BUTTON) {		
-		rot+=osg::Quat(-0.1,osg::Z_AXIS);
+		rot+=osg::Quat(rotation,osg::Z_AXIS);
 		_rotator->setAttitude(rot);
-		return true;
-	}
-	else if (type == ROTATE_RIGHT_BUTTON) {
-		rot+=osg::Quat(0.1,osg::Z_AXIS);
-		_rotator->setAttitude(rot);
-		return true;
-	}
-	return false;
 }
 
 void Sokoban::View::initLevel() {
