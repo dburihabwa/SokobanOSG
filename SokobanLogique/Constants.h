@@ -38,15 +38,19 @@ namespace Sokoban
 	//Animation
 	static const float ANIM_TIME(0.25);
 
-	//Dimensions
-	static const float boxWidth = 0.9;
+	//Dimensions	
 	static const float defaultWidth = 1.0;
+static const float defaultLengthX = 1.0;
+	static const float defaultLengthY = 1.0;
 	static const float playerRadius = 0.4;
-	static const float defaultlengthX = 1.0;	
-	static const float defaultlengthY = 1.0;	
-	static const float targetLengthZ = 1.0;
-	static const float buttonLengthX = 1.5;
-	static const float buttonLengthY = 1.5;
-	static const float buttonLengthZ = 0;
+	
+	static const float boxWidth = 0.9;
+
+	static const float groundLengthZ = 0.1;
 	static const float wallLengthZ = 1.4;
+	static const float targetLengthZ = 1.0;
+
+	static const float buttonLengthX = 1.5;
+static const float buttonLengthY = 1.5;
+static const float buttonLengthZ = 0;
 };

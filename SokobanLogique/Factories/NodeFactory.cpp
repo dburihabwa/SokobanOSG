@@ -40,14 +40,16 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	osg::ref_ptr<osg::Vec3Array> groundVertices = new osg::Vec3Array();
 
 	/// Defining the points shaping the parallelepiped
-	groundVertices->push_back(osg::Vec3(0 - 0.5, 0 - 0.5,  0));
-	groundVertices->push_back(osg::Vec3(1 - 0.5, 0 - 0.5,  0));
-	groundVertices->push_back(osg::Vec3(1 - 0.5, 1 - 0.5,  0));
-	groundVertices->push_back(osg::Vec3(0 - 0.5, 1 - 0.5,  0));
-	groundVertices->push_back(osg::Vec3(0 - 0.5, 0 - 0.5, -0.1));
-	groundVertices->push_back(osg::Vec3(1 - 0.5, 0 - 0.5, -0.1));
-	groundVertices->push_back(osg::Vec3(1 - 0.5, 1 - 0.5, -0.1));
-	groundVertices->push_back(osg::Vec3(0 - 0.5, 1 - 0.5, -0.1));
+	// An offset value is added to allow the 
+	const float offset = 0.5;
+	groundVertices->push_back(osg::Vec3(0 - offset, 0 - offset,  0));
+	groundVertices->push_back(osg::Vec3(defaultLengthX - offset, 0 - offset,  0));
+	groundVertices->push_back(osg::Vec3(defaultLengthX - offset, defaultLengthY - offset,  0));
+	groundVertices->push_back(osg::Vec3(0 - offset, defaultLengthY - offset,  0));
+	groundVertices->push_back(osg::Vec3(0 - offset, 0 - offset, -0.1));
+	groundVertices->push_back(osg::Vec3(1 - offset, 0 - offset, -0.1));
+	groundVertices->push_back(osg::Vec3(defaultLengthX - offset, defaultLengthY - offset, -0.1));
+	groundVertices->push_back(osg::Vec3(0 - offset, defaultLengthY - offset, -0.1));
 	geometry->setVertexArray(groundVertices);
 
 
@@ -178,8 +180,7 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	if(_geoCache.find(element) != _geoCache.end()) {
 		return _geoCache[element];
 	}
-
-
+	
 	osg::ref_ptr<osg::Switch> nodeSwitch = new osg::Switch();
 	osg::ref_ptr<osg::ShapeDrawable> shape;
 	std::string textureImage = TEXTURE_DIR;
@@ -203,12 +204,12 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		textureImage.append("box.jpg");
 		break;
 	case WALL:
-		lengthX = defaultlengthX, lengthY = defaultlengthY, lengthZ = wallLengthZ;
+		lengthX = defaultLengthX, lengthY = defaultLengthY, lengthZ = wallLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.55), lengthX, lengthY, lengthZ));
 		textureImage.append("brickscolorhx8.jpg");
 		break;
 	case TARGET:
-		lengthX = defaultlengthX, lengthY = defaultlengthY, lengthZ = targetLengthZ;
+		lengthX = defaultLengthX, lengthY = defaultLengthY, lengthZ = targetLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.6), lengthX, lengthY, lengthZ));
 		textureImage.append("target.png");
 		break;
