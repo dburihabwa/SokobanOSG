@@ -43,6 +43,7 @@ void Sokoban::NodeFactory::loadTextureFilePaths() {
 	_textures[SAVE_BUTTON] = "archive-add.png";
 	_textures[ZOOM_IN] = "add.png";
 	_textures[ZOOM_OUT] = "remove.png";
+	_textures[UNDO_BUTTON] = "one-undo.png";
 
 	_switchTextures[DIRECTION_BUTTON] = "hover-arrow-right-double.png";
 	_switchTextures[LOAD_BUTTON] = "hover-archive-extract.png";
@@ -52,6 +53,7 @@ void Sokoban::NodeFactory::loadTextureFilePaths() {
 	_switchTextures[SAVE_BUTTON] = "hover-archive-add.png";
 	_switchTextures[ZOOM_IN] = "hover-add.png";
 	_switchTextures[ZOOM_OUT] = "hover-remove.png";
+	_switchTextures[UNDO_BUTTON] = "hover-one-undo.png";
 }
 
 

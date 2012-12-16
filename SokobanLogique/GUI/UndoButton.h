@@ -10,6 +10,5 @@ namespace Sokoban {
 		bool onClick();
 		~UndoButton(void);
 	private:
-		UndoButton(void){};
 	};
 };
