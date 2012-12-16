@@ -1,5 +1,6 @@
 #include "ZoomButton.h"
-#include "View.h"
+#include "../Commands/CommandHandler.h"
+#include "../Commands/ZoomCommand.h"
 #include <osg/Camera>
 
 
@@ -23,9 +24,9 @@ Sokoban::ZoomButton::~ZoomButton(void)
 bool Sokoban::ZoomButton::onClick() {
 
 	if(_type == ZOOM_OUT) {
-		View::getInstance()->changeZoomOnBoard(2);
+		CommandHandler::getInstance()->executeCommand(new ZoomCommand(2));
 	} else if(_type == ZOOM_IN) {
-		View::getInstance()->changeZoomOnBoard(-2);
+		CommandHandler::getInstance()->executeCommand(new ZoomCommand(-2));
 	}
 	return true;
 }

@@ -98,6 +98,7 @@
     <ClInclude Include="Commands\MoveCommand.h" />
     <ClInclude Include="Commands\ReloadCommand.h" />
     <ClInclude Include="Commands\SaveCommand.h" />
+    <ClInclude Include="Commands\ZoomCommand.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="dirent.h" />
     <ClInclude Include="Event.h" />

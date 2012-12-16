@@ -211,6 +211,9 @@
     <ClInclude Include="Logic\IView.h">
       <Filter>Headers\Logic</Filter>
     </ClInclude>
+    <ClInclude Include="Commands\ZoomCommand.h">
+      <Filter>Headers\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">
