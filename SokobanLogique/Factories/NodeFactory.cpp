@@ -11,7 +11,43 @@
 #include <osg/StateAttribute>
 
 ///Cache
-std::map<Sokoban::Type,osg::ref_ptr<osg::Node>> Sokoban::NodeFactory::_geoCache;
+//std::map<Sokoban::Type,osg::ref_ptr<osg::Node>> Sokoban::NodeFactory::_geoCache;
+
+osg::ref_ptr<osg::PositionAttitudeTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
+	settingTextures();
+	osg::ref_ptr<osg::PositionAttitudeTransform> postAtt = new osg::PositionAttitudeTransform();
+	postAtt->addChild(getOrCreateGeode(element));
+
+	//Translate the item to put it were the item should be.
+	postAtt->setPosition(osg::Vec3(x,y,z));
+	return postAtt;
+}
+
+void Sokoban::NodeFactory::settingTextures() {
+	std::string textureDir = TEXTURE_DIR;
+	_textures[TARGET] = "target.png";
+	_textures[BOX] = "box.png";
+	_textures[WALL] = "brickscolorhx8.jpg";
+	_textures[PLAYER] = "creeper.png";
+	_textures[GROUND]  = "rs-ground00.jpg";	
+	
+	_textures[DIRECTION_BUTTON] = "arrow-right-double.png";
+	_textures[ZOOM_IN] = "add.png";
+	_textures[ZOOM_OUT] = "remove.png";
+	_textures[LOAD_BUTTON] = "archive-extract.png";
+	_textures[RELOAD_BUTTON] = "reload.png";
+	_textures[ROTATE_LEFT_BUTTON] = "rotate-left.png";
+	_textures[ROTATE_RIGHT_BUTTON] = "rotate-right.png";
+	
+	_switchTextures[DIRECTION_BUTTON] = "hover-arrow-right-double.png";
+	_switchTextures[ZOOM_IN] = "hover-add.png";
+	_switchTextures[ZOOM_OUT] = "hover-remove.png";
+	_switchTextures[LOAD_BUTTON] = "hover-archive-extract.png";
+	_switchTextures[RELOAD_BUTTON] = "hover-reload.png";
+	_switchTextures[ROTATE_LEFT_BUTTON] = "hover-rotate-left.png";
+	_switchTextures[ROTATE_RIGHT_BUTTON] = "hover-rotate-right.png";
+}
+
 
 bool Sokoban::NodeFactory::isAButton(Sokoban::Type type) {
 	return type == Sokoban::DIRECTION_BUTTON ||
@@ -22,17 +58,6 @@ bool Sokoban::NodeFactory::isAButton(Sokoban::Type type) {
 		type == Sokoban::ROTATE_RIGHT_BUTTON ||
 		type == Sokoban::LOAD_BUTTON ||
 		type == Sokoban::RELOAD_BUTTON;
-}
-
-
-osg::ref_ptr<osg::PositionAttitudeTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
-
-	osg::ref_ptr<osg::PositionAttitudeTransform> postAtt = new osg::PositionAttitudeTransform();
-	postAtt->addChild(getOrCreateGeode(element));
-
-	//Translate the item to put it were the item should be.
-	postAtt->setPosition(osg::Vec3(x,y,z));
-	return postAtt;
 }
 
 osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
@@ -190,7 +215,7 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	osg::ref_ptr<osg::ShapeDrawable> switchShape;
 	osg::ref_ptr<osg::Geode> SwitchNoeudGeo;
 
-	float lengthX, lengthY, lengthZ, width, radius;
+	float lengthX, lengthY, lengthZ;
 
 	//Switch on the element for texture and shape
 	switch(element)
@@ -267,8 +292,7 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		switchTextureImage.append("hover-rotate_right.png");
 		break;
 	default:
-		width = DEFAULT_WIDTH;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), width));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), DEFAULT_WIDTH));
 		textureImage.append("default.jpg");
 		break;
 	}
@@ -276,6 +300,7 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		noeudGeo->addDrawable(shape);
 
 	noeudGeo = setTexture(noeudGeo, element, textureImage);
+	textureImage =
 
 	if (isAButton(element)) {
 		SwitchNoeudGeo = new osg::Geode();

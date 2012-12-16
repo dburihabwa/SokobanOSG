@@ -23,6 +23,10 @@ namespace Sokoban
 		{
 		}
 		static std::map<Type, osg::ref_ptr<osg::Node>> _geoCache;
+		static std::map<Sokoban::Type, std::string> _textures;
+		static std::map<Sokoban::Type, std::string> _switchTextures;
+
+		static void settingTextures();
 		
 		///	<summary>
 		///		Creates or fetches the requested Node from the cache.
