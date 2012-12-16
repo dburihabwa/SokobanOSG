@@ -214,10 +214,10 @@
     <ClInclude Include="Commands\RotateCommand.h">
       <Filter>Headers\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="UndoButton.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\UndoButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="UndoButton.h">
       <Filter>Headers\GUI</Filter>
     </ClInclude>
   </ItemGroup>
