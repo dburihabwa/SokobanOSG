@@ -3,6 +3,7 @@
 #include "../Logic/GUITypes.h"
 #include <osg/PositionAttitudeTransform>
 #include <map>
+#include <string>
 
 namespace Sokoban
 {
@@ -18,13 +19,14 @@ namespace Sokoban
 		///	<param name = "element">type of the object</param>
 		///	<returns></returns>
 		static osg::ref_ptr<osg::PositionAttitudeTransform> createNode(int x,int y,int z, Type element);
+		
 	private:
 		NodeFactory(void)
 		{
 		}
 		static std::map<Type, osg::ref_ptr<osg::Node>> _geoCache;
-		static std::map<Sokoban::Type, std::string> _textures;
-		static std::map<Sokoban::Type, std::string> _switchTextures;
+		static std::map<Type, std::string> _textures;
+		static std::map<Type, std::string> _switchTextures;
 
 		static void settingTextures();
 		
