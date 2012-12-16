@@ -32,47 +32,61 @@ namespace Sokoban
 			return center;
 		}
 		///<summary> Try to move the player in the wanted direction.
-		/// If the player move a box, the moved box will be set.
+		/// If the player moves a box, the moved box will be set.
 		///</summary>
-		
 		bool movePlayer(Direction, osg::ref_ptr<Box>&);
 
+		///	<summary>Writes the level's current state to the standard ouput.</summary>
 		void displayLevel() const;
-
 
 		~Board(void);
 
 		friend std::ostream& operator<<(std::ostream& out, Board const& board);
 		friend std::istream& operator>>(std::istream& in, Board& board);
 
-		///<summary>Load the next level and notify the view</summary>
+		///<summary>Loads the next level and notify the view</summary>
 		void loadNextLvl();
 
-		///<summary>reload the current level to it's first state</summary>
+		///<summary>Reloads the current level to it's first state</summary>
 		void reloadLvl();
 
 		void save();
 		///<summary> Load the save, return true if there is a save else return false</summary>
 		bool loadSave();
+		
+		///	<summary>Returns the matrix of movable objects</summary>
+		///	<returns>matrix of movable objects</returns>
 		const std::vector<std::vector<osg::ref_ptr<Movable>>>& getMovable() const {
 			return _movable;
 		}
+
+		///	<summary>Returns the matrix of unmovable objects</summary>
+		///	<returns>matrix of unmovable objects</returns>
 		const std::vector<std::vector<osg::ref_ptr<Unmovable>>>& getUnMovable() const {
 			return _unMovable;
 		}
 
+		///	<summary>Returns the player's score</summary>
+		///	<returns>The player's score</returns>
 		unsigned int getPlayerScore() const {
 			return _playerScore;
 		}
+		
+		///	<summary>Returns the box's score</summary>
+		///	<returns>The box's score</returns>
 		unsigned int getBoxScore() const {
 			return _boxScore;
 		}
 		///<summary> Revert the move for the player and the box if it was moved </summary>
 		void revertMove(Direction dir, osg::ref_ptr<Box>);
 
+		///	<summary>Registers a view to the board.</summary>
+		///	<param name = "view">The view to register</param>
 		void addView(osg::ref_ptr<IView> view) {
 			_views.push_back(view);
 		}
+		///	<summary>Returns the latest message.</summary>
+		///	<returns>The latest message</returns>
 		std::string getMessage() const {
 			return _message;
 		}

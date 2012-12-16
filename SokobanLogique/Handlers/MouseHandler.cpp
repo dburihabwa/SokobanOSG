@@ -8,7 +8,7 @@ Sokoban::MouseHandler::~MouseHandler(void)
 
 
 
-bool isHoveringAButton(const osgGA::GUIEventAdapter& ea) {
+bool Sokoban::MouseHandler::isHoveringAButton(const osgGA::GUIEventAdapter& ea) {
 	osgUtil::LineSegmentIntersector* picker;
 	picker = new osgUtil::LineSegmentIntersector( osgUtil::Intersector::WINDOW, ea.getX(),ea.getY() );
 	osgUtil::IntersectionVisitor iv(picker);

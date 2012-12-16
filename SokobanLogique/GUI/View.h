@@ -24,10 +24,13 @@ namespace Sokoban {
 		}
 		///<summary>Init the viewer with the size of the window.</summary>
 		void init(unsigned int, unsigned int);
-		
+		///	<summary>Returns the viewer.</summary>
+		///	<returns>The game viewer</returns>
 		osg::ref_ptr<osgViewer::Viewer> getViewer() const {
-	return _viewer;
+			return _viewer;
 		}
+		///	<summary>Returns the Hud camera</summary>
+		///	<returns>the Hud camera</returns>
 		osg::ref_ptr<osg::Camera> getButtonsCamera() {
 			return _buttons;
 		}
@@ -59,7 +62,7 @@ namespace Sokoban {
 			_textPanel->addText(str, color);
 		}
 		void manageMessage(Event);
-		
+
 	};
 }
 
