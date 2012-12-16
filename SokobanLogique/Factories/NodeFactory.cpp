@@ -11,28 +11,59 @@
 #include <osg/StateAttribute>
 
 ///Cache
-std::map<Sokoban::Type,osg::ref_ptr<osg::Node>> Sokoban::NodeFactory::_geoCache;
-
-bool Sokoban::NodeFactory::isAButton(Sokoban::Type type) {
-	return type == Sokoban::DIRECTION_BUTTON ||
-		type == Sokoban::ZOOM_IN ||
-		type == Sokoban::ZOOM_OUT ||
-		type == Sokoban::SAVE_BUTTON ||
-		type == Sokoban::ROTATE_LEFT_BUTTON ||
-		type == Sokoban::ROTATE_RIGHT_BUTTON ||
-		type == Sokoban::LOAD_BUTTON ||
-		type == Sokoban::RELOAD_BUTTON;
-}
-
+std::map<Sokoban::Type, osg::ref_ptr<osg::Node>> Sokoban::NodeFactory::_geoCache;
+//Textures
+std::map<Sokoban::Type, std::string> Sokoban::NodeFactory::_textures;
+std::map<Sokoban::Type, std::string> Sokoban::NodeFactory::_switchTextures;
 
 osg::ref_ptr<osg::PositionAttitudeTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
-
+	loadTextureFilePaths();
 	osg::ref_ptr<osg::PositionAttitudeTransform> postAtt = new osg::PositionAttitudeTransform();
 	postAtt->addChild(getOrCreateGeode(element));
 
 	//Translate the item to put it were the item should be.
 	postAtt->setPosition(osg::Vec3(x,y,z));
 	return postAtt;
+}
+
+void Sokoban::NodeFactory::loadTextureFilePaths() {
+	if (_textures.find(TARGET) != _textures.end())
+		return;
+	_textures[TARGET] = "target.png";
+	_textures[BOX] = "box.jpg";
+	_textures[WALL] = "brickscolorhx8.jpg";
+	_textures[PLAYER] = "creeper.jpg";
+	_textures[GROUND]  = "rs-ground00.jpg";	
+
+	_textures[DIRECTION_BUTTON] = "arrow-right-double.png";
+	_textures[LOAD_BUTTON] = "archive-extract.png";
+	_textures[RELOAD_BUTTON] = "reload.png";
+	_textures[ROTATE_LEFT_BUTTON] = "rotate_left.png";
+	_textures[ROTATE_RIGHT_BUTTON] = "rotate_right.png";
+	_textures[SAVE_BUTTON] = "archive-add.png";
+	_textures[ZOOM_IN] = "add.png";
+	_textures[ZOOM_OUT] = "remove.png";
+
+	_switchTextures[DIRECTION_BUTTON] = "hover-arrow-right-double.png";
+	_switchTextures[LOAD_BUTTON] = "hover-archive-extract.png";
+	_switchTextures[RELOAD_BUTTON] = "hover-reload.png";
+	_switchTextures[ROTATE_LEFT_BUTTON] = "hover-rotate_left.png";
+	_switchTextures[ROTATE_RIGHT_BUTTON] = "hover-rotate_right.png";
+	_switchTextures[SAVE_BUTTON] = "hover-archive-add.png";
+	_switchTextures[ZOOM_IN] = "hover-add.png";
+	_switchTextures[ZOOM_OUT] = "hover-remove.png";
+}
+
+
+bool Sokoban::NodeFactory::isAButton(Sokoban::Type type) {
+	return type == Sokoban::DIRECTION_BUTTON ||
+		type == Sokoban::LOAD_BUTTON ||
+		type == Sokoban::RELOAD_BUTTON ||
+		type == Sokoban::ROTATE_LEFT_BUTTON ||
+		type == Sokoban::ROTATE_RIGHT_BUTTON ||
+		type == Sokoban::SAVE_BUTTON ||
+		type == Sokoban::ZOOM_IN ||
+		type == Sokoban::ZOOM_OUT;
 }
 
 osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
@@ -43,13 +74,13 @@ osg::ref_ptr<osg::Geometry> Sokoban::NodeFactory::createGround() {
 	// An offset value is added to allow the 
 	const float offset = 0.5;
 	groundVertices->push_back(osg::Vec3(0 - offset, 0 - offset,  0));
-	groundVertices->push_back(osg::Vec3(defaultLengthX - offset, 0 - offset,  0));
-	groundVertices->push_back(osg::Vec3(defaultLengthX - offset, defaultLengthY - offset,  0));
-	groundVertices->push_back(osg::Vec3(0 - offset, defaultLengthY - offset,  0));
+	groundVertices->push_back(osg::Vec3(DEFAULT_LENGTH_X - offset, 0 - offset,  0));
+	groundVertices->push_back(osg::Vec3(DEFAULT_LENGTH_X - offset, DEFAULT_LENGTH_Y - offset,  0));
+	groundVertices->push_back(osg::Vec3(0 - offset, DEFAULT_LENGTH_Y - offset,  0));
 	groundVertices->push_back(osg::Vec3(0 - offset, 0 - offset, -0.1));
 	groundVertices->push_back(osg::Vec3(1 - offset, 0 - offset, -0.1));
-	groundVertices->push_back(osg::Vec3(defaultLengthX - offset, defaultLengthY - offset, -0.1));
-	groundVertices->push_back(osg::Vec3(0 - offset, defaultLengthY - offset, -0.1));
+	groundVertices->push_back(osg::Vec3(DEFAULT_LENGTH_X - offset, DEFAULT_LENGTH_Y - offset, -0.1));
+	groundVertices->push_back(osg::Vec3(0 - offset, DEFAULT_LENGTH_Y - offset, -0.1));
 	geometry->setVertexArray(groundVertices);
 
 
@@ -180,115 +211,76 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 	if(_geoCache.find(element) != _geoCache.end()) {
 		return _geoCache[element];
 	}
-	
-	osg::ref_ptr<osg::Switch> nodeSwitch = new osg::Switch();
+
+	osg::ref_ptr<osg::Geode> noeudGeo = new osg::Geode();
 	osg::ref_ptr<osg::ShapeDrawable> shape;
 	std::string textureImage = TEXTURE_DIR;
-	osg::ref_ptr<osg::Geode> noeudGeo = new osg::Geode();
 
-	std::string switchTextureImage = TEXTURE_DIR;
-	osg::ref_ptr<osg::ShapeDrawable> switchShape;
-	osg::ref_ptr<osg::Geode> SwitchNoeudGeo;
-
-	float lengthX, lengthY, lengthZ, width, radius;
-
-	//Switch on the element for texture and shape
-	switch(element)
-	{
-	case GROUND :
-		noeudGeo->addDrawable(createGround());
-		textureImage.append("rs-ground00.jpg");
-		break;
-	case BOX:
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.4), boxWidth));
-		textureImage.append("box.jpg");
-		break;
-	case WALL:
-		lengthX = defaultLengthX, lengthY = defaultLengthY, lengthZ = wallLengthZ;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.55), lengthX, lengthY, lengthZ));
-		textureImage.append("brickscolorhx8.jpg");
-		break;
-	case TARGET:
-		lengthX = defaultLengthX, lengthY = defaultLengthY, lengthZ = targetLengthZ;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.6), lengthX, lengthY, lengthZ));
-		textureImage.append("target.png");
-		break;
-	case PLAYER:
-		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), playerRadius));
-		textureImage.append("creeper.jpg");
-		break;
-	case DIRECTION_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
+	if (isAButton(element)) {
+		std::map<Sokoban::Type, std::string>::iterator it = _textures.find(element);
+		if (it != _textures.end())
+			textureImage.append(it->second);
+		else
+			textureImage.append("default.jpg");
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), BUTTON_LENGTH_X, BUTTON_LENGTH_Y, BUTTON_LENGTH_Z));
 		noeudGeo->addDrawable(shape);
-		textureImage.append("arrow-right-double.png");
-		switchTextureImage.append("hover-arrow-right-double.png");
-		break;
-	case SAVE_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
-		textureImage.append("archive-add.png");
-		switchTextureImage.append("hover-archive-add.png");
-		break;
-	case ZOOM_IN:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
-		textureImage.append("add.png");
-		switchTextureImage.append("hover-add.png");
-		break;
-	case ZOOM_OUT:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
-		textureImage.append("remove.png");
-		switchTextureImage.append("hover-remove.png");
-		break;
-	case LOAD_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
-		textureImage.append("archive-extract.png");
-		switchTextureImage.append("hover-archive-extract.png");
-		break;
-	case RELOAD_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
-		textureImage.append("reload.png");
-		switchTextureImage.append("hover-reload.png");
-		break;
-	case ROTATE_LEFT_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
-		textureImage.append("rotate_left.png");
-		switchTextureImage.append("hover-rotate_left.png");
-		break;
-	case ROTATE_RIGHT_BUTTON:
-		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
-		textureImage.append("rotate_right.png");
-		switchTextureImage.append("hover-rotate_right.png");
-		break;
-	default:
-		width = defaultWidth;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), width));
-		textureImage.append("default.jpg");
-		break;
+		setTexture(noeudGeo, element, textureImage);
+
+		osg::ref_ptr<osg::Geode> switchNoeudGeo = new osg::Geode();
+		std::string switchTextureImage = TEXTURE_DIR;
+		it = _switchTextures.find(element);
+		if (it != _switchTextures.end())
+			switchTextureImage.append(it->second);
+		else
+			switchTextureImage.append("default.jpg");
+		osg::ref_ptr<osg::ShapeDrawable> switchShape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), BUTTON_LENGTH_X, BUTTON_LENGTH_Y, BUTTON_LENGTH_Z));
+		switchNoeudGeo->addDrawable(switchShape);
+		setTexture(switchNoeudGeo, element, switchTextureImage);
+
+		osg::ref_ptr<osg::Switch> nodeSwitch = new osg::Switch();
+		nodeSwitch->insertChild(0, noeudGeo); 
+		nodeSwitch->insertChild(1, switchNoeudGeo);
+		nodeSwitch->setChildValue(switchNoeudGeo, false);
+		return nodeSwitch;
+	} else {
+		float lengthX, lengthY, lengthZ;
+		//Switch on the element for texture and shape
+		switch(element)
+		{
+		case GROUND :
+			noeudGeo->addDrawable(createGround());
+			break;
+		case BOX:
+			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.4), BOX_WIDTH));
+			break;
+		case WALL:
+			lengthX = DEFAULT_LENGTH_X, lengthY = DEFAULT_LENGTH_Y, lengthZ = WALL_LENGTH_Z;
+			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.55), lengthX, lengthY, lengthZ));
+			break;
+		case TARGET:
+			lengthX = DEFAULT_LENGTH_X, lengthY = DEFAULT_LENGTH_Y, lengthZ = TARGET_LENGTH_Z;
+			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.6), lengthX, lengthY, lengthZ));
+			break;
+		case PLAYER:
+			shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), PLAYER_RADIUS));
+			break;
+		default:
+			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), DEFAULT_WIDTH));
+			break;
+		}
 	}
+
 	if (element != GROUND)
 		noeudGeo->addDrawable(shape);
 
+	std::map<Sokoban::Type, std::string>::iterator it = _textures.find(element);
+	if (it != _textures.end())
+		textureImage.append(it->second);
+	else
+		textureImage.append("default.jpg");
+
 	noeudGeo = setTexture(noeudGeo, element, textureImage);
 
-	if (isAButton(element)) {
-		SwitchNoeudGeo = new osg::Geode();
-		//switchTextureImage.append("hover-arrow-right-double.png");
-		std::cout << "Setting the alternate image to appear on hover : " << switchTextureImage << std::endl;
-		switchShape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
-		SwitchNoeudGeo->addDrawable(switchShape);
-		setTexture(SwitchNoeudGeo, element, switchTextureImage);
-		nodeSwitch->insertChild(0, noeudGeo); 
-		nodeSwitch->insertChild(1, SwitchNoeudGeo);
-		nodeSwitch->setChildValue(SwitchNoeudGeo, false);
-		return nodeSwitch;
-	}
 	_geoCache.insert(std::make_pair(element, noeudGeo));
 	return  noeudGeo;
 }

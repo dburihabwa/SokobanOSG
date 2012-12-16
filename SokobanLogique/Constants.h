@@ -1,6 +1,9 @@
 #pragma once
 #include <osg/Quat>
 #include <osg/Vec4>
+#include <map>
+#include "Logic\GUITypes.h"
+
 #define TRUE 1
 #define FALSE 0
 #define DEBUG TRUE
@@ -38,19 +41,19 @@ namespace Sokoban
 	//Animation
 	static const float ANIM_TIME(0.25);
 
-	//Dimensions	
-	static const float defaultWidth = 1.0;
-static const float defaultLengthX = 1.0;
-	static const float defaultLengthY = 1.0;
-	static const float playerRadius = 0.4;
-	
-	static const float boxWidth = 0.9;
+	//Graphical object dimensions	
+	static const float DEFAULT_WIDTH = 1.0f;
+	static const float DEFAULT_LENGTH_X = 1.0f;
+static const float DEFAULT_LENGTH_Y = 1.0f;
+	static const float PLAYER_RADIUS = 0.4f;
 
-	static const float groundLengthZ = 0.1;
-	static const float wallLengthZ = 1.4;
-	static const float targetLengthZ = 1.0;
+	static const float BOX_WIDTH = 0.9f;
 
-	static const float buttonLengthX = 1.5;
-static const float buttonLengthY = 1.5;
-static const float buttonLengthZ = 0;
+	static const float GROUND_LENGTH_Z = 0.1f;
+	static const float WALL_LENGTH_Z = 1.4f;
+	static const float TARGET_LENGTH_Z = 1.0f;
+
+	static const float BUTTON_LENGTH_X = 1.5f;
+	static const float BUTTON_LENGTH_Y = 1.5f;
+	static const float BUTTON_LENGTH_Z = 0.0f;
 };
