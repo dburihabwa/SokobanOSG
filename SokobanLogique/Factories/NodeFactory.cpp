@@ -199,76 +199,74 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 		textureImage.append("rs-ground00.jpg");
 		break;
 	case BOX:
-		width = 0.9;
-		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.4), width));
+		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.4), boxWidth));
 		textureImage.append("box.jpg");
 		break;
 	case WALL:
-		lengthX = 1, lengthY = 1, lengthZ = 1.4;
+		lengthX = defaultlengthX, lengthY = defaultlengthY, lengthZ = wallLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.55), lengthX, lengthY, lengthZ));
 		textureImage.append("brickscolorhx8.jpg");
 		break;
 	case TARGET:
-		lengthX = 1, lengthY = 1, lengthZ = 1;
+		lengthX = defaultlengthX, lengthY = defaultlengthY, lengthZ = targetLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.6), lengthX, lengthY, lengthZ));
 		textureImage.append("target.png");
 		break;
 	case PLAYER:
-		radius = 0.4;
-		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), radius));
+		shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), playerRadius));
 		textureImage.append("creeper.jpg");
 		break;
 	case DIRECTION_BUTTON:
-		lengthX = 1, lengthY = 1, lengthZ = 0;
+		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		noeudGeo->addDrawable(shape);
 		textureImage.append("arrow-right-double.png");
 		switchTextureImage.append("hover-arrow-right-double.png");
 		break;
 	case SAVE_BUTTON:
-		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("archive-add.png");
 		switchTextureImage.append("hover-archive-add.png");
 		break;
 	case ZOOM_IN:
-		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("add.png");
 		switchTextureImage.append("hover-add.png");
 		break;
 	case ZOOM_OUT:
-		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("remove.png");
 		switchTextureImage.append("hover-remove.png");
 		break;
 	case LOAD_BUTTON:
-		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("archive-extract.png");
 		switchTextureImage.append("hover-archive-extract.png");
 		break;
 	case RELOAD_BUTTON:
-		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("reload.png");
 		switchTextureImage.append("hover-reload.png");
 		break;
 	case ROTATE_LEFT_BUTTON:
-		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("rotate_left.png");
 		switchTextureImage.append("hover-rotate_left.png");
 		break;
 	case ROTATE_RIGHT_BUTTON:
-		lengthX = 1.5, lengthY = 1.5, lengthZ = 0;
+		lengthX = buttonLengthX, lengthY = buttonLengthY, lengthZ = buttonLengthZ;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), lengthX, lengthY, lengthZ));
 		textureImage.append("rotate_right.png");
 		switchTextureImage.append("hover-rotate_right.png");
 		break;
 	default:
-		width = 1;
+		width = defaultWidth;
 		shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), width));
 		textureImage.append("default.jpg");
 		break;

@@ -17,7 +17,7 @@ namespace Sokoban
 
 	//setViewMatrixAsLookAt
 	static const osg::Vec3d UP_AXIS(-1.0, 0.0, 0.0); 
-	
+
 	//Rotations
 	static const osg::Quat DEGREE_180(3.1415, osg::Z_AXIS);
 	static const osg::Quat DEGREE_MIN_90(-1.57, osg::Z_AXIS);
@@ -37,4 +37,16 @@ namespace Sokoban
 
 	//Animation
 	static const float ANIM_TIME(0.25);
+
+	//Dimensions
+	static const float boxWidth = 0.9;
+	static const float defaultWidth = 1.0;
+	static const float playerRadius = 0.4;
+	static const float defaultlengthX = 1.0;	
+	static const float defaultlengthY = 1.0;	
+	static const float targetLengthZ = 1.0;
+	static const float buttonLengthX = 1.5;
+	static const float buttonLengthY = 1.5;
+	static const float buttonLengthZ = 0;
+	static const float wallLengthZ = 1.4;
 };
