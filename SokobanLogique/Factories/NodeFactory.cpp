@@ -177,9 +177,9 @@ osg::ref_ptr<osg::Geode> Sokoban::NodeFactory::setTexture(osg::ref_ptr<osg::Geod
 	// create a simple material
 	osg::Material *material = new osg::Material();
 	if (isAButton(type))
-		material->setEmission(osg::Material::FRONT, osg::Vec4(1, 1, 1, 1));
+		material->setEmission(osg::Material::FRONT, BUTTON_EMISSION);
 	else
-		material->setEmission(osg::Material::FRONT, osg::Vec4(0.2, 0.2, 0.2, 0.5));
+		material->setEmission(osg::Material::FRONT, OBJECT_EMISSION);
 	// create a texture
 	// load image for texture
 	osg::ref_ptr<osg::Image> image = osgDB::readImageFile(texturePath);
@@ -251,18 +251,21 @@ osg::ref_ptr<osg::Node> Sokoban::NodeFactory::getOrCreateGeode(Type element) {
 			noeudGeo->addDrawable(createGround());
 			break;
 		case BOX:
-			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.4), BOX_WIDTH));
+			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, BOX_CENTER_Z), BOX_WIDTH));
 			break;
 		case WALL:
 			lengthX = DEFAULT_LENGTH_X, lengthY = DEFAULT_LENGTH_Y, lengthZ = WALL_LENGTH_Z;
-			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.55), lengthX, lengthY, lengthZ));
+			//shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0.55), lengthX, lengthY, lengthZ));
+			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, WALL_CENTER_Z), lengthX, lengthY, lengthZ));
 			break;
 		case TARGET:
 			lengthX = DEFAULT_LENGTH_X, lengthY = DEFAULT_LENGTH_Y, lengthZ = TARGET_LENGTH_Z;
-			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.6), lengthX, lengthY, lengthZ));
+			//shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, -0.6), lengthX, lengthY, lengthZ));
+			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, TARGET_CENTER_Z), lengthX, lengthY, lengthZ));
 			break;
 		case PLAYER:
-			shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), PLAYER_RADIUS));
+			//shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, -0.5), PLAYER_RADIUS));
+			shape = new osg::ShapeDrawable(new osg::Sphere(osg::Vec3(0, 0, PLAYER_CENTER_Z), PLAYER_RADIUS));
 			break;
 		default:
 			shape = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), DEFAULT_WIDTH));

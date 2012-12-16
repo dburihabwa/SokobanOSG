@@ -44,16 +44,25 @@ namespace Sokoban
 	//Graphical object dimensions	
 	static const float DEFAULT_WIDTH = 1.0f;
 	static const float DEFAULT_LENGTH_X = 1.0f;
-static const float DEFAULT_LENGTH_Y = 1.0f;
+	static const float DEFAULT_LENGTH_Y = 1.0f;
 	static const float PLAYER_RADIUS = 0.4f;
 
 	static const float BOX_WIDTH = 0.9f;
 
 	static const float GROUND_LENGTH_Z = 0.1f;
 	static const float WALL_LENGTH_Z = 1.4f;
-	static const float TARGET_LENGTH_Z = 1.0f;
+	static const float TARGET_LENGTH_Z = 0.0f;
 
 	static const float BUTTON_LENGTH_X = 1.5f;
 	static const float BUTTON_LENGTH_Y = 1.5f;
 	static const float BUTTON_LENGTH_Z = 0.0f;
+
+	static const float BOX_CENTER_Z = -0.4f;
+	static const float PLAYER_CENTER_Z = -0.5f;
+	static const float WALL_CENTER_Z = 0.55f;
+	static const float TARGET_CENTER_Z = -0.0f;
+	
+	//LIGHT EMISSIONS
+	static const osg::Vec4f BUTTON_EMISSION(1.0f, 1.0f, 1.0f, 1.0f);
+	static const osg::Vec4f OBJECT_EMISSION(0.2f, 0.2f, 0.2f, 0.5f);
 };
