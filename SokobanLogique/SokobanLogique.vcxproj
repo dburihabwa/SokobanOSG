@@ -72,6 +72,7 @@
     <ClCompile Include="GUI\ReloadButton.cpp" />
     <ClCompile Include="GUI\RotateButton.cpp" />
     <ClCompile Include="GUI\SaveButton.cpp" />
+    <ClCompile Include="GUI\UndoButton.cpp" />
     <ClCompile Include="GUI\View.cpp" />
     <ClCompile Include="GUI\ZoomButton.cpp" />
     <ClCompile Include="Handlers\DirectionButtonEventHandler.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="gui\ReloadButton.h" />
     <ClInclude Include="GUI\RotateButton.h" />
     <ClInclude Include="GUI\SaveButton.h" />
+    <ClInclude Include="GUI\UndoButton.h" />
     <ClInclude Include="GUI\View.h" />
     <ClInclude Include="GUI\ZoomButton.h" />
     <ClInclude Include="Handlers\DirectionButtonEventHandler.h" />
@@ -133,6 +135,7 @@
     <ClInclude Include="Handlers\ScrollHandler.h" />
     <ClInclude Include="Commands\UnDoableCommand.h" />
     <ClInclude Include="Commands\UndoCommand.h" />
+    <ClInclude Include="UndoButton.h" />
     <ClInclude Include="Updaters\AnimationUpdater.h" />
     <ClInclude Include="Updaters\PlayerAnimationUpdater.h" />
   </ItemGroup>

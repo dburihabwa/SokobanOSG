@@ -1,8 +1,6 @@
 #include "Hud.h"
 #include "../Factories/NodeFactory.h"
 #include "../Constants.h"
-#include "LoadSavedGameButton.h"
-#include "ReloadButton.h"
 #include <osg/PositionAttitudeTransform>
 
 /// Creates the new Hud
@@ -25,16 +23,20 @@ Sokoban::Hud::Hud(void) {
 	this->_saveButton = new SaveButton(0, 0, 0);
 	this->_zoomInButton = new ZoomButton(-2, 0, 0, ZOOM_IN);
 	this->_zoomOutButton = new ZoomButton(-2, 2, 0, ZOOM_OUT);
-	this->_rotateLeftButton = new RotateButton(0, 4, 0, ROTATE_LEFT_BUTTON);
-	this->_rotateRightButton = new RotateButton(0, 6, 0, ROTATE_RIGHT_BUTTON);
+	this->_undoButton = new UndoButton(2, 4, 0);
+	this->_loadSavedGameButton = new LoadSavedGameButton(0,2,0);
+	this->_reloadButton = new ReloadButton(2,0,0);
+	//this->_rotateLeftButton = new RotateButton(0, 4, 0, ROTATE_LEFT_BUTTON);
+	//this->_rotateRightButton = new RotateButton(0, 6, 0, ROTATE_RIGHT_BUTTON);
 
 	this->_buttons.push_back(this->_saveButton);
 	this->_buttons.push_back(this->_zoomInButton);
 	this->_buttons.push_back(this->_zoomOutButton);
-	this->_buttons.push_back(new LoadSavedGameButton(0,2,0));
-	this->_buttons.push_back(new ReloadButton(2,0,0));
-	this->_buttons.push_back(this->_rotateLeftButton);
-	this->_buttons.push_back(this->_rotateRightButton);
+	this->_buttons.push_back(this->_loadSavedGameButton);
+	this->_buttons.push_back(this->_reloadButton);
+	//this->_buttons.push_back(this->_rotateLeftButton);
+	//this->_buttons.push_back(this->_rotateRightButton);
+	this->_buttons.push_back(this->_undoButton);
 
 	createNodes();
 }

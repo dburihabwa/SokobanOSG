@@ -62,6 +62,7 @@ bool Sokoban::NodeFactory::isAButton(Sokoban::Type type) {
 		type == Sokoban::ROTATE_LEFT_BUTTON ||
 		type == Sokoban::ROTATE_RIGHT_BUTTON ||
 		type == Sokoban::SAVE_BUTTON ||
+		type == Sokoban::UNDO_BUTTON ||
 		type == Sokoban::ZOOM_IN ||
 		type == Sokoban::ZOOM_OUT;
 }

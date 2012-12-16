@@ -214,6 +214,12 @@
     <ClInclude Include="Commands\RotateCommand.h">
       <Filter>Headers\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="UndoButton.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\UndoButton.h">
+      <Filter>Headers\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Factories\NodeFactory.cpp">
@@ -284,6 +290,9 @@
     </ClCompile>
     <ClCompile Include="Commands\CommandHandler.cpp">
       <Filter>Sources\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\UndoButton.cpp">
+      <Filter>Sources\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
