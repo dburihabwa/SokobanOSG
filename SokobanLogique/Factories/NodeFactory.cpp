@@ -17,7 +17,7 @@ std::map<Sokoban::Type, std::string> Sokoban::NodeFactory::_textures;
 std::map<Sokoban::Type, std::string> Sokoban::NodeFactory::_switchTextures;
 
 osg::ref_ptr<osg::PositionAttitudeTransform> Sokoban::NodeFactory::createNode(int x,int y,int z, Type element) {
-	settingTextures();
+	loadTextureFilePaths();
 	osg::ref_ptr<osg::PositionAttitudeTransform> postAtt = new osg::PositionAttitudeTransform();
 	postAtt->addChild(getOrCreateGeode(element));
 
@@ -26,7 +26,7 @@ osg::ref_ptr<osg::PositionAttitudeTransform> Sokoban::NodeFactory::createNode(in
 	return postAtt;
 }
 
-void Sokoban::NodeFactory::settingTextures() {
+void Sokoban::NodeFactory::loadTextureFilePaths() {
 	if (_textures.find(TARGET) != _textures.end())
 		return;
 	_textures[TARGET] = "target.png";

@@ -28,7 +28,10 @@ namespace Sokoban
 		static std::map<Type, std::string> _textures;
 		static std::map<Type, std::string> _switchTextures;
 
-		static void settingTextures();
+		///	<summary>
+		///	Loads the texture file paths.
+		///	</summary>
+		static void loadTextureFilePaths();
 		
 		///	<summary>
 		///		Creates or fetches the requested Node from the cache.
